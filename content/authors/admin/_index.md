@@ -6,13 +6,16 @@ bio: My research interests include macroeconomics, monetary and financial
 interests:
   - Macroeconomics
   - Monetary and Financial Economics
-  - and Natural Language Processing (NLP)
+  - Natural Language Processing (NLP)
 social:
   - icon: envelope
     icon_pack: fas
     link: /#contact
+  - link: https://www.linkedin.com/in/pakshingho/
+    icon_pack: fab
+    icon: linkedin
   - link: https://github.com/pakshingho
-    icon_pack: ai
+    icon_pack: fab
     icon: github
 organizations: []
 education:
