@@ -104,7 +104,7 @@ directions = "Enter School of Social Work (SSW) building from the east wing and 
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.
-office_hours = ["By online appointment."]
+office_hours = ["Office hours: online appointment."]
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
 appointment_url = "https://calendly.com/pakshingho"
