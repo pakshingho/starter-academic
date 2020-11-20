@@ -36,7 +36,7 @@ date_format = "Jan 2006"
   """
 
 [[experience]]
-  title = "Quantitative Research"
+  title = "Quantitative Researcher"
   company = "Geode Capital Management"
   company_url = "https://www.geodecapital.com/"
   location = "Boston"
