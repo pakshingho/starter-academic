@@ -17,10 +17,12 @@ social:
   - link: https://github.com/pakshingho
     icon_pack: fab
     icon: github
-organizations: []
+organizations:
+  - name: Boston University
+    url: https://www.bu.edu/econ/
 education:
   courses:
-    - course: Ph.D. in Economics
+    - course: Ph.D. Economics
       institution: Boston University
       year: 2021
 email: ""
