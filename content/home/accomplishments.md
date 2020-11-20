@@ -29,13 +29,23 @@ date_format = "Jan 2006"
   description = ""
 
 [[item]]
-  organization = "edX"
+  organization = "Coursera"
   organization_url = "https://www.coursera.org"
   title = "Deep Learning Specialization"
-  url = "https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals"
+  url = "https://www.coursera.org/specializations/deep-learning"
   certificate_url = "https://www.coursera.org/account/accomplishments/specialization/certificate/LRAMRG5NXJSF"
   date_start = ""
   date_end = "July 2019"
+  description = ""
+
+[[item]]
+  organization = "Coursera"
+  organization_url = "https://www.coursera.org"
+  title = "Machine Learning"
+  url = "https://www.coursera.org/learn/machine-learning"
+  certificate_url = "https://www.coursera.org/account/accomplishments/certificate/QXYPLST2ET94"
+  date_start = ""
+  date_end = "June 2019"
   description = ""
   
 [[item]]
