@@ -18,27 +18,36 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "CEO"
-  company = "GenCoin"
-  company_url = ""
-  location = "California"
-  date_start = "2017-01-01"
-  date_end = ""
+  title = "Economist"
+  company = "Amazon"
+  company_url = "Amazon.com"
+  location = "Seattle"
+  date_start = "2020-05-25"
+  date_end = "2020-08-14"
   description = """
   Responsibilities include:
   
-  * Analysing
-  * Modelling
-  * Deploying
+  * Economic Analysis
+  * Econometric Modelling
+  * Causal Inference and Event Studies
+  * Time Series Forecasting
+  * Statistical Package Development
+  * Automation Design
   """
 
 [[experience]]
-  title = "Professor"
-  company = "University X"
-  company_url = ""
+  title = "Quantitative Research"
+  company = "Geode Capital Management"
+  company_url = "https://www.geodecapital.com/"
   location = "California"
-  date_start = "2016-01-01"
-  date_end = "2016-12-31"
-  description = """Taught electronic engineering and researched semiconductor physics."""
-
+  date_start = "2019-06-03"
+  date_end = "2019-08-26"
+  description = """
+  Responsibilities include:
+  
+  * ESG Portfolio Construction and Back-testing
+  * ESG Data Analysis
+  * Statistical Modelling
+  """
+  
 +++
