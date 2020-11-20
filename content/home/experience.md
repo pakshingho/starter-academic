@@ -6,7 +6,7 @@ active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
 title = "Experience"
-subtitle = ""
+subtitle = "Professional"
 
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
@@ -19,8 +19,8 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
   title = "Economist"
-  company = "Amazon"
-  company_url = "Amazon.com"
+  company = "Amazon.com"
+  company_url = "https://www.amazon.com/"
   location = "Seattle"
   date_start = "2020-05-25"
   date_end = "2020-08-14"
