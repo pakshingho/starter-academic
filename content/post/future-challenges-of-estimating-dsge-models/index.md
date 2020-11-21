@@ -2,8 +2,10 @@
 title: Future Challenges of Estimating DSGE Models
 subtitle: Extracted from Fernández-Villaverde and Guerrón-Quintana (2020)
 date: 2020-11-21T04:30:15.410Z
-draft: false
-featured: false
+draft: true
+featured: true
+tags:
+  - DSGE
 image:
   filename: featured
   focal_point: Smart
