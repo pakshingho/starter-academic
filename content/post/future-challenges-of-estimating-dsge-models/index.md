@@ -2,8 +2,8 @@
 title: Future Challenges of Estimating DSGE Models
 subtitle: Extracted from Fernández-Villaverde and Guerrón-Quintana (2020)
 date: 2020-11-21T04:30:15.410Z
-draft: true
-featured: true
+draft: false
+featured: false
 tags:
   - DSGE
 image:
