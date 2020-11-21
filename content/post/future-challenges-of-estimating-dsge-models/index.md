@@ -15,7 +15,7 @@ image:
 1. Continuous-time: Brunnermeier and Sannikov (2014), and Achdou et al. (2017)
 2. Structural estimation of DSGE models in continuous time: Fernández-Villaverde et al. (2019)
 3. Heterogeneous agents: Gornemann et al. (2012) and Kaplan et al. (2018)
-4. Deep neural networks and the curse of dimensionality: Bach (2017), Fernández-Villaverde et al. (2019), Maliar et al. (2019), and Azinovic et al. (2019)
+4. Deep neural networks break the curse of dimensionality: Bach (2017), Fernández-Villaverde et al. (2019), Maliar et al. (2019), and Azinovic et al. (2019)
 5. Unstructured data:
 
    * Rich data sets: Boivin and Giannoni (2006)
