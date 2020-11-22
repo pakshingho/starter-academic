@@ -37,6 +37,6 @@ education:
 email: ""
 superuser: true
 user_groups: []
-highlight_name: false
+highlight_name: true
 ---
 Pak Shing Ho is a Ph.D. candidate in Economics at Boston University. His research interests include macroeconomics, monetary and financial economics, and natural language processing (NLP).
