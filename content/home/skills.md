@@ -30,7 +30,13 @@ subtitle = ""
   icon = "chart-line"
   icon_pack = "fas"
   name = "Statistics"
-  description = "100%"  
+  description = "100%"
+
+[[feature]]
+  icon = "overleaf"
+  icon_pack = "ai"
+  name = "Overleaf"
+  description = "100%" 
 
 # Uncomment to use emoji icons.
 # [[feature]]
