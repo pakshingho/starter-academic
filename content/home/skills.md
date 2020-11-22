@@ -34,7 +34,7 @@ subtitle = ""
 
 [[feature]]
   icon = "terminal"
-  icon_pack = "fab"
+  icon_pack = "fas"
   name = "Command Line"
   description = "80%"
   
