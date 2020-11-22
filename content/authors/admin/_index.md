@@ -22,7 +22,7 @@ organizations:
     url: https://www.bu.edu/econ/
 education:
   courses:
-    - course: Ph.D. Economics
+    - course: Ph.D., Economics
       institution: Boston University
       year: 2021
     - course: Master in Economics and Finance
