@@ -32,7 +32,7 @@ education:
       institution: London School of Economics and Political Science
       year: 2013
     - course: B.Com., Economics
-      institution: University of Melbourne
+      institution: The University of Melbourne
       year: 2012
 email: ""
 superuser: true
