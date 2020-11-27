@@ -25,8 +25,8 @@ education:
     - course: Ph.D., Economics
       institution: Boston University
       year: 2021
-    - course: Master in Economics and Finance
-      institution: Universitat Pompeu Fabra
+    - course: M.Res., Economics and Finance
+      institution: Universitat Pompeu Fabra (Barcelona GSE)
       year: 2015
     - course: M.Sc., Economics
       institution: London School of Economics and Political Science
