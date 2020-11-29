@@ -6,7 +6,11 @@ summary: Traditional time series econometric forecasting methods often provide
   poor macro forecasts. Machine learning methods provide an alternative to
   traditional forecasting techniques.
 draft: false
-featured: false
+featured: true
+tags:
+  - ML;MachineLearning;Forecast
+categories:
+  - Machine Learning;Forecast
 image:
   filename: featured
   focal_point: Smart
@@ -17,15 +21,15 @@ image:
 
 ## Methods and Background:
 
+Medeiros, M. C., Vasconcelos, G. F. R., Veiga, Á., & Zilberman, E. (2019). Forecasting Inflation in a Data-Rich Environment: The Benefits of Machine Learning Methods. Journal of Business and Economic Statistics, 1–22. <https://doi.org/10.1080/07350015.2019.1637745>
+
+Smalter Hall, A. (2018). Machine Learning Approaches to Macroeconomic Forecasting. The Federal Reserve Bank of Kansas City Economic Review. <https://doi.org/10.18651/er/4q18smalterhall>
+
 Smeekes, S., & Wijler, E. (2018). Macroeconomic forecasting using penalized regression methods. International Journal of Forecasting, 34(3), 408–430. <https://doi.org/10.1016/j.ijforecast.2018.01.001>
 
 Stock, J. H., & Watson, M. W. (2012). Generalized shrinkage methods for forecasting using many predictors. Journal of Business and Economic Statistics, 30(4), 481–493. <https://doi.org/10.1080/07350015.2012.715956>
 
-Medeiros, M. C., Vasconcelos, G. F. R., Veiga, Á., & Zilberman, E. (2019). Forecasting Inflation in a Data-Rich Environment: The Benefits of Machine Learning Methods. Journal of Business and Economic Statistics, 1–22. <https://doi.org/10.1080/07350015.2019.1637745>
-
 Tu, Y., & Lee, T.-H. (2019). Forecasting using supervised factor models. Journal of Management Science and Engineering, 4(1), 12–27. <https://doi.org/10.1016/j.jmse.2019.03.001>
-
-Smalter Hall, A. (2018). Machine Learning Approaches to Macroeconomic Forecasting. The Federal Reserve Bank of Kansas City Economic Review. <https://doi.org/10.18651/er/4q18smalterhall>
 
 ## Applications:
 
