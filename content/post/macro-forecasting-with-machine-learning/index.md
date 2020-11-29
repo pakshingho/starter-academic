@@ -1,6 +1,6 @@
 ---
 title: Macro Forecasting with Machine Learning
-subtitle: Some references
+subtitle: An Ongoing Collection of References
 date: 2020-11-29T23:33:11.285Z
 summary: Traditional time series econometric forecasting methods often provide
   poor macro forecasts. Machine learning methods provide an alternative to
@@ -15,7 +15,7 @@ image:
 * Traditional time series econometric forecasting methods often provide poor macro forecasts.
 * Machine learning methods provide an alternative to traditional forecasting techniques.
 
-# Methods and Background:
+## Methods and Background:
 
 Smeekes, S., & Wijler, E. (2018). Macroeconomic forecasting using penalized regression methods. International Journal of Forecasting, 34(3), 408–430. <https://doi.org/10.1016/j.ijforecast.2018.01.001>
 
@@ -27,9 +27,9 @@ Tu, Y., & Lee, T.-H. (2019). Forecasting using supervised factor models. Journal
 
 Smalter Hall, A. (2018). Machine Learning Approaches to Macroeconomic Forecasting. The Federal Reserve Bank of Kansas City Economic Review. <https://doi.org/10.18651/er/4q18smalterhall>
 
-# Applications:
+## Applications:
 
-## IMF:
+### IMF:
 
 Bolhuis, M. A., & Rayner, B. (2020). Deus ex Machina? A Framework for Macro Forecasting with Machine Learning. IMF Working Paper. <https://www.imf.org/en/Publications/WP/Issues/2020/02/28/Deus-ex-Machina-A-Framework-for-Macro-Forecasting-with-Machine-Learning-49094>
 
@@ -41,6 +41,6 @@ Tiffin, A. (2016). Seeing in the Dark: A Machine-Learning Approach to Nowcasting
 
 Tiffin, A. (2019). Machine Learning and Causality: The Impact of Financial Crises on Growth. IMF Working Papers, 19(228). <https://www.imf.org/en/Publications/WP/Issues/2019/11/01/Machine-Learning-and-Causality-The-Impact-of-Financial-Crises-on-Growth-48722>
 
-## Central banks:
+### Central banks:
 
 Richardson, A., Mulder, T. van F., & Vehbi, T. (2019). Nowcasting GDP using machine learning algorithms: A real-time assessment. Discussion Paper. <https://www.rbnz.govt.nz/research-and-publications/discussion-papers/2019/dp2019-03>
