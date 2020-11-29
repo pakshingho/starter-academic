@@ -2,10 +2,9 @@
 title: Macro Forecasting with Machine Learning
 subtitle: Some references
 date: 2020-11-29T23:33:11.285Z
-summary: >-
-  * Traditional forecasting methods often provide poor macro forecasts.
-
-  * Machine learning (ML) methods present an alternative to traditional forecasting techniques.
+summary: Traditional time series econometric forecasting methods often provide
+  poor macro forecasts. Machine learning methods provide an alternative to
+  traditional forecasting techniques.
 draft: false
 featured: false
 image:
@@ -13,8 +12,8 @@ image:
   focal_point: Smart
   preview_only: false
 ---
-* Traditional forecasting methods often provide poor macro forecasts.
-* Machine learning (ML) methods present an alternative to traditional forecasting techniques.
+* Traditional time series econometric forecasting methods often provide poor macro forecasts.
+* Machine learning (ML) methods provide an alternative to traditional forecasting techniques.
 
 # Methods and Background:
 
