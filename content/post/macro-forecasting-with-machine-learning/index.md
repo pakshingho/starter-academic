@@ -13,7 +13,7 @@ image:
   preview_only: false
 ---
 * Traditional time series econometric forecasting methods often provide poor macro forecasts.
-* Machine learning (ML) methods provide an alternative to traditional forecasting techniques.
+* Machine learning methods provide an alternative to traditional forecasting techniques.
 
 # Methods and Background:
 
