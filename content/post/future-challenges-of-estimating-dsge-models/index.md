@@ -7,6 +7,7 @@ draft: false
 featured: false
 tags:
   - DSGE
+  - Macroeconomics
 categories:
   - Macroeconomics
 image:
