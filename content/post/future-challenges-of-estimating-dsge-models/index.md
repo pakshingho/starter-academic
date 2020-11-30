@@ -6,7 +6,7 @@ summary: How to estimate DSGE models in high dimensional state-space settings.
 draft: false
 featured: false
 tags:
-  - DSGE Macroeconomics
+  - DSGE
 categories:
   - Macroeconomics
 image:
