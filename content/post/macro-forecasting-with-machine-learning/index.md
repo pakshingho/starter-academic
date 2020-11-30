@@ -9,7 +9,7 @@ draft: false
 featured: false
 tags:
   - ML
-  - MachineLearning
+  - Machine Learning
   - Forecast
 categories:
   - Machine Learning
