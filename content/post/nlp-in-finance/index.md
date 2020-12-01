@@ -1,7 +1,7 @@
 ---
 title: NLP in Finance
 date: 2020-12-01T21:03:50.676Z
-draft: true
+draft: false
 featured: false
 tags:
   - NLP
