@@ -1,5 +1,5 @@
 ---
-title: NLP in finance
+title: NLP in Finance
 date: 2020-12-01T21:03:50.676Z
 draft: true
 featured: false
