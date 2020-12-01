@@ -3,6 +3,12 @@ title: NLP in Finance
 date: 2020-12-01T21:03:50.676Z
 draft: true
 featured: false
+tags:
+  - NLP
+  - Finance
+categories:
+  - NLP
+  - Finance
 image:
   filename: featured
   focal_point: Smart
