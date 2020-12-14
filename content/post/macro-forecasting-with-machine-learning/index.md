@@ -24,6 +24,8 @@ image:
 
 ## Methods and Background:
 
+Coulombe, P. G., Leroux, M., Stevanovic, D., & Surprenant, S. (2020). How is machine learning useful for macroeconomic forecasting? In *arXiv*.
+
 Medeiros, M. C., Vasconcelos, G. F. R., Veiga, Á., & Zilberman, E. (2019). Forecasting Inflation in a Data-Rich Environment: The Benefits of Machine Learning Methods. Journal of Business and Economic Statistics, 1–22. <https://doi.org/10.1080/07350015.2019.1637745>
 
 Smalter Hall, A. (2018). Machine Learning Approaches to Macroeconomic Forecasting. The Federal Reserve Bank of Kansas City Economic Review. <https://doi.org/10.18651/er/4q18smalterhall>
