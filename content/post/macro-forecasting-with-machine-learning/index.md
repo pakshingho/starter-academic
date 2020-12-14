@@ -28,6 +28,8 @@ Coulombe, P. G., Leroux, M., Stevanovic, D., & Surprenant, S. (2020). How is mac
 
 Medeiros, M. C., Vasconcelos, G. F. R., Veiga, Á., & Zilberman, E. (2019). Forecasting Inflation in a Data-Rich Environment: The Benefits of Machine Learning Methods. Journal of Business and Economic Statistics, 1–22. <https://doi.org/10.1080/07350015.2019.1637745>
 
+Nyman, R., & Ormerod, P. (2017). Predicting Economic Recessions Using Machine Learning Algorithms. In *arXiv*.
+
 Smalter Hall, A. (2018). Machine Learning Approaches to Macroeconomic Forecasting. The Federal Reserve Bank of Kansas City Economic Review. <https://doi.org/10.18651/er/4q18smalterhall>
 
 Smeekes, S., & Wijler, E. (2018). Macroeconomic forecasting using penalized regression methods. International Journal of Forecasting, 34(3), 408–430. <https://doi.org/10.1016/j.ijforecast.2018.01.001>
