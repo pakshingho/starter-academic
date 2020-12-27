@@ -5,6 +5,11 @@ subtitle: Shapley value decomposition of a model, a pay-off concept from
 date: 2020-12-27T21:22:05.406Z
 draft: false
 featured: false
+tags:
+  - Machine Learning
+  - ML
+categories:
+  - Machine Learning
 image:
   filename: featured
   focal_point: Smart
