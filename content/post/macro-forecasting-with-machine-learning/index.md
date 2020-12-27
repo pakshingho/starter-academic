@@ -11,9 +11,11 @@ tags:
   - ML
   - Machine Learning
   - Forecast
+  - Macro
 categories:
   - Machine Learning
   - Forecast
+  - Macroeconomics
 image:
   filename: featured
   focal_point: Smart
