@@ -4,7 +4,8 @@ subtitle: An Ongoing Collection of References
 date: 2020-11-29T23:33:11.285Z
 summary: Traditional time series econometric forecasting methods often provide
   poor macro forecasts. Machine learning methods provide an alternative to
-  traditional forecasting techniques.
+  traditional forecasting techniques. This post provides an ongoing collections
+  of methods and applied works of the related topics.
 draft: false
 featured: false
 tags:
