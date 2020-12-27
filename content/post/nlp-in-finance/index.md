@@ -4,10 +4,11 @@ date: 2020-12-01T21:03:50.676Z
 draft: true
 featured: false
 tags:
+  - Natural Language Processing
   - NLP
   - Finance
 categories:
-  - NLP
+  - Natural Language Processing
   - Finance
 image:
   filename: featured
