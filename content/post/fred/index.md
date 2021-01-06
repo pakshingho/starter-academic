@@ -1,7 +1,7 @@
 ---
-title: FRED
+title: FRED Widget
 date: 2021-01-06T03:44:47.658Z
-draft: false
+draft: true
 featured: false
 image:
   filename: featured
