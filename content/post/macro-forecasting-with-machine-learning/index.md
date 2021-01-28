@@ -43,6 +43,8 @@ Stock, J. H., & Watson, M. W. (2012). Generalized shrinkage methods for forecast
 
 Tu, Y., & Lee, T.-H. (2019). Forecasting using supervised factor models. Journal of Management Science and Engineering, 4(1), 12–27. <https://doi.org/10.1016/j.jmse.2019.03.001>
 
+Uematsu, Y., & Tanaka, S. (2019). High-dimensional macroeconomic forecasting and variable selection via penalized regression. *Econometrics Journal*. https://doi.org/10.1111/ectj.12117
+
 ## Applications:
 
 ### IMF:
