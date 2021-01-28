@@ -11,11 +11,11 @@ featured: false
 tags:
   - ML
   - Machine Learning
-  - Forecast
+  - Forecasting
   - Macro
 categories:
   - Machine Learning
-  - Forecast
+  - Forecasting
   - Macroeconomics
 image:
   filename: featured
