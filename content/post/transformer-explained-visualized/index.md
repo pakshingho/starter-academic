@@ -1,0 +1,25 @@
+---
+title: Transformer Explained & Visualized
+subtitle: Transformer Neural Networks Explained & Visualized
+date: 2021-02-16T22:06:12.981Z
+summary: |-
+  Transformer Neural Networks Explained & Visualized
+
+  <https://www.youtube.com/playlist?list=PLRgS_r6tnkkhI-q1auABKLfLWG0suOWln>
+draft: false
+featured: false
+tags:
+  - Deep Learning
+  - Transformer
+  - RNN
+  - DL
+categories:
+  - Deep Learning
+image:
+  filename: featured
+  focal_point: Smart
+  preview_only: false
+---
+Transformer Neural Networks Explained & Visualized
+
+<https://www.youtube.com/playlist?list=PLRgS_r6tnkkhI-q1auABKLfLWG0suOWln>
