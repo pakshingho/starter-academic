@@ -7,6 +7,9 @@ summary: >-
   <https://www.youtube.com/playlist?list=PLRgS_r6tnkkhI-q1auABKLfLWG0suOWln>
 
 
+  The Illustrated Transformer: <http://jalammar.github.io/illustrated-transformer/>
+
+
   T5: a detailed explanation: <https://medium.com/analytics-vidhya/t5-a-detailed-explanation-a0ac9bc53e51>
 draft: false
 featured: false
@@ -31,7 +34,9 @@ Transformer Neural Networks Explained & Visualized
 
 <https://www.youtube.com/playlist?list=PLRgS_r6tnkkhI-q1auABKLfLWG0suOWln>
 
+The Illustrated Transformer
 
+<http://jalammar.github.io/illustrated-transformer/>
 
 T5: a detailed explanation
 
