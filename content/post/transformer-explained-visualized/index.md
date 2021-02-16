@@ -13,8 +13,13 @@ tags:
   - Transformer
   - RNN
   - DL
+  - Natural Language Processing
+  - NLP
+  - Text Mining
 categories:
   - Deep Learning
+  - Natural Language Processing
+  - Text Mining
 image:
   filename: featured
   focal_point: Smart
