@@ -11,6 +11,8 @@ tags:
 categories:
   - Reinforcement Learning
   - Machine Learning
+  - RL
+  - ML
 image:
   filename: https://upload.wikimedia.org/wikipedia/commons/1/1b/Reinforcement_learning_diagram.svg
   focal_point: Smart
