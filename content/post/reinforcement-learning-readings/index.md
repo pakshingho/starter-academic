@@ -16,7 +16,7 @@ categories:
 image:
   filename: https://upload.wikimedia.org/wikipedia/commons/1/1b/Reinforcement_learning_diagram.svg
   focal_point: Smart
-  preview_only: true
+  preview_only: false
 ---
 [Dissecting Reinforcement](https://github.com/mpatacchiola/dissecting-reinforcement-learning) (Part 1 starts [here](https://mpatacchiola.github.io/blog/2016/12/09/dissecting-reinforcement-learning.html)) gives a very good intro using materials from [Artificial Intelligence: A Modern Approach](http://aima.cs.berkeley.edu/) by [Stuart Russell](http://www.cs.berkeley.edu/~russell) and [Peter Norvig](http://www.norvig.com/). 
 
