@@ -4,7 +4,7 @@ date: 2021-10-24T00:44:04.420Z
 draft: false
 featured: false
 image:
-  filename: featured
+  filename: https://upload.wikimedia.org/wikipedia/commons/1/1b/Reinforcement_learning_diagram.svg
   focal_point: Smart
   preview_only: false
 ---
