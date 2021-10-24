@@ -5,8 +5,12 @@ draft: false
 featured: false
 tags:
   - Reinforcement Learning
+  - Machine Learning
+  - RL
+  - ML
 categories:
   - Reinforcement Learning
+  - Machine Learning
 image:
   filename: https://upload.wikimedia.org/wikipedia/commons/1/1b/Reinforcement_learning_diagram.svg
   focal_point: Smart
