@@ -14,4 +14,4 @@ image:
   focal_point: Smart
   preview_only: false
 ---
-[An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
+The page written by [Sebastian Ruder](https://ruder.io/) gives [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
