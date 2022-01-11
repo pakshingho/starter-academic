@@ -6,6 +6,8 @@ featured: false
 tags:
   - DL
   - ML
+  - Deep Learning
+  - Machine Learning
 categories:
   - Deep Learning
   - Machine Learning
