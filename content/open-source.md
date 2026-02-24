@@ -4,19 +4,17 @@ date: 2026-02-24
 type: page
 ---
 
-Open-source projects and public tooling I maintain or contribute to.
+Open repositories and public technical work.
 
-## Repository Template
+## Primary Repository
 
-### [Repo Name]
+### Starter Academic Personal Site
 
-- Problem solved: [What user need this addresses]
-- Technical design: [Core architecture or approach]
-- Status: [Active / Maintenance / Archived]
-- Links: [GitHub], [Docs], [Package Registry]
+- Description: Source code and content for this website.
+- Stack: Hugo + Wowchemy.
+- Status: Active.
+- Repository: [pakshingho/starter-academic](https://github.com/pakshingho/starter-academic)
 
-## Current Focus
+## GitHub Profile
 
-- Practical ML workflows
-- Experimentation utilities
-- Reproducibility and model evaluation tooling
+- More projects and contributions: [github.com/pakshingho](https://github.com/pakshingho)

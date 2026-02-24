@@ -4,22 +4,22 @@ date: 2026-02-24
 type: page
 ---
 
-I am Pak Shing Ho, a data scientist focused on turning ambiguous problems into measurable outcomes.
+I am Pak Shing Ho, an economist and data scientist focused on macroeconomics, monetary and financial economics, and natural language processing.
 
-## Focus Areas
+## Background
 
-- Machine learning for forecasting and decision support
-- NLP for domain-specific applications
-- Experimentation and causal analysis
+- Ph.D. in Economics, Boston University (2021)
+- M.Res. in Economics and Finance, Universitat Pompeu Fabra (Barcelona GSE)
+- M.Sc. in Economics, London School of Economics and Political Science
+- B.Com. in Economics, The University of Melbourne
 
-## How I Work
+## Research and Practice Areas
 
-- Start with a clear metric and decision context
-- Build the simplest model or system that can create value
-- Iterate with rigorous evaluation and stakeholder feedback
+- Machine learning for macro forecasting
+- NLP in economics and finance
+- Interpretable machine learning
 
-## Technical Stack
+## Working Style
 
-- Python, SQL, and statistical modeling toolkits
-- Data pipelines and cloud-based workflows
-- Production monitoring and experiment tracking
+- Bridge research and implementation with practical, reproducible workflows
+- Prioritize clear communication of methods, assumptions, and limitations

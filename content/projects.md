@@ -4,35 +4,50 @@ date: 2026-02-24
 type: page
 ---
 
-Selected data science and machine learning projects with measurable outcomes.
+Selected projects and technical notes at the intersection of machine learning and economics.
 
-## Featured Case Studies
+## Forecasting and Macroeconomics
 
-### Project Name 1
+### Macro Forecasting with Machine Learning
 
-- Problem: [Describe the business or research problem]
-- Approach: [Modeling or system approach]
-- Impact: [Primary metric improvement]
-- Stack: [Python, SQL, PyTorch, etc.]
+- Problem: Traditional econometric methods can struggle with macro forecasting in data-rich settings.
+- Approach: Curated methods and applications of machine learning for macroeconomic forecasting.
+- Focus: Penalized regression, supervised factor models, nowcasting, and central-bank/IMF applications.
+- Read: [Macro Forecasting with Machine Learning](/post/macro-forecasting-with-machine-learning/)
 
-### Project Name 2
+### Transformer Models for Time Series Forecasting
 
-- Problem: [Describe the business or research problem]
-- Approach: [Modeling or system approach]
-- Impact: [Primary metric improvement]
-- Stack: [Python, SQL, Spark, etc.]
+- Problem: Multi-horizon forecasting requires strong sequence modeling and interpretability.
+- Approach: Survey and notes on transformer-based time series methods, including Temporal Fusion Transformer.
+- Focus: Deep learning architectures for forecasting tasks.
+- Read: [Transformer Models for Time Series Forecasting](/post/transformer-models-for-time-series-forecasting/)
 
-### Project Name 3
+### Future Challenges of Estimating DSGE Models
 
-- Problem: [Describe the business or research problem]
-- Approach: [Modeling or system approach]
-- Impact: [Primary metric improvement]
-- Stack: [Tooling and infra]
+- Problem: Estimating DSGE models in high-dimensional state-space settings is computationally hard.
+- Approach: Structured summary of major methodological challenges and directions from recent literature.
+- Focus: Continuous-time models, heterogeneous agents, deep neural network approximations, and unstructured data.
+- Read: [Future Challenges of Estimating DSGE Models](/post/future-challenges-of-estimating-dsge-models/)
 
-## Categories
+## NLP and Model Understanding
 
-- NLP
-- Forecasting
-- Experimentation and causal inference
-- Recommender systems
-- MLOps and deployment
+### NLP in Economics and Finance
+
+- Problem: Economic and financial text contains signal that is underused in forecasting and analysis.
+- Approach: Curated references on NLP applications in economics and finance.
+- Focus: Corporate disclosure analysis and text-based economic forecasting.
+- Read: [NLP in Economics and Finance](/post/nlp-in-finance/)
+
+### Machine Learning and Deep Learning Interpretability
+
+- Problem: High-performing models need interpretable outputs for trust and decision support.
+- Approach: Practical notes around Shapley-value-based interpretation and explainability resources.
+- Focus: Interpretable ML methods and inference on model behavior.
+- Read: [Machine Learning and Deep Learning Interpretability](/post/machine-learning-interpretability/)
+
+### Transformer Explained and Visualized
+
+- Problem: Transformer architecture concepts can be hard to communicate to non-specialists.
+- Approach: Consolidated visual and tutorial references for understanding transformers.
+- Focus: Self-attention intuition, architecture walkthroughs, and T5 explanation resources.
+- Read: [Transformer Explained and Visualized](/post/transformer-explained-visualized/)

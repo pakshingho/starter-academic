@@ -4,20 +4,22 @@ date: 2026-02-24
 type: page
 ---
 
-I focus on applied research at the intersection of machine learning, economics, and decision systems.
+I focus on macroeconomics, machine learning, and NLP for economic and financial applications.
+
+## Current Research Themes
+
+- Data-rich macro forecasting with machine learning methods
+- NLP for economics and finance
+- Interpretable machine learning for decision support
+
+## Selected Research Notes
+
+- [Macro Forecasting with Machine Learning](/post/macro-forecasting-with-machine-learning/)
+- [Future Challenges of Estimating DSGE Models](/post/future-challenges-of-estimating-dsge-models/)
+- [NLP in Economics and Finance](/post/nlp-in-finance/)
 
 ## Publications
 
-Browse my formal publication list:
+This section is ready for formal publication entries.
 
-- [Publications](/publication/)
-
-## Current Interests
-
-- Time series forecasting with modern deep learning methods
-- Model interpretability for high-stakes decision making
-- NLP in finance and macroeconomic analysis
-
-## Ongoing Work
-
-Use this section to highlight preprints, technical notes, and in-progress experiments.
+- [Publications Page](/publication/)

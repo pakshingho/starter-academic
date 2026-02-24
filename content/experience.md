@@ -4,21 +4,18 @@ date: 2026-02-24
 type: page
 ---
 
-I build production-facing data science systems and partner closely with product and engineering teams.
+I work on economics and machine learning problems with a focus on forecasting, NLP, and interpretable modeling.
 
-## Role Template
+## Research and Applied Experience
 
-Use this structure for each role to keep your page consistent and impact-driven.
+- Built and curated technical research notes on data-rich macro forecasting workflows
+- Developed and organized resources on NLP applications in economics and finance
+- Produced practical explainability references for machine learning model interpretation
 
-### [Job Title], [Company] ([Start] - [End])
+## Collaboration Focus
 
-- Scope: [Team mission and domain ownership]
-- Built: [Model, pipeline, or analytical system]
-- Impact: [Business metric moved]
-- Stack: [Python, SQL, cloud, orchestration tools]
+- Problem framing grounded in economic or business context
+- Method selection with transparent assumptions and tradeoffs
+- Clear reporting and reproducible analysis artifacts
 
-## What I Emphasize
-
-- End-to-end delivery from framing to deployment
-- Reproducible experimentation and evaluation
-- Clear communication to technical and non-technical stakeholders
+For a full timeline of roles, affiliations, and education, see [About](/about/).

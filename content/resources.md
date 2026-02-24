@@ -4,22 +4,19 @@ date: 2026-02-24
 type: page
 ---
 
-Reusable resources for applied data science and machine learning teams.
+Curated learning and reference materials for machine learning and data science.
 
-## Playbooks
+## Machine Learning Foundations
 
-- Model evaluation checklist
-- Experiment design and readout checklist
-- Production readiness checklist
+- [An overview of gradient descent optimization algorithms](/post/an-overview-of-gradient-descent-optimization-algorithms/)
+- [Understanding Decision Trees, Random Forests, Bagging and Boosting](/post/understanding-decision-trees-random-forests-bagging-and-boosting/)
+- [Reinforcement Learning Readings](/post/reinforcement-learning-readings/)
 
-## Reading Lists
+## Deep Learning and Interview Prep
 
-- Time series forecasting
-- Causal inference and experimentation
-- NLP in production
+- [Resources for deep learning interviews](/post/resources-for-deep-learning-interviews/)
+- [Transformer Explained and Visualized](/post/transformer-explained-visualized/)
 
-## Templates
+## Programming and Workflow
 
-- Project kickoff template
-- A/B test analysis template
-- Model card template
+- [Python Resources](/post/python-resources/)

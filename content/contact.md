@@ -8,7 +8,7 @@ If you are interested in collaboration, advisory work, or speaking opportunities
 
 ## Contact
 
-- Email: `your-email@example.com`
+- Email: Use the contact section on the homepage or connect on LinkedIn.
 - LinkedIn: <https://www.linkedin.com/in/pakshingho/>
 - GitHub: <https://github.com/pakshingho>
 
