@@ -2,7 +2,7 @@
 # Hero widget.
 widget = "hero"  # See https://wowchemy.com/docs/page-builder/
 headless = true  # This file represents a page section.
-active = false  # Activate this widget? true/false
+active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
 title = "Pak Shing Ho"
@@ -41,18 +41,8 @@ hero_media = "hero-academic.png"
   label = "View Projects"
   icon_pack = "fas"
   icon = "chart-line"
-  
-[cta_alt]
-  url = "/experience/"
-  label = "See Experience"
-
-# Note. An optional note to show underneath the links.
-[cta_note]
-  label = '<a href="/contact/">Open to applied science and research collaborations</a>'
 +++
 
-**Applied Scientist at LinkedIn (ex-Amazon)**
+**From experiment design to decision systems: turning data into reliable business actions.**
 
-I build causal inference and forecasting systems for high-stakes product and business decisions.
-
-Focus areas: experimentation, uplift modeling, and interpretable time-series forecasting at production scale.
+Bridging econometrics and ML to improve high-stakes decisions at scale.
