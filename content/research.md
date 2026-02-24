@@ -22,6 +22,7 @@ I focus on causal inference, scalable forecasting, and economic decision systems
 
 ## Publications
 
-This section is ready for formal publication entries.
-
-- [Publications Page](/publication/)
+- [Macro Forecasting with Machine Learning](/publication/macro-forecasting-ml/)
+- [Future Challenges of Estimating DSGE Models](/publication/dsge-estimation-challenges/)
+- [NLP in Economics and Finance](/publication/nlp-econ-finance/)
+- [View all publications](/publication/)
