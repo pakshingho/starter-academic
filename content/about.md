@@ -4,25 +4,25 @@ date: 2026-02-24
 type: page
 ---
 
-I am Pak Shing Ho, an economist and data scientist focused on macroeconomics, monetary and financial economics, and natural language processing.
+I am an Applied Scientist at LinkedIn (ex-Amazon) with 8+ years of experience designing and scaling data science systems for high-stakes decisions in product, finance, growth, and operations.
 
-## Background
+## Current Focus
 
-- Ph.D. in Economics, Boston University (2021)
-- M.Res. in Economics and Finance, Universitat Pompeu Fabra (Barcelona GSE)
-- M.Sc. in Economics, London School of Economics and Political Science
-- B.Com. in Economics, The University of Melbourne
+- Interpretable forecasting pipelines for long-term impact and resource planning
+- Causal inference ecosystems combining experimental and observational data
+- Scalable decision systems for engagement, revenue, and operational strategy
 
-## Research and Practice Areas
+## Methods and Domains
 
-- Machine learning for macro forecasting
-- NLP in economics and finance
-- Interpretable machine learning
+- Causal inference: DML, heterogeneous treatment effects, synthetic control, switchback, diff-in-diff, and A/B testing
+- Forecasting: strategic, operational, and causal forecasting with ML + econometrics
+- Economics: digital platforms, pricing, incentives, ads, and budget allocation
 
-## Working Style
+## Tooling
 
-- Bridge research and implementation with practical, reproducible workflows
-- Prioritize clear communication of methods, assumptions, and limitations
+- Python, SQL, TensorFlow, scikit-learn, statsmodels
+- EconML, DoWhy, Nixtla
+- Flyte, SageMaker, Tableau
 
 ## Profiles
 

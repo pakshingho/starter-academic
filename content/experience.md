@@ -4,18 +4,24 @@ date: 2026-02-24
 type: page
 ---
 
-I work on economics and machine learning problems with a focus on forecasting, NLP, and interpretable modeling.
+I build data science systems that connect causal inference, experimentation, and forecasting to guide business decisions at scale.
 
-## Research and Applied Experience
+## Recent Roles
 
-- Built and curated technical research notes on data-rich macro forecasting workflows
-- Developed and organized resources on NLP applications in economics and finance
-- Produced practical explainability references for machine learning model interpretation
+### Applied Scientist, LinkedIn
 
-## Collaboration Focus
+- Build and scale forecasting and causal inference systems for product and growth decisions
+- Partner with cross-functional teams to evaluate downstream effects of features and strategy changes
+- Translate model outputs into clear decision recommendations for leadership
 
-- Problem framing grounded in economic or business context
-- Method selection with transparent assumptions and tradeoffs
-- Clear reporting and reproducible analysis artifacts
+### Data Scientist / Applied Scientist, Amazon
 
-For a full timeline of roles, affiliations, and education, see [About](/about/).
+- Developed experimentation and forecasting workflows in fast-paced operational environments
+- Supported decisions related to growth, marketing effectiveness, and financial outcomes
+- Operationalized modeling outputs into production decision processes
+
+## Core Strengths
+
+- Causal inference with experimental + observational data
+- Forecasting infrastructure design and model integration
+- Decision-focused communication with technical and business stakeholders

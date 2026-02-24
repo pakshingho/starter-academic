@@ -8,7 +8,7 @@ If you are interested in collaboration, advisory work, or speaking opportunities
 
 ## Contact
 
-- Email: Use the contact section on the homepage or connect on LinkedIn.
+- Best route: LinkedIn message for consulting, collaboration, or full-time opportunities.
 - LinkedIn: <https://www.linkedin.com/in/pakshingho/>
 - GitHub: <https://github.com/pakshingho>
 

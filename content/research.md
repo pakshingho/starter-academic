@@ -4,19 +4,21 @@ date: 2026-02-24
 type: page
 ---
 
-I focus on macroeconomics, machine learning, and NLP for economic and financial applications.
+I focus on causal inference, scalable forecasting, and economic decision systems.
 
 ## Current Research Themes
 
-- Data-rich macro forecasting with machine learning methods
-- NLP for economics and finance
-- Interpretable machine learning for decision support
+- Forecasting infrastructure for strategic and operational planning
+- Causal inference frameworks using both experimental and observational data
+- Interpretable machine learning for high-stakes business decisions
+- NLP in economics and finance
 
 ## Selected Research Notes
 
 - [Macro Forecasting with Machine Learning](/post/macro-forecasting-with-machine-learning/)
 - [Future Challenges of Estimating DSGE Models](/post/future-challenges-of-estimating-dsge-models/)
 - [NLP in Economics and Finance](/post/nlp-in-finance/)
+- [Machine Learning and Deep Learning Interpretability](/post/machine-learning-interpretability/)
 
 ## Publications
 
