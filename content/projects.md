@@ -51,3 +51,25 @@ Selected projects and technical notes at the intersection of machine learning an
 - Approach: Consolidated visual and tutorial references for understanding transformers.
 - Focus: Self-attention intuition, architecture walkthroughs, and T5 explanation resources.
 - Read: [Transformer Explained and Visualized](/post/transformer-explained-visualized/)
+
+## Code Projects from GitHub
+
+### Occupation Classification
+
+- Repository: [pakshingho/Occupation-Classification](https://github.com/pakshingho/Occupation-Classification)
+- Focus: Models to classify occupations using the ONET database.
+
+### A/B Testing
+
+- Repository: [pakshingho/AB-Testing](https://github.com/pakshingho/AB-Testing)
+- Focus: Experimentation workflows and analysis notebooks.
+
+### ESG
+
+- Repository: [pakshingho/ESG](https://github.com/pakshingho/ESG)
+- Focus: ESG, CSR, and sustainability-related analysis.
+
+### Practical Reinforcement Learning
+
+- Repository: [pakshingho/Practical-Reinforcement-Learning-HSE](https://github.com/pakshingho/Practical-Reinforcement-Learning-HSE)
+- Focus: Reinforcement learning practical notebooks and exercises.

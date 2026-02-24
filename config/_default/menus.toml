@@ -71,6 +71,18 @@
   parent = "about_group"
   weight = 42
 
+[[main]]
+  name = "LinkedIn"
+  url = "https://www.linkedin.com/in/pakshingho/"
+  parent = "about_group"
+  weight = 43
+
+[[main]]
+  name = "GitHub"
+  url = "https://github.com/pakshingho"
+  parent = "about_group"
+  weight = 44
+
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/media/cv.pdf` and uncomment the lines below.
 # [[main]]

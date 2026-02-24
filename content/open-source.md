@@ -6,14 +6,37 @@ type: page
 
 Open repositories and public technical work.
 
-## Primary Repository
+## Selected Repositories
 
 ### Starter Academic Personal Site
 
-- Description: Source code and content for this website.
-- Stack: Hugo + Wowchemy.
-- Status: Active.
 - Repository: [pakshingho/starter-academic](https://github.com/pakshingho/starter-academic)
+- Type: Website source and content.
+- Stack: Hugo + Wowchemy.
+
+### Occupation Classification
+
+- Repository: [pakshingho/Occupation-Classification](https://github.com/pakshingho/Occupation-Classification)
+- Description: Models to classify occupations based on ONET data.
+- Primary language: Python.
+
+### ESG
+
+- Repository: [pakshingho/ESG](https://github.com/pakshingho/ESG)
+- Description: ESG, CSR, and sustainability analysis notebooks.
+- Primary language: Jupyter Notebook.
+
+### A/B Testing
+
+- Repository: [pakshingho/AB-Testing](https://github.com/pakshingho/AB-Testing)
+- Description: Experimentation and A/B testing notebooks.
+- Primary language: Jupyter Notebook.
+
+### Practical Reinforcement Learning
+
+- Repository: [pakshingho/Practical-Reinforcement-Learning-HSE](https://github.com/pakshingho/Practical-Reinforcement-Learning-HSE)
+- Description: Practical reinforcement learning coursework and exercises.
+- Primary language: Jupyter Notebook.
 
 ## GitHub Profile
 

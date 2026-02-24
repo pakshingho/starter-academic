@@ -23,3 +23,8 @@ I am Pak Shing Ho, an economist and data scientist focused on macroeconomics, mo
 
 - Bridge research and implementation with practical, reproducible workflows
 - Prioritize clear communication of methods, assumptions, and limitations
+
+## Profiles
+
+- LinkedIn: <https://www.linkedin.com/in/pakshingho/>
+- GitHub: <https://github.com/pakshingho>

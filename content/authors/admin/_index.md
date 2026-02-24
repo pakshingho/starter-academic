@@ -1,8 +1,8 @@
 ---
 title: Pak Shing Ho
-role: Economist
-bio: My research interests include macroeconomics, monetary and financial
-  economics, and natural language processing (NLP).
+role: Economist and Data Scientist
+bio: I work at the intersection of macroeconomics, machine learning, and
+  natural language processing, with practical projects published on GitHub.
 interests:
   - Macroeconomics
   - Monetary and Financial Economics
@@ -39,4 +39,4 @@ superuser: true
 user_groups: []
 highlight_name: false
 ---
-Pak Shing Ho is a Ph.D. candidate in Economics at Boston University. His research interests include macroeconomics, monetary and financial economics, and natural language processing (NLP).
+Pak Shing Ho is an economist and data scientist. His work focuses on macroeconomics, monetary and financial economics, natural language processing, and machine learning applications.
