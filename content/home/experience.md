@@ -18,7 +18,23 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "Economist"
+  title = "Applied Scientist"
+  company = "LinkedIn"
+  company_url = "https://www.linkedin.com/company/linkedin/"
+  location = "Mountain View, California, United States"
+  date_start = "2020-08-15"
+  date_end = ""
+  description = """
+  Responsibilities include:
+  
+  * Building interpretable forecasting systems for product, growth, and finance decisions
+  * Designing causal inference ecosystems using experimental and observational data
+  * Driving long-term business impact through ML and econometrics
+  * Translating model outputs into decision-ready recommendations for leadership
+  """
+
+[[experience]]
+  title = "Data Scientist / Economist"
   company = "Amazon.com"
   company_url = "https://www.amazon.com/"
   location = "Seattle"
@@ -27,27 +43,9 @@ date_format = "Jan 2006"
   description = """
   Responsibilities include:
   
-  * Economic Analysis
-  * Econometric Modelling
-  * Causal Inference and Event Studies
-  * Time Series Forecasting
-  * Statistical Package Development
-  * Automation Design
-  """
-
-[[experience]]
-  title = "Quantitative Researcher"
-  company = "Geode Capital Management"
-  company_url = "https://www.geodecapital.com/"
-  location = "Boston"
-  date_start = "2019-06-03"
-  date_end = "2019-08-26"
-  description = """
-  Responsibilities include:
-  
-  * ESG Portfolio Construction and Back-testing
-  * ESG Data Analysis
-  * Statistical Modelling
+  * Linking experimentation workflows with forecasting for product and operations decisions
+  * Applying causal inference and econometric modeling to evaluate strategy changes
+  * Supporting growth, marketing, pricing, and financial decision making
   """
   
 +++
