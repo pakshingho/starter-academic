@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#f4f8ff"/>
+  <rect x="0" y="0" width="1200" height="86" fill="#ffffff"/>
+  <circle cx="56" cy="43" r="16" fill="#0B5FFF"/>
+  <text x="86" y="49" font-family="Arial, sans-serif" font-size="28" fill="#111827">Pak Shing Ho</text>
+  <text x="760" y="49" font-family="Arial, sans-serif" font-size="18" fill="#1F2937">Projects   Experience   Research   About</text>
+
+  <text x="80" y="180" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#111827">From experiment design to decision systems</text>
+  <text x="80" y="228" font-family="Arial, sans-serif" font-size="34" fill="#1F2937">turning data into reliable business actions.</text>
+
+  <rect x="80" y="276" rx="10" ry="10" width="220" height="56" fill="#0B5FFF"/>
+  <text x="122" y="312" font-family="Arial, sans-serif" font-size="24" fill="#ffffff">View Projects</text>
+
+  <rect x="0" y="380" width="1200" height="380" fill="#ffffff"/>
+  <text x="80" y="448" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#111827">Biography</text>
+  <text x="80" y="494" font-family="Arial, sans-serif" font-size="25" fill="#1F2937">Applied Scientist focused on causal inference and forecasting.</text>
+
+  <rect x="80" y="552" width="300" height="26" fill="#0B5FFF"/>
+  <rect x="80" y="592" width="430" height="26" fill="#0A4ACC"/>
+  <rect x="80" y="632" width="360" height="26" fill="#083A9C"/>
+</svg>

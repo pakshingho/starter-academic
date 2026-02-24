@@ -1,0 +1,14 @@
+name = "Forest Slate"
+light = true
+
+primary = "#0F766E"
+link = "#0E7490"
+link_hover = "#155E75"
+
+menu_primary = "#F8FAFC"
+menu_text = "#1E293B"
+menu_text_active = "#0F766E"
+menu_title = "#0F172A"
+
+home_section_odd = "rgb(248, 250, 252)"
+home_section_even = "rgb(240, 253, 250)"

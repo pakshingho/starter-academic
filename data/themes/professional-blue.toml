@@ -1,0 +1,19 @@
+name = "Professional Blue"
+light = true
+
+# Primary brand/action color
+primary = "#0B5FFF"
+
+# Link colors
+link = "#0A4ACC"
+link_hover = "#083A9C"
+
+# Top navigation
+menu_primary = "#FFFFFF"
+menu_text = "#1F2937"
+menu_text_active = "#0B5FFF"
+menu_title = "#111827"
+
+# Homepage alternating sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "rgb(244, 248, 255)"

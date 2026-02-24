@@ -1,0 +1,14 @@
+name = "Sandstone Coral"
+light = true
+
+primary = "#E85D3F"
+link = "#C2410C"
+link_hover = "#9A3412"
+
+menu_primary = "#FFFBF5"
+menu_text = "#3F3F46"
+menu_text_active = "#E85D3F"
+menu_title = "#27272A"
+
+home_section_odd = "rgb(255, 251, 245)"
+home_section_even = "rgb(255, 241, 236)"
