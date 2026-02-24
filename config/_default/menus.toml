@@ -9,44 +9,67 @@
   weight = 10
 
 [[main]]
-  name = "Projects"
-  url = "/projects/"
+  name = "Work"
+  identifier = "work"
   weight = 20
 
 [[main]]
   name = "Research"
-  url = "/research/"
+  identifier = "research_group"
   weight = 30
 
 [[main]]
-  name = "Talks"
-  url = "/talk/"
+  name = "About"
+  identifier = "about_group"
   weight = 40
+
+[[main]]
+  name = "Projects"
+  url = "/projects/"
+  parent = "work"
+  weight = 21
 
 [[main]]
   name = "Experience"
   url = "/experience/"
-  weight = 50
+  parent = "work"
+  weight = 22
 
 [[main]]
   name = "Open-Source"
   url = "/open-source/"
-  weight = 60
+  parent = "work"
+  weight = 23
+
+[[main]]
+  name = "Research"
+  url = "/research/"
+  parent = "research_group"
+  weight = 31
+
+[[main]]
+  name = "Talks"
+  url = "/talk/"
+  parent = "research_group"
+  weight = 32
 
 [[main]]
   name = "Resources"
   url = "/resources/"
-  weight = 70
+  parent = "research_group"
+  weight = 33
 
 [[main]]
   name = "About"
   url = "/about/"
-  weight = 80
+  parent = "about_group"
+  weight = 41
 
 [[main]]
   name = "Contact"
   url = "/contact/"
-  weight = 90
+  parent = "about_group"
+  weight = 42
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/media/cv.pdf` and uncomment the lines below.
