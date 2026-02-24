@@ -5,28 +5,48 @@
 
 [[main]]
   name = "Home"
-  url = "#about"
+  url = "/"
   weight = 10
 
 [[main]]
-  name = "Posts"
-  url = "#posts"
+  name = "Projects"
+  url = "/projects/"
   weight = 20
 
 [[main]]
-  name = "Projects"
-  url = "#projects"
+  name = "Research"
+  url = "/publication/"
   weight = 30
 
 [[main]]
-  name = "Publications"
-  url = "#featured"
+  name = "Talks"
+  url = "/talk/"
   weight = 40
 
 [[main]]
-  name = "Contact"
-  url = "#contact"
+  name = "Experience"
+  url = "/experience/"
+  weight = 50
+
+[[main]]
+  name = "Open Source"
+  url = "/open-source/"
   weight = 60
+
+[[main]]
+  name = "Resources"
+  url = "/resources/"
+  weight = 70
+
+[[main]]
+  name = "About"
+  url = "/about/"
+  weight = 80
+
+[[main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 90
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/media/cv.pdf` and uncomment the lines below.
