@@ -4,7 +4,9 @@ date: 2026-02-24
 type: page
 ---
 
-Best way to reach me:
+If you are interested in collaboration, advisory work, or speaking opportunities, feel free to reach out.
+
+## Contact
 
 - Email: `your-email@example.com`
 - LinkedIn: <https://www.linkedin.com/in/pakshingho/>

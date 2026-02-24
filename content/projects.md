@@ -4,13 +4,35 @@ date: 2026-02-24
 type: page
 ---
 
-Selected data science and machine learning projects.
+Selected data science and machine learning projects with measurable outcomes.
 
-Use this page as your portfolio index and group work by area:
+## Featured Case Studies
+
+### Project Name 1
+
+- Problem: [Describe the business or research problem]
+- Approach: [Modeling or system approach]
+- Impact: [Primary metric improvement]
+- Stack: [Python, SQL, PyTorch, etc.]
+
+### Project Name 2
+
+- Problem: [Describe the business or research problem]
+- Approach: [Modeling or system approach]
+- Impact: [Primary metric improvement]
+- Stack: [Python, SQL, Spark, etc.]
+
+### Project Name 3
+
+- Problem: [Describe the business or research problem]
+- Approach: [Modeling or system approach]
+- Impact: [Primary metric improvement]
+- Stack: [Tooling and infra]
+
+## Categories
 
 - NLP
 - Forecasting
-- Experimentation
-- MLOps
-
-You can link project writeups here and keep technical articles in [Posts](/post/).
+- Experimentation and causal inference
+- Recommender systems
+- MLOps and deployment
