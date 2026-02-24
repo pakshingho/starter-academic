@@ -29,7 +29,7 @@
   weight = 50
 
 [[main]]
-  name = "Open Source"
+  name = "Open-Source"
   url = "/open-source/"
   weight = 60
 
