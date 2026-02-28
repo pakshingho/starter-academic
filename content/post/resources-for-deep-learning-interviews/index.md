@@ -1,7 +1,7 @@
 ---
 title: Resources for deep learning interviews
 date: 2022-01-11T21:40:30.513Z
-draft: false
+draft: true
 featured: false
 tags:
   - DL

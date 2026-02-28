@@ -1,7 +1,7 @@
 ---
 title: An overview of gradient descent optimization algorithms
 date: 2021-10-26T05:21:54.665Z
-draft: false
+draft: true
 featured: false
 tags:
   - Machine Learning

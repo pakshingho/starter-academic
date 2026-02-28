@@ -6,6 +6,7 @@ location: "Online"
 summary: "A walkthrough of transformer-based approaches for multi-horizon and interpretable time-series forecasting."
 abstract: "Technical briefing based on a research note covering transformer architectures and references for time-series forecasting, including Temporal Fusion Transformer."
 date: "2021-01-28T21:53:49Z"
+draft: true
 date_end: "2021-01-28T22:53:49Z"
 all_day: false
 publishDate: "2021-01-28T21:53:49Z"

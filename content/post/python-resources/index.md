@@ -2,7 +2,7 @@
 title: Python Resources
 subtitle: Documentation, Textbooks, Tutorials, etc.
 date: 2021-02-27T22:14:07.001Z
-draft: false
+draft: true
 featured: false
 tags:
   - Python

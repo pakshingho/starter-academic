@@ -11,7 +11,7 @@ summary: >-
 
 
   T5: a detailed explanation: <https://medium.com/analytics-vidhya/t5-a-detailed-explanation-a0ac9bc53e51>
-draft: false
+draft: true
 featured: false
 tags:
   - Deep Learning

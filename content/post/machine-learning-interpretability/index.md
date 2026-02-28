@@ -5,7 +5,7 @@ subtitle: Shapley value decomposition of a model, a pay-off concept from
 date: 2020-12-27T21:22:05.406Z
 summary: Interpret machine learning models using the idea of Shapley value,
   decomposition of a model, a pay-off concept from cooperative game theory.
-draft: false
+draft: true
 featured: false
 tags:
   - Machine Learning
