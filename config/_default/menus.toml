@@ -36,10 +36,16 @@
   weight = 22
 
 [[main]]
+  name = "Teaching"
+  url = "/teaching/"
+  parent = "work"
+  weight = 23
+
+[[main]]
   name = "Open-Source"
   url = "/open-source/"
   parent = "work"
-  weight = 23
+  weight = 24
 
 [[main]]
   name = "Research"
