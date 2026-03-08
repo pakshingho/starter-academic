@@ -5,7 +5,7 @@ type: page
 math: true
 ---
 
-This page is a practical and math-grounded guide to recommender systems for readers with undergraduate-level linear algebra, probability, and optimization.
+This page is a practical guide to recommender systems for data scientists building and evaluating recommendation models in real products.
 
 Reference article that inspired this write-up (content here is fully rewritten and expanded):  
 <https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/>
@@ -14,14 +14,14 @@ Reference article that inspired this write-up (content here is fully rewritten a
 
 At a high level, recommendation is a ranking problem:
 
-- You have users `u` and items `i` (movies, products, videos, jobs, etc.).
-- You observe interactions `r_ui` (rating, click, watch time, purchase, skip).
+- You have users \(u\) and items \(i\) (movies, products, videos, jobs, etc.).
+- You observe interactions \(r_{ui}\) (rating, click, watch time, purchase, skip).
 - For each user, you want to rank candidate items by predicted utility.
 
 Typical objective:
 
-- Predict `\hat{r}_{ui}` or a ranking score `s(u, i)`.
-- Return top-`K` items that maximize user value and business value.
+- Predict \(\hat{r}_{ui}\) or a ranking score \(s(u, i)\).
+- Return top-\(K\) items that maximize user value and business value.
 
 ## 2. Data You Usually Have
 
@@ -57,8 +57,8 @@ Idea: recommend items similar to what a user liked before.
 
 Pipeline:
 
-1. Build an item vector `x_i` from metadata/text/image.
-2. Build a user profile vector `p_u` (average of liked-item vectors).
+1. Build an item vector \(x_i\) from metadata/text/image.
+2. Build a user profile vector \(p_u\) (average of liked-item vectors).
 3. Score by similarity, commonly cosine:
 
 $$
@@ -94,7 +94,7 @@ Good for interpretability; can be expensive at very large scale.
 
 ### 5.2 Model-Based (Matrix Factorization)
 
-Represent interaction matrix `R` as:
+Represent interaction matrix \(R\) as:
 
 $$
 R \approx P Q^\top
@@ -102,9 +102,9 @@ $$
 
 where:
 
-- `P_u` is a latent vector for user `u`.
-- `Q_i` is a latent vector for item `i`.
-- Predicted score: `\hat{r}_{ui} = P_u^\top Q_i`.
+- \(P_u\) is a latent vector for user \(u\).
+- \(Q_i\) is a latent vector for item \(i\).
+- Predicted score: \(\hat{r}_{ui} = P_u^\top Q_i\).
 
 Common loss (explicit ratings):
 
@@ -141,9 +141,9 @@ A practical architecture:
 
 Offline ranking metrics:
 
-- `Precision@K`, `Recall@K`
-- `MAP`, `NDCG`
-- `AUC` for pairwise ranking tasks
+- \(Precision@K\), \(Recall@K\)
+- \(MAP\), \(NDCG\)
+- \(AUC\) for pairwise ranking tasks
 
 But offline gains may not translate directly online.
 
@@ -155,11 +155,11 @@ Online metrics (A/B test):
 
 ## 8. Key Production Challenges
 
-1. `Cold start`: new users and new items.
-2. `Feedback loops`: showing popular items makes them more popular.
-3. `Bias and fairness`: exposure imbalance across creators/items.
-4. `Exploration vs exploitation`: balancing known winners with discovery.
-5. `Scale`: large candidate spaces need retrieval + approximate nearest neighbor methods.
+1. Cold start: new users and new items.
+2. Feedback loops: showing popular items makes them more popular.
+3. Bias and fairness: exposure imbalance across creators/items.
+4. Exploration vs exploitation: balancing known winners with discovery.
+5. Scale: large candidate spaces need retrieval + approximate nearest neighbor methods.
 
 ## 9. Practical Build Order
 
@@ -179,4 +179,4 @@ If building from scratch:
 - Sequential recommendation models.
 - Causal recommendation and counterfactual evaluation.
 
-If you can derive cosine similarity, solve regularized least squares, and interpret ranking metrics, you already have the math foundation needed to build strong recommender systems.
+For data scientists, the key is combining strong offline modeling with careful online experimentation, reliability, and monitoring in production.
