@@ -5,10 +5,7 @@ type: page
 math: true
 ---
 
-A data-science-first guide to recommender systems, organized around the same core model families as the reference article and extended with production considerations.
-
-Reference article that inspired this write-up (rewritten and expanded here):  
-<https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/>
+A data-science-first guide to recommender systems with practical modeling, evaluation, and production considerations.
 
 ## 1. Why Recommender Systems Matter
 
@@ -248,3 +245,7 @@ The article's core path is still the right conceptual backbone:
 - Hybrid models such as LightFM
 
 For practicing data scientists, the differentiator is operational quality: robust labeling, unbiased evaluation, scalable serving, and disciplined online experimentation.
+
+## Reference
+
+- <https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/>
