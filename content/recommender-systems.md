@@ -9,7 +9,7 @@ A data-science-first guide to recommender systems with practical modeling, evalu
 
 ## 1. Why Recommender Systems Matter
 
-Recommender systems help users navigate very large item catalogs (videos, products, courses, jobs, music) by ranking items likely to be relevant to each user.
+Recommender systems help users navigate very large item catalogs (videos, products, courses, jobs, music) by ranking items likely to be relevant to each user. See the background overview in [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system).
 
 For data scientists, this is usually not a pure prediction task. It is a ranking and decision problem with constraints:
 
@@ -114,7 +114,7 @@ Combine metadata with interaction learning.
 
 The reference article emphasizes matrix factorization variants. This remains foundational for data scientists.
 
-### 4.1 PMF / latent factors (explicit feedback)
+### 4.1 [PMF](https://papers.nips.cc/paper_files/paper/2007/hash/d7322ed717dedf1eb4e6e52a37ea7bcd-Abstract.html) / latent factors (explicit feedback)
 
 Model:
 
@@ -137,8 +137,9 @@ Optimization:
 
 - SGD (simple, flexible)
 - ALS (efficient for large sparse systems)
+- Practical implementations are available in the [Surprise library](https://surpriselib.com/) and its [documentation](https://surpriselib.com/#documentation)
 
-### 4.2 SVD-style bias terms
+### 4.2 [SVD](https://doi.org/10.1109/MC.2009.263)-style bias terms
 
 A common extension adds global/user/item bias terms:
 
@@ -148,7 +149,7 @@ $$
 
 Biases capture broad effects (strict users, broadly popular items) and usually improve quality.
 
-### 4.3 Implicit-feedback factorization
+### 4.3 [Implicit-feedback factorization](https://doi.org/10.1109/ICDM.2008.22)
 
 Following the article's logic, implicit events are treated as preference plus confidence.
 
@@ -168,11 +169,11 @@ $$
 
 This is the core weighted-implicit matrix factorization approach used in large-scale recommenders.
 
-### 4.4 SVD++ intuition
+### 4.4 [SVD++](https://doi.org/10.1145/1401890.1401944) intuition
 
 SVD++ augments user representation with signals from interacted items, helping when explicit feedback is sparse but interaction history exists.
 
-## 5. Hybrid Factorization with Features (LightFM-style)
+## 5. Hybrid Factorization with Features ([LightFM](https://arxiv.org/abs/1507.08439)-style)
 
 A central idea from the article: represent users and items as sums of feature embeddings, not only ID embeddings.
 
@@ -258,4 +259,12 @@ For practicing data scientists, the differentiator is operational quality: robus
 
 ## Reference
 
-- <https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/>
+- Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
+- [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
+- [Surprise Python package](https://surpriselib.com/)
+- [Simon Funk (2006): Netflix Update - Try This at Home](https://sifter.org/~simon/journal/20061211.html)
+- [Mnih and Salakhutdinov (2007): Probabilistic Matrix Factorization (NeurIPS)](https://papers.nips.cc/paper_files/paper/2007/hash/d7322ed717dedf1eb4e6e52a37ea7bcd-Abstract.html)
+- [Hu, Koren, Volinsky (2008): Collaborative Filtering for Implicit Feedback Datasets](https://doi.org/10.1109/ICDM.2008.22)
+- [Koren, Bell, Volinsky (2009): Matrix Factorization Techniques for Recommender Systems](https://doi.org/10.1109/MC.2009.263)
+- [Koren (2008): Factorization Meets the Neighborhood (SVD++)](https://doi.org/10.1145/1401890.1401944)
+- [Kula (2015): Metadata Embeddings for User and Item Cold-start Recommendations (LightFM)](https://arxiv.org/abs/1507.08439)
