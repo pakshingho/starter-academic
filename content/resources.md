@@ -5,3 +5,5 @@ type: page
 ---
 
 ## Data Science
+
+- [Recommender Systems](/recommender-systems/)
