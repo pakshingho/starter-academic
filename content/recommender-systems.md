@@ -18,6 +18,8 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 - Latency and serving cost
 - Business goals (retention, conversion, long-term value)
 
+![Two-stage recommender architecture](/media/recommender/rs-two-stage-pipeline.svg)
+
 ## 2. Explicit vs. Implicit Feedback
 
 As in the reference article, the first key split is the type of supervision.
@@ -61,6 +63,10 @@ Cons:
 
 In both cases, interactions define a sparse user-item matrix with entries over user-item pairs \((u, i)\).
 
+![Explicit versus implicit feedback comparison](/media/recommender/rs-explicit-vs-implicit.svg)
+
+![User-item matrix examples for explicit and implicit data](/media/recommender/rs-user-item-matrix.svg)
+
 ## 3. Content-Based vs. Collaborative vs. Hybrid
 
 ### Content-based filtering
@@ -101,6 +107,8 @@ Combine metadata with interaction learning.
 - Best default choice in many production systems
 - Handles cold-start better than pure collaborative filtering
 - Usually outperforms pure content-based methods once enough interactions accumulate
+
+![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
 
 ## 4. Collaborative Filtering with Matrix Factorization
 
@@ -208,6 +216,8 @@ You still need A/B tests with:
 - Primary metrics (CTR, conversion, retention)
 - Guardrails (latency, bad-content rate, complaint rate)
 - Segment-level analysis (new users, heavy users, long-tail items)
+
+![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
 ### 6.4 Feedback loops and exploration
 

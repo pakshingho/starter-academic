@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" fill="#f8fafc"/>
+  <text x="40" y="48" font-family="Arial" font-size="30" font-weight="700" fill="#0f172a">Explicit vs Implicit Feedback</text>
+
+  <rect x="50" y="90" width="520" height="290" rx="14" fill="#eff6ff" stroke="#60a5fa"/>
+  <text x="80" y="130" font-family="Arial" font-size="28" fill="#1e3a8a" font-weight="700">Explicit</text>
+  <text x="80" y="170" font-family="Arial" font-size="22" fill="#1e293b">Signals: ratings, thumbs up/down, reviews</text>
+  <text x="80" y="210" font-family="Arial" font-size="22" fill="#065f46">+ High signal quality</text>
+  <text x="80" y="248" font-family="Arial" font-size="22" fill="#065f46">+ Clear preference interpretation</text>
+  <text x="80" y="286" font-family="Arial" font-size="22" fill="#991b1b">- Sparse and hard to collect</text>
+  <text x="80" y="324" font-family="Arial" font-size="22" fill="#991b1b">- Selection bias</text>
+
+  <rect x="630" y="90" width="520" height="290" rx="14" fill="#f0fdf4" stroke="#22c55e"/>
+  <text x="660" y="130" font-family="Arial" font-size="28" fill="#14532d" font-weight="700">Implicit</text>
+  <text x="660" y="170" font-family="Arial" font-size="22" fill="#1e293b">Signals: clicks, watch-time, purchases, saves</text>
+  <text x="660" y="210" font-family="Arial" font-size="22" fill="#065f46">+ Abundant behavioral data</text>
+  <text x="660" y="248" font-family="Arial" font-size="22" fill="#065f46">+ Better coverage</text>
+  <text x="660" y="286" font-family="Arial" font-size="22" fill="#991b1b">- Noisy preference proxy</text>
+  <text x="660" y="324" font-family="Arial" font-size="22" fill="#991b1b">- Needs negative sampling / weighting</text>
+</svg>

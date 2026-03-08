@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <rect width="1200" height="360" fill="#f8fafc"/>
+  <text x="40" y="46" font-family="Arial" font-size="30" font-weight="700" fill="#0f172a">Content-Based vs Collaborative vs Hybrid</text>
+
+  <rect x="50" y="90" width="330" height="220" rx="14" fill="#eff6ff" stroke="#60a5fa"/>
+  <text x="95" y="132" font-family="Arial" font-size="26" fill="#1e3a8a" font-weight="700">Content-Based</text>
+  <text x="85" y="172" font-family="Arial" font-size="21" fill="#1e293b">Uses item/user metadata</text>
+  <text x="85" y="208" font-family="Arial" font-size="21" fill="#1e293b">Good cold-start for items</text>
+  <text x="85" y="244" font-family="Arial" font-size="21" fill="#1e293b">Risk: over-specialization</text>
+
+  <rect x="435" y="90" width="330" height="220" rx="14" fill="#f0fdf4" stroke="#22c55e"/>
+  <text x="473" y="132" font-family="Arial" font-size="26" fill="#14532d" font-weight="700">Collaborative</text>
+  <text x="470" y="172" font-family="Arial" font-size="21" fill="#1e293b">Uses interaction patterns</text>
+  <text x="470" y="208" font-family="Arial" font-size="21" fill="#1e293b">Strong personalization</text>
+  <text x="470" y="244" font-family="Arial" font-size="21" fill="#1e293b">Risk: cold-start users/items</text>
+
+  <rect x="820" y="90" width="330" height="220" rx="14" fill="#fff7ed" stroke="#fb923c"/>
+  <text x="940" y="132" text-anchor="middle" font-family="Arial" font-size="26" fill="#9a3412" font-weight="700">Hybrid</text>
+  <text x="855" y="172" font-family="Arial" font-size="21" fill="#1e293b">Combines metadata + interactions</text>
+  <text x="855" y="208" font-family="Arial" font-size="21" fill="#1e293b">Best practical default</text>
+  <text x="855" y="244" font-family="Arial" font-size="21" fill="#1e293b">Better cold-start + quality</text>
+</svg>

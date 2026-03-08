@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340">
+  <rect width="1200" height="340" fill="#f8fafc"/>
+  <text x="40" y="46" font-family="Arial, sans-serif" font-size="28" fill="#0f172a" font-weight="700">Two-Stage Recommender Architecture</text>
+
+  <rect x="40" y="90" width="190" height="90" rx="12" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="80" y="140" font-family="Arial" font-size="22" fill="#1e3a8a">User Context</text>
+
+  <rect x="290" y="90" width="240" height="90" rx="12" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="330" y="140" font-family="Arial" font-size="22" fill="#14532d">Candidate Gen</text>
+
+  <rect x="590" y="90" width="190" height="90" rx="12" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="646" y="140" font-family="Arial" font-size="22" fill="#78350f">Ranking</text>
+
+  <rect x="840" y="90" width="320" height="90" rx="12" fill="#fee2e2" stroke="#ef4444"/>
+  <text x="876" y="140" font-family="Arial" font-size="22" fill="#7f1d1d">Re-Rank + Policy + Diversity</text>
+
+  <rect x="430" y="230" width="330" height="72" rx="12" fill="#e2e8f0" stroke="#64748b"/>
+  <text x="470" y="275" font-family="Arial" font-size="22" fill="#1e293b">Top-K Recommendations</text>
+
+  <line x1="230" y1="135" x2="290" y2="135" stroke="#334155" stroke-width="3"/>
+  <polygon points="290,135 278,129 278,141" fill="#334155"/>
+  <line x1="530" y1="135" x2="590" y2="135" stroke="#334155" stroke-width="3"/>
+  <polygon points="590,135 578,129 578,141" fill="#334155"/>
+  <line x1="780" y1="135" x2="840" y2="135" stroke="#334155" stroke-width="3"/>
+  <polygon points="840,135 828,129 828,141" fill="#334155"/>
+
+  <line x1="1000" y1="180" x2="760" y2="230" stroke="#475569" stroke-width="2"/>
+  <polygon points="760,230 769,221 772,233" fill="#475569"/>
+  <text x="960" y="224" font-family="Arial" font-size="18" fill="#334155">serve</text>
+</svg>
