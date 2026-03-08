@@ -61,9 +61,9 @@ Pipeline:
 2. Build a user profile vector `p_u` (average of liked-item vectors).
 3. Score by similarity, commonly cosine:
 
-`\[
+$$
 \text{cosine}(p_u, x_i) = \frac{p_u^\top x_i}{\|p_u\| \|x_i\|}
-\]`
+$$
 
 Strengths:
 
@@ -96,9 +96,9 @@ Good for interpretability; can be expensive at very large scale.
 
 Represent interaction matrix `R` as:
 
-`\[
+$$
 R \approx P Q^\top
-\]`
+$$
 
 where:
 
@@ -108,9 +108,9 @@ where:
 
 Common loss (explicit ratings):
 
-`\[
+$$
 \min_{P,Q} \sum_{(u,i)\in\Omega} (r_{ui} - P_u^\top Q_i)^2 + \lambda(\|P_u\|^2 + \|Q_i\|^2)
-\]`
+$$
 
 For implicit feedback, weighted losses or pairwise ranking losses are often better.
 
@@ -180,4 +180,3 @@ If building from scratch:
 - Causal recommendation and counterfactual evaluation.
 
 If you can derive cosine similarity, solve regularized least squares, and interpret ranking metrics, you already have the math foundation needed to build strong recommender systems.
-
