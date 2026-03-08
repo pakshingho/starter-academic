@@ -117,13 +117,15 @@ $$
 \hat r_{ui} = p_u^\top q_i
 $$
 
-where user and item embeddings \(p_u, q_i \in \mathbb{R}^f\).
+where user and item embeddings $p_u, q_i \in \mathbb{R}^f$.
 
-Regularized loss over observed pairs \(\Omega\):
+Regularized loss over observed pairs $\Omega$:
 
 $$
-\min_{P,Q} \sum_{(u,i)\in\Omega} \left(r_{ui} - p_u^\top q_i\right)^2
-+ \lambda\left(\lVert p_u\rVert_2^2 + \lVert q_i\rVert_2^2\right)
+\begin{aligned}
+\min_{P,Q}\ &\sum_{(u,i)\in\Omega} \left(r_{ui} - p_u^\top q_i\right)^2 \\
+&+ \lambda\left(\lVert p_u\rVert_2^2 + \lVert q_i\rVert_2^2\right)
+\end{aligned}
 $$
 
 Optimization:
@@ -147,14 +149,16 @@ Following the article's logic, implicit events are treated as preference plus co
 
 One common setup:
 
-- Preference: \(p_{ui} \in \{0,1\}\) from interaction presence
-- Confidence: \(c_{ui} = 1 + \alpha \cdot t_{ui}\), where \(t_{ui}\) is interaction strength
+- Preference: $p_{ui} \in \{0,1\}$ from interaction presence
+- Confidence: $c_{ui} = 1 + \alpha \cdot t_{ui}$, where $t_{ui}$ is interaction strength
 
 Objective:
 
 $$
-\min_{X,Y} \sum_{u,i} c_{ui}\left(p_{ui} - x_u^\top y_i\right)^2
-+ \lambda\left(\lVert x_u\rVert_2^2 + \lVert y_i\rVert_2^2\right)
+\begin{aligned}
+\min_{X,Y}\ &\sum_{u,i} c_{ui}\left(p_{ui} - x_u^\top y_i\right)^2 \\
+&+ \lambda\left(\lVert x_u\rVert_2^2 + \lVert y_i\rVert_2^2\right)
+\end{aligned}
 $$
 
 This is the core weighted-implicit matrix factorization approach used in large-scale recommenders.
