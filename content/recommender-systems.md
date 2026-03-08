@@ -3,7 +3,6 @@ title: Recommender Systems
 date: 2026-03-07
 type: page
 math: true
-diagram: true
 ---
 
 A data-science-first guide to recommender systems with practical modeling, evaluation, and production considerations.
@@ -18,17 +17,6 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 - Diversity and novelty
 - Latency and serving cost
 - Business goals (retention, conversion, long-term value)
-
-```mermaid
-flowchart LR
-  U["User Context"] --> CG["Candidate Generation"]
-  CG --> R["Ranking Model"]
-  R --> RR["Re-ranking (Diversity/Policy)"]
-  RR --> O["Top-K Recommendations"]
-  O --> FB["Feedback Logs"]
-  FB --> CG
-  FB --> R
-```
 
 ## 2. Explicit vs. Implicit Feedback
 
@@ -72,16 +60,6 @@ Cons:
 - Requires careful negative sampling and weighting
 
 In both cases, interactions define a sparse user-item matrix with entries over user-item pairs \((u, i)\).
-
-```mermaid
-flowchart LR
-  E["Explicit Feedback"] --> E1["High Signal Quality"]
-  E --> E2["Low Volume / Sparse"]
-  E --> E3["Selection Bias Risk"]
-  I["Implicit Feedback"] --> I1["High Volume"]
-  I --> I2["Noisy Preference Proxy"]
-  I --> I3["Needs Negative Sampling"]
-```
 
 ## 3. Content-Based vs. Collaborative vs. Hybrid
 
@@ -137,14 +115,6 @@ $$
 $$
 
 where user and item embeddings $p_u, q_i \in \mathbb{R}^f$.
-
-```mermaid
-flowchart LR
-  Rm["Interaction Matrix R (Sparse)"] --> P["User Factors P (m x f)"]
-  Rm --> Q["Item Factors Q (n x f)"]
-  P --> H["Predicted Scores: R-hat = P * Q^T"]
-  Q --> H
-```
 
 Regularized loss over observed pairs $\Omega$:
 
@@ -239,19 +209,6 @@ You still need A/B tests with:
 - Guardrails (latency, bad-content rate, complaint rate)
 - Segment-level analysis (new users, heavy users, long-tail items)
 
-```mermaid
-flowchart TB
-  O["Offline Eval"] --> M1["Recall@K / NDCG@K / MAP"]
-  M1 --> C["Candidate for Launch"]
-  C --> A["Online A/B Test"]
-  A --> B1["Primary: CTR / Conversion / Retention"]
-  A --> B2["Guardrails: Latency / Quality Complaints"]
-  A --> B3["Segment Analysis"]
-  B1 --> D["Ship / Iterate"]
-  B2 --> D
-  B3 --> D
-```
-
 ### 6.4 Feedback loops and exploration
 
 Pure exploitation can collapse catalog diversity. You need controlled exploration:
@@ -277,15 +234,6 @@ Data scientists should treat recommenders as continuously monitored systems:
 4. Add metadata for hybrid/cold-start robustness.
 5. Introduce two-stage retrieval + ranking.
 6. Establish experiment and monitoring standards.
-
-```mermaid
-flowchart LR
-  S1["1. Define Objective"] --> S2["2. Baselines"]
-  S2 --> S3["3. Matrix Factorization"]
-  S3 --> S4["4. Hybrid Features"]
-  S4 --> S5["5. Retrieval + Ranking"]
-  S5 --> S6["6. Experimentation + Monitoring"]
-```
 
 ## 8. Summary
 
