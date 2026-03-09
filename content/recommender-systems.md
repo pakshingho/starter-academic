@@ -20,6 +20,18 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 
 ![Two-stage recommender architecture](/media/recommender/rs-two-stage-pipeline.svg)
 
+### Common applications
+
+- E-commerce and retail: cross-sell, upsell, "complete the look", and basket expansion
+- Media and entertainment: personalized ranking of video, music, articles, and ads
+- Banking and financial services: product recommendations, offers, and next-best action
+
+### Business value
+
+- Helps users discover items they would not have found through search alone
+- Increases engagement, session depth, and content consumption
+- Improves conversion, basket size, and retention when recommendations are well-targeted
+
 ## 2. Explicit vs. Implicit Feedback
 
 As in the reference article, the first key split is the type of supervision.
@@ -67,7 +79,9 @@ In both cases, interactions define a sparse user-item matrix with entries over u
 
 ![User-item matrix examples for explicit and implicit data](/media/recommender/rs-user-item-matrix.svg)
 
-## 3. Content-Based vs. Collaborative vs. Hybrid
+## 3. Content-Based vs. Collaborative vs. Contextual vs. Hybrid
+
+Model choice depends heavily on what data you have. If you only observe interactions, collaborative filtering is usually the first serious approach. If you also have user and item attributes, content-based or hybrid models become more useful. If the current situation matters, such as device, country, time, or within-session behavior, then contextual models become important.
 
 ### Content-based filtering
 
@@ -99,6 +113,14 @@ Strength:
 Limitation:
 
 - Cold-start if no history exists
+
+### Contextual filtering
+
+Contextual filtering incorporates information about the current situation into the recommendation process.
+
+- Examples of context: device, country, date, time, session state, or recent action sequence
+- Useful when the same user may want different items under different circumstances
+- Often framed as next-action or next-item prediction rather than only long-run preference estimation
 
 ### Hybrid models
 
@@ -138,6 +160,8 @@ Optimization:
 - SGD (simple, flexible)
 - ALS (efficient for large sparse systems)
 - Practical implementations are available in the [Surprise library](https://surpriselib.com/) and its [documentation](https://surpriselib.com/#documentation)
+
+With ALS, you alternate between solving for user factors while holding item factors fixed and solving for item factors while holding user factors fixed. That makes large sparse factorization problems easier to optimize in practice.
 
 ### 4.2 [SVD](https://doi.org/10.1109/MC.2009.263)-style bias terms
 
@@ -187,11 +211,63 @@ Why data scientists use this:
 - Smooth path between collaborative and content-based modeling
 - Practical when metadata quality is reasonable
 
-## 6. What the Article Misses for Production DS Work
+## 6. Deep Neural Recommendation Models
+
+The NVIDIA glossary adds an important extension: deep learning recommenders build on embeddings and factorization ideas, but replace simple linear interactions with more expressive neural architectures.
+
+Useful model families include:
+
+- Feedforward networks and multilayer perceptrons for flexible nonlinear scoring
+- Convolutional models when image content matters
+- Recurrent networks and transformers for sequential, session-based behavior
+
+### 6.1 Neural collaborative filtering
+
+Neural collaborative filtering keeps the collaborative setup of user-item interactions, but learns the interaction function with a neural network instead of relying only on a dot product.
+
+- A common pattern is to combine embedding interactions with an MLP
+- This can capture more complex nonlinear relationships than matrix factorization alone
+- It is most useful when interaction volume is high enough to support a richer model
+
+### 6.2 Variational autoencoders for collaborative filtering
+
+Variational autoencoder approaches learn a compressed latent representation of a user's interaction history and then reconstruct likely missing interactions.
+
+- Useful for implicit-feedback recommendation
+- Helps capture nonlinear structure in sparse user-item behavior
+- Often treated as a reconstruction problem over interaction vectors
+
+### 6.3 Contextual sequence learning
+
+Session-based recommenders often care less about static preference and more about what the user is likely to do next.
+
+- RNN, LSTM, GRU, and transformer models are all used for this setting
+- Inputs can include both ordered actions and contextual features such as time, device, or location
+- This is especially relevant in streaming, shopping, and short-session products
+
+### 6.4 Wide-and-deep style models
+
+Wide-and-deep architectures combine memorization and generalization.
+
+- The wide component captures simpler feature interactions that may occur rarely
+- The deep component learns richer nonlinear structure through embeddings and dense layers
+- This pattern is effective when recommendation quality depends on both handcrafted cross-features and learned representations
+
+### 6.5 DLRM-style models
+
+DLRM-style models are designed for recommendation data with many categorical features and some numerical features.
+
+- Embeddings handle sparse categorical inputs
+- MLP layers process dense features
+- Explicit pairwise feature interactions are then modeled before final prediction
+
+These models are widely used in large-scale ranking and click-through prediction systems.
+
+## 7. What the Article Misses for Production DS Work
 
 The model taxonomy is excellent, but real systems also require these decisions.
 
-### 6.1 Retrieval + ranking architecture
+### 7.1 Retrieval + ranking architecture
 
 Most large systems are two-stage:
 
@@ -200,7 +276,7 @@ Most large systems are two-stage:
 
 Without this separation, serving cost or latency becomes prohibitive.
 
-### 6.2 Label design and negatives
+### 7.2 Label design and negatives
 
 For implicit data, non-click is not always negative. You need:
 
@@ -208,7 +284,7 @@ For implicit data, non-click is not always negative. You need:
 - Position-bias-aware training
 - Time-windowed labels matching product goals
 
-### 6.3 Offline vs online evaluation
+### 7.3 Offline vs online evaluation
 
 Offline metrics like \(Recall@K\), \(NDCG@K\), and \(MAP\) are necessary but insufficient.
 
@@ -220,7 +296,7 @@ You still need A/B tests with:
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
-### 6.4 Feedback loops and exploration
+### 7.4 Feedback loops and exploration
 
 Pure exploitation can collapse catalog diversity. You need controlled exploration:
 
@@ -228,7 +304,7 @@ Pure exploitation can collapse catalog diversity. You need controlled exploratio
 - Re-ranking for diversity/novelty
 - Periodic calibration checks
 
-### 6.5 Reliability and monitoring
+### 7.5 Reliability and monitoring
 
 Data scientists should treat recommenders as continuously monitored systems:
 
@@ -237,7 +313,7 @@ Data scientists should treat recommenders as continuously monitored systems:
 - Online metric drift and alerting
 - Safe fallback policies
 
-## 7. Practical Build Sequence for Data Scientists
+## 8. Practical Build Sequence for Data Scientists
 
 1. Define objective hierarchy: short-term CTR vs long-term value.
 2. Build strong non-ML baselines (popular, recent, co-visitation).
@@ -246,13 +322,14 @@ Data scientists should treat recommenders as continuously monitored systems:
 5. Introduce two-stage retrieval + ranking.
 6. Establish experiment and monitoring standards.
 
-## 8. Summary
+## 9. Summary
 
-The article's core path is still the right conceptual backbone:
+The article's core path is still the right conceptual backbone, and the NVIDIA glossary expands it in useful ways:
 
 - Explicit vs implicit feedback
-- Content-based vs collaborative filtering
+- Content-based, collaborative, contextual, and hybrid filtering
 - Matrix factorization variants (PMF, SVD, implicit objectives, SVD++)
+- Deep recommenders such as NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
 - Hybrid models such as LightFM
 
 For practicing data scientists, the differentiator is operational quality: robust labeling, unbiased evaluation, scalable serving, and disciplined online experimentation.
@@ -260,6 +337,7 @@ For practicing data scientists, the differentiator is operational quality: robus
 ## Reference
 
 - Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
+- [NVIDIA Glossary: Recommendation System](https://www.nvidia.com/en-us/glossary/recommendation-system/)
 - [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
 - [Surprise Python package](https://surpriselib.com/)
 - [Simon Funk (2006): Netflix Update - Try This at Home](https://sifter.org/~simon/journal/20061211.html)
