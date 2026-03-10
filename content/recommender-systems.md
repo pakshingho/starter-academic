@@ -10,15 +10,97 @@ A data-science-first guide to recommender systems with practical modeling, evalu
 <nav class="recommender-toc" aria-label="On this page">
   <div class="recommender-toc__title">On this page</div>
   <ol class="recommender-toc__list">
-    <li><a href="#why-recommender-systems-matter">Why it matters</a></li>
-    <li><a href="#explicit-vs-implicit-feedback">Explicit vs. implicit</a></li>
-    <li><a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">Model families</a></li>
-    <li><a href="#collaborative-filtering-with-matrix-factorization">Matrix factorization</a></li>
-    <li><a href="#feature-rich-and-hybrid-recommendation">Feature-rich recommendation</a></li>
-    <li><a href="#deep-neural-recommendation-models">Deep models</a></li>
-    <li><a href="#what-the-article-misses-for-production-ds-work">Production concerns</a></li>
-    <li><a href="#practical-build-sequence-for-data-scientists">Build sequence</a></li>
-    <li><a href="#summary">Summary</a></li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>1. Why it matters</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#why-recommender-systems-matter">Section overview</a></li>
+          <li><a href="#common-applications">Common applications</a></li>
+          <li><a href="#business-value">Business value</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>2. Explicit vs. implicit</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#explicit-vs-implicit-feedback">Section overview</a></li>
+          <li><a href="#explicit-feedback">Explicit feedback</a></li>
+          <li><a href="#implicit-feedback">Implicit feedback</a></li>
+          <li><a href="#recommendation-tasks">Recommendation tasks</a></li>
+          <li><a href="#benchmark-datasets-and-split-strategy">Benchmark datasets</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>3. Model families</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">Section overview</a></li>
+          <li><a href="#content-based-filtering">Content-based filtering</a></li>
+          <li><a href="#collaborative-filtering">Collaborative filtering</a></li>
+          <li><a href="#contextual-filtering">Contextual filtering</a></li>
+          <li><a href="#hybrid-models">Hybrid models</a></li>
+          <li><a href="#embedding-spaces-and-similarity-measures">Embedding spaces and similarity</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>4. Matrix factorization</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#collaborative-filtering-with-matrix-factorization">Section overview</a></li>
+          <li><a href="#pmf-latent-factors">4.1 PMF / latent factors</a></li>
+          <li><a href="#svd-style-bias-terms">4.2 SVD-style bias terms</a></li>
+          <li><a href="#implicit-feedback-factorization">4.3 Implicit-feedback factorization</a></li>
+          <li><a href="#evaluation-for-rating-prediction">4.4 Evaluation for rating prediction</a></li>
+          <li><a href="#autorec">4.5 AutoRec</a></li>
+          <li><a href="#personalized-ranking-objectives">4.6 Ranking objectives</a></li>
+          <li><a href="#svdplusplus-intuition">4.7 SVD++</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>5. Feature-rich recommendation</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#feature-rich-and-hybrid-recommendation">Section overview</a></li>
+          <li><a href="#feature-rich-recommendation-and-ctr">5.1 Feature-rich recommendation and CTR</a></li>
+          <li><a href="#factorization-machines">5.2 Factorization machines</a></li>
+          <li><a href="#deepfm">5.3 DeepFM</a></li>
+          <li><a href="#hybrid-factorization-with-features">5.4 Hybrid factorization with features</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>6. Deep models</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#deep-neural-recommendation-models">Section overview</a></li>
+          <li><a href="#two-tower-retrieval-models">6.1 Two-tower retrieval</a></li>
+          <li><a href="#neural-collaborative-filtering">6.2 Neural collaborative filtering</a></li>
+          <li><a href="#variational-autoencoders-for-collaborative-filtering">6.3 Variational autoencoders</a></li>
+          <li><a href="#contextual-sequence-learning">6.4 Contextual sequence learning</a></li>
+          <li><a href="#wide-and-deep-style-models">6.5 Wide-and-deep</a></li>
+          <li><a href="#dlrm-style-models">6.6 DLRM-style models</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section">
+      <details class="recommender-toc__group">
+        <summary>7. Production concerns</summary>
+        <ol class="recommender-toc__sublist">
+          <li><a href="#what-the-article-misses-for-production-ds-work">Section overview</a></li>
+          <li><a href="#retrieval-ranking-architecture">7.1 Retrieval + ranking</a></li>
+          <li><a href="#label-design-and-negatives">7.2 Label design and negatives</a></li>
+          <li><a href="#evaluating-recommender-and-ranking-systems">7.3 Evaluation</a></li>
+          <li><a href="#reranking-freshness-diversity-and-exploration">7.4 Re-ranking and exploration</a></li>
+          <li><a href="#reliability-and-monitoring">7.5 Reliability and monitoring</a></li>
+        </ol>
+      </details>
+    </li>
+    <li class="recommender-toc__section"><a href="#practical-build-sequence-for-data-scientists">8. Build sequence</a></li>
+    <li class="recommender-toc__section"><a href="#summary">9. Summary</a></li>
   </ol>
 </nav>
 
@@ -41,11 +123,15 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 
 ![Two-stage recommender architecture](/media/recommender/rs-two-stage-pipeline.svg)
 
+<div id="common-applications"></div>
+
 ### Common applications
 
 - E-commerce and retail: cross-sell, upsell, "complete the look", and basket expansion
 - Media and entertainment: personalized ranking of video, music, articles, and ads
 - Banking and financial services: product recommendations, offers, and next-best action
+
+<div id="business-value"></div>
 
 ### Business value
 
@@ -66,6 +152,8 @@ That distinction matters because homepage recommendation usually starts from a u
 
 As in the reference article, the first key split is the type of supervision.
 
+<div id="explicit-feedback"></div>
+
 ### Explicit feedback
 
 Examples:
@@ -83,6 +171,8 @@ Cons:
 
 - Sparse in most real products
 - Selection bias (only some users rate)
+
+<div id="implicit-feedback"></div>
 
 ### Implicit feedback
 
@@ -109,6 +199,8 @@ In both cases, interactions define a sparse user-item matrix with entries over u
 
 ![User-item matrix examples for explicit and implicit data](/media/recommender/rs-user-item-matrix.svg)
 
+<div id="recommendation-tasks"></div>
+
 ### Recommendation tasks
 
 Following [D2L Chapter 21](https://d2l.ai/chapter_recommender-systems/index.html), it helps to separate recommendation work by task:
@@ -120,6 +212,8 @@ Following [D2L Chapter 21](https://d2l.ai/chapter_recommender-systems/index.html
 - Cold-start recommendation: serve new users or new items when history is limited
 
 These tasks overlap, but they drive different labels, evaluation protocols, and model choices.
+
+<div id="benchmark-datasets-and-split-strategy"></div>
 
 ### Benchmark datasets and split strategy
 
@@ -144,6 +238,8 @@ This distinction matters because sequence-aware recommendation should be evaluat
 
 Model choice depends heavily on what data you have. If you only observe interactions, collaborative filtering is usually the first serious approach. If you also have user and item attributes, content-based or hybrid models become more useful. If the current situation matters, such as device, country, time, or within-session behavior, then contextual models become important.
 
+<div id="content-based-filtering"></div>
+
 ### Content-based filtering
 
 Use user/item attributes and metadata.
@@ -167,6 +263,8 @@ Google's course also emphasizes that content-based systems are often easier to e
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/content-based/basics), CC BY 4.0.*
 
+<div id="collaborative-filtering"></div>
+
 ### Collaborative filtering
 
 Use interaction patterns across all users/items.
@@ -182,6 +280,8 @@ Limitation:
 
 - Cold-start if no history exists
 
+<div id="contextual-filtering"></div>
+
 ### Contextual filtering
 
 Contextual filtering incorporates information about the current situation into the recommendation process.
@@ -192,6 +292,8 @@ Contextual filtering incorporates information about the current situation into t
 
 ![Contextual recommendation diagram](/media/recommender/rs-contextual-filtering.svg)
 
+<div id="hybrid-models"></div>
+
 ### Hybrid models
 
 Combine metadata with interaction learning.
@@ -201,6 +303,8 @@ Combine metadata with interaction learning.
 - Usually outperforms pure content-based methods once enough interactions accumulate
 
 ![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
+
+<div id="embedding-spaces-and-similarity-measures"></div>
 
 ### Embedding spaces and similarity measures for candidate generation
 
@@ -248,6 +352,8 @@ This lets you keep some popularity signal without letting large-norm items domin
 
 The reference article emphasizes matrix factorization variants. This remains foundational for data scientists.
 
+<div id="pmf-latent-factors"></div>
+
 ### 4.1 [PMF](https://papers.nips.cc/paper_files/paper/2007/hash/d7322ed717dedf1eb4e6e52a37ea7bcd-Abstract.html) / latent factors (explicit feedback)
 
 Model:
@@ -281,6 +387,8 @@ With ALS, you alternate between solving for user factors while holding item fact
 
 ![Alternating least squares optimization cycle](/media/recommender/rs-als-cycle.svg)
 
+<div id="svd-style-bias-terms"></div>
+
 ### 4.2 [SVD](https://doi.org/10.1109/MC.2009.263)-style bias terms
 
 A common extension adds global/user/item bias terms:
@@ -290,6 +398,8 @@ $$
 $$
 
 Biases capture broad effects (strict users, broadly popular items) and usually improve quality.
+
+<div id="implicit-feedback-factorization"></div>
 
 ### 4.3 [Implicit-feedback factorization](https://doi.org/10.1109/ICDM.2008.22)
 
@@ -322,6 +432,8 @@ $$
 
 Here $w_0$ controls how strongly the model treats unobserved pairs as weak negatives. In practice, this matters a lot: too little weight on unobserved pairs can make the embedding space collapse, while too much weight can wash out true positives. Google also notes that frequent users or popular items can dominate the objective, so observed pairs are often reweighted by user or item frequency.
 
+<div id="evaluation-for-rating-prediction"></div>
+
 ### 4.4 Evaluation for rating prediction
 
 For explicit-feedback recommendation, [D2L's matrix factorization section](https://d2l.ai/chapter_recommender-systems/mf.html) uses RMSE as the primary evaluation measure:
@@ -333,6 +445,8 @@ $$
 where $\mathcal{T}$ is the evaluation set of observed user-item pairs.
 
 RMSE is appropriate for rating prediction, but it is not sufficient for top-$n$ recommendation because it does not evaluate rank order.
+
+<div id="autorec"></div>
 
 ### 4.5 [AutoRec](https://d2l.ai/chapter_recommender-systems/autorec.html) for nonlinear rating prediction
 
@@ -358,6 +472,8 @@ $$
 $$
 
 Conceptually, AutoRec matters because it is one of the earliest examples in D2L of moving from linear collaborative filtering to nonlinear neural reconstruction for rating prediction.
+
+<div id="personalized-ranking-objectives"></div>
 
 ### 4.6 [Personalized ranking objectives](https://d2l.ai/chapter_recommender-systems/ranking.html)
 
@@ -385,6 +501,8 @@ $$
 
 These are central for implicit-feedback recommendation because they optimize relative ordering rather than absolute score accuracy.
 
+<div id="svdplusplus-intuition"></div>
+
 ### 4.7 [SVD++](https://doi.org/10.1145/1401890.1401944) intuition
 
 SVD++ augments user representation with signals from interacted items, helping when explicit feedback is sparse but interaction history exists.
@@ -394,6 +512,8 @@ SVD++ augments user representation with signals from interacted items, helping w
 ## 5. Feature-Rich and Hybrid Recommendation
 
 As [D2L section 21.8](https://d2l.ai/chapter_recommender-systems/ctr.html) emphasizes, interaction data is often sparse and noisy. In many production settings, recommendation is better framed as impression-level prediction with rich side features.
+
+<div id="feature-rich-recommendation-and-ctr"></div>
 
 ### 5.1 Feature-rich recommendation and CTR
 
@@ -410,6 +530,8 @@ CTR is defined as:
 $$
 \mathrm{CTR} = \frac{\mathrm{clicks}}{\mathrm{impressions}} \times 100\%
 $$
+
+<div id="factorization-machines"></div>
 
 ### 5.2 [Factorization machines](https://d2l.ai/chapter_recommender-systems/fm.html)
 
@@ -428,6 +550,8 @@ Interpretation:
 - If one feature encodes user identity and another encodes item identity, the interaction term reduces to a collaborative-filtering-style embedding interaction
 
 D2L also highlights the computational trick that reduces FM interaction cost from $\mathcal{O}(kd^2)$ to $\mathcal{O}(kd)$, which is why FM remains practical on high-dimensional sparse data.
+
+<div id="deepfm"></div>
 
 ### 5.3 [DeepFM](https://d2l.ai/chapter_recommender-systems/deepfm.html)
 
@@ -448,6 +572,8 @@ DeepFM is especially useful when simple pairwise interactions are not expressive
 ![DeepFM architecture](https://d2l.ai/_images/rec-deepfm.svg)
 
 *Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/deepfm.html), CC BY-SA 4.0.*
+
+<div id="hybrid-factorization-with-features"></div>
 
 ### 5.4 Hybrid factorization with features ([LightFM](https://arxiv.org/abs/1507.08439)-style)
 
@@ -474,6 +600,8 @@ Useful model families include:
 - Feedforward networks and multilayer perceptrons for flexible nonlinear scoring
 - Convolutional models when image content matters
 - Recurrent networks and transformers for sequential, session-based behavior
+
+<div id="two-tower-retrieval-models"></div>
 
 ### 6.1 Two-tower retrieval models
 
@@ -557,6 +685,8 @@ These models live in the space between pure representation-based retrieval and f
 
 ![Interaction-enhanced two-tower variants](/media/recommender/rs-two-tower-extensions.svg)
 
+<div id="neural-collaborative-filtering"></div>
+
 ### 6.2 Neural collaborative filtering
 
 Neural collaborative filtering keeps the collaborative setup of user-item interactions, but learns the interaction function with a neural network instead of relying only on a dot product.
@@ -571,6 +701,8 @@ NeuMF also fits naturally with pairwise ranking and negative sampling, rather th
 
 *Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/neumf.html), CC BY-SA 4.0.*
 
+<div id="variational-autoencoders-for-collaborative-filtering"></div>
+
 ### 6.3 Variational autoencoders for collaborative filtering
 
 Variational autoencoder approaches learn a compressed latent representation of a user's interaction history and then reconstruct likely missing interactions.
@@ -580,6 +712,8 @@ Variational autoencoder approaches learn a compressed latent representation of a
 - Often treated as a reconstruction problem over interaction vectors
 
 ![VAE-style collaborative filtering architecture](/media/recommender/rs-vae-cf.svg)
+
+<div id="contextual-sequence-learning"></div>
 
 ### 6.4 Contextual sequence learning
 
@@ -602,6 +736,8 @@ D2L also provides a useful view of how sequence-aware samples are constructed fr
 
 *Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/seqrec.html), CC BY-SA 4.0.*
 
+<div id="wide-and-deep-style-models"></div>
+
 ### 6.5 Wide-and-deep style models
 
 Wide-and-deep architectures combine memorization and generalization.
@@ -611,6 +747,8 @@ Wide-and-deep architectures combine memorization and generalization.
 - This pattern is effective when recommendation quality depends on both handcrafted cross-features and learned representations
 
 ![Wide-and-deep recommendation architecture](/media/recommender/rs-wide-deep.svg)
+
+<div id="dlrm-style-models"></div>
 
 ### 6.6 DLRM-style models
 
@@ -629,6 +767,8 @@ These models are widely used in large-scale ranking and click-through prediction
 ## 7. What the Article Misses for Production DS Work
 
 The model taxonomy is excellent, but real systems also require these decisions.
+
+<div id="retrieval-ranking-architecture"></div>
 
 ### 7.1 Retrieval + ranking architecture
 
@@ -666,6 +806,8 @@ For neural retrieval, Google also stresses approximate nearest-neighbor search r
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/retrieval), CC BY 4.0.*
 
+<div id="label-design-and-negatives"></div>
+
 ### 7.2 Label design and negatives
 
 For implicit data, non-click is not always negative. You need:
@@ -684,6 +826,8 @@ For feed-style or slate recommendation, Google also recommends distinguishing be
 - Position-independent models, which try to estimate intrinsic relevance before layout effects
 
 That distinction matters because position bias can make top slots look artificially better even when the item itself is not more relevant.
+
+<div id="evaluating-recommender-and-ranking-systems"></div>
 
 ### 7.3 Evaluating recommender and ranking systems
 
@@ -801,6 +945,8 @@ For ranking changes, it is also useful to monitor the full funnel:
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
+<div id="reranking-freshness-diversity-and-exploration"></div>
+
 ### 7.4 Re-ranking, freshness, diversity, and exploration
 
 Pure exploitation can collapse catalog diversity. You need controlled exploration:
@@ -817,6 +963,8 @@ Google's reranking material is especially useful here. In practice, re-ranking i
 - Local policy constraints such as demotions, blocks, maturity filters, or legal limits
 
 This stage is often simpler than the main ranker, but it has outsized product impact because it controls the final list actually seen by the user.
+
+<div id="reliability-and-monitoring"></div>
 
 ### 7.5 Reliability and monitoring
 

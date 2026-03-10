@@ -29,12 +29,77 @@
 
 .article-style .recommender-toc__list {
   margin: 0;
-  padding-left: 1.35rem;
+  padding-left: 0;
+  list-style: none;
 }
 
-.article-style .recommender-toc__list li {
-  margin: 0 0 0.45rem;
+.article-style .recommender-toc__section {
+  margin: 0 0 0.65rem;
   break-inside: avoid;
+}
+
+.article-style .recommender-toc__section > a,
+.article-style .recommender-toc__group summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #1e3a8a;
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.article-style .recommender-toc__group summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.article-style .recommender-toc__group summary::-webkit-details-marker {
+  display: none;
+}
+
+.article-style .recommender-toc__group summary::after {
+  content: "+";
+  margin-left: auto;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.article-style .recommender-toc__group[open] summary::after {
+  content: "-";
+}
+
+.article-style .recommender-toc__group[open] summary {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.article-style .recommender-toc__sublist {
+  margin: 0;
+  padding: 0.65rem 1rem 0.85rem 2rem;
+  list-style: decimal;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-top: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.article-style .recommender-toc__sublist li {
+  margin: 0 0 0.35rem;
+}
+
+.article-style .recommender-toc__sublist a {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .article-style .recommender-toc a:hover,
@@ -55,7 +120,7 @@
     padding: 0.9rem 1rem 1rem;
   }
 
-  .article-style .recommender-toc__list {
-    padding-left: 1.2rem;
+  .article-style .recommender-toc__sublist {
+    padding: 0.6rem 0.85rem 0.8rem 1.7rem;
   }
 }
