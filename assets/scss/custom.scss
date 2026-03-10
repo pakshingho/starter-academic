@@ -49,6 +49,30 @@
   display: block;
 }
 
+.docs-content .article-widget:not(.article-section-nav) .post-nav {
+  display: none;
+}
+
+.article-section-nav {
+  margin: 2rem 0 2.5rem;
+}
+
+.article-section-nav .post-nav {
+  display: flex;
+}
+
+.article-section-nav .post-nav-item {
+  flex: 1 1 0;
+}
+
+.article-section-nav .post-nav-item:last-child {
+  text-align: right;
+}
+
+.article-section-nav .post-nav-item:only-child {
+  text-align: right;
+}
+
 @media (max-width: 991.98px) {
   .article-style table {
     display: block;
