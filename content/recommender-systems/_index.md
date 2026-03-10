@@ -41,3 +41,13 @@ This resource is now organized as a handbook rather than a single long article. 
 - evaluation strategy, negative design, and production architecture
 
 ![Two-stage recommender architecture](/media/recommender/rs-two-stage-pipeline.svg)
+
+<div class="article-widget">
+  <div class="post-nav">
+    <div class="post-nav-item"></div>
+    <div class="post-nav-item">
+      <div class="meta-nav">Next</div>
+      <a href="/recommender-systems/why-it-matters/">1. Why Recommender Systems Matter</a>
+    </div>
+  </div>
+</div>

@@ -157,7 +157,7 @@ reading_time = true
 
 # Display next/previous section pager? (true/false)
 section_pager = false
-docs_section_pager = false  # Display pager in Docs layout (e.g. tutorials)?
+docs_section_pager = true  # Display pager in Docs layout (e.g. tutorials)?
 
 # Enable in-built social sharing buttons? (true/false)
 sharing = true
@@ -174,7 +174,7 @@ abstract_length = 135
 
 # Load JS plugins
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_js  = ["recommender-section-nav"]
+plugins_js  = []
 
 # Avatars.
 # An avatar is an image that appears next to a user's name.
