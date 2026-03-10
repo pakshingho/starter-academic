@@ -255,6 +255,8 @@ Session-based recommenders often care less about static preference and more abou
 - Inputs can include both ordered actions and contextual features such as time, device, or location
 - This is especially relevant in streaming, shopping, and short-session products
 
+![Contextual sequence learning architecture](/media/recommender/rs-contextual-sequence.svg)
+
 ### 6.4 Wide-and-deep style models
 
 Wide-and-deep architectures combine memorization and generalization.
@@ -263,6 +265,8 @@ Wide-and-deep architectures combine memorization and generalization.
 - The deep component learns richer nonlinear structure through embeddings and dense layers
 - This pattern is effective when recommendation quality depends on both handcrafted cross-features and learned representations
 
+![Wide-and-deep recommendation architecture](/media/recommender/rs-wide-deep.svg)
+
 ### 6.5 DLRM-style models
 
 DLRM-style models are designed for recommendation data with many categorical features and some numerical features.
@@ -270,6 +274,8 @@ DLRM-style models are designed for recommendation data with many categorical fea
 - Embeddings handle sparse categorical inputs
 - MLP layers process dense features
 - Explicit pairwise feature interactions are then modeled before final prediction
+
+![DLRM-style recommendation architecture](/media/recommender/rs-dlrm.svg)
 
 These models are widely used in large-scale ranking and click-through prediction systems.
 
