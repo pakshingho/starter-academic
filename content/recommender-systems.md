@@ -122,6 +122,8 @@ Contextual filtering incorporates information about the current situation into t
 - Useful when the same user may want different items under different circumstances
 - Often framed as next-action or next-item prediction rather than only long-run preference estimation
 
+![Contextual recommendation diagram](/media/recommender/rs-contextual-filtering.svg)
+
 ### Hybrid models
 
 Combine metadata with interaction learning.
@@ -162,6 +164,10 @@ Optimization:
 - Practical implementations are available in the [Surprise library](https://surpriselib.com/) and its [documentation](https://surpriselib.com/#documentation)
 
 With ALS, you alternate between solving for user factors while holding item factors fixed and solving for item factors while holding user factors fixed. That makes large sparse factorization problems easier to optimize in practice.
+
+![Matrix factorization decomposition](/media/recommender/rs-matrix-factorization.svg)
+
+![Alternating least squares optimization cycle](/media/recommender/rs-als-cycle.svg)
 
 ### 4.2 [SVD](https://doi.org/10.1109/MC.2009.263)-style bias terms
 
@@ -229,6 +235,8 @@ Neural collaborative filtering keeps the collaborative setup of user-item intera
 - This can capture more complex nonlinear relationships than matrix factorization alone
 - It is most useful when interaction volume is high enough to support a richer model
 
+![Neural collaborative filtering architecture](/media/recommender/rs-neural-cf.svg)
+
 ### 6.2 Variational autoencoders for collaborative filtering
 
 Variational autoencoder approaches learn a compressed latent representation of a user's interaction history and then reconstruct likely missing interactions.
@@ -236,6 +244,8 @@ Variational autoencoder approaches learn a compressed latent representation of a
 - Useful for implicit-feedback recommendation
 - Helps capture nonlinear structure in sparse user-item behavior
 - Often treated as a reconstruction problem over interaction vectors
+
+![VAE-style collaborative filtering architecture](/media/recommender/rs-vae-cf.svg)
 
 ### 6.3 Contextual sequence learning
 

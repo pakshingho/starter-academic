@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <rect width="1200" height="400" fill="#f8fafc"/>
+  <text x="40" y="48" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">VAE-Style Collaborative Filtering</text>
+
+  <rect x="70" y="120" width="220" height="150" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="180" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1e3a8a">Input Vector</text>
+  <text x="180" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">user interactions</text>
+  <text x="180" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">clicks, views, saves</text>
+
+  <rect x="410" y="120" width="220" height="150" rx="18" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="520" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#166534">Encoder</text>
+  <text x="520" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">compress to latent</text>
+  <text x="520" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">representation z</text>
+
+  <circle cx="760" cy="195" r="58" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="760" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#92400e">Latent</text>
+  <text x="760" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#92400e">z</text>
+
+  <rect x="910" y="120" width="220" height="150" rx="18" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="1020" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#991b1b">Decoder</text>
+  <text x="1020" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">reconstruct likely</text>
+  <text x="1020" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">missing preferences</text>
+
+  <line x1="290" y1="195" x2="410" y2="195" stroke="#475569" stroke-width="3"/>
+  <polygon points="410,195 398,189 398,201" fill="#475569"/>
+  <line x1="630" y1="195" x2="702" y2="195" stroke="#475569" stroke-width="3"/>
+  <polygon points="702,195 690,189 690,201" fill="#475569"/>
+  <line x1="818" y1="195" x2="910" y2="195" stroke="#475569" stroke-width="3"/>
+  <polygon points="910,195 898,189 898,201" fill="#475569"/>
+</svg>

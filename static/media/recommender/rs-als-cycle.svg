@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <rect width="1200" height="360" fill="#f8fafc"/>
+  <text x="40" y="48" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Alternating Least Squares (ALS)</text>
+
+  <rect x="90" y="110" width="250" height="90" rx="16" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="215" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1e3a8a">Fix Q</text>
+  <text x="215" y="176" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">solve for user factors P</text>
+
+  <rect x="470" y="110" width="250" height="90" rx="16" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="595" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#166534">Fix P</text>
+  <text x="595" y="176" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">solve for item factors Q</text>
+
+  <rect x="850" y="110" width="250" height="90" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text x="975" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#9a3412">Repeat</text>
+  <text x="975" y="176" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">until convergence</text>
+
+  <line x1="340" y1="155" x2="470" y2="155" stroke="#475569" stroke-width="4"/>
+  <polygon points="470,155 456,148 456,162" fill="#475569"/>
+  <line x1="720" y1="155" x2="850" y2="155" stroke="#475569" stroke-width="4"/>
+  <polygon points="850,155 836,148 836,162" fill="#475569"/>
+
+  <path d="M 975 200 C 1120 260, 220 310, 215 200" fill="none" stroke="#64748b" stroke-width="4"/>
+  <polygon points="215,200 228,197 223,209" fill="#64748b"/>
+  <text x="565" y="305" font-family="Arial, sans-serif" font-size="22" fill="#334155">alternate updates over sparse matrix data</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" fill="#f8fafc"/>
+  <text x="40" y="48" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Matrix Factorization Intuition</text>
+
+  <text x="130" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1e3a8a">Observed Matrix R</text>
+  <rect x="60" y="120" width="260" height="220" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <g font-family="Arial, sans-serif" font-size="22" text-anchor="middle" dominant-baseline="middle">
+    <rect x="90" y="150" width="50" height="50" fill="#bfdbfe"/><text x="115" y="175" fill="#1e293b">5</text>
+    <rect x="140" y="150" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="165" y="175" fill="#64748b">?</text>
+    <rect x="190" y="150" width="50" height="50" fill="#bfdbfe"/><text x="215" y="175" fill="#1e293b">2</text>
+    <rect x="240" y="150" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="265" y="175" fill="#64748b">?</text>
+
+    <rect x="90" y="200" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="115" y="225" fill="#64748b">?</text>
+    <rect x="140" y="200" width="50" height="50" fill="#bfdbfe"/><text x="165" y="225" fill="#1e293b">4</text>
+    <rect x="190" y="200" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="215" y="225" fill="#64748b">?</text>
+    <rect x="240" y="200" width="50" height="50" fill="#bfdbfe"/><text x="265" y="225" fill="#1e293b">1</text>
+
+    <rect x="90" y="250" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="115" y="275" fill="#64748b">?</text>
+    <rect x="140" y="250" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="165" y="275" fill="#64748b">?</text>
+    <rect x="190" y="250" width="50" height="50" fill="#bfdbfe"/><text x="215" y="275" fill="#1e293b">3</text>
+    <rect x="240" y="250" width="50" height="50" fill="#ffffff" stroke="#e2e8f0"/><text x="265" y="275" fill="#64748b">?</text>
+  </g>
+
+  <text x="402" y="236" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#334155">≈</text>
+
+  <text x="505" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#14532d">User Factors P</text>
+  <rect x="450" y="120" width="180" height="220" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <g font-family="Arial, sans-serif" font-size="20" text-anchor="middle" dominant-baseline="middle">
+    <rect x="485" y="160" width="110" height="42" fill="#dcfce7"/><text x="540" y="181" fill="#14532d">u1</text>
+    <rect x="485" y="212" width="110" height="42" fill="#dcfce7"/><text x="540" y="233" fill="#14532d">u2</text>
+    <rect x="485" y="264" width="110" height="42" fill="#dcfce7"/><text x="540" y="285" fill="#14532d">u3</text>
+  </g>
+
+  <text x="690" y="236" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#334155">×</text>
+
+  <text x="810" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#9a3412">Item Factors Qᵀ</text>
+  <rect x="740" y="120" width="210" height="220" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <g font-family="Arial, sans-serif" font-size="18" text-anchor="middle" dominant-baseline="middle">
+    <rect x="775" y="160" width="42" height="110" fill="#ffedd5"/><text x="796" y="215" fill="#9a3412">i1</text>
+    <rect x="827" y="160" width="42" height="110" fill="#ffedd5"/><text x="848" y="215" fill="#9a3412">i2</text>
+    <rect x="879" y="160" width="42" height="110" fill="#ffedd5"/><text x="900" y="215" fill="#9a3412">i3</text>
+  </g>
+
+  <rect x="1000" y="145" width="150" height="160" rx="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="1075" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">R-hat</text>
+  <text x="1075" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">predicted</text>
+  <text x="1075" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">preferences</text>
+  <text x="1075" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">for missing</text>
+  <text x="1075" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">entries</text>
+</svg>
