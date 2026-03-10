@@ -312,7 +312,7 @@ This setting is different from classic matrix factorization because the goal is 
 CTR is defined as:
 
 $$
-CTR = \frac{\# \text{Clicks}}{\# \text{Impressions}} \times 100\%
+\mathrm{CTR} = \frac{\mathrm{clicks}}{\mathrm{impressions}} \times 100\%
 $$
 
 ### 5.2 [Factorization machines](https://d2l.ai/chapter_recommender-systems/fm.html)
