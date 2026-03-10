@@ -15,8 +15,8 @@ A data-science-first guide to recommender systems with practical modeling, evalu
         <summary>1. Why it matters</summary>
         <ol class="recommender-toc__sublist">
           <li><a href="#why-recommender-systems-matter">Section overview</a></li>
-          <li><a href="#common-applications">Common applications</a></li>
-          <li><a href="#business-value">Business value</a></li>
+          <li><a href="#common-applications">1.1 Common applications</a></li>
+          <li><a href="#business-value">1.2 Business value</a></li>
         </ol>
       </details>
     </li>
@@ -25,10 +25,10 @@ A data-science-first guide to recommender systems with practical modeling, evalu
         <summary>2. Explicit vs. implicit</summary>
         <ol class="recommender-toc__sublist">
           <li><a href="#explicit-vs-implicit-feedback">Section overview</a></li>
-          <li><a href="#explicit-feedback">Explicit feedback</a></li>
-          <li><a href="#implicit-feedback">Implicit feedback</a></li>
-          <li><a href="#recommendation-tasks">Recommendation tasks</a></li>
-          <li><a href="#benchmark-datasets-and-split-strategy">Benchmark datasets</a></li>
+          <li><a href="#explicit-feedback">2.1 Explicit feedback</a></li>
+          <li><a href="#implicit-feedback">2.2 Implicit feedback</a></li>
+          <li><a href="#recommendation-tasks">2.3 Recommendation tasks</a></li>
+          <li><a href="#benchmark-datasets-and-split-strategy">2.4 Benchmark datasets</a></li>
         </ol>
       </details>
     </li>
@@ -37,11 +37,11 @@ A data-science-first guide to recommender systems with practical modeling, evalu
         <summary>3. Model families</summary>
         <ol class="recommender-toc__sublist">
           <li><a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">Section overview</a></li>
-          <li><a href="#content-based-filtering">Content-based filtering</a></li>
-          <li><a href="#collaborative-filtering">Collaborative filtering</a></li>
-          <li><a href="#contextual-filtering">Contextual filtering</a></li>
-          <li><a href="#hybrid-models">Hybrid models</a></li>
-          <li><a href="#embedding-spaces-and-similarity-measures">Embedding spaces and similarity</a></li>
+          <li><a href="#content-based-filtering">3.1 Content-based filtering</a></li>
+          <li><a href="#collaborative-filtering">3.2 Collaborative filtering</a></li>
+          <li><a href="#contextual-filtering">3.3 Contextual filtering</a></li>
+          <li><a href="#hybrid-models">3.4 Hybrid models</a></li>
+          <li><a href="#embedding-spaces-and-similarity-measures">3.5 Embedding spaces and similarity</a></li>
         </ol>
       </details>
     </li>
@@ -55,8 +55,8 @@ A data-science-first guide to recommender systems with practical modeling, evalu
           <li><a href="#implicit-feedback-factorization">4.3 Implicit-feedback factorization</a></li>
           <li><a href="#evaluation-for-rating-prediction">4.4 Evaluation for rating prediction</a></li>
           <li><a href="#autorec">4.5 AutoRec</a></li>
-          <li><a href="#personalized-ranking-objectives">4.6 Ranking objectives</a></li>
-          <li><a href="#svdplusplus-intuition">4.7 SVD++</a></li>
+          <li><a href="#personalized-ranking-objectives">4.6 Personalized ranking objectives</a></li>
+          <li><a href="#svdplusplus-intuition">4.7 SVD++ intuition</a></li>
         </ol>
       </details>
     </li>
@@ -93,8 +93,8 @@ A data-science-first guide to recommender systems with practical modeling, evalu
           <li><a href="#what-the-article-misses-for-production-ds-work">Section overview</a></li>
           <li><a href="#retrieval-ranking-architecture">7.1 Retrieval + ranking</a></li>
           <li><a href="#label-design-and-negatives">7.2 Label design and negatives</a></li>
-          <li><a href="#evaluating-recommender-and-ranking-systems">7.3 Evaluation</a></li>
-          <li><a href="#reranking-freshness-diversity-and-exploration">7.4 Re-ranking and exploration</a></li>
+          <li><a href="#evaluating-recommender-and-ranking-systems">7.3 Evaluating recommender and ranking systems</a></li>
+          <li><a href="#reranking-freshness-diversity-and-exploration">7.4 Re-ranking, freshness, diversity, and exploration</a></li>
           <li><a href="#reliability-and-monitoring">7.5 Reliability and monitoring</a></li>
         </ol>
       </details>
@@ -125,7 +125,7 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 
 <div id="common-applications"></div>
 
-### Common applications
+### 1.1 Common applications
 
 - E-commerce and retail: cross-sell, upsell, "complete the look", and basket expansion
 - Media and entertainment: personalized ranking of video, music, articles, and ads
@@ -133,7 +133,7 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 
 <div id="business-value"></div>
 
-### Business value
+### 1.2 Business value
 
 - Helps users discover items they would not have found through search alone
 - Increases engagement, session depth, and content consumption
@@ -154,7 +154,7 @@ As in the reference article, the first key split is the type of supervision.
 
 <div id="explicit-feedback"></div>
 
-### Explicit feedback
+### 2.1 Explicit feedback
 
 Examples:
 
@@ -174,7 +174,7 @@ Cons:
 
 <div id="implicit-feedback"></div>
 
-### Implicit feedback
+### 2.2 Implicit feedback
 
 Examples:
 
@@ -201,7 +201,7 @@ In both cases, interactions define a sparse user-item matrix with entries over u
 
 <div id="recommendation-tasks"></div>
 
-### Recommendation tasks
+### 2.3 Recommendation tasks
 
 Following [D2L Chapter 21](https://d2l.ai/chapter_recommender-systems/index.html), it helps to separate recommendation work by task:
 
@@ -215,7 +215,7 @@ These tasks overlap, but they drive different labels, evaluation protocols, and 
 
 <div id="benchmark-datasets-and-split-strategy"></div>
 
-### Benchmark datasets and split strategy
+### 2.4 Benchmark datasets and split strategy
 
 The [MovieLens 100K dataset](https://d2l.ai/chapter_recommender-systems/movielens.html) remains the standard conceptual benchmark for explicit-feedback recommendation.
 
@@ -240,7 +240,7 @@ Model choice depends heavily on what data you have. If you only observe interact
 
 <div id="content-based-filtering"></div>
 
-### Content-based filtering
+### 3.1 Content-based filtering
 
 Use user/item attributes and metadata.
 
@@ -265,7 +265,7 @@ Google's course also emphasizes that content-based systems are often easier to e
 
 <div id="collaborative-filtering"></div>
 
-### Collaborative filtering
+### 3.2 Collaborative filtering
 
 Use interaction patterns across all users/items.
 
@@ -282,7 +282,7 @@ Limitation:
 
 <div id="contextual-filtering"></div>
 
-### Contextual filtering
+### 3.3 Contextual filtering
 
 Contextual filtering incorporates information about the current situation into the recommendation process.
 
@@ -294,7 +294,7 @@ Contextual filtering incorporates information about the current situation into t
 
 <div id="hybrid-models"></div>
 
-### Hybrid models
+### 3.4 Hybrid models
 
 Combine metadata with interaction learning.
 
@@ -306,7 +306,7 @@ Combine metadata with interaction learning.
 
 <div id="embedding-spaces-and-similarity-measures"></div>
 
-### Embedding spaces and similarity measures for candidate generation
+### 3.5 Embedding spaces and similarity measures for candidate generation
 
 The Google Developers course sharpens an important operational point: candidate generation is usually a nearest-neighbor search problem in an embedding space. Given a query embedding $q$ and item embedding $x$, the retrieval stage depends heavily on the similarity measure you choose.
 
