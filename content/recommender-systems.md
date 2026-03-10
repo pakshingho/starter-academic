@@ -9,15 +9,17 @@ A data-science-first guide to recommender systems with practical modeling, evalu
 
 <nav class="recommender-toc" aria-label="On this page">
   <div class="recommender-toc__title">On this page</div>
-  <a href="#why-recommender-systems-matter">1. Why it matters</a>
-  <a href="#explicit-vs-implicit-feedback">2. Explicit vs. implicit</a>
-  <a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">3. Model families</a>
-  <a href="#collaborative-filtering-with-matrix-factorization">4. Matrix factorization</a>
-  <a href="#feature-rich-and-hybrid-recommendation">5. Feature-rich recommendation</a>
-  <a href="#deep-neural-recommendation-models">6. Deep models</a>
-  <a href="#what-the-article-misses-for-production-ds-work">7. Production concerns</a>
-  <a href="#practical-build-sequence-for-data-scientists">8. Build sequence</a>
-  <a href="#summary">9. Summary</a>
+  <ol class="recommender-toc__list">
+    <li><a href="#why-recommender-systems-matter">Why it matters</a></li>
+    <li><a href="#explicit-vs-implicit-feedback">Explicit vs. implicit</a></li>
+    <li><a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">Model families</a></li>
+    <li><a href="#collaborative-filtering-with-matrix-factorization">Matrix factorization</a></li>
+    <li><a href="#feature-rich-and-hybrid-recommendation">Feature-rich recommendation</a></li>
+    <li><a href="#deep-neural-recommendation-models">Deep models</a></li>
+    <li><a href="#what-the-article-misses-for-production-ds-work">Production concerns</a></li>
+    <li><a href="#practical-build-sequence-for-data-scientists">Build sequence</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ol>
 </nav>
 
 <div id="why-recommender-systems-matter"></div>

@@ -4,8 +4,8 @@
 }
 
 .article-style .recommender-toc {
-  margin: 0 0 1.5rem;
-  padding: 0.9rem 1rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.2rem 1.1rem;
   border: 1px solid rgba(100, 116, 139, 0.25);
   border-radius: 14px;
   background: rgba(248, 250, 252, 0.92);
@@ -22,11 +22,19 @@
 }
 
 .article-style .recommender-toc a {
-  display: block;
-  margin: 0.28rem 0;
   color: #1e3a8a;
   font-size: 0.95rem;
   text-decoration: none;
+}
+
+.article-style .recommender-toc__list {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.article-style .recommender-toc__list li {
+  margin: 0 0 0.45rem;
+  break-inside: avoid;
 }
 
 .article-style .recommender-toc a:hover,
@@ -36,11 +44,18 @@
 }
 
 @media (min-width: 1200px) {
+  .article-style .recommender-toc__list {
+    column-count: 2;
+    column-gap: 2.5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
   .article-style .recommender-toc {
-    position: sticky;
-    top: 5.5rem;
-    float: left;
-    width: 220px;
-    margin: 0 1.5rem 1rem 0;
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .article-style .recommender-toc__list {
+    padding-left: 1.2rem;
   }
 }
