@@ -7,7 +7,7 @@ math: true
 
 A data-science-first guide to recommender systems with practical modeling, evaluation, and production considerations.
 
-<nav class="recommender-toc" aria-label="On this page">
+<nav id="page-contents" class="recommender-toc" aria-label="On this page">
   <div class="recommender-toc__title">On this page</div>
   <ol class="recommender-toc__list">
     <li class="recommender-toc__section">
@@ -103,6 +103,11 @@ A data-science-first guide to recommender systems with practical modeling, evalu
     <li class="recommender-toc__section"><a href="#summary">9. Summary</a></li>
   </ol>
 </nav>
+
+<a class="recommender-toc-jump" href="#page-contents" aria-label="Back to table of contents">
+  <span class="recommender-toc-jump__icon" aria-hidden="true">↑</span>
+  <span>Contents</span>
+</a>
 
 <div id="why-recommender-systems-matter"></div>
 
