@@ -106,7 +106,6 @@ A data-science-first guide to recommender systems with practical modeling, evalu
 
 <a class="recommender-toc-jump" href="#page-contents" aria-label="Back to table of contents">
   <span class="recommender-toc-jump__icon" aria-hidden="true">↑</span>
-  <span>Contents</span>
 </a>
 
 <div id="why-recommender-systems-matter"></div>
