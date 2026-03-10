@@ -1,0 +1,57 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Two-tower retrieval model</title>
+  <desc id="desc">A query tower and an item tower encode features into embeddings, scored by dot product for retrieval.</desc>
+  <rect width="1200" height="520" fill="#f8fafc"/>
+  <rect x="32" y="32" width="1136" height="456" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="60" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">Two-Tower Retrieval Model</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="18" fill="#475569">User/query and item representations are learned separately, then matched in a shared embedding space.</text>
+
+  <rect x="70" y="160" width="210" height="220" rx="18" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="2"/>
+  <text x="95" y="198" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Query Features</text>
+  <text x="95" y="236" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• user ID</text>
+  <text x="95" y="266" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• recent clicks / watch history</text>
+  <text x="95" y="296" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• locale, device, time</text>
+  <text x="95" y="326" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• session or search context</text>
+
+  <rect x="330" y="150" width="240" height="240" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="380" y="190" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Query Tower</text>
+  <text x="372" y="228" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Embeddings + MLP / RNN /</text>
+  <text x="392" y="254" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Transformer layers</text>
+  <rect x="382" y="292" width="132" height="54" rx="14" fill="#1d4ed8"/>
+  <text x="404" y="326" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">u = ψ(x)</text>
+
+  <rect x="920" y="160" width="210" height="220" rx="18" fill="#dcfce7" stroke="#86efac" stroke-width="2"/>
+  <text x="960" y="198" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Item Features</text>
+  <text x="945" y="236" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• item ID, category</text>
+  <text x="945" y="266" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• text, title, tags</text>
+  <text x="945" y="296" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• image / media embeddings</text>
+  <text x="945" y="326" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• price, freshness, metadata</text>
+
+  <rect x="630" y="150" width="240" height="240" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="690" y="190" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Item Tower</text>
+  <text x="670" y="228" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Embeddings + MLP / CNN /</text>
+  <text x="685" y="254" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Transformer layers</text>
+  <rect x="680" y="292" width="140" height="54" rx="14" fill="#15803d"/>
+  <text x="704" y="326" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">v = φ(i)</text>
+
+  <circle cx="600" cy="270" r="46" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="571" y="264" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">score</text>
+  <text x="550" y="292" font-family="Arial, sans-serif" font-size="24" fill="#0f172a">u · v</text>
+
+  <rect x="450" y="420" width="300" height="42" rx="16" fill="#e2e8f0"/>
+  <text x="485" y="447" font-family="Arial, sans-serif" font-size="20" fill="#0f172a">Top-K nearest items in shared space</text>
+
+  <path d="M280 270 L330 270" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrowBlue)"/>
+  <path d="M570 270 L554 270" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrowBlue)"/>
+  <path d="M630 270 L646 270" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrowGreen)"/>
+  <path d="M870 270 L920 270" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#16a34a"/>
+    </marker>
+  </defs>
+</svg>

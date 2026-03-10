@@ -1,0 +1,62 @@
+<svg width="1200" height="620" viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Two-tower extensions</title>
+  <desc id="desc">A comparison of base two-tower retrieval, DAT augmentation, and IntTower style interaction enhancements.</desc>
+  <rect width="1200" height="620" fill="#f8fafc"/>
+  <text x="50" y="60" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">Interaction-Enhanced Variants</text>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="18" fill="#475569">The base two-tower is efficient but loses fine-grained cross-feature interactions. Recent extensions try to recover some of that signal.</text>
+
+  <rect x="40" y="130" width="350" height="430" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="80" y="175" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Base Two-Tower</text>
+  <rect x="80" y="220" width="110" height="190" rx="16" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="103" y="260" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">User</text>
+  <text x="96" y="290" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">tower</text>
+  <rect x="240" y="220" width="110" height="190" rx="16" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="266" y="260" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Item</text>
+  <text x="256" y="290" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">tower</text>
+  <circle cx="215" cy="315" r="32" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="192" y="322" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">u · v</text>
+  <text x="80" y="455" font-family="Arial, sans-serif" font-size="18" fill="#475569">Late interaction only at the final score.</text>
+  <text x="80" y="482" font-family="Arial, sans-serif" font-size="18" fill="#475569">Pros: fast retrieval, decoupled serving.</text>
+  <text x="80" y="509" font-family="Arial, sans-serif" font-size="18" fill="#b91c1c">Weakness: limited cross-feature interaction.</text>
+
+  <rect x="425" y="130" width="350" height="430" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="495" y="175" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">DAT</text>
+  <text x="548" y="175" font-family="Arial, sans-serif" font-size="18" fill="#475569">(Dual Augmented Two-Tower)</text>
+  <rect x="470" y="220" width="110" height="190" rx="16" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="620" y="220" width="110" height="190" rx="16" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="488" y="260" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">User</text>
+  <text x="476" y="290" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">tower + aᵤ</text>
+  <text x="645" y="260" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Item</text>
+  <text x="631" y="290" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">tower + aᵥ</text>
+  <rect x="525" y="440" width="160" height="58" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="549" y="475" font-family="Arial, sans-serif" font-size="20" fill="#0f172a">cross-history</text>
+  <path d="M605 440 L605 410" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowOrange)"/>
+  <text x="462" y="515" font-family="Arial, sans-serif" font-size="18" fill="#475569">Adds historical positive signals from the opposite side</text>
+  <text x="514" y="542" font-family="Arial, sans-serif" font-size="18" fill="#475569">to enrich each tower input.</text>
+
+  <rect x="810" y="130" width="350" height="430" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="870" y="175" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">IntTower</text>
+  <rect x="845" y="220" width="120" height="70" rx="14" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+  <text x="873" y="262" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Light-SE</text>
+  <rect x="1005" y="220" width="120" height="70" rx="14" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="1036" y="262" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">FE block</text>
+  <rect x="925" y="330" width="120" height="70" rx="14" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="958" y="372" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">CIR</text>
+  <path d="M965 255 L1005 255" stroke="#334155" stroke-width="3" marker-end="url(#arrowGray)"/>
+  <path d="M1065 290 L1005 330" stroke="#334155" stroke-width="3" marker-end="url(#arrowGray)"/>
+  <path d="M925 365 L885 290" stroke="#334155" stroke-width="3" marker-end="url(#arrowGray)"/>
+  <text x="842" y="438" font-family="Arial, sans-serif" font-size="18" fill="#475569">Light-SE: feature importance recalibration</text>
+  <text x="842" y="465" font-family="Arial, sans-serif" font-size="18" fill="#475569">FE block: fine-grained early interaction</text>
+  <text x="842" y="492" font-family="Arial, sans-serif" font-size="18" fill="#475569">CIR: contrastive regularization for positives</text>
+  <text x="842" y="525" font-family="Arial, sans-serif" font-size="18" fill="#475569">Related idea: ColBERT-style late interaction preserves</text>
+  <text x="842" y="552" font-family="Arial, sans-serif" font-size="18" fill="#475569">decoupling while keeping richer token-level matching.</text>
+
+  <defs>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#334155"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+</svg>

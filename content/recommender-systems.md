@@ -475,9 +475,25 @@ Useful model families include:
 - Convolutional models when image content matters
 - Recurrent networks and transformers for sequential, session-based behavior
 
-### 6.1 Softmax DNNs and two-tower retrieval
+### 6.1 Two-tower retrieval models
 
-The Google Developers course adds an important neural-retrieval perspective that is not covered deeply in the article. Instead of only factorizing a user-item matrix, you can map a query context $x$ through a neural network to a dense representation $\psi(x)$ and score every item in the catalog through a softmax layer:
+The Google course gives the retrieval intuition, and the two blog references sharpen how that intuition gets productionized. A two-tower model is a dual-encoder architecture: one tower maps the query side into an embedding, and the other maps the item side into the same embedding space. The interaction is deliberately delayed until the very end.
+
+If $x_q$ is the query-side input and $x_i$ is the item-side input, the core score is:
+
+$$
+s(x_q, x_i) = \langle \psi(x_q), \phi(x_i) \rangle
+$$
+
+where $\psi(\cdot)$ is the query tower and $\phi(\cdot)$ is the item tower.
+
+This late-interaction design is the key reason two-tower models dominate retrieval and pre-ranking. The towers can be trained jointly, but item embeddings can then be precomputed and indexed, which makes large-scale ANN retrieval practical.
+
+![Two-tower retrieval architecture](/media/recommender/rs-two-tower-core.svg)
+
+#### Training objectives and the softmax view
+
+Instead of only factorizing a user-item matrix, you can map a query context $x$ through a neural network to a dense representation $\psi(x)$ and score the catalog with a softmax layer:
 
 $$
 z(x) = \psi(x) V^\top
@@ -489,19 +505,57 @@ $$
 
 where $V$ contains the learned item representations.
 
-This framing is useful because it lets you mix sparse IDs, dense features, and context features in one model. But it also introduces a major systems issue: exact softmax over a large item catalog is expensive. In practice, Google emphasizes sampled softmax, negative sampling, and hard-negative construction to make training tractable.
-
-If both query and item sides have rich features, the same idea becomes a two-tower retrieval model:
-
-$$
-s(x_q, x_i) = \langle \psi(x_q), \phi(x_i) \rangle
-$$
-
-This is now one of the dominant paradigms for candidate generation because it separates query encoding from item encoding and enables approximate nearest-neighbor retrieval over the item tower embeddings.
+In practice, exact softmax over a large catalog is too expensive, so industrial systems usually rely on sampled softmax, negative sampling, hard negatives, BPR-style pairwise losses, or contrastive objectives such as InfoNCE. The Shaped deep dive also notes that pointwise log loss is still common when the retriever is trained as a coarse candidate generator ahead of a stronger ranker.
 
 ![Training a softmax recommendation model](/media/recommender/google/google-training.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/training), CC BY 4.0.*
+
+#### Training versus serving
+
+This is where the architecture becomes operationally attractive:
+
+- During training, the two towers are optimized jointly so that relevant query-item pairs are close in the embedding space and irrelevant pairs are pushed apart.
+- During serving, the item tower is run offline over the full catalog and its embeddings are stored in an ANN index.
+- At request time, the system computes only the query embedding online, queries the ANN index, and returns a top-$K$ candidate set for downstream ranking.
+
+This decoupling is why two-tower models are common in candidate generation, related-item retrieval, and pre-ranking stages with strict latency budgets.
+
+![Two-tower training and serving workflow](/media/recommender/rs-two-tower-serving.svg)
+
+#### Tower design choices
+
+The towers do not have to be simple MLPs. As the Shaped article emphasizes, the query tower may consume user IDs, demographics, session state, search context, or sequential behavior, while the item tower may consume item IDs, metadata, text, image embeddings, or other modality-specific features.
+
+Common choices include:
+
+- MLPs over concatenated embeddings and dense features
+- Sequence models or transformers on the query side for recent behavior
+- Text or multimodal encoders on the item side for semantic retrieval
+- Symmetric dual encoders when both sides have similar modalities
+- Asymmetric dual encoders when the query and item spaces are very different
+
+For smaller catalogs, the raw two-tower score may be enough to rank directly. For very large catalogs, it is almost always used as a retrieval or pre-ranking model ahead of a richer scorer.
+
+#### Limitations and promising extensions
+
+The main weakness is also the reason the model is fast: user-item interaction is restricted to the final dot product. This creates an information bottleneck.
+
+In practice, that means:
+
+- Fine-grained cross-feature interactions are not modeled explicitly
+- Subtle conditional preferences can be missed
+- The retriever usually needs a downstream ranker to recover accuracy
+
+The Reach Sumit survey is useful here because it covers several extensions aimed at reducing this bottleneck while keeping most of the serving efficiency:
+
+- DAT (Dual Augmented Two-Tower): augments each tower with cross-side historical interaction signals
+- IntTower: adds feature-importance calibration, fine-grained early interaction, and contrastive interaction regularization
+- ColBERT-style late interaction: preserves query-item decoupling better than a full cross-encoder while keeping richer token-level matching than a pure dot product
+
+These models live in the space between pure representation-based retrieval and full interaction-heavy ranking models.
+
+![Interaction-enhanced two-tower variants](/media/recommender/rs-two-tower-extensions.svg)
 
 ### 6.2 Neural collaborative filtering
 
@@ -797,7 +851,7 @@ The article's core path is still the right conceptual backbone, the NVIDIA gloss
 - Embedding-space candidate generation, similarity design, and matrix factorization variants
 - AutoRec and ranking objectives such as BPR and hinge loss
 - Feature-rich recommendation with factorization machines and DeepFM
-- Deep recommenders such as softmax or two-tower retrieval, NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
+- Deep recommenders such as two-tower retrieval, interaction-enhanced dual encoders, NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
 - Hybrid models such as LightFM
 - Three-stage production design with retrieval, scoring, and re-ranking for freshness, diversity, and fairness
 
@@ -808,6 +862,8 @@ For practicing data scientists, the differentiator is operational quality: robus
 - Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
 - [21. Recommender Systems](https://d2l.ai/chapter_recommender-systems/index.html)
 - [Google for Developers: Recommendation Systems course](https://developers.google.com/machine-learning/recommendation)
+- [Shaped: The Two-Tower Model for Recommendation Systems: A Deep Dive](https://www.shaped.ai/blog/the-two-tower-model-for-recommendation-systems-a-deep-dive)
+- [Sumit's Diary: Two Tower Model Architecture: Current State and Promising Extensions](https://blog.reachsumit.com/posts/2023/03/two-tower-model/)
 - [NVIDIA Glossary: Recommendation System](https://www.nvidia.com/en-us/glossary/recommendation-system/)
 - [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
 - [Surprise Python package](https://surpriselib.com/)
