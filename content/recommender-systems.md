@@ -478,17 +478,71 @@ For implicit data, non-click is not always negative. You need:
 - Position-bias-aware training
 - Time-windowed labels matching product goals
 
-### 7.3 Offline vs online evaluation
+### 7.3 Evaluating recommender and ranking systems
 
-Offline metrics like $Recall@K$, $NDCG@K$, and $MAP$ are necessary but insufficient.
+[D2L's NeuMF evaluator](https://d2l.ai/chapter_recommender-systems/neumf.html) is a good starting point for implicit-feedback ranking evaluation. The protocol uses a chronological split, holds out a future ground-truth item $g_u$ for each user $u$, and ranks that item against items the user has not interacted with.
 
-You still need A/B tests with:
+Two core metrics in that setup are:
 
-- Primary metrics (CTR, conversion, retention)
-- Guardrails (latency, bad-content rate, complaint rate)
-- Segment-level analysis (new users, heavy users, long-tail items)
+$$
+\mathrm{Hit@}K = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \mathbf{1}\left(\mathrm{rank}_{u,g_u} \le K\right)
+$$
 
-For implicit ranking, [D2L's NeuMF section](https://d2l.ai/chapter_recommender-systems/neumf.html) also highlights $Hit@K$ and AUC as practical offline ranking metrics when using time-based splits and candidate sets.
+and
+
+$$
+\mathrm{AUC} = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}}
+\frac{1}{|\mathcal{I} \setminus S_u|}
+\sum_{j \in \mathcal{I} \setminus S_u}
+\mathbf{1}\left(\mathrm{rank}_{u,g_u} < \mathrm{rank}_{u,j}\right)
+$$
+
+where $\mathcal{U}$ is the user set, $\mathcal{I}$ is the item set, and $S_u$ is the set of items already associated with user $u$.
+
+This evaluator is useful because it respects time order and measures whether the held-out future item is surfaced near the top. But for production recommendation systems, you usually need a wider evaluation stack than $Hit@K$ and AUC alone.
+
+#### Stage-specific offline metrics
+
+- Retrieval: use $Recall@M$ or candidate hit rate to verify that the candidate generator is not dropping relevant items before the ranker sees them.
+- Ranking: use $NDCG@K$, $Recall@K$, and $MRR$ for top-of-list quality. If you have multiple relevant held-out items per user, $MAP$ is also useful.
+- Rating prediction: use $RMSE$ or $MAE$ only when explicit rating prediction is the real product task. These metrics are much less informative for feed ranking or item recommendation.
+
+Among these, $NDCG@K$ is often the strongest single ranking metric because it rewards putting the most relevant items near the top rather than merely somewhere in the top $K$.
+
+#### Protocol choices matter as much as the metric
+
+- Use chronological splits for implicit and sequence-aware tasks. Random splits can leak future information.
+- State clearly whether evaluation is full-catalog, sampled-negative, or candidate-set based. Numbers are not comparable across these protocols.
+- Evaluate on exposed or eligible items when possible. Treating every unclicked item in the full catalog as a negative can distort results.
+- Report by segment: new users, power users, new items, head items, and long-tail items often behave very differently.
+- When the system has multiple stages, evaluate each stage separately and end-to-end.
+
+#### Beyond ranking accuracy
+
+Accuracy metrics alone can produce a recommender that is brittle or bad for the product.
+
+- Coverage: how much of the catalog is ever recommended
+- Diversity: how different the recommended items are from one another
+- Novelty and serendipity: whether the system only repeats obvious items
+- Calibration: whether recommendations match the user's current intent, not just their historical average
+- Fairness and marketplace health: whether some suppliers, creators, or item groups are systematically suppressed
+
+These matter because a system with slightly lower $NDCG@K$ can still be better for long-term engagement if it improves diversity, catalog health, or repeat-user satisfaction.
+
+#### Online evaluation
+
+Offline metrics are necessary but insufficient. You still need A/B tests with:
+
+- Primary metrics: CTR, conversion, watch time, retention, revenue, or long-term value depending on the product
+- Guardrails: latency, page-load impact, complaint rate, hide/block rate, unsafe-content rate
+- Diagnostic cuts: new vs returning users, cold-start items, geography, device, heavy-user cohorts
+
+For ranking changes, it is also useful to monitor the full funnel:
+
+- Candidate recall
+- Ranker win rate on exposed impressions
+- Final-surface engagement
+- Downstream business outcomes
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
