@@ -507,6 +507,54 @@ This evaluator is useful because it respects time order and measures whether the
 - Ranking: use $NDCG@K$, $Recall@K$, and $MRR$ for top-of-list quality. If you have multiple relevant held-out items per user, $MAP$ is also useful.
 - Rating prediction: use $RMSE$ or $MAE$ only when explicit rating prediction is the real product task. These metrics are much less informative for feed ranking or item recommendation.
 
+Let $G_u$ denote the relevant items for user $u$, let $C_u(M)$ be the top-$M$ retrieval candidate set, and let $L_u(K)$ be the top-$K$ ranked list.
+
+For retrieval, a standard candidate-stage metric is:
+
+$$
+\mathrm{Recall@}M = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \frac{|G_u \cap C_u(M)|}{|G_u|}
+$$
+
+For the final ranked list, the analogous metric is:
+
+$$
+\mathrm{Recall@}K = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \frac{|G_u \cap L_u(K)|}{|G_u|}
+$$
+
+To reward correct ordering near the top, define
+
+$$
+\mathrm{DCG@}K(u) = \sum_{j=1}^{K} \frac{2^{\mathrm{rel}_{u,j}} - 1}{\log_2(j+1)}
+$$
+
+and then normalize by the ideal ordering:
+
+$$
+\mathrm{NDCG@}K = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \frac{\mathrm{DCG@}K(u)}{\mathrm{IDCG@}K(u)}
+$$
+
+where $\mathrm{rel}_{u,j}$ is the relevance label of the item at position $j$ for user $u$.
+
+If you care about the position of the first relevant result, use mean reciprocal rank:
+
+$$
+\mathrm{MRR} = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \frac{1}{r_u}
+$$
+
+where $r_u$ is the rank position of the first relevant item for user $u$, with reciprocal rank taken as $0$ if no relevant item appears.
+
+If multiple relevant items can appear in the list, average precision is also useful:
+
+$$
+\mathrm{AP@}K(u) = \frac{1}{\min(|G_u|, K)} \sum_{j=1}^{K} \mathrm{Precision@}j(u)\,\mathbf{1}\left(i_{u,j} \in G_u\right)
+$$
+
+$$
+\mathrm{MAP@}K = \frac{1}{|\mathcal{U}|} \sum_{u \in \mathcal{U}} \mathrm{AP@}K(u)
+$$
+
+where $i_{u,j}$ is the item shown at rank $j$ to user $u$.
+
 Among these, $NDCG@K$ is often the strongest single ranking metric because it rewards putting the most relevant items near the top rather than merely somewhere in the top $K$.
 
 #### Protocol choices matter as much as the metric
