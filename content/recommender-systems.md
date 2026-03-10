@@ -104,9 +104,20 @@ A data-science-first guide to recommender systems with practical modeling, evalu
   </ol>
 </nav>
 
-<a class="recommender-toc-jump" href="#page-contents" aria-label="Back to table of contents">
-  <span class="recommender-toc-jump__icon" aria-hidden="true">↑</span>
-</a>
+<aside class="recommender-float-toc" aria-label="Floating table of contents">
+  <button
+    class="recommender-float-toc__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="floating-page-contents"
+    aria-label="Open section navigation">
+    <span class="recommender-float-toc__toggle-icon" aria-hidden="true"></span>
+  </button>
+  <div id="floating-page-contents" class="recommender-float-toc__panel" hidden>
+    <div class="recommender-float-toc__title">On this page</div>
+    <div class="recommender-float-toc__body"></div>
+  </div>
+</aside>
 
 <div id="why-recommender-systems-matter"></div>
 
