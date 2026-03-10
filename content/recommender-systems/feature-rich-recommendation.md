@@ -1,7 +1,7 @@
 ---
 title: 5. Feature-Rich Recommendation
 linktitle: 5. Feature-Rich Recommendation
-toc: true
+toc: false
 type: docs
 date: 2026-03-07
 lastmod: 2026-03-10
@@ -9,6 +9,7 @@ draft: false
 math: true
 menu:
   recommender-systems:
+    identifier: chapter-feature-rich
     weight: 6
 weight: 6
 ---

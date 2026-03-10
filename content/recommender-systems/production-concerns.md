@@ -1,7 +1,7 @@
 ---
 title: 7. Production Concerns
 linktitle: 7. Production Concerns
-toc: true
+toc: false
 type: docs
 date: 2026-03-07
 lastmod: 2026-03-10
@@ -9,6 +9,7 @@ draft: false
 math: true
 menu:
   recommender-systems:
+    identifier: chapter-production
     weight: 8
 weight: 8
 ---

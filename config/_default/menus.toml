@@ -95,3 +95,207 @@
 #    name = "CV"
 #    url = "media/cv.pdf"
 #    weight = 70
+
+[[recommender-systems]]
+  name = "1.1 Common applications"
+  url = "/recommender-systems/why-it-matters/#common-applications"
+  parent = "chapter-why"
+  weight = 21
+
+[[recommender-systems]]
+  name = "1.2 Business value"
+  url = "/recommender-systems/why-it-matters/#business-value"
+  parent = "chapter-why"
+  weight = 22
+
+[[recommender-systems]]
+  name = "2.1 Explicit feedback"
+  url = "/recommender-systems/explicit-vs-implicit-feedback/#explicit-feedback"
+  parent = "chapter-explicit-implicit"
+  weight = 31
+
+[[recommender-systems]]
+  name = "2.2 Implicit feedback"
+  url = "/recommender-systems/explicit-vs-implicit-feedback/#implicit-feedback"
+  parent = "chapter-explicit-implicit"
+  weight = 32
+
+[[recommender-systems]]
+  name = "2.3 Recommendation tasks"
+  url = "/recommender-systems/explicit-vs-implicit-feedback/#recommendation-tasks"
+  parent = "chapter-explicit-implicit"
+  weight = 33
+
+[[recommender-systems]]
+  name = "2.4 Benchmark datasets"
+  url = "/recommender-systems/explicit-vs-implicit-feedback/#benchmark-datasets-and-split-strategy"
+  parent = "chapter-explicit-implicit"
+  weight = 34
+
+[[recommender-systems]]
+  name = "3.1 Content-based filtering"
+  url = "/recommender-systems/model-families/#content-based-filtering"
+  parent = "chapter-model-families"
+  weight = 41
+
+[[recommender-systems]]
+  name = "3.2 Collaborative filtering"
+  url = "/recommender-systems/model-families/#collaborative-filtering"
+  parent = "chapter-model-families"
+  weight = 42
+
+[[recommender-systems]]
+  name = "3.3 Contextual filtering"
+  url = "/recommender-systems/model-families/#contextual-filtering"
+  parent = "chapter-model-families"
+  weight = 43
+
+[[recommender-systems]]
+  name = "3.4 Hybrid models"
+  url = "/recommender-systems/model-families/#hybrid-models"
+  parent = "chapter-model-families"
+  weight = 44
+
+[[recommender-systems]]
+  name = "3.5 Embedding spaces and similarity"
+  url = "/recommender-systems/model-families/#embedding-spaces-and-similarity-measures"
+  parent = "chapter-model-families"
+  weight = 45
+
+[[recommender-systems]]
+  name = "4.1 PMF / latent factors"
+  url = "/recommender-systems/matrix-factorization/#pmf-latent-factors"
+  parent = "chapter-matrix-factorization"
+  weight = 51
+
+[[recommender-systems]]
+  name = "4.2 SVD-style bias terms"
+  url = "/recommender-systems/matrix-factorization/#svd-style-bias-terms"
+  parent = "chapter-matrix-factorization"
+  weight = 52
+
+[[recommender-systems]]
+  name = "4.3 Implicit-feedback factorization"
+  url = "/recommender-systems/matrix-factorization/#implicit-feedback-factorization"
+  parent = "chapter-matrix-factorization"
+  weight = 53
+
+[[recommender-systems]]
+  name = "4.4 Evaluation for rating prediction"
+  url = "/recommender-systems/matrix-factorization/#evaluation-for-rating-prediction"
+  parent = "chapter-matrix-factorization"
+  weight = 54
+
+[[recommender-systems]]
+  name = "4.5 AutoRec"
+  url = "/recommender-systems/matrix-factorization/#autorec"
+  parent = "chapter-matrix-factorization"
+  weight = 55
+
+[[recommender-systems]]
+  name = "4.6 Personalized ranking objectives"
+  url = "/recommender-systems/matrix-factorization/#personalized-ranking-objectives"
+  parent = "chapter-matrix-factorization"
+  weight = 56
+
+[[recommender-systems]]
+  name = "4.7 SVD++ intuition"
+  url = "/recommender-systems/matrix-factorization/#svdplusplus-intuition"
+  parent = "chapter-matrix-factorization"
+  weight = 57
+
+[[recommender-systems]]
+  name = "5.1 Feature-rich recommendation and CTR"
+  url = "/recommender-systems/feature-rich-recommendation/#feature-rich-recommendation-and-ctr"
+  parent = "chapter-feature-rich"
+  weight = 61
+
+[[recommender-systems]]
+  name = "5.2 Factorization machines"
+  url = "/recommender-systems/feature-rich-recommendation/#factorization-machines"
+  parent = "chapter-feature-rich"
+  weight = 62
+
+[[recommender-systems]]
+  name = "5.3 DeepFM"
+  url = "/recommender-systems/feature-rich-recommendation/#deepfm"
+  parent = "chapter-feature-rich"
+  weight = 63
+
+[[recommender-systems]]
+  name = "5.4 Hybrid factorization with features"
+  url = "/recommender-systems/feature-rich-recommendation/#hybrid-factorization-with-features"
+  parent = "chapter-feature-rich"
+  weight = 64
+
+[[recommender-systems]]
+  name = "6.1 Two-tower retrieval"
+  url = "/recommender-systems/deep-models/#two-tower-retrieval-models"
+  parent = "chapter-deep-models"
+  weight = 71
+
+[[recommender-systems]]
+  name = "6.2 Neural collaborative filtering"
+  url = "/recommender-systems/deep-models/#neural-collaborative-filtering"
+  parent = "chapter-deep-models"
+  weight = 72
+
+[[recommender-systems]]
+  name = "6.3 Variational autoencoders"
+  url = "/recommender-systems/deep-models/#variational-autoencoders-for-collaborative-filtering"
+  parent = "chapter-deep-models"
+  weight = 73
+
+[[recommender-systems]]
+  name = "6.4 Contextual sequence learning"
+  url = "/recommender-systems/deep-models/#contextual-sequence-learning"
+  parent = "chapter-deep-models"
+  weight = 74
+
+[[recommender-systems]]
+  name = "6.5 Wide-and-deep"
+  url = "/recommender-systems/deep-models/#wide-and-deep-style-models"
+  parent = "chapter-deep-models"
+  weight = 75
+
+[[recommender-systems]]
+  name = "6.6 DLRM-style models"
+  url = "/recommender-systems/deep-models/#dlrm-style-models"
+  parent = "chapter-deep-models"
+  weight = 76
+
+[[recommender-systems]]
+  name = "7.1 Retrieval + ranking"
+  url = "/recommender-systems/production-concerns/#retrieval-ranking-architecture"
+  parent = "chapter-production"
+  weight = 81
+
+[[recommender-systems]]
+  name = "7.2 Label design and negatives"
+  url = "/recommender-systems/production-concerns/#label-design-and-negatives"
+  parent = "chapter-production"
+  weight = 82
+
+[[recommender-systems]]
+  name = "7.3 Evaluating recommender and ranking systems"
+  url = "/recommender-systems/production-concerns/#evaluating-recommender-and-ranking-systems"
+  parent = "chapter-production"
+  weight = 83
+
+[[recommender-systems]]
+  name = "7.4 Re-ranking, freshness, diversity, and exploration"
+  url = "/recommender-systems/production-concerns/#reranking-freshness-diversity-and-exploration"
+  parent = "chapter-production"
+  weight = 84
+
+[[recommender-systems]]
+  name = "7.5 Reliability and monitoring"
+  url = "/recommender-systems/production-concerns/#reliability-and-monitoring"
+  parent = "chapter-production"
+  weight = 85
+
+[[recommender-systems]]
+  name = "References"
+  url = "/recommender-systems/summary-and-references/#references"
+  parent = "chapter-summary"
+  weight = 101

@@ -1,7 +1,7 @@
 ---
 title: 4. Matrix Factorization
 linktitle: 4. Matrix Factorization
-toc: true
+toc: false
 type: docs
 date: 2026-03-07
 lastmod: 2026-03-10
@@ -9,6 +9,7 @@ draft: false
 math: true
 menu:
   recommender-systems:
+    identifier: chapter-matrix-factorization
     weight: 5
 weight: 5
 ---

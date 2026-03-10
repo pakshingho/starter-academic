@@ -10,8 +10,10 @@ layout: docs
 menu:
   recommender-systems:
     name: Overview
+    identifier: chapter-overview
     weight: 1
 weight: 1
+toc: false
 ---
 
 A chapter-based guide to recommender systems for data scientists, spanning problem framing, modeling, evaluation, and production design.

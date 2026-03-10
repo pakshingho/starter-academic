@@ -1,7 +1,7 @@
 ---
 title: 2. Explicit vs. Implicit Feedback
 linktitle: 2. Explicit vs. Implicit
-toc: true
+toc: false
 type: docs
 date: 2026-03-07
 lastmod: 2026-03-10
@@ -9,6 +9,7 @@ draft: false
 math: true
 menu:
   recommender-systems:
+    identifier: chapter-explicit-implicit
     weight: 3
 weight: 3
 ---

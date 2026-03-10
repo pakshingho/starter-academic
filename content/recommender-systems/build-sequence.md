@@ -1,7 +1,7 @@
 ---
 title: 8. Practical Build Sequence for Data Scientists
 linktitle: 8. Build Sequence
-toc: true
+toc: false
 type: docs
 date: 2026-03-07
 lastmod: 2026-03-10
@@ -9,6 +9,7 @@ draft: false
 math: true
 menu:
   recommender-systems:
+    identifier: chapter-build-sequence
     weight: 9
 weight: 9
 ---
