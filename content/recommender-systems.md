@@ -248,18 +248,19 @@ AutoRec extends collaborative filtering with an autoencoder-style reconstruction
 - The network reconstructs missing entries through a hidden representation
 - Only observed ratings should contribute to the training loss
 
-For item-based AutoRec, D2L writes the input as the $i$th column $\mathbf{R}_{*i}$ of the rating matrix and reconstructs it with a nonlinear network:
+For item-based AutoRec, D2L writes the input as the $i$th column $R_{\ast i}$ of the rating matrix and reconstructs it with a nonlinear network:
 
 $$
-h(\mathbf{R}_{*i}) = f\!\left(\mathbf{W}\, g\!\left(\mathbf{V}\mathbf{R}_{*i} + \mu\right) + b\right)
+h(R_{\ast i}) = f\left(W\, g\left(V R_{\ast i} + \mu\right) + b\right)
 $$
 
 The learning objective minimizes reconstruction error over observed entries only:
 
 $$
-\arg\min_{\mathbf{W},\mathbf{V},\mu,b}
-\sum_{i=1}^{M}\left\lVert \mathbf{R}_{*i} - h(\mathbf{R}_{*i}) \right\rVert_{\mathcal{O}}^2
-+ \lambda\left(\lVert \mathbf{W}\rVert_F^2 + \lVert \mathbf{V}\rVert_F^2\right)
+\begin{aligned}
+\min_{W,V,\mu,b}\ &\sum_{i=1}^{M}\left\lVert R_{\ast i} - h(R_{\ast i}) \right\rVert_{\mathcal{O}}^2 \\
+&+ \lambda\left(\lVert W\rVert_F^2 + \lVert V\rVert_F^2\right)
+\end{aligned}
 $$
 
 Conceptually, AutoRec matters because it is one of the earliest examples in D2L of moving from linear collaborative filtering to nonlinear neural reconstruction for rating prediction.
@@ -279,13 +280,13 @@ The two core D2L losses are:
 1. Bayesian Personalized Ranking (BPR), which encourages the positive item to score above a sampled negative item:
 
 $$
-\sum_{(u,i,j)\in D} \ln \sigma\!\left(\hat{y}_{ui} - \hat{y}_{uj}\right) - \lambda_{\Theta}\lVert \Theta \rVert^2
+\sum_{(u,i,j)\in D} \ln \sigma\left(\hat{y}_{ui} - \hat{y}_{uj}\right) - \lambda_{\Theta}\lVert \Theta \rVert^2
 $$
 
 2. Hinge ranking loss, which pushes the positive item away from the negative item by a margin $m$:
 
 $$
-\sum_{(u,i,j)\in D} \max\!\left(m - \hat{y}_{ui} + \hat{y}_{uj}, 0\right)
+\sum_{(u,i,j)\in D} \max\left(m - \hat{y}_{ui} + \hat{y}_{uj}, 0\right)
 $$
 
 These are central for implicit-feedback recommendation because they optimize relative ordering rather than absolute score accuracy.
@@ -311,7 +312,7 @@ This setting is different from classic matrix factorization because the goal is 
 CTR is defined as:
 
 $$
-\mathrm{CTR} = \frac{\#\mathrm{Clicks}}{\#\mathrm{Impressions}} \times 100\%
+CTR = \frac{\# \text{Clicks}}{\# \text{Impressions}} \times 100\%
 $$
 
 ### 5.2 [Factorization machines](https://d2l.ai/chapter_recommender-systems/fm.html)
@@ -343,7 +344,7 @@ DeepFM extends FM by combining low-order feature interactions from FM with high-
 D2L presents the DeepFM prediction as:
 
 $$
-\hat{y} = \sigma\!\left(\hat{y}^{(FM)} + \hat{y}^{(DNN)}\right)
+\hat{y} = \sigma\left(\hat{y}^{(FM)} + \hat{y}^{(DNN)}\right)
 $$
 
 DeepFM is especially useful when simple pairwise interactions are not expressive enough, but you still want the inductive bias of factorization-based feature interaction.
@@ -458,7 +459,7 @@ You still need A/B tests with:
 - Guardrails (latency, bad-content rate, complaint rate)
 - Segment-level analysis (new users, heavy users, long-tail items)
 
-For implicit ranking, [D2L's NeuMF section](https://d2l.ai/chapter_recommender-systems/neumf.html) also highlights $Hit@\ell$ and AUC as practical offline ranking metrics when using time-based splits and candidate sets.
+For implicit ranking, [D2L's NeuMF section](https://d2l.ai/chapter_recommender-systems/neumf.html) also highlights $Hit@K$ and AUC as practical offline ranking metrics when using time-based splits and candidate sets.
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
@@ -506,17 +507,7 @@ For practicing data scientists, the differentiator is operational quality: robus
 ## Reference
 
 - Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
-- [Dive into Deep Learning: Chapter 21 Recommender Systems](https://d2l.ai/chapter_recommender-systems/index.html)
-- [D2L 21.1 Overview of Recommender Systems](https://d2l.ai/chapter_recommender-systems/recsys-intro.html)
-- [D2L 21.2 The MovieLens Dataset](https://d2l.ai/chapter_recommender-systems/movielens.html)
-- [D2L 21.3 Matrix Factorization](https://d2l.ai/chapter_recommender-systems/mf.html)
-- [D2L 21.4 AutoRec](https://d2l.ai/chapter_recommender-systems/autorec.html)
-- [D2L 21.5 Personalized Ranking](https://d2l.ai/chapter_recommender-systems/ranking.html)
-- [D2L 21.6 NeuMF](https://d2l.ai/chapter_recommender-systems/neumf.html)
-- [D2L 21.7 Sequence-Aware Recommendation](https://d2l.ai/chapter_recommender-systems/seqrec.html)
-- [D2L 21.8 Feature-Rich Recommender Systems](https://d2l.ai/chapter_recommender-systems/ctr.html)
-- [D2L 21.9 Factorization Machines](https://d2l.ai/chapter_recommender-systems/fm.html)
-- [D2L 21.10 DeepFM](https://d2l.ai/chapter_recommender-systems/deepfm.html)
+- [21. Recommender Systems](https://d2l.ai/chapter_recommender-systems/index.html)
 - [NVIDIA Glossary: Recommendation System](https://www.nvidia.com/en-us/glossary/recommendation-system/)
 - [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
 - [Surprise Python package](https://surpriselib.com/)
