@@ -221,7 +221,9 @@ Optimization:
 
 With ALS, you alternate between solving for user factors while holding item factors fixed and solving for item factors while holding user factors fixed. That makes large sparse factorization problems easier to optimize in practice.
 
-![Matrix factorization decomposition](/media/recommender/rs-matrix-factorization.svg)
+![Illustration of matrix factorization model](https://d2l.ai/_images/rec-mf.svg)
+
+*Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/mf.html), CC BY-SA 4.0.*
 
 ![Alternating least squares optimization cycle](/media/recommender/rs-als-cycle.svg)
 
