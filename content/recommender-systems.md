@@ -53,6 +53,13 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 - Increases engagement, session depth, and content consumption
 - Improves conversion, basket size, and retention when recommendations are well-targeted
 
+Google's recommender course also makes a useful product distinction between two common surfaces:
+
+- Homepage recommendations, where the query is the user or session context
+- Related-item recommendations, where the query is the current item being viewed
+
+That distinction matters because homepage recommendation usually starts from a user or context embedding, while related-item recommendation often starts from the item embedding itself and retrieves nearby items in embedding space.
+
 <div id="explicit-vs-implicit-feedback"></div>
 
 ## 2. Explicit vs. Implicit Feedback
@@ -152,6 +159,13 @@ Strength:
 Limitation:
 
 - Limited collaborative signal; can over-specialize
+- Can become overly narrow if the feature space does not capture richer or emerging interests
+
+Google's course also emphasizes that content-based systems are often easier to explain and easier to cold-start for new items, but they tend to be weaker at serendipity than collaborative models.
+
+![Content-based recommendation illustration](https://developers.google.com/machine-learning/recommendation/images/Contentbased.svg)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/content-based/basics), CC BY 4.0.*
 
 ### Collaborative filtering
 
@@ -187,6 +201,46 @@ Combine metadata with interaction learning.
 - Usually outperforms pure content-based methods once enough interactions accumulate
 
 ![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
+
+### Embedding spaces and similarity measures for candidate generation
+
+The Google Developers course sharpens an important operational point: candidate generation is usually a nearest-neighbor search problem in an embedding space. Given a query embedding $q$ and item embedding $x$, the retrieval stage depends heavily on the similarity measure you choose.
+
+Common choices are:
+
+$$
+s_{\mathrm{cos}}(q, x) = \frac{\langle q, x \rangle}{\lVert q \rVert_2 \lVert x \rVert_2}
+$$
+
+$$
+s_{\mathrm{dot}}(q, x) = \langle q, x \rangle
+$$
+
+$$
+d_{\mathrm{L2}}(q, x) = \lVert q - x \rVert_2
+$$
+
+If the embeddings are normalized, cosine, dot product, and squared Euclidean distance induce closely related rankings. Without normalization, however, they behave differently:
+
+- Dot product favors larger embedding norms, which often correlates with popular or frequent items
+- Cosine focuses more on angular alignment, which can be better for semantic similarity
+- Euclidean distance emphasizes physical closeness in the embedding space
+
+Google also suggests a useful interpolation between pure cosine and pure dot product:
+
+$$
+s_{\alpha}(q, x) = \lVert q \rVert_2^{\alpha} \lVert x \rVert_2^{\alpha} \cos(q, x), \quad \alpha \in (0, 1)
+$$
+
+This lets you keep some popularity signal without letting large-norm items dominate retrieval.
+
+![Similarity measures can rank the same candidates differently](https://developers.google.com/machine-learning/recommendation/images/Euclidean_dot.png)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
+
+![Interpolating between cosine and dot product with alpha scaling](https://developers.google.com/machine-learning/recommendation/images/Alpha.png)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
 
 <div id="collaborative-filtering-with-matrix-factorization"></div>
 
@@ -256,6 +310,17 @@ $$
 $$
 
 This is the core weighted-implicit matrix factorization approach used in large-scale recommenders.
+
+The Google course adds an important weighted-matrix-factorization view that is especially useful in industrial retrieval systems. Let $A$ be the feedback matrix and let $\mathrm{obs}$ denote observed interactions. A common weighted objective is:
+
+$$
+\begin{aligned}
+\min_{U,V}\ &\sum_{(u,i)\in \mathrm{obs}} \left(A_{ui} - \langle U_u, V_i \rangle\right)^2 \\
+&+ w_0 \sum_{(u,i)\notin \mathrm{obs}} \langle U_u, V_i \rangle^2
+\end{aligned}
+$$
+
+Here $w_0$ controls how strongly the model treats unobserved pairs as weak negatives. In practice, this matters a lot: too little weight on unobserved pairs can make the embedding space collapse, while too much weight can wash out true positives. Google also notes that frequent users or popular items can dominate the objective, so observed pairs are often reweighted by user or item frequency.
 
 ### 4.4 Evaluation for rating prediction
 
@@ -396,6 +461,8 @@ Why data scientists use this:
 - Smooth path between collaborative and content-based modeling
 - Practical when metadata quality is reasonable
 
+The Google course makes the same idea concrete from a matrix-factorization angle: you can augment the original interaction matrix with user-feature and item-feature blocks, then factorize the augmented matrix so that side features learn embeddings alongside users and items. Conceptually, this is one of the cleanest bridges between classic WALS-style recommender systems and modern hybrid feature-based models.
+
 <div id="deep-neural-recommendation-models"></div>
 
 ## 6. Deep Neural Recommendation Models
@@ -408,7 +475,35 @@ Useful model families include:
 - Convolutional models when image content matters
 - Recurrent networks and transformers for sequential, session-based behavior
 
-### 6.1 Neural collaborative filtering
+### 6.1 Softmax DNNs and two-tower retrieval
+
+The Google Developers course adds an important neural-retrieval perspective that is not covered deeply in the article. Instead of only factorizing a user-item matrix, you can map a query context $x$ through a neural network to a dense representation $\psi(x)$ and score every item in the catalog through a softmax layer:
+
+$$
+z(x) = \psi(x) V^\top
+$$
+
+$$
+p(i \mid x) = \frac{\exp(z_i)}{\sum_{j=1}^{|\mathcal{I}|} \exp(z_j)}
+$$
+
+where $V$ contains the learned item representations.
+
+This framing is useful because it lets you mix sparse IDs, dense features, and context features in one model. But it also introduces a major systems issue: exact softmax over a large item catalog is expensive. In practice, Google emphasizes sampled softmax, negative sampling, and hard-negative construction to make training tractable.
+
+If both query and item sides have rich features, the same idea becomes a two-tower retrieval model:
+
+$$
+s(x_q, x_i) = \langle \psi(x_q), \phi(x_i) \rangle
+$$
+
+This is now one of the dominant paradigms for candidate generation because it separates query encoding from item encoding and enables approximate nearest-neighbor retrieval over the item tower embeddings.
+
+![Softmax recommendation model](https://developers.google.com/machine-learning/recommendation/images/DNNsoftmax.png)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/training), CC BY 4.0.*
+
+### 6.2 Neural collaborative filtering
 
 Neural collaborative filtering keeps the collaborative setup of user-item interactions, but learns the interaction function with a neural network instead of relying only on a dot product.
 
@@ -422,7 +517,7 @@ NeuMF also fits naturally with pairwise ranking and negative sampling, rather th
 
 *Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/neumf.html), CC BY-SA 4.0.*
 
-### 6.2 Variational autoencoders for collaborative filtering
+### 6.3 Variational autoencoders for collaborative filtering
 
 Variational autoencoder approaches learn a compressed latent representation of a user's interaction history and then reconstruct likely missing interactions.
 
@@ -432,7 +527,7 @@ Variational autoencoder approaches learn a compressed latent representation of a
 
 ![VAE-style collaborative filtering architecture](/media/recommender/rs-vae-cf.svg)
 
-### 6.3 Contextual sequence learning
+### 6.4 Contextual sequence learning
 
 Session-based recommenders often care less about static preference and more about what the user is likely to do next.
 
@@ -453,7 +548,7 @@ D2L also provides a useful view of how sequence-aware samples are constructed fr
 
 *Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/seqrec.html), CC BY-SA 4.0.*
 
-### 6.4 Wide-and-deep style models
+### 6.5 Wide-and-deep style models
 
 Wide-and-deep architectures combine memorization and generalization.
 
@@ -463,7 +558,7 @@ Wide-and-deep architectures combine memorization and generalization.
 
 ![Wide-and-deep recommendation architecture](/media/recommender/rs-wide-deep.svg)
 
-### 6.5 DLRM-style models
+### 6.6 DLRM-style models
 
 DLRM-style models are designed for recommendation data with many categorical features and some numerical features.
 
@@ -490,6 +585,33 @@ Most large systems are two-stage:
 
 Without this separation, serving cost or latency becomes prohibitive.
 
+Google's course extends this into a practical three-stage view:
+
+1. Candidate generation
+2. Scoring or ranking
+3. Re-ranking
+
+The extra re-ranking stage matters because the best ranked list for raw engagement is often not the best final surface once you account for freshness, diversity, fairness, or business constraints.
+
+![Recommendation process architecture](https://developers.google.com/static/machine-learning/recommendation/images/Process.svg)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/introduction), CC BY 4.0.*
+
+In production, candidate generation is usually itself a mixture of sources:
+
+- Embedding nearest neighbors from a two-tower or matrix-factorization model
+- Co-visitation or graph-based retrieval
+- Popularity or trending backfills
+- Rule-based inventory or policy constraints
+
+One key Google point is that scores from different candidate generators are usually not comparable. That is why a separate scorer or ranker is often necessary after retrieval.
+
+For neural retrieval, Google also stresses approximate nearest-neighbor search rather than exact brute-force scoring over the full catalog. Libraries such as [ScaNN](https://github.com/google-research/google-research/tree/master/scann) are used to make this practical at large scale.
+
+![Approximate nearest-neighbor retrieval in embedding space](https://developers.google.com/machine-learning/recommendation/images/2Dretrieval.svg)
+
+*Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/retrieval), CC BY 4.0.*
+
 ### 7.2 Label design and negatives
 
 For implicit data, non-click is not always negative. You need:
@@ -497,6 +619,17 @@ For implicit data, non-click is not always negative. You need:
 - Exposure-aware negatives
 - Position-bias-aware training
 - Time-windowed labels matching product goals
+
+Google's scoring module makes a related point: you need to be explicit about what you are optimizing. A model trained for click probability can converge to clickbait. A model trained for watch time may overserve long items. A model trained for immediate conversion can hurt long-term trust or retention.
+
+In other words, score definition is part of the product design, not just a modeling choice.
+
+For feed-style or slate recommendation, Google also recommends distinguishing between:
+
+- Position-dependent models, which estimate utility at a fixed slot
+- Position-independent models, which try to estimate intrinsic relevance before layout effects
+
+That distinction matters because position bias can make top slots look artificially better even when the item itself is not more relevant.
 
 ### 7.3 Evaluating recommender and ranking systems
 
@@ -614,13 +747,22 @@ For ranking changes, it is also useful to monitor the full funnel:
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
-### 7.4 Feedback loops and exploration
+### 7.4 Re-ranking, freshness, diversity, and exploration
 
 Pure exploitation can collapse catalog diversity. You need controlled exploration:
 
 - Epsilon-greedy or Thompson-style policies
 - Re-ranking for diversity/novelty
 - Periodic calibration checks
+
+Google's reranking material is especially useful here. In practice, re-ranking is where you inject constraints that the base ranker usually misses:
+
+- Freshness so the feed does not go stale
+- Diversity so near-duplicate items do not dominate
+- Fairness or marketplace balance so one creator, seller, or provider is not systematically overexposed
+- Local policy constraints such as demotions, blocks, maturity filters, or legal limits
+
+This stage is often simpler than the main ranker, but it has outsized product impact because it controls the final list actually seen by the user.
 
 ### 7.5 Reliability and monitoring
 
@@ -652,10 +794,12 @@ The article's core path is still the right conceptual backbone, the NVIDIA gloss
 - Recommendation tasks such as rating prediction, top-$n$ ranking, sequence-aware recommendation, CTR prediction, and cold-start
 - Benchmark data practices such as MovieLens sparsity analysis and chronological evaluation splits
 - Content-based, collaborative, contextual, and hybrid filtering
-- Matrix factorization variants, AutoRec, and ranking objectives such as BPR and hinge loss
+- Embedding-space candidate generation, similarity design, and matrix factorization variants
+- AutoRec and ranking objectives such as BPR and hinge loss
 - Feature-rich recommendation with factorization machines and DeepFM
-- Deep recommenders such as NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
+- Deep recommenders such as softmax or two-tower retrieval, NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
 - Hybrid models such as LightFM
+- Three-stage production design with retrieval, scoring, and re-ranking for freshness, diversity, and fairness
 
 For practicing data scientists, the differentiator is operational quality: robust labeling, unbiased evaluation, scalable serving, and disciplined online experimentation.
 
@@ -663,6 +807,7 @@ For practicing data scientists, the differentiator is operational quality: robus
 
 - Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
 - [21. Recommender Systems](https://d2l.ai/chapter_recommender-systems/index.html)
+- [Google for Developers: Recommendation Systems course](https://developers.google.com/machine-learning/recommendation)
 - [NVIDIA Glossary: Recommendation System](https://www.nvidia.com/en-us/glossary/recommendation-system/)
 - [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
 - [Surprise Python package](https://surpriselib.com/)
