@@ -73,11 +73,40 @@ Cons:
 - Noisy preference proxy
 - Requires careful negative sampling and weighting
 
-In both cases, interactions define a sparse user-item matrix with entries over user-item pairs \((u, i)\).
+In both cases, interactions define a sparse user-item matrix with entries over user-item pairs $(u, i)$.
 
 ![Explicit versus implicit feedback comparison](/media/recommender/rs-explicit-vs-implicit.svg)
 
 ![User-item matrix examples for explicit and implicit data](/media/recommender/rs-user-item-matrix.svg)
+
+### Recommendation tasks
+
+Following [D2L Chapter 21](https://d2l.ai/chapter_recommender-systems/index.html), it helps to separate recommendation work by task:
+
+- Rating prediction: estimate a user's explicit rating for an item
+- Top-$n$ recommendation: rank candidate items and return a personalized list
+- Sequence-aware recommendation: use ordered behavior and timestamps
+- Click-through rate prediction: predict whether a shown item or ad will be clicked
+- Cold-start recommendation: serve new users or new items when history is limited
+
+These tasks overlap, but they drive different labels, evaluation protocols, and model choices.
+
+### Benchmark datasets and split strategy
+
+The [MovieLens 100K dataset](https://d2l.ai/chapter_recommender-systems/movielens.html) remains the standard conceptual benchmark for explicit-feedback recommendation.
+
+- 100,000 ratings
+- 943 users
+- 1,682 movies
+- Ratings from 1 to 5
+- Approximate matrix sparsity of 93.7%
+
+Two split strategies from D2L are especially useful in practice:
+
+1. Random split for rating prediction and general offline evaluation
+2. Sequence-aware split, where the most recent interaction is held out per user
+
+This distinction matters because sequence-aware recommendation should be evaluated with a chronological split, not a random one.
 
 ## 3. Content-Based vs. Collaborative vs. Contextual vs. Hybrid
 
@@ -199,13 +228,127 @@ $$
 
 This is the core weighted-implicit matrix factorization approach used in large-scale recommenders.
 
-### 4.4 [SVD++](https://doi.org/10.1145/1401890.1401944) intuition
+### 4.4 Evaluation for rating prediction
+
+For explicit-feedback recommendation, [D2L's matrix factorization section](https://d2l.ai/chapter_recommender-systems/mf.html) uses RMSE as the primary evaluation measure:
+
+$$
+\mathrm{RMSE} = \sqrt{\frac{1}{|\mathcal{T}|}\sum_{(u,i)\in\mathcal{T}} \left(r_{ui} - \hat{r}_{ui}\right)^2}
+$$
+
+where $\mathcal{T}$ is the evaluation set of observed user-item pairs.
+
+RMSE is appropriate for rating prediction, but it is not sufficient for top-$n$ recommendation because it does not evaluate rank order.
+
+### 4.5 [AutoRec](https://d2l.ai/chapter_recommender-systems/autorec.html) for nonlinear rating prediction
+
+AutoRec extends collaborative filtering with an autoencoder-style reconstruction objective.
+
+- Input is a partially observed user vector or item vector from the rating matrix
+- The network reconstructs missing entries through a hidden representation
+- Only observed ratings should contribute to the training loss
+
+For item-based AutoRec, D2L writes the input as the $i$th column $\mathbf{R}_{*i}$ of the rating matrix and reconstructs it with a nonlinear network:
+
+$$
+h(\mathbf{R}_{*i}) = f\!\left(\mathbf{W}\, g\!\left(\mathbf{V}\mathbf{R}_{*i} + \mu\right) + b\right)
+$$
+
+The learning objective minimizes reconstruction error over observed entries only:
+
+$$
+\arg\min_{\mathbf{W},\mathbf{V},\mu,b}
+\sum_{i=1}^{M}\left\lVert \mathbf{R}_{*i} - h(\mathbf{R}_{*i}) \right\rVert_{\mathcal{O}}^2
++ \lambda\left(\lVert \mathbf{W}\rVert_F^2 + \lVert \mathbf{V}\rVert_F^2\right)
+$$
+
+Conceptually, AutoRec matters because it is one of the earliest examples in D2L of moving from linear collaborative filtering to nonlinear neural reconstruction for rating prediction.
+
+### 4.6 [Personalized ranking objectives](https://d2l.ai/chapter_recommender-systems/ranking.html)
+
+D2L makes an important distinction between rating prediction objectives and ranking objectives.
+
+- Pointwise objectives model one user-item interaction at a time
+- Pairwise objectives model relative preference between a positive and a negative item
+- Listwise objectives optimize properties of an entire ranked list
+
+For top-$n$ recommendation from implicit feedback, pairwise objectives are often a better match to the task.
+
+The two core D2L losses are:
+
+1. Bayesian Personalized Ranking (BPR), which encourages the positive item to score above a sampled negative item:
+
+$$
+\sum_{(u,i,j)\in D} \ln \sigma\!\left(\hat{y}_{ui} - \hat{y}_{uj}\right) - \lambda_{\Theta}\lVert \Theta \rVert^2
+$$
+
+2. Hinge ranking loss, which pushes the positive item away from the negative item by a margin $m$:
+
+$$
+\sum_{(u,i,j)\in D} \max\!\left(m - \hat{y}_{ui} + \hat{y}_{uj}, 0\right)
+$$
+
+These are central for implicit-feedback recommendation because they optimize relative ordering rather than absolute score accuracy.
+
+### 4.7 [SVD++](https://doi.org/10.1145/1401890.1401944) intuition
 
 SVD++ augments user representation with signals from interacted items, helping when explicit feedback is sparse but interaction history exists.
 
-## 5. Hybrid Factorization with Features ([LightFM](https://arxiv.org/abs/1507.08439)-style)
+## 5. Feature-Rich and Hybrid Recommendation
 
-A central idea from the article: represent users and items as sums of feature embeddings, not only ID embeddings.
+As [D2L section 21.8](https://d2l.ai/chapter_recommender-systems/ctr.html) emphasizes, interaction data is often sparse and noisy. In many production settings, recommendation is better framed as impression-level prediction with rich side features.
+
+### 5.1 Feature-rich recommendation and CTR
+
+Feature-rich recommendation is common in ads, feeds, and product surfaces.
+
+- Labels are often binary, such as click vs no click
+- Inputs include many categorical fields rather than only user and item IDs
+- The D2L advertising example uses 34 fields, with the first column as the click label and the remaining columns as categorical features
+
+This setting is different from classic matrix factorization because the goal is often click-through rate prediction over impression-level examples rather than rating reconstruction.
+
+CTR is defined as:
+
+$$
+\mathrm{CTR} = \frac{\#\mathrm{Clicks}}{\#\mathrm{Impressions}} \times 100\%
+$$
+
+### 5.2 [Factorization machines](https://d2l.ai/chapter_recommender-systems/fm.html)
+
+Factorization machines are one of the most important bridges between collaborative filtering and feature-rich prediction.
+
+For a feature vector $x \in \mathbb{R}^{d}$, the two-way FM model is:
+
+$$
+\hat{y}(x) = w_0 + \sum_{i=1}^{d} w_i x_i + \sum_{i=1}^{d}\sum_{j=i+1}^{d} \langle v_i, v_j \rangle x_i x_j
+$$
+
+Interpretation:
+
+- The first two terms are linear
+- The last term models pairwise feature interactions
+- If one feature encodes user identity and another encodes item identity, the interaction term reduces to a collaborative-filtering-style embedding interaction
+
+D2L also highlights the computational trick that reduces FM interaction cost from $\mathcal{O}(kd^2)$ to $\mathcal{O}(kd)$, which is why FM remains practical on high-dimensional sparse data.
+
+### 5.3 [DeepFM](https://d2l.ai/chapter_recommender-systems/deepfm.html)
+
+DeepFM extends FM by combining low-order feature interactions from FM with high-order nonlinear interactions from a deep network.
+
+- The FM branch captures low-order interactions
+- The deep branch uses shared embeddings and an MLP to learn higher-order interactions
+- Both outputs are combined into a final prediction
+
+D2L presents the DeepFM prediction as:
+
+$$
+\hat{y} = \sigma\!\left(\hat{y}^{(FM)} + \hat{y}^{(DNN)}\right)
+$$
+
+DeepFM is especially useful when simple pairwise interactions are not expressive enough, but you still want the inductive bias of factorization-based feature interaction.
+
+### 5.4 Hybrid factorization with features ([LightFM](https://arxiv.org/abs/1507.08439)-style)
 
 - User embedding = sum of user-feature embeddings
 - Item embedding = sum of item-feature embeddings
@@ -231,9 +374,11 @@ Useful model families include:
 
 Neural collaborative filtering keeps the collaborative setup of user-item interactions, but learns the interaction function with a neural network instead of relying only on a dot product.
 
-- A common pattern is to combine embedding interactions with an MLP
+- In [NeuMF from D2L](https://d2l.ai/chapter_recommender-systems/neumf.html), a generalized matrix factorization (GMF) path is combined with an MLP path
 - This can capture more complex nonlinear relationships than matrix factorization alone
 - It is most useful when interaction volume is high enough to support a richer model
+
+NeuMF also fits naturally with pairwise ranking and negative sampling, rather than only explicit rating prediction.
 
 ![Neural collaborative filtering architecture](/media/recommender/rs-neural-cf.svg)
 
@@ -251,7 +396,10 @@ Variational autoencoder approaches learn a compressed latent representation of a
 
 Session-based recommenders often care less about static preference and more about what the user is likely to do next.
 
-- RNN, LSTM, GRU, and transformer models are all used for this setting
+- In [D2L's sequence-aware recommendation section](https://d2l.ai/chapter_recommender-systems/seqrec.html), the featured model is Caser, which uses horizontal and vertical convolutions over the recent interaction matrix
+- Horizontal filters capture union-level patterns across multiple recent actions
+- Vertical filters capture point-level effects of individual recent actions
+- RNN, LSTM, GRU, and transformer models are also widely used for this setting
 - Inputs can include both ordered actions and contextual features such as time, device, or location
 - This is especially relevant in streaming, shopping, and short-session products
 
@@ -302,13 +450,15 @@ For implicit data, non-click is not always negative. You need:
 
 ### 7.3 Offline vs online evaluation
 
-Offline metrics like \(Recall@K\), \(NDCG@K\), and \(MAP\) are necessary but insufficient.
+Offline metrics like $Recall@K$, $NDCG@K$, and $MAP$ are necessary but insufficient.
 
 You still need A/B tests with:
 
 - Primary metrics (CTR, conversion, retention)
 - Guardrails (latency, bad-content rate, complaint rate)
 - Segment-level analysis (new users, heavy users, long-tail items)
+
+For implicit ranking, [D2L's NeuMF section](https://d2l.ai/chapter_recommender-systems/neumf.html) also highlights $Hit@\ell$ and AUC as practical offline ranking metrics when using time-based splits and candidate sets.
 
 ![Offline-to-online recommender evaluation flow](/media/recommender/rs-offline-online-eval.svg)
 
@@ -340,11 +490,14 @@ Data scientists should treat recommenders as continuously monitored systems:
 
 ## 9. Summary
 
-The article's core path is still the right conceptual backbone, and the NVIDIA glossary expands it in useful ways:
+The article's core path is still the right conceptual backbone, the NVIDIA glossary expands it in useful ways, and the D2L chapter fills in important modeling and evaluation details:
 
 - Explicit vs implicit feedback
+- Recommendation tasks such as rating prediction, top-$n$ ranking, sequence-aware recommendation, CTR prediction, and cold-start
+- Benchmark data practices such as MovieLens sparsity analysis and chronological evaluation splits
 - Content-based, collaborative, contextual, and hybrid filtering
-- Matrix factorization variants (PMF, SVD, implicit objectives, SVD++)
+- Matrix factorization variants, AutoRec, and ranking objectives such as BPR and hinge loss
+- Feature-rich recommendation with factorization machines and DeepFM
 - Deep recommenders such as NCF, VAE-style models, wide-and-deep models, and DLRM-style architectures
 - Hybrid models such as LightFM
 
@@ -353,6 +506,17 @@ For practicing data scientists, the differentiator is operational quality: robus
 ## Reference
 
 - Article inspiration: [Recommender Systems — A Complete Guide to Machine Learning Models](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748/)
+- [Dive into Deep Learning: Chapter 21 Recommender Systems](https://d2l.ai/chapter_recommender-systems/index.html)
+- [D2L 21.1 Overview of Recommender Systems](https://d2l.ai/chapter_recommender-systems/recsys-intro.html)
+- [D2L 21.2 The MovieLens Dataset](https://d2l.ai/chapter_recommender-systems/movielens.html)
+- [D2L 21.3 Matrix Factorization](https://d2l.ai/chapter_recommender-systems/mf.html)
+- [D2L 21.4 AutoRec](https://d2l.ai/chapter_recommender-systems/autorec.html)
+- [D2L 21.5 Personalized Ranking](https://d2l.ai/chapter_recommender-systems/ranking.html)
+- [D2L 21.6 NeuMF](https://d2l.ai/chapter_recommender-systems/neumf.html)
+- [D2L 21.7 Sequence-Aware Recommendation](https://d2l.ai/chapter_recommender-systems/seqrec.html)
+- [D2L 21.8 Feature-Rich Recommender Systems](https://d2l.ai/chapter_recommender-systems/ctr.html)
+- [D2L 21.9 Factorization Machines](https://d2l.ai/chapter_recommender-systems/fm.html)
+- [D2L 21.10 DeepFM](https://d2l.ai/chapter_recommender-systems/deepfm.html)
 - [NVIDIA Glossary: Recommendation System](https://www.nvidia.com/en-us/glossary/recommendation-system/)
 - [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system)
 - [Surprise Python package](https://surpriselib.com/)
