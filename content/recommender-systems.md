@@ -191,7 +191,7 @@ Pros:
 Cons:
 
 - Noisy preference proxy
-- Requires careful negative sampling and weighting
+- Requires careful [negative sampling](https://developers.google.com/machine-learning/recommendation/dnn/training#negative_sampling) and weighting
 
 In both cases, interactions define a sparse user-item matrix with entries over user-item pairs $(u, i)$.
 
@@ -498,7 +498,7 @@ D2L makes an important distinction between rating prediction objectives and rank
 | Objective family | Training signal | Pros | Cons | Typical use |
 | --- | --- | --- | --- | --- |
 | Pointwise | One labeled user-item example at a time | Simple to implement, works with standard regression or classification losses, easy to calibrate as a score or probability | Does not optimize ordering directly, sensitive to label noise and exposure bias, can overfocus on absolute score accuracy | CTR prediction, rating prediction, coarse ranking baselines |
-| Pairwise | Positive item compared against a sampled negative item | Better aligned with top-$n$ ranking, efficient for implicit feedback, usually easier to train than full listwise methods | Quality depends heavily on negative sampling, does not model full-list effects, can miss business constraints beyond pair comparisons | Candidate generation, implicit-feedback retrieval, pre-ranking |
+| Pairwise | Positive item compared against a sampled negative item | Better aligned with top-$n$ ranking, efficient for implicit feedback, usually easier to train than full listwise methods | Quality depends heavily on [negative sampling](https://developers.google.com/machine-learning/recommendation/dnn/training#negative_sampling), does not model full-list effects, can miss business constraints beyond pair comparisons | Candidate generation, implicit-feedback retrieval, pre-ranking |
 | Listwise | Entire ranked list or slate | Best conceptual match to ranking metrics such as NDCG, can optimize position effects and whole-list quality | More complex objectives, heavier computation, harder data construction and serving alignment | Final-stage ranking, search ranking, slate optimization |
 
 For top-$n$ recommendation from implicit feedback, pairwise objectives are often a better match to the task.
@@ -661,7 +661,7 @@ In practice, exact softmax over a large catalog is too expensive, so industrial 
 | --- | --- | --- |
 | Query and side features | Not easy to include directly | Can incorporate richer query, context, and side features |
 | Cold start | Weak by default, though heuristics and projection tricks can help | Handles new queries more naturally when query features are available |
-| Folding risk | Less prone to folding; WALS-style weighting can help control it | More prone to folding and usually needs negative sampling or related regularization |
+| Folding risk | Less prone to folding; WALS-style weighting can help control it | More prone to folding and usually needs [negative sampling](https://developers.google.com/machine-learning/recommendation/dnn/training#negative_sampling) or related regularization |
 | Training scalability | Easier to scale to very large sparse corpora | Harder to scale; often needs sampling, hashing, or other approximations |
 | Serving cost | Very cheap when user and item embeddings are static or cheaply updated | Item embeddings can be cached, but query embeddings often need to be computed online |
 
@@ -723,7 +723,7 @@ Neural collaborative filtering keeps the collaborative setup of user-item intera
 - This can capture more complex nonlinear relationships than matrix factorization alone
 - It is most useful when interaction volume is high enough to support a richer model
 
-NeuMF also fits naturally with pairwise ranking and negative sampling, rather than only explicit rating prediction.
+NeuMF also fits naturally with pairwise ranking and [negative sampling](https://developers.google.com/machine-learning/recommendation/dnn/training#negative_sampling), rather than only explicit rating prediction.
 
 ![NeuMF architecture](https://d2l.ai/_images/rec-neumf.svg)
 
