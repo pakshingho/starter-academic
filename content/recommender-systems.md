@@ -163,7 +163,7 @@ Limitation:
 
 Google's course also emphasizes that content-based systems are often easier to explain and easier to cold-start for new items, but they tend to be weaker at serendipity than collaborative models.
 
-![Content-based recommendation illustration](https://developers.google.com/machine-learning/recommendation/images/Contentbased.svg)
+![Content-based filtering feature matrix illustration](/media/recommender/google/google-matrix1.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/content-based/basics), CC BY 4.0.*
 
@@ -234,11 +234,11 @@ $$
 
 This lets you keep some popularity signal without letting large-norm items dominate retrieval.
 
-![Similarity measures can rank the same candidates differently](https://developers.google.com/machine-learning/recommendation/images/Euclidean_dot.png)
+![Candidate retrieval in embedding space](/media/recommender/google/google-similarity.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
 
-![Interpolating between cosine and dot product with alpha scaling](https://developers.google.com/machine-learning/recommendation/images/Alpha.png)
+![Different similarity choices induce different rankings](/media/recommender/google/google-similarity-ak.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
 
@@ -499,7 +499,7 @@ $$
 
 This is now one of the dominant paradigms for candidate generation because it separates query encoding from item encoding and enables approximate nearest-neighbor retrieval over the item tower embeddings.
 
-![Softmax recommendation model](https://developers.google.com/machine-learning/recommendation/images/DNNsoftmax.png)
+![Training a softmax recommendation model](/media/recommender/google/google-training.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/training), CC BY 4.0.*
 
@@ -593,7 +593,7 @@ Google's course extends this into a practical three-stage view:
 
 The extra re-ranking stage matters because the best ranked list for raw engagement is often not the best final surface once you account for freshness, diversity, fairness, or business constraints.
 
-![Recommendation process architecture](https://developers.google.com/static/machine-learning/recommendation/images/Process.svg)
+![Recommendation process architecture](/media/recommender/google/google-process.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/introduction), CC BY 4.0.*
 
@@ -608,7 +608,7 @@ One key Google point is that scores from different candidate generators are usua
 
 For neural retrieval, Google also stresses approximate nearest-neighbor search rather than exact brute-force scoring over the full catalog. Libraries such as [ScaNN](https://github.com/google-research/google-research/tree/master/scann) are used to make this practical at large scale.
 
-![Approximate nearest-neighbor retrieval in embedding space](https://developers.google.com/machine-learning/recommendation/images/2Dretrieval.svg)
+![Approximate nearest-neighbor retrieval in embedding space](/media/recommender/google/google-2d-retrieval.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/retrieval), CC BY 4.0.*
 
