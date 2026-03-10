@@ -40,6 +40,15 @@
   padding-bottom: 0.25rem;
 }
 
+/* In docs sidebars, show section links only for the active chapter. */
+.docs-links .docs-toc-item > .docs-sidenav {
+  display: none;
+}
+
+.docs-links .docs-toc-item.active > .docs-sidenav {
+  display: block;
+}
+
 @media (max-width: 991.98px) {
   .article-style table {
     display: block;
