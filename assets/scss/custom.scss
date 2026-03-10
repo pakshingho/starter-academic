@@ -2,3 +2,45 @@
 .navbar .navbar-nav .nav-link {
   white-space: nowrap;
 }
+
+.article-style .recommender-toc {
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  border-radius: 14px;
+  background: rgba(248, 250, 252, 0.92);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.article-style .recommender-toc__title {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.article-style .recommender-toc a {
+  display: block;
+  margin: 0.28rem 0;
+  color: #1e3a8a;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.article-style .recommender-toc a:hover,
+.article-style .recommender-toc a:focus {
+  color: #0f172a;
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .article-style .recommender-toc {
+    position: sticky;
+    top: 5.5rem;
+    float: left;
+    width: 220px;
+    margin: 0 1.5rem 1rem -250px;
+  }
+}

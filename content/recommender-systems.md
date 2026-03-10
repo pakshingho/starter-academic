@@ -7,6 +7,20 @@ math: true
 
 A data-science-first guide to recommender systems with practical modeling, evaluation, and production considerations.
 
+<nav class="recommender-toc" aria-label="On this page">
+  <div class="recommender-toc__title">On this page</div>
+  <a href="#why-recommender-systems-matter">1. Why it matters</a>
+  <a href="#explicit-vs-implicit-feedback">2. Explicit vs. implicit</a>
+  <a href="#content-based-vs-collaborative-vs-contextual-vs-hybrid">3. Model families</a>
+  <a href="#collaborative-filtering-with-matrix-factorization">4. Matrix factorization</a>
+  <a href="#feature-rich-and-hybrid-recommendation">5. Feature-rich recommendation</a>
+  <a href="#deep-neural-recommendation-models">6. Deep models</a>
+  <a href="#what-the-article-misses-for-production-ds-work">7. Production concerns</a>
+  <a href="#practical-build-sequence-for-data-scientists">8. Build sequence</a>
+  <a href="#summary">9. Summary</a>
+</nav>
+
+<div id="why-recommender-systems-matter"></div>
 ## 1. Why Recommender Systems Matter
 
 Recommender systems help users navigate very large item catalogs (videos, products, courses, jobs, music) by ranking items likely to be relevant to each user. See the background overview in [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system).
@@ -32,6 +46,7 @@ For data scientists, this is usually not a pure prediction task. It is a ranking
 - Increases engagement, session depth, and content consumption
 - Improves conversion, basket size, and retention when recommendations are well-targeted
 
+<div id="explicit-vs-implicit-feedback"></div>
 ## 2. Explicit vs. Implicit Feedback
 
 As in the reference article, the first key split is the type of supervision.
@@ -108,6 +123,7 @@ Two split strategies from D2L are especially useful in practice:
 
 This distinction matters because sequence-aware recommendation should be evaluated with a chronological split, not a random one.
 
+<div id="content-based-vs-collaborative-vs-contextual-vs-hybrid"></div>
 ## 3. Content-Based vs. Collaborative vs. Contextual vs. Hybrid
 
 Model choice depends heavily on what data you have. If you only observe interactions, collaborative filtering is usually the first serious approach. If you also have user and item attributes, content-based or hybrid models become more useful. If the current situation matters, such as device, country, time, or within-session behavior, then contextual models become important.
@@ -163,6 +179,7 @@ Combine metadata with interaction learning.
 
 ![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
 
+<div id="collaborative-filtering-with-matrix-factorization"></div>
 ## 4. Collaborative Filtering with Matrix Factorization
 
 The reference article emphasizes matrix factorization variants. This remains foundational for data scientists.
@@ -295,6 +312,7 @@ These are central for implicit-feedback recommendation because they optimize rel
 
 SVD++ augments user representation with signals from interacted items, helping when explicit feedback is sparse but interaction history exists.
 
+<div id="feature-rich-and-hybrid-recommendation"></div>
 ## 5. Feature-Rich and Hybrid Recommendation
 
 As [D2L section 21.8](https://d2l.ai/chapter_recommender-systems/ctr.html) emphasizes, interaction data is often sparse and noisy. In many production settings, recommendation is better framed as impression-level prediction with rich side features.
@@ -361,6 +379,7 @@ Why data scientists use this:
 - Smooth path between collaborative and content-based modeling
 - Practical when metadata quality is reasonable
 
+<div id="deep-neural-recommendation-models"></div>
 ## 6. Deep Neural Recommendation Models
 
 The NVIDIA glossary adds an important extension: deep learning recommenders build on embeddings and factorization ideas, but replace simple linear interactions with more expressive neural architectures.
@@ -428,6 +447,7 @@ DLRM-style models are designed for recommendation data with many categorical fea
 
 These models are widely used in large-scale ranking and click-through prediction systems.
 
+<div id="what-the-article-misses-for-production-ds-work"></div>
 ## 7. What the Article Misses for Production DS Work
 
 The model taxonomy is excellent, but real systems also require these decisions.
@@ -480,6 +500,7 @@ Data scientists should treat recommenders as continuously monitored systems:
 - Online metric drift and alerting
 - Safe fallback policies
 
+<div id="practical-build-sequence-for-data-scientists"></div>
 ## 8. Practical Build Sequence for Data Scientists
 
 1. Define objective hierarchy: short-term CTR vs long-term value.
@@ -489,6 +510,7 @@ Data scientists should treat recommenders as continuously monitored systems:
 5. Introduce two-stage retrieval + ranking.
 6. Establish experiment and monitoring standards.
 
+<div id="summary"></div>
 ## 9. Summary
 
 The article's core path is still the right conceptual backbone, the NVIDIA glossary expands it in useful ways, and the D2L chapter fills in important modeling and evaluation details:
