@@ -28,6 +28,10 @@ A data-science-first guide to recommender systems with practical modeling, evalu
 
 Recommender systems help users navigate very large item catalogs (videos, products, courses, jobs, music) by ranking items likely to be relevant to each user. See the background overview in [Wikipedia: Recommender system](https://en.wikipedia.org/wiki/Recommender_system).
 
+![Recommendation process illustration](https://classic.d2l.ai/_images/rec-intro.svg)
+
+*Image credit: [Dive into Deep Learning](https://classic.d2l.ai/chapter_recommender-systems/recsys-intro.html), CC BY-SA 4.0.*
+
 For data scientists, this is usually not a pure prediction task. It is a ranking and decision problem with constraints:
 
 - Relevance and personalization
@@ -374,6 +378,10 @@ $$
 
 DeepFM is especially useful when simple pairwise interactions are not expressive enough, but you still want the inductive bias of factorization-based feature interaction.
 
+![DeepFM architecture](https://d2l.ai/_images/rec-deepfm.svg)
+
+*Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/deepfm.html), CC BY-SA 4.0.*
+
 ### 5.4 Hybrid factorization with features ([LightFM](https://arxiv.org/abs/1507.08439)-style)
 
 - User embedding = sum of user-feature embeddings
@@ -408,7 +416,9 @@ Neural collaborative filtering keeps the collaborative setup of user-item intera
 
 NeuMF also fits naturally with pairwise ranking and negative sampling, rather than only explicit rating prediction.
 
-![Neural collaborative filtering architecture](/media/recommender/rs-neural-cf.svg)
+![NeuMF architecture](https://d2l.ai/_images/rec-neumf.svg)
+
+*Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/neumf.html), CC BY-SA 4.0.*
 
 ### 6.2 Variational autoencoders for collaborative filtering
 
@@ -431,7 +441,15 @@ Session-based recommenders often care less about static preference and more abou
 - Inputs can include both ordered actions and contextual features such as time, device, or location
 - This is especially relevant in streaming, shopping, and short-session products
 
-![Contextual sequence learning architecture](/media/recommender/rs-contextual-sequence.svg)
+![Caser architecture](https://d2l.ai/_images/rec-caser.svg)
+
+*Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/seqrec.html), CC BY-SA 4.0.*
+
+D2L also provides a useful view of how sequence-aware samples are constructed from chronological user histories, including the held-out next item and sampled negatives:
+
+![Sequence-aware data generation](https://d2l.ai/_images/rec-seq-data.svg)
+
+*Image credit: [Dive into Deep Learning](https://d2l.ai/chapter_recommender-systems/seqrec.html), CC BY-SA 4.0.*
 
 ### 6.4 Wide-and-deep style models
 
