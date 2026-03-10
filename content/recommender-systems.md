@@ -259,6 +259,12 @@ Limitation:
 
 Google's course also emphasizes that content-based systems are often easier to explain and easier to cold-start for new items, but they tend to be weaker at serendipity than collaborative models.
 
+| Aspect | Advantages | Disadvantages |
+| --- | --- | --- |
+| User specificity | Does not require interaction data from other users, so it can scale cleanly across many users and preserve privacy better | Quality depends heavily on having good item features and user profiles |
+| Discovery pattern | Can serve niche items that match a user's known interests very well | Usually expands less well beyond existing interests, so serendipity is weaker |
+| Modeling burden | Easier to explain because recommendations can be tied back to item attributes | Requires substantial domain knowledge and hand-engineered or high-quality learned features |
+
 ![Content-based filtering feature matrix illustration](/media/recommender/google/google-matrix1.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/content-based/basics), CC BY 4.0.*
@@ -279,6 +285,12 @@ Strength:
 Limitation:
 
 - Cold-start if no history exists
+
+| Aspect | Advantages | Disadvantages |
+| --- | --- | --- |
+| Feature engineering | Embeddings are learned automatically, so little prior domain knowledge is required | Harder to incorporate side features such as demographics, metadata, or context without model extensions |
+| Discovery pattern | Can introduce serendipity because similar users can pull an item into a user's candidate set | Suffers from cold-start for fresh users and fresh items without interactions |
+| Practical role | Strong starting point because a feedback matrix alone can power a usable candidate generator | Production systems usually need extra machinery such as WALS projection heuristics, side-feature augmentation, or hybrid models to fill the gaps |
 
 <div id="contextual-filtering"></div>
 
@@ -483,6 +495,12 @@ D2L makes an important distinction between rating prediction objectives and rank
 - Pairwise objectives model relative preference between a positive and a negative item
 - Listwise objectives optimize properties of an entire ranked list
 
+| Objective family | Training signal | Pros | Cons | Typical use |
+| --- | --- | --- | --- | --- |
+| Pointwise | One labeled user-item example at a time | Simple to implement, works with standard regression or classification losses, easy to calibrate as a score or probability | Does not optimize ordering directly, sensitive to label noise and exposure bias, can overfocus on absolute score accuracy | CTR prediction, rating prediction, coarse ranking baselines |
+| Pairwise | Positive item compared against a sampled negative item | Better aligned with top-$n$ ranking, efficient for implicit feedback, usually easier to train than full listwise methods | Quality depends heavily on negative sampling, does not model full-list effects, can miss business constraints beyond pair comparisons | Candidate generation, implicit-feedback retrieval, pre-ranking |
+| Listwise | Entire ranked list or slate | Best conceptual match to ranking metrics such as NDCG, can optimize position effects and whole-list quality | More complex objectives, heavier computation, harder data construction and serving alignment | Final-stage ranking, search ranking, slate optimization |
+
 For top-$n$ recommendation from implicit feedback, pairwise objectives are often a better match to the task.
 
 The two core D2L losses are:
@@ -633,11 +651,21 @@ $$
 
 where $V$ contains the learned item representations.
 
-In practice, exact softmax over a large catalog is too expensive, so industrial systems usually rely on sampled softmax, negative sampling, hard negatives, BPR-style pairwise losses, or contrastive objectives such as InfoNCE. The Shaped deep dive also notes that pointwise log loss is still common when the retriever is trained as a coarse candidate generator ahead of a stronger ranker.
+In practice, exact softmax over a large catalog is too expensive, so industrial systems usually rely on sampled softmax, [negative sampling](https://developers.google.com/machine-learning/recommendation/dnn/training#negative_sampling), hard negatives, BPR-style pairwise losses, or contrastive objectives such as InfoNCE. Google's negative-sampling subsection is worth reading because it gives a concrete explanation of *folding*: if you train only on positive pairs, embeddings from unrelated categories can collapse into the same region and produce spurious recommendations. The Shaped deep dive also notes that pointwise log loss is still common when the retriever is trained as a coarse candidate generator ahead of a stronger ranker.
 
 ![Training a softmax recommendation model](/media/recommender/google/google-training.svg)
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/dnn/training), CC BY 4.0.*
+
+| Aspect | Matrix factorization | Softmax DNN / dual-encoder training |
+| --- | --- | --- |
+| Query and side features | Not easy to include directly | Can incorporate richer query, context, and side features |
+| Cold start | Weak by default, though heuristics and projection tricks can help | Handles new queries more naturally when query features are available |
+| Folding risk | Less prone to folding; WALS-style weighting can help control it | More prone to folding and usually needs negative sampling or related regularization |
+| Training scalability | Easier to scale to very large sparse corpora | Harder to scale; often needs sampling, hashing, or other approximations |
+| Serving cost | Very cheap when user and item embeddings are static or cheaply updated | Item embeddings can be cached, but query embeddings often need to be computed online |
+
+Google's summary judgment is useful: matrix factorization is usually the better retrieval choice for very large corpora, while DNN-based retrieval becomes attractive when you need richer query features and more personalized relevance modeling.
 
 #### Training versus serving
 
