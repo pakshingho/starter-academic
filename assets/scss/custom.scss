@@ -3,6 +3,43 @@
   white-space: nowrap;
 }
 
+.article-style img,
+.article-style video,
+.article-style iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.35rem auto;
+}
+
+.article-style figure {
+  margin: 1.35rem 0;
+}
+
+.article-style table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.article-style th,
+.article-style td {
+  vertical-align: top;
+}
+
+.article-style pre,
+.article-style .highlight {
+  overflow-x: auto;
+}
+
+.article-style .MathJax_Display,
+.article-style .katex-display,
+.article-style mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding-bottom: 0.25rem;
+}
+
 .article-style .recommender-toc {
   margin: 1.5rem 0 2rem;
   padding: 1rem 1.2rem 1.1rem;
@@ -166,7 +203,63 @@
   }
 }
 
+@media (max-width: 991.98px) {
+  .article-style table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: normal;
+    font-size: 0.94rem;
+  }
+
+  .article-style th,
+  .article-style td {
+    min-width: 10.5rem;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .article-style .MathJax_Display,
+  .article-style .katex-display,
+  .article-style mjx-container[display="true"] {
+    font-size: 0.97rem;
+  }
+}
+
 @media (max-width: 767.98px) {
+  .article-style {
+    font-size: 0.98rem;
+  }
+
+  .article-style h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .article-style h3 {
+    font-size: 1.35rem;
+    line-height: 1.28;
+  }
+
+  .article-style p,
+  .article-style li,
+  .article-style figcaption {
+    overflow-wrap: anywhere;
+  }
+
+  .article-style img,
+  .article-style video,
+  .article-style iframe,
+  .article-style figure {
+    margin: 1rem auto 1.2rem;
+  }
+
+  .article-style th,
+  .article-style td {
+    min-width: 9.5rem;
+    padding: 0.65rem 0.75rem;
+  }
+
   .article-style .recommender-toc {
     padding: 0.9rem 1rem 1rem;
   }
@@ -180,5 +273,26 @@
     bottom: 1rem;
     width: 3rem;
     height: 3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .article-style table {
+    font-size: 0.88rem;
+  }
+
+  .article-style th,
+  .article-style td {
+    min-width: 8.5rem;
+  }
+
+  .article-style .recommender-toc__section > a,
+  .article-style .recommender-toc__group summary {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.93rem;
+  }
+
+  .article-style .recommender-toc__sublist {
+    padding: 0.55rem 0.75rem 0.75rem 1.45rem;
   }
 }
