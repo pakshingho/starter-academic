@@ -7,7 +7,7 @@ draft: false
 
 Choose causal inference methods from study design, identification strategy, and business objective.
 
-This tool uses a decision-tree backbone inspired by Uber's experimental-versus-observational flow charts and Microsoft's algorithm-selection guide, but it returns multiple viable methods with assumptions and follow-up checks rather than forcing a single branch.
+This tool uses a decision-tree backbone centered on identification structure, but it returns multiple viable methods with assumptions and follow-up checks rather than forcing a single branch.
 
 <figure class="causal-tool__hero-figure">
   <img src="/media/tools/causal-method-selector-overview.svg" alt="Overview flowchart for choosing causal inference methods across experiments, observational designs, thresholds, instruments, and rollout settings.">
@@ -170,8 +170,3 @@ This tool uses a decision-tree backbone inspired by Uber's experimental-versus-o
 - Interrupted time series and synthetic control
 - Regression discontinuity design
 - Instrumental variables for observational settings
-
-## References
-
-- [Uber: Causal Inference at Uber](https://www.uber.com/blog/causal-inference-at-uber/)
-- [Microsoft: Causal Inference, Part 2 of 3: Selecting Algorithms](https://medium.com/data-science-at-microsoft/causal-inference-part-2-of-3-selecting-algorithms-a966f8228a2d)

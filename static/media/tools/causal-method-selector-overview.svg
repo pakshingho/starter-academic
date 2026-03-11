@@ -39,7 +39,7 @@
 
   <rect class="exp" x="110" y="286" width="520" height="488" rx="24" />
   <text class="section" x="150" y="326">Experimental or randomized data</text>
-  <text class="small" x="150" y="354">Uber-style branch: use design strength first, then choose precision or compliance tools.</text>
+  <text class="small" x="150" y="354">Experimental branch: start with design validity, then choose precision or compliance tools.</text>
 
   <rect class="nodeBlue" x="150" y="388" width="200" height="112" rx="18" />
   <text class="label" x="250" y="426" text-anchor="middle">Valid randomization</text>
@@ -68,7 +68,7 @@
 
   <rect class="obs" x="870" y="286" width="520" height="488" rx="24" />
   <text class="section" x="910" y="326">Observational or non-randomized data</text>
-  <text class="small" x="910" y="354">Uber + Microsoft branch: search for quasi-experimental structure before selection-on-observables.</text>
+  <text class="small" x="910" y="354">Observational branch: search for quasi-experimental structure before selection-on-observables.</text>
 
   <rect class="nodeAmber" x="910" y="388" width="210" height="112" rx="18" />
   <text class="label" x="1015" y="426" text-anchor="middle">Threshold or cutoff</text>
