@@ -24,6 +24,11 @@
   weight = 35
 
 [[main]]
+  name = "Tools"
+  identifier = "tools_group"
+  weight = 37
+
+[[main]]
   name = "About"
   identifier = "about_group"
   weight = 40
@@ -69,6 +74,12 @@
   url = "/resources/#data-science"
   parent = "resources_group"
   weight = 36
+
+[[main]]
+  name = "Experimentation Calculator"
+  url = "/experimentation-calculator/"
+  parent = "tools_group"
+  weight = 38
 
 [[main]]
   name = "About"
