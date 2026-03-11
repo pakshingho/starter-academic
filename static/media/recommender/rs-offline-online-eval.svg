@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#334155"/>
+    </marker>
+  </defs>
   <rect width="1200" height="360" fill="#f8fafc"/>
   <text x="40" y="46" font-family="Arial" font-size="30" font-weight="700" fill="#0f172a">Offline-to-Online Evaluation Flow</text>
 
@@ -17,8 +22,6 @@
   <text x="885" y="178" font-family="Arial" font-size="21" fill="#1e293b">Ship / rollback / iterate</text>
   <text x="885" y="212" font-family="Arial" font-size="21" fill="#1e293b">Monitor guardrails</text>
 
-  <line x1="350" y1="185" x2="450" y2="185" stroke="#334155" stroke-width="3"/>
-  <polygon points="450,185 438,179 438,191" fill="#334155"/>
-  <line x1="750" y1="185" x2="850" y2="185" stroke="#334155" stroke-width="3"/>
-  <polygon points="850,185 838,179 838,191" fill="#334155"/>
+  <path d="M350 185 L450 185" stroke="#334155" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M750 185 L850 185" stroke="#334155" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 </svg>

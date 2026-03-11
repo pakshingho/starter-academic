@@ -1,4 +1,4 @@
-<svg width="1200" height="560" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1260" height="600" viewBox="0 0 1260 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Two-tower retrieval model</title>
   <desc id="desc">A query tower and an item tower encode separate features into embeddings, which are matched with a dot product and used for top-k retrieval.</desc>
   <defs>
@@ -14,72 +14,76 @@
       .embed-query { fill: #1d4ed8; }
       .embed-item { fill: #15803d; }
       .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
-      .subtitle { font: 18px Arial, sans-serif; fill: #475569; }
+      .subtitle { font: 17px Arial, sans-serif; fill: #475569; }
       .box-title { font: 700 24px Arial, sans-serif; fill: #0f172a; }
-      .body { font: 17px Arial, sans-serif; fill: #0f172a; }
-      .small { font: 700 21px Arial, sans-serif; fill: #ffffff; }
+      .body { font: 16px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 700 20px Arial, sans-serif; fill: #ffffff; }
       .score-label { font: 700 22px Arial, sans-serif; fill: #0f172a; }
-      .score-body { font: 20px Arial, sans-serif; fill: #0f172a; }
-      .output { font: 20px Arial, sans-serif; fill: #0f172a; }
+      .score-body { font: 18px Arial, sans-serif; fill: #0f172a; }
+      .output { font: 18px Arial, sans-serif; fill: #0f172a; }
       .arrow-query { stroke: #2563eb; stroke-width: 4; fill: none; }
       .arrow-item { stroke: #16a34a; stroke-width: 4; fill: none; }
       .arrow-neutral { stroke: #475569; stroke-width: 4; fill: none; }
     </style>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <polygon points="0 0, 10 5, 0 10" fill="#2563eb"/>
+    <marker id="arrow-blue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#2563eb"/>
     </marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <polygon points="0 0, 10 5, 0 10" fill="#16a34a"/>
+    <marker id="arrow-green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#16a34a"/>
     </marker>
-    <marker id="arrow-slate" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <polygon points="0 0, 10 5, 0 10" fill="#475569"/>
+    <marker id="arrow-slate" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#475569"/>
     </marker>
   </defs>
 
-  <rect class="bg" width="1200" height="560" rx="24"/>
-  <rect class="frame" x="32" y="32" width="1136" height="496" rx="24"/>
+  <rect class="bg" width="1260" height="600" rx="24"/>
+  <rect class="frame" x="32" y="32" width="1196" height="536" rx="24"/>
 
   <text class="title" x="60" y="80">Two-Tower Retrieval Model</text>
   <text class="subtitle" x="60" y="114">Query and item representations are encoded separately, then matched in a shared embedding space for fast candidate retrieval.</text>
 
-  <rect class="query-features" x="60" y="165" width="220" height="210" rx="18"/>
-  <text class="box-title" x="170" y="205" text-anchor="middle">Query Features</text>
-  <text class="body" x="88" y="246">• user ID</text>
-  <text class="body" x="88" y="278">• recent clicks / watch history</text>
-  <text class="body" x="88" y="310">• locale, device, time</text>
-  <text class="body" x="88" y="342">• session or search context</text>
+  <rect class="query-features" x="60" y="168" width="250" height="236" rx="18"/>
+  <text class="box-title" x="185" y="208" text-anchor="middle">Query Features</text>
+  <text class="body" x="88" y="248">• user ID</text>
+  <text class="body" x="88" y="278">• recent clicks</text>
+  <text class="body" x="108" y="302">or watch history</text>
+  <text class="body" x="88" y="334">• locale, device, time</text>
+  <text class="body" x="88" y="364">• session or search</text>
+  <text class="body" x="108" y="388">context</text>
 
-  <rect class="query-tower" x="330" y="155" width="220" height="230" rx="18"/>
-  <text class="box-title" x="440" y="198" text-anchor="middle">Query Tower</text>
-  <text class="body" x="440" y="236" text-anchor="middle">Embeddings + MLP / RNN /</text>
-  <text class="body" x="440" y="264" text-anchor="middle">Transformer layers</text>
-  <rect class="embed-query" x="384" y="302" width="112" height="54" rx="14"/>
-  <text class="small" x="440" y="336" text-anchor="middle">u = ψ(x)</text>
+  <rect class="query-tower" x="350" y="158" width="230" height="246" rx="18"/>
+  <text class="box-title" x="465" y="200" text-anchor="middle">Query Tower</text>
+  <text class="body" x="465" y="238" text-anchor="middle">Embeddings + MLP / RNN /</text>
+  <text class="body" x="465" y="266" text-anchor="middle">Transformer layers</text>
+  <rect class="embed-query" x="409" y="310" width="112" height="54" rx="14"/>
+  <text class="small" x="465" y="344" text-anchor="middle">u = ψ(x)</text>
 
-  <rect class="item-tower" x="650" y="155" width="220" height="230" rx="18"/>
-  <text class="box-title" x="760" y="198" text-anchor="middle">Item Tower</text>
-  <text class="body" x="760" y="236" text-anchor="middle">Embeddings + MLP / CNN /</text>
-  <text class="body" x="760" y="264" text-anchor="middle">Transformer layers</text>
-  <rect class="embed-item" x="706" y="302" width="108" height="54" rx="14"/>
-  <text class="small" x="760" y="336" text-anchor="middle">v = φ(i)</text>
+  <rect class="item-tower" x="680" y="158" width="230" height="246" rx="18"/>
+  <text class="box-title" x="795" y="200" text-anchor="middle">Item Tower</text>
+  <text class="body" x="795" y="238" text-anchor="middle">Embeddings + MLP / CNN /</text>
+  <text class="body" x="795" y="266" text-anchor="middle">Transformer layers</text>
+  <rect class="embed-item" x="741" y="310" width="108" height="54" rx="14"/>
+  <text class="small" x="795" y="344" text-anchor="middle">v = φ(i)</text>
 
-  <rect class="item-features" x="920" y="165" width="220" height="210" rx="18"/>
-  <text class="box-title" x="1030" y="205" text-anchor="middle">Item Features</text>
-  <text class="body" x="948" y="246">• item ID, category</text>
-  <text class="body" x="948" y="278">• text, title, tags</text>
-  <text class="body" x="948" y="310">• image / media embeddings</text>
-  <text class="body" x="948" y="342">• price, freshness, metadata</text>
+  <rect class="item-features" x="950" y="168" width="250" height="236" rx="18"/>
+  <text class="box-title" x="1075" y="208" text-anchor="middle">Item Features</text>
+  <text class="body" x="978" y="248">• item ID, category</text>
+  <text class="body" x="978" y="278">• text, title, tags</text>
+  <text class="body" x="978" y="308">• image or media</text>
+  <text class="body" x="998" y="332">embeddings</text>
+  <text class="body" x="978" y="364">• price, freshness,</text>
+  <text class="body" x="998" y="388">metadata</text>
 
-  <rect class="score-box" x="500" y="410" width="200" height="68" rx="18"/>
-  <text class="score-label" x="600" y="438" text-anchor="middle">Matching score</text>
-  <text class="score-body" x="600" y="465" text-anchor="middle">dot product  u · v</text>
+  <rect class="score-box" x="525" y="430" width="210" height="72" rx="18"/>
+  <text class="score-label" x="630" y="458" text-anchor="middle">Matching score</text>
+  <text class="score-body" x="630" y="486" text-anchor="middle">dot product  u · v</text>
 
-  <rect class="output-box" x="410" y="492" width="380" height="34" rx="14"/>
-  <text class="output" x="600" y="515" text-anchor="middle">Top-K nearest items from the shared embedding space</text>
+  <rect class="output-box" x="400" y="516" width="460" height="38" rx="14"/>
+  <text class="output" x="630" y="541" text-anchor="middle">Top-K nearest items from the shared embedding space</text>
 
-  <path class="arrow-query" d="M280 270 L330 270" marker-end="url(#arrow-blue)"/>
-  <path class="arrow-item" d="M870 270 L920 270" marker-end="url(#arrow-green)"/>
-  <path class="arrow-query" d="M440 385 L440 404 L560 404 L560 410" marker-end="url(#arrow-blue)"/>
-  <path class="arrow-item" d="M760 385 L760 404 L640 404 L640 410" marker-end="url(#arrow-green)"/>
-  <path class="arrow-neutral" d="M600 478 L600 492" marker-end="url(#arrow-slate)"/>
+  <path class="arrow-query" d="M310 286 L350 286" marker-end="url(#arrow-blue)"/>
+  <path class="arrow-item" d="M910 286 L950 286" marker-end="url(#arrow-green)"/>
+  <path class="arrow-query" d="M465 404 L465 424 L595 424 L595 430" marker-end="url(#arrow-blue)"/>
+  <path class="arrow-item" d="M795 404 L795 424 L665 424 L665 430" marker-end="url(#arrow-green)"/>
+  <path class="arrow-neutral" d="M630 502 L630 516" marker-end="url(#arrow-slate)"/>
 </svg>
