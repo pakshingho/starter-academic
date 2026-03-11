@@ -3,6 +3,24 @@
   white-space: nowrap;
 }
 
+/* Wowchemy's font_size preset is inconsistent on this stack, so use a direct
+   root-size override for desktop and keep mobile at the default size. */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+
 @media (min-width: 1200px) {
   .universal-wrapper,
   .home-section .container {
