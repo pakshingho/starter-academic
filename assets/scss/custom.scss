@@ -3,6 +3,17 @@
   white-space: nowrap;
 }
 
+@media (min-width: 1200px) {
+  .universal-wrapper,
+  .home-section .container {
+    max-width: min(1080px, calc(100vw - 3rem));
+  }
+
+  .article-container {
+    max-width: min(900px, calc(100vw - 3rem));
+  }
+}
+
 .article-style img,
 .article-style video,
 .article-style iframe {
