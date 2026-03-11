@@ -76,7 +76,7 @@
   weight = 36
 
 [[main]]
-  name = "Experimentation Calculator"
+  name = "A/B Test Sample Size Calculator"
   url = "/experimentation-calculator/"
   parent = "tools_group"
   weight = 38

@@ -1,5 +1,5 @@
 ---
-title: Experimentation Calculator
+title: A/B Test Sample Size Calculator
 date: 2026-03-10
 type: page
 draft: false
