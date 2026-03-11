@@ -32,6 +32,17 @@ html {
     width: calc(100vw - 3rem);
     max-width: 1180px;
   }
+
+  .container-fluid.docs .docs-content {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+    padding-right: 2rem;
+  }
+
+  .container-fluid.docs .docs-article-container {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .article-style img,
