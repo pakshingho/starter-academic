@@ -5,7 +5,7 @@ type: page
 draft: false
 ---
 
-Estimate sample size and runtime for a two-variant conversion experiment using a standard normal approximation.
+Estimate sample size and runtime for an A/B or multi-arm conversion experiment using a fixed-horizon normal approximation.
 
 <div class="experiment-tool" id="experiment-tool">
   <div class="experiment-tool__grid">
@@ -73,7 +73,7 @@ Estimate sample size and runtime for a two-variant conversion experiment using a
         </div>
       </div>
       <div class="experiment-tool__notes" id="experiment-tool-notes">
-        <p>This calculator assumes a fixed-horizon two-sided z-test for differences in conversion rates with equal traffic allocation across variants.</p>
+        <p>This calculator uses a fixed-horizon two-sided test for differences in conversion rates with equal traffic allocation across variants.</p>
       </div>
       <div class="experiment-tool__error" id="experiment-tool-error" hidden></div>
     </section>
@@ -85,6 +85,6 @@ Estimate sample size and runtime for a two-variant conversion experiment using a
       <li>Comparing how baseline rate and MDE change runtime</li>
       <li>Checking whether your traffic volume makes a test feasible</li>
     </ul>
-    <p>This first version does not handle sequential testing, CUPED variance reduction, clustered assignment, heterogeneous treatment effects, or ratio metrics.</p>
+    <p>This first version does not handle sequential testing, CUPED variance reduction, clustered assignment, unequal allocation, heterogeneous treatment effects, or ratio metrics.</p>
   </section>
 </div>
