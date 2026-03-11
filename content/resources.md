@@ -10,4 +10,4 @@ type: page
 
 ### Technical Guides
 
-- [Recommender Systems](/recommender-systems/)
+- [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))
