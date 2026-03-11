@@ -1,57 +1,85 @@
-<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1200" height="560" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Two-tower retrieval model</title>
-  <desc id="desc">A query tower and an item tower encode features into embeddings, scored by dot product for retrieval.</desc>
-  <rect width="1200" height="520" fill="#f8fafc"/>
-  <rect x="32" y="32" width="1136" height="456" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-  <text x="60" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#0f172a">Two-Tower Retrieval Model</text>
-  <text x="60" y="110" font-family="Arial, sans-serif" font-size="18" fill="#475569">User/query and item representations are learned separately, then matched in a shared embedding space.</text>
-
-  <rect x="70" y="160" width="210" height="220" rx="18" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="2"/>
-  <text x="95" y="198" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Query Features</text>
-  <text x="95" y="236" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• user ID</text>
-  <text x="95" y="266" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• recent clicks / watch history</text>
-  <text x="95" y="296" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• locale, device, time</text>
-  <text x="95" y="326" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• session or search context</text>
-
-  <rect x="330" y="150" width="240" height="240" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
-  <text x="380" y="190" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Query Tower</text>
-  <text x="372" y="228" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Embeddings + MLP / RNN /</text>
-  <text x="392" y="254" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Transformer layers</text>
-  <rect x="382" y="292" width="132" height="54" rx="14" fill="#1d4ed8"/>
-  <text x="404" y="326" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">u = ψ(x)</text>
-
-  <rect x="920" y="160" width="210" height="220" rx="18" fill="#dcfce7" stroke="#86efac" stroke-width="2"/>
-  <text x="960" y="198" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Item Features</text>
-  <text x="945" y="236" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• item ID, category</text>
-  <text x="945" y="266" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• text, title, tags</text>
-  <text x="945" y="296" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• image / media embeddings</text>
-  <text x="945" y="326" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">• price, freshness, metadata</text>
-
-  <rect x="630" y="150" width="240" height="240" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
-  <text x="690" y="190" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Item Tower</text>
-  <text x="670" y="228" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Embeddings + MLP / CNN /</text>
-  <text x="685" y="254" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Transformer layers</text>
-  <rect x="680" y="292" width="140" height="54" rx="14" fill="#15803d"/>
-  <text x="704" y="326" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">v = φ(i)</text>
-
-  <circle cx="600" cy="270" r="46" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="571" y="264" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">score</text>
-  <text x="550" y="292" font-family="Arial, sans-serif" font-size="24" fill="#0f172a">u · v</text>
-
-  <rect x="450" y="420" width="300" height="42" rx="16" fill="#e2e8f0"/>
-  <text x="485" y="447" font-family="Arial, sans-serif" font-size="20" fill="#0f172a">Top-K nearest items in shared space</text>
-
-  <path d="M280 270 L330 270" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrowBlue)"/>
-  <path d="M570 270 L554 270" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrowBlue)"/>
-  <path d="M630 270 L646 270" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrowGreen)"/>
-  <path d="M870 270 L920 270" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrowGreen)"/>
-
+  <desc id="desc">A query tower and an item tower encode separate features into embeddings, which are matched with a dot product and used for top-k retrieval.</desc>
   <defs>
-    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+    <style>
+      .bg { fill: #f8fafc; }
+      .frame { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; }
+      .query-features { fill: #e0f2fe; stroke: #7dd3fc; stroke-width: 2; }
+      .query-tower { fill: #dbeafe; stroke: #60a5fa; stroke-width: 2; }
+      .item-tower { fill: #dcfce7; stroke: #4ade80; stroke-width: 2; }
+      .item-features { fill: #dcfce7; stroke: #86efac; stroke-width: 2; }
+      .score-box { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; }
+      .output-box { fill: #e2e8f0; stroke: #cbd5e1; stroke-width: 2; }
+      .embed-query { fill: #1d4ed8; }
+      .embed-item { fill: #15803d; }
+      .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 18px Arial, sans-serif; fill: #475569; }
+      .box-title { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .body { font: 17px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 700 21px Arial, sans-serif; fill: #ffffff; }
+      .score-label { font: 700 22px Arial, sans-serif; fill: #0f172a; }
+      .score-body { font: 20px Arial, sans-serif; fill: #0f172a; }
+      .output { font: 20px Arial, sans-serif; fill: #0f172a; }
+      .arrow-query { stroke: #2563eb; stroke-width: 4; fill: none; }
+      .arrow-item { stroke: #16a34a; stroke-width: 4; fill: none; }
+      .arrow-neutral { stroke: #475569; stroke-width: 4; fill: none; }
+    </style>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#2563eb"/>
     </marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#16a34a"/>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#475569"/>
     </marker>
   </defs>
+
+  <rect class="bg" width="1200" height="560" rx="24"/>
+  <rect class="frame" x="32" y="32" width="1136" height="496" rx="24"/>
+
+  <text class="title" x="60" y="80">Two-Tower Retrieval Model</text>
+  <text class="subtitle" x="60" y="114">Query and item representations are encoded separately, then matched in a shared embedding space for fast candidate retrieval.</text>
+
+  <rect class="query-features" x="60" y="165" width="220" height="210" rx="18"/>
+  <text class="box-title" x="170" y="205" text-anchor="middle">Query Features</text>
+  <text class="body" x="88" y="246">• user ID</text>
+  <text class="body" x="88" y="278">• recent clicks / watch history</text>
+  <text class="body" x="88" y="310">• locale, device, time</text>
+  <text class="body" x="88" y="342">• session or search context</text>
+
+  <rect class="query-tower" x="330" y="155" width="220" height="230" rx="18"/>
+  <text class="box-title" x="440" y="198" text-anchor="middle">Query Tower</text>
+  <text class="body" x="440" y="236" text-anchor="middle">Embeddings + MLP / RNN /</text>
+  <text class="body" x="440" y="264" text-anchor="middle">Transformer layers</text>
+  <rect class="embed-query" x="384" y="302" width="112" height="54" rx="14"/>
+  <text class="small" x="440" y="336" text-anchor="middle">u = ψ(x)</text>
+
+  <rect class="item-tower" x="650" y="155" width="220" height="230" rx="18"/>
+  <text class="box-title" x="760" y="198" text-anchor="middle">Item Tower</text>
+  <text class="body" x="760" y="236" text-anchor="middle">Embeddings + MLP / CNN /</text>
+  <text class="body" x="760" y="264" text-anchor="middle">Transformer layers</text>
+  <rect class="embed-item" x="706" y="302" width="108" height="54" rx="14"/>
+  <text class="small" x="760" y="336" text-anchor="middle">v = φ(i)</text>
+
+  <rect class="item-features" x="920" y="165" width="220" height="210" rx="18"/>
+  <text class="box-title" x="1030" y="205" text-anchor="middle">Item Features</text>
+  <text class="body" x="948" y="246">• item ID, category</text>
+  <text class="body" x="948" y="278">• text, title, tags</text>
+  <text class="body" x="948" y="310">• image / media embeddings</text>
+  <text class="body" x="948" y="342">• price, freshness, metadata</text>
+
+  <rect class="score-box" x="500" y="410" width="200" height="68" rx="18"/>
+  <text class="score-label" x="600" y="438" text-anchor="middle">Matching score</text>
+  <text class="score-body" x="600" y="465" text-anchor="middle">dot product  u · v</text>
+
+  <rect class="output-box" x="410" y="492" width="380" height="34" rx="14"/>
+  <text class="output" x="600" y="515" text-anchor="middle">Top-K nearest items from the shared embedding space</text>
+
+  <path class="arrow-query" d="M280 270 L330 270" marker-end="url(#arrow-blue)"/>
+  <path class="arrow-item" d="M870 270 L920 270" marker-end="url(#arrow-green)"/>
+  <path class="arrow-query" d="M440 385 L440 404 L560 404 L560 410" marker-end="url(#arrow-blue)"/>
+  <path class="arrow-item" d="M760 385 L760 404 L640 404 L640 410" marker-end="url(#arrow-green)"/>
+  <path class="arrow-neutral" d="M600 478 L600 492" marker-end="url(#arrow-slate)"/>
 </svg>
