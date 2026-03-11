@@ -5,6 +5,8 @@ type: page
 draft: false
 ---
 
+<p class="causal-tool__subtitle">How to choose a causal inference method.</p>
+
 Choose causal inference methods from study design, identification strategy, and business objective.
 
 This tool uses a decision-tree backbone centered on identification structure, but it returns multiple viable methods with assumptions and follow-up checks rather than forcing a single branch.
