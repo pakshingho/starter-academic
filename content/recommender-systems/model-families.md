@@ -43,7 +43,9 @@ Google's course also emphasizes that content-based systems are often easier to e
 | Discovery pattern | Can serve niche items that match a user's known interests very well | Usually expands less well beyond existing interests, so serendipity is weaker |
 | Modeling burden | Easier to explain because recommendations can be tied back to item attributes | Requires substantial domain knowledge and hand-engineered or high-quality learned features |
 
-![Content-based filtering feature matrix illustration](/media/recommender/google/google-matrix1.svg)
+<div class="recommender-figure recommender-figure--compact">
+  <img src="/media/recommender/google/google-matrix1.svg" alt="Content-based filtering feature matrix illustration">
+</div>
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/content-based/basics), CC BY 4.0.*
 
@@ -80,7 +82,9 @@ Contextual filtering incorporates information about the current situation into t
 - Useful when the same user may want different items under different circumstances
 - Often framed as next-action or next-item prediction rather than only long-run preference estimation
 
-![Contextual recommendation diagram](/media/recommender/rs-contextual-filtering.svg)
+<div class="recommender-figure recommender-figure--compact">
+  <img src="/media/recommender/rs-contextual-filtering.svg" alt="Contextual recommendation diagram">
+</div>
 
 <div id="hybrid-models"></div>
 
@@ -92,7 +96,9 @@ Combine metadata with interaction learning.
 - Handles cold-start better than pure collaborative filtering
 - Usually outperforms pure content-based methods once enough interactions accumulate
 
-![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
+<div class="recommender-figure recommender-figure--compact">
+  <img src="/media/recommender/rs-content-vs-cf.svg" alt="Content-based, collaborative filtering, and hybrid model comparison">
+</div>
 
 <div id="embedding-spaces-and-similarity-measures"></div>
 
@@ -128,10 +134,14 @@ $$
 
 This lets you keep some popularity signal without letting large-norm items dominate retrieval.
 
-![Candidate retrieval in embedding space](/media/recommender/google/google-similarity.svg)
+<div class="recommender-figure recommender-figure--compact">
+  <img src="/media/recommender/google/google-similarity.svg" alt="Candidate retrieval in embedding space">
+</div>
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
 
-![Different similarity choices induce different rankings](/media/recommender/google/google-similarity-ak.svg)
+<div class="recommender-figure recommender-figure--compact">
+  <img src="/media/recommender/google/google-similarity-ak.svg" alt="Different similarity choices induce different rankings">
+</div>
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
