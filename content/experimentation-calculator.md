@@ -117,7 +117,7 @@ Estimate sample size and runtime for an A/B or multi-arm conversion experiment u
 
 ## Formula and assumptions
 
-Let \(p_1\) be the baseline conversion rate and \(p_2 = p_1 + \Delta\) be the treatment rate at the minimum detectable effect. Let \(w_c\) be the control traffic share and \(w_t\) be the traffic share for each treatment arm.
+Let $p_1$ be the baseline conversion rate and $p_2 = p_1 + \Delta$ be the treatment rate at the minimum detectable effect. Let $w_c$ be the control traffic share and $w_t$ be the traffic share for each treatment arm.
 
 The calculator uses the normal approximation for a fixed-horizon test of two proportions with unequal allocation:
 
@@ -126,15 +126,15 @@ $$
 \mathrm{SE}_1 = \sqrt{\frac{p_1(1-p_1)}{n_c} + \frac{p_2(1-p_2)}{n_t}}
 $$
 
-where \(\bar{p} = (p_1 + p_2)/2\). For planning, it solves
+where $\bar{p} = (p_1 + p_2)/2$. For planning, it solves
 
 $$
 \Delta = z_{1-\alpha^\ast} \mathrm{SE}_0 + z_{\mathrm{power}} \mathrm{SE}_1
 $$
 
-for the required treatment-arm sample size \(n_t\), using the allocation relationship \(n_c / n_t = w_c / w_t\).
+for the required treatment-arm sample size $n_t$, using the allocation relationship $n_c / n_t = w_c / w_t$.
 
-- \(\alpha^\ast = \alpha / 2\) for a two-sided test and \(\alpha^\ast = \alpha\) for a one-sided test before any multiple-comparison correction.
+- $\alpha^\ast = \alpha / 2$ for a two-sided test and $\alpha^\ast = \alpha$ for a one-sided test before any multiple-comparison correction.
 - When there are multiple treatment arms, the calculator applies a Bonferroni adjustment across treatment-versus-control comparisons.
 - Traffic is assumed independent and identically distributed across users.
 - Runtime assumes stable daily traffic and no ramp schedule.
