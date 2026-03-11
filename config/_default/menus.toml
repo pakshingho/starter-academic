@@ -111,13 +111,6 @@
   parent = "about_group"
   weight = 44
 
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/media/cv.pdf` and uncomment the lines below.
-# [[main]]
-#    name = "CV"
-#    url = "media/cv.pdf"
-#    weight = 70
-
 [[recommender-systems]]
   name = "1.1 Common applications"
   url = "/recommender-systems/why-it-matters/#common-applications"
@@ -317,7 +310,43 @@
   weight = 85
 
 [[recommender-systems]]
-  name = "References"
-  url = "/recommender-systems/summary-and-references/#references"
-  parent = "chapter-summary"
-  weight = 101
+  name = "10.1 Guides and courses"
+  url = "/recommender-systems/references/#guides-and-courses"
+  parent = "chapter-references"
+  weight = 111
+
+[[recommender-systems]]
+  name = "10.2 Core modeling papers"
+  url = "/recommender-systems/references/#core-modeling-papers"
+  parent = "chapter-references"
+  weight = 112
+
+[[recommender-systems]]
+  name = "10.3 Tools and implementations"
+  url = "/recommender-systems/references/#tools-and-implementations"
+  parent = "chapter-references"
+  weight = 113
+
+[[recommender-systems]]
+  name = "11.1 Model-family surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#model-family-surveys"
+  parent = "chapter-survey"
+  weight = 121
+
+[[recommender-systems]]
+  name = "11.2 Session and sequential surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#session-and-sequential-surveys"
+  parent = "chapter-survey"
+  weight = 122
+
+[[recommender-systems]]
+  name = "11.3 Long-horizon and responsible recommendation"
+  url = "/recommender-systems/survey-papers-and-further-reading/#long-horizon-and-responsible-recommendation"
+  parent = "chapter-survey"
+  weight = 123
+
+[[recommender-systems]]
+  name = "11.4 How to read survey papers"
+  url = "/recommender-systems/survey-papers-and-further-reading/#how-to-read-survey-papers"
+  parent = "chapter-survey"
+  weight = 124
