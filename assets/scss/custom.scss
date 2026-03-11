@@ -237,6 +237,212 @@ html {
   margin-top: 1.5rem;
 }
 
+.causal-tool {
+  margin-top: 1.5rem;
+}
+
+.causal-tool__grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.25fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.causal-tool__panel {
+  min-width: 0;
+  padding: 1.45rem;
+  border: 1px solid rgba(0, 136, 204, 0.16);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.causal-tool__panel-head h2,
+.causal-tool__panel--details h2 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+
+.causal-tool__panel-head p {
+  margin-bottom: 0;
+  opacity: 0.84;
+}
+
+.causal-tool__section + .causal-tool__section {
+  margin-top: 1.45rem;
+}
+
+.causal-tool__section h3 {
+  margin-bottom: 0.85rem;
+  font-size: 1.05rem;
+}
+
+.causal-tool__field + .causal-tool__field {
+  margin-top: 1rem;
+}
+
+.causal-tool__field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.causal-tool__field select {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: inherit;
+  padding: 0.78rem 0.9rem;
+  font: inherit;
+}
+
+.causal-tool__field p {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+.causal-tool__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.causal-tool__button {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 136, 204, 0.95);
+  color: #fff;
+  padding: 0.68rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.causal-tool__button--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  border: 1px solid rgba(128, 128, 128, 0.28);
+}
+
+.causal-tool__share-status {
+  min-height: 1.25rem;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.causal-tool__path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+}
+
+.causal-tool__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(0, 136, 204, 0.08);
+  border: 1px solid rgba(0, 136, 204, 0.18);
+  font-size: 0.9rem;
+}
+
+.causal-tool__warning {
+  margin-bottom: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 0.95rem;
+  background: rgba(217, 119, 6, 0.12);
+  color: #a16207;
+}
+
+.causal-tool__warning ul {
+  margin: 0.6rem 0 0;
+}
+
+.causal-tool__results {
+  display: grid;
+  gap: 1rem;
+}
+
+.causal-tool__method {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.causal-tool__method--best {
+  border-color: rgba(0, 136, 204, 0.28);
+  background: rgba(0, 136, 204, 0.08);
+}
+
+.causal-tool__method--good {
+  border-color: rgba(52, 211, 153, 0.24);
+  background: rgba(16, 185, 129, 0.07);
+}
+
+.causal-tool__method--conditional {
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.causal-tool__method-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.causal-tool__method-head h3 {
+  margin: 0.45rem 0 0;
+}
+
+.causal-tool__badge,
+.causal-tool__family {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.24rem 0.62rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.causal-tool__badge {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.causal-tool__family {
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.causal-tool__summary {
+  margin: 0.85rem 0 1rem;
+}
+
+.causal-tool__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.causal-tool__method h4 {
+  margin-bottom: 0.55rem;
+  font-size: 0.98rem;
+}
+
+.causal-tool__method ul {
+  margin-bottom: 0.85rem;
+}
+
+.causal-tool__alternatives {
+  margin-bottom: 0;
+  opacity: 0.88;
+}
+
 .back-to-top {
   position: fixed;
   right: 1.25rem;
@@ -343,6 +549,14 @@ html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .causal-tool__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .causal-tool__columns {
+    grid-template-columns: 1fr;
+  }
+
   .article-style table {
     display: block;
     overflow-x: auto;
@@ -405,6 +619,23 @@ html {
   .article-style iframe,
   .article-style figure {
     margin: 1rem auto 1.2rem;
+  }
+
+  .causal-tool__panel {
+    padding: 1.1rem;
+  }
+
+  .causal-tool__method-head {
+    flex-direction: column;
+  }
+
+  .causal-tool__actions {
+    align-items: stretch;
+  }
+
+  .causal-tool__button {
+    width: 100%;
+    justify-content: center;
   }
 
   .article-style th,

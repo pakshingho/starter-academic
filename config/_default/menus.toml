@@ -82,6 +82,12 @@
   weight = 38
 
 [[main]]
+  name = "Causal Inference Method Selector"
+  url = "/causal-inference-method-selector/"
+  parent = "tools_group"
+  weight = 39
+
+[[main]]
   name = "About"
   url = "/about/"
   parent = "about_group"
