@@ -70,6 +70,13 @@ html {
   margin: 0 auto;
 }
 
+@media (min-width: 992px) {
+  .docs-article-container .article-style .recommender-figure--tiny img {
+    width: 36%;
+    max-width: 310px;
+  }
+}
+
 .article-style figure {
   margin: 1.35rem 0;
 }

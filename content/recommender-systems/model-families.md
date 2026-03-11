@@ -130,13 +130,13 @@ $$
 
 This lets you keep some popularity signal without letting large-norm items dominate retrieval.
 
-<div class="recommender-figure recommender-figure--compact">
+<div class="recommender-figure recommender-figure--compact recommender-figure--tiny">
   <img src="/media/recommender/google/google-similarity.svg" alt="Candidate retrieval in embedding space">
 </div>
 
 *Image credit: [Google for Developers Recommendation Systems course](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), CC BY 4.0.*
 
-<div class="recommender-figure recommender-figure--compact">
+<div class="recommender-figure recommender-figure--compact recommender-figure--tiny">
   <img src="/media/recommender/google/google-similarity-ak.svg" alt="Different similarity choices induce different rankings">
 </div>
 
