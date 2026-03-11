@@ -5,7 +5,7 @@ type: page
 draft: false
 ---
 
-<p class="causal-tool__subtitle">How to choose a causal inference method.</p>
+<p class="causal-tool__subtitle">How to choose a causal inference method: the basics.</p>
 
 Choose causal inference methods from study design, identification strategy, and business objective.
 
