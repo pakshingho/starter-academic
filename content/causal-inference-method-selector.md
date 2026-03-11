@@ -9,6 +9,11 @@ Choose causal inference methods from study design, identification strategy, and 
 
 This tool uses a decision-tree backbone inspired by Uber's experimental-versus-observational flow charts and Microsoft's algorithm-selection guide, but it returns multiple viable methods with assumptions and follow-up checks rather than forcing a single branch.
 
+<figure class="causal-tool__hero-figure">
+  <img src="/media/tools/causal-method-selector-overview.svg" alt="Overview flowchart for choosing causal inference methods across experiments, observational designs, thresholds, instruments, and rollout settings.">
+  <figcaption>Original overview map for the selector. The interactive tool below expands each branch into method recommendations, package suggestions, and exportable robustness checklists.</figcaption>
+</figure>
+
 <div class="causal-tool" id="causal-tool">
   <div class="causal-tool__grid">
     <section class="causal-tool__panel">

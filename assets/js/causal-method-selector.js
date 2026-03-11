@@ -23,6 +23,65 @@ document.addEventListener("DOMContentLoaded", function () {
     ]
   };
 
+  var PACKAGE_REFS = {
+    econml: {
+      label: "EconML",
+      url: "https://www.pywhy.org/EconML/index.html",
+      note: "Use for double machine learning, DR learners, causal forests, and heterogeneous treatment effects."
+    },
+    causalml: {
+      label: "CausalML",
+      url: "https://causalml.readthedocs.io/",
+      note: "Use for uplift trees, meta-learners, and policy targeting workflows."
+    },
+    dowhy: {
+      label: "DoWhy",
+      url: "https://www.pywhy.org/dowhy/v0.13/",
+      note: "Use for graph-based identification, refutation, and sensitivity analysis across designs."
+    },
+    statsmodelsCore: {
+      label: "Statsmodels",
+      url: "https://www.statsmodels.org/stable/",
+      note: "Use for regression adjustment, robust standard errors, and baseline econometric estimators."
+    },
+    statsmodelsTreatment: {
+      label: "Statsmodels Treatment Effects",
+      url: "https://www.statsmodels.org/stable/treatment.html",
+      note: "Use for propensity-score workflows, treatment-effects estimation, and matching/weighting diagnostics."
+    },
+    statsmodelsAIPW: {
+      label: "Statsmodels AIPW",
+      url: "https://www.statsmodels.org/stable/generated/statsmodels.treatment.treatment_effects.TreatmentEffect.aipw.html",
+      note: "Use for augmented inverse-probability weighting and doubly robust treatment-effect estimation."
+    },
+    statsmodelsMediation: {
+      label: "Statsmodels Mediation",
+      url: "https://www.statsmodels.org/stable/generated/statsmodels.stats.mediation.Mediation.html",
+      note: "Use for classical mediation analysis once the total effect is already credible."
+    },
+    statsmodelsIV: {
+      label: "Statsmodels IV2SLS",
+      url: "https://www.statsmodels.org/stable/generated/statsmodels.sandbox.regression.gmm.IV2SLS.from_formula.html",
+      note: "Use for two-stage least squares and assignment-as-instrument workflows."
+    },
+    statsmodelsTSA: {
+      label: "Statsmodels Time Series",
+      url: "https://www.statsmodels.org/stable/tsa.html",
+      note: "Use for interrupted time-series diagnostics, seasonality checks, and counterfactual trend modeling."
+    }
+  };
+
+  function packageRefs(items) {
+    return items.map(function (item) {
+      var source = PACKAGE_REFS[item.key || item];
+      return {
+        label: source.label,
+        url: source.url,
+        note: item.note || source.note
+      };
+    });
+  }
+
   var METHODS = {
     experiment: {
       title: "Randomized experiment with covariate-adjusted analysis",
@@ -38,7 +97,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Cluster standard errors if assignment was clustered",
         "Report ITT before any treatment-on-treated analysis"
       ],
-      alternatives: ["CUPED", "CACE / IV", "heterogeneity models"]
+      robustnessChecklist: [
+        "Re-estimate the treatment effect with and without covariate adjustment to check stability.",
+        "Audit balance, attrition, and leakage at the actual assignment unit.",
+        "Use cluster-robust inference when assignment or interference is clustered.",
+        "Check guardrail or spillover outcomes before making rollout recommendations."
+      ],
+      alternatives: ["CUPED", "CACE / IV", "heterogeneity models"],
+      packages: packageRefs(["statsmodelsCore", "dowhy"])
     },
     cuped: {
       title: "CUPED or pre-period regression adjustment",
@@ -54,7 +120,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Confirm no treatment contamination in the pre-period metric",
         "Compare variance reduction against the plain ITT estimate"
       ],
-      alternatives: ["ANCOVA", "standard experiment analysis"]
+      robustnessChecklist: [
+        "Verify the pre-period metric is truly pre-treatment and uncontaminated.",
+        "Report the pre/post correlation that justifies CUPED.",
+        "Compare the adjusted estimate against the plain ITT estimate and variance.",
+        "Document whether the adjustment changes interpretation or only precision."
+      ],
+      alternatives: ["ANCOVA", "standard experiment analysis"],
+      packages: packageRefs(["statsmodelsCore"])
     },
     cace: {
       title: "CACE / instrumental variables for noncompliance",
@@ -70,7 +143,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Report both ITT and complier estimates",
         "Explain who the compliers are in business terms"
       ],
-      alternatives: ["ITT only", "encouragement design diagnostics"]
+      robustnessChecklist: [
+        "Report the first-stage effect and a weak-instrument diagnostic.",
+        "Present ITT and complier estimates together, not only the IV estimate.",
+        "Defend exclusion with product or policy mechanics, not only statistics.",
+        "State clearly who the complier population is and whether that matters for decisions."
+      ],
+      alternatives: ["ITT only", "encouragement design diagnostics"],
+      packages: packageRefs(["statsmodelsIV", "dowhy"])
     },
     uplift: {
       title: "Causal forests, uplift models, or meta-learners",
@@ -86,7 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Check calibration of uplift or CATE estimates",
         "Audit whether overlap collapses in high-value segments"
       ],
-      alternatives: ["subgroup analysis", "AIPW / DR learners"]
+      robustnessChecklist: [
+        "Evaluate policy value or uplift metrics on a held-out sample, not only model loss.",
+        "Check overlap and sample size inside the segments you plan to target.",
+        "Benchmark the policy against simpler subgroup rules or a global ATE policy.",
+        "Inspect whether treatment recommendations concentrate in unsupported covariate regions."
+      ],
+      alternatives: ["subgroup analysis", "AIPW / DR learners"],
+      packages: packageRefs(["econml", "causalml", "dowhy"])
     },
     mediation: {
       title: "Mediation analysis",
@@ -102,7 +189,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Document why the mediator is not itself confounded by post-treatment variables",
         "Run sensitivity checks because mediation assumptions are strong"
       ],
-      alternatives: ["structural causal models", "mechanism-specific experiments"]
+      robustnessChecklist: [
+        "Demonstrate a credible total effect before decomposing it.",
+        "Check that mediator timing is after treatment and before the outcome window.",
+        "Stress-test mediator-outcome confounding assumptions with sensitivity analysis.",
+        "Compare direct/indirect estimates under alternative mediator models."
+      ],
+      alternatives: ["structural causal models", "mechanism-specific experiments"],
+      packages: packageRefs(["statsmodelsMediation", "dowhy"])
     },
     repair: {
       title: "Propensity weighting or matching as a repair strategy",
@@ -118,7 +212,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Show balance before and after weighting or matching",
         "Prefer redesign if leakage is severe"
       ],
-      alternatives: ["rerun experiment", "covariate-adjusted ITT"]
+      robustnessChecklist: [
+        "Document the exact failure mode: attrition, leakage, reassignment, or measurement drift.",
+        "Show balance and overlap before and after the repair step.",
+        "Trim unsupported units and report how the estimand changes.",
+        "Treat the repaired estimate as a fallback and assess whether redesign is cheaper than trusting it."
+      ],
+      alternatives: ["rerun experiment", "covariate-adjusted ITT"],
+      packages: packageRefs(["statsmodelsTreatment", "dowhy"])
     },
     propensity: {
       title: "Matching or propensity-score weighting",
@@ -134,7 +235,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Check balance after weighting or matching",
         "Trim unsupported regions if necessary"
       ],
-      alternatives: ["AIPW", "double machine learning"]
+      robustnessChecklist: [
+        "Plot overlap and inspect the distribution of propensity scores.",
+        "Report standardized mean differences before and after weighting or matching.",
+        "Test sensitivity to calipers, trimming rules, or propensity specifications.",
+        "Compare the weighted/matched result against a simpler regression-adjusted baseline."
+      ],
+      alternatives: ["AIPW", "double machine learning"],
+      packages: packageRefs(["statsmodelsTreatment", "dowhy"])
     },
     aipw: {
       title: "AIPW / doubly robust estimation / double machine learning",
@@ -150,7 +258,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Inspect nuisance-model quality and overlap",
         "Explain the target estimand clearly: ATE, ATT, or policy value"
       ],
-      alternatives: ["matching", "IPTW", "causal forests / DR learners"]
+      robustnessChecklist: [
+        "Use cross-fitting or sample splitting when nuisance models are flexible.",
+        "Check overlap and stabilize or truncate extreme weights where needed.",
+        "Benchmark against simpler weighting-only and outcome-only estimates.",
+        "Report the target estimand explicitly and verify it matches the business question."
+      ],
+      alternatives: ["matching", "IPTW", "causal forests / DR learners"],
+      packages: packageRefs(["statsmodelsAIPW", "econml", "dowhy"])
     },
     did: {
       title: "Difference-in-differences / event study",
@@ -166,7 +281,20 @@ document.addEventListener("DOMContentLoaded", function () {
         "Use modern staggered-adoption estimators when rollout timing differs",
         "Check sensitivity to alternative control groups and time windows"
       ],
-      alternatives: ["synthetic control", "interrupted time series"]
+      robustnessChecklist: [
+        "Plot event-study coefficients or pre-trends before emphasizing post-treatment effects.",
+        "Check sensitivity to comparison groups, time windows, and staggered-timing estimators.",
+        "Probe anticipation and coincident-shock explanations.",
+        "Cluster standard errors at the assignment or policy unit where appropriate."
+      ],
+      alternatives: ["synthetic control", "interrupted time series"],
+      packages: packageRefs([
+        {
+          key: "statsmodelsCore",
+          note: "Use for event-study or DiD regression baselines with robust standard errors; full staggered-DiD workflows may need additional tooling."
+        },
+        "dowhy"
+      ])
     },
     synthetic: {
       title: "Synthetic control or Bayesian structural time series",
@@ -182,7 +310,20 @@ document.addEventListener("DOMContentLoaded", function () {
         "Run placebo or leave-one-out diagnostics",
         "Justify the donor pool and outcome window"
       ],
-      alternatives: ["difference-in-differences", "interrupted time series"]
+      robustnessChecklist: [
+        "Show pre-treatment fit and do not trust the design if fit is weak.",
+        "Run placebo tests across untreated donor units.",
+        "Repeat the estimate with donor leave-one-out or donor-pool restrictions.",
+        "Audit spillovers and any contamination of the donor pool."
+      ],
+      alternatives: ["difference-in-differences", "interrupted time series"],
+      packages: packageRefs([
+        {
+          key: "statsmodelsTSA",
+          note: "Use for structural-break, seasonality, and counterfactual-trend diagnostics; synthetic control itself usually needs a more specialized library."
+        },
+        "dowhy"
+      ])
     },
     its: {
       title: "Interrupted time series",
@@ -198,7 +339,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Control for known shocks if possible",
         "Prefer synthetic control if a strong donor pool exists"
       ],
-      alternatives: ["synthetic control", "difference-in-differences"]
+      robustnessChecklist: [
+        "Check sensitivity to seasonality, serial correlation, and functional-form choices.",
+        "Run placebo intervention dates or alternative break specifications.",
+        "Control for known concurrent shocks and explain any remaining breaks.",
+        "Compare against a donor-based or comparison-group design if one becomes available."
+      ],
+      alternatives: ["synthetic control", "difference-in-differences"],
+      packages: packageRefs(["statsmodelsTSA", "dowhy"])
     },
     rdd: {
       title: "Regression discontinuity design",
@@ -214,7 +362,20 @@ document.addEventListener("DOMContentLoaded", function () {
         "Check bandwidth sensitivity",
         "Communicate that the effect is local, not necessarily global"
       ],
-      alternatives: ["IV", "matching near the threshold"]
+      robustnessChecklist: [
+        "Run manipulation and density checks near the cutoff.",
+        "Check covariate continuity around the threshold.",
+        "Report bandwidth and polynomial sensitivity, not one preferred estimate only.",
+        "State clearly that the estimand is local to units near the cutoff."
+      ],
+      alternatives: ["IV", "matching near the threshold"],
+      packages: packageRefs([
+        {
+          key: "statsmodelsCore",
+          note: "Use for local regression baselines and sensitivity checks; dedicated RDD tooling may still be preferable for production analysis."
+        },
+        "dowhy"
+      ])
     },
     iv: {
       title: "Instrumental variables",
@@ -230,7 +391,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Explain the compliers or margin identified by the instrument",
         "Defend exclusion with domain knowledge, not statistics alone"
       ],
-      alternatives: ["RDD", "difference-in-differences", "natural-experiment design audit"]
+      robustnessChecklist: [
+        "Report first-stage strength and weak-instrument diagnostics.",
+        "Use falsification or over-identification tests where the design supports them.",
+        "Stress-test exclusion with domain arguments and alternative instrument definitions.",
+        "Explain how local the IV estimand is and whether it maps to the business decision."
+      ],
+      alternatives: ["RDD", "difference-in-differences", "natural-experiment design audit"],
+      packages: packageRefs(["statsmodelsIV", "dowhy"])
     },
     design_gap: {
       title: "Design is not identified cleanly yet",
@@ -244,7 +412,23 @@ document.addEventListener("DOMContentLoaded", function () {
         "Collect better pre-treatment covariates or longitudinal data",
         "Use sensitivity analysis before making product or policy claims"
       ],
-      alternatives: ["RDD", "IV", "DiD", "better experiment design"]
+      robustnessChecklist: [
+        "Draw a DAG or design map before choosing an estimator.",
+        "Collect the missing pre-treatment covariates or panel structure that would unblock identification.",
+        "Search explicitly for threshold rules, instruments, or rollout timing you can defend.",
+        "Avoid strong causal claims until the design improves or sensitivity bounds are acceptable."
+      ],
+      alternatives: ["RDD", "IV", "DiD", "better experiment design"],
+      packages: packageRefs([
+        {
+          key: "dowhy",
+          note: "Use it to formalize the design assumptions, DAG, and refutation strategy before choosing an estimator."
+        },
+        {
+          key: "statsmodelsCore",
+          note: "Use it for descriptive regressions and diagnostics while you improve the design, not as a substitute for identification."
+        }
+      ])
     }
   };
 
@@ -287,6 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var shareButton = document.getElementById("causal-tool-share");
   var resetButton = document.getElementById("causal-tool-reset");
+  var currentRender = null;
 
   function setGoalOptions(design, preferredGoal) {
     var current = preferredGoal || fields.goal.value;
@@ -552,10 +737,20 @@ document.addEventListener("DOMContentLoaded", function () {
     return "causal-tool__method--conditional";
   }
 
-  function renderPath(state) {
+  function getGoalLabel(state) {
+    var goalLabel = state.goal;
+    (GOAL_OPTIONS[state.design] || []).forEach(function (option) {
+      if (option.value === state.goal) {
+        goalLabel = option.label;
+      }
+    });
+    return goalLabel;
+  }
+
+  function buildPathChips(state) {
     var chips = [];
     chips.push(state.design === "experimental" ? "Experimental" : "Observational");
-    chips.push(fields.goal.options[fields.goal.selectedIndex].textContent);
+    chips.push(getGoalLabel(state));
 
     if (state.design === "experimental") {
       if (state.prePeriod === "yes") {
@@ -587,7 +782,11 @@ document.addEventListener("DOMContentLoaded", function () {
       chips.push("high-dimensional features");
     }
 
-    outputs.path.innerHTML = chips.map(function (chip) {
+    return chips;
+  }
+
+  function renderPath(state) {
+    outputs.path.innerHTML = buildPathChips(state).map(function (chip) {
       return '<span class="causal-tool__chip">' + chip + '</span>';
     }).join("");
   }
@@ -608,6 +807,28 @@ document.addEventListener("DOMContentLoaded", function () {
       "</ul>";
   }
 
+  function renderPackages(packages) {
+    if (!packages || !packages.length) {
+      return "";
+    }
+
+    return (
+      '<div class="causal-tool__packages">' +
+        '<h4>Suggested packages</h4>' +
+        '<ul class="causal-tool__package-list">' +
+          packages.map(function (entry) {
+            return (
+              '<li>' +
+                '<a href="' + entry.url + '" target="_blank" rel="noopener noreferrer">' + entry.label + '</a>' +
+                '<span class="causal-tool__package-note">' + entry.note + '</span>' +
+              '</li>'
+            );
+          }).join("") +
+        '</ul>' +
+      '</div>'
+    );
+  }
+
   function renderResults(recommendations) {
     outputs.results.innerHTML = recommendations.map(function (item) {
       var meta = METHODS[item.id];
@@ -626,7 +847,11 @@ document.addEventListener("DOMContentLoaded", function () {
             '<div><h4>Critical assumptions</h4><ul>' + meta.assumptions.map(function (entry) { return '<li>' + entry + '</li>'; }).join("") + '</ul></div>' +
           '</div>' +
           '<div><h4>What to validate next</h4><ul>' + meta.nextChecks.map(function (entry) { return '<li>' + entry + '</li>'; }).join("") + '</ul></div>' +
+          renderPackages(meta.packages) +
           '<p class="causal-tool__alternatives"><strong>Also consider:</strong> ' + meta.alternatives.join(', ') + '.</p>' +
+          '<div class="causal-tool__method-actions">' +
+            '<button type="button" class="causal-tool__button causal-tool__button--ghost" data-export-checklist="1" data-method-id="' + item.id + '">Export robustness checklist</button>' +
+          '</div>' +
         '</article>'
       );
     }).join("");
@@ -657,10 +882,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function setTransientStatus(message) {
+    outputs.shareStatus.textContent = message;
+    window.setTimeout(function () {
+      if (outputs.shareStatus.textContent === message) {
+        outputs.shareStatus.textContent = "";
+      }
+    }, 2200);
+  }
+
+  function slugify(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+
+  function buildChecklistContent(item, meta) {
+    var state = currentRender.state;
+    var lines = [];
+
+    lines.push("# Robustness checklist: " + meta.title);
+    lines.push("");
+    lines.push("Generated on: " + new Date().toLocaleDateString());
+    lines.push("");
+    lines.push("## Decision context");
+    lines.push("- Design: " + (state.design === "experimental" ? "Experimental or randomized data" : "Observational or non-randomized data"));
+    lines.push("- Goal: " + getGoalLabel(state));
+    lines.push("- Selector fit: " + fitLabel(item.fit));
+    lines.push("- Decision path: " + buildPathChips(state).join(" | "));
+    lines.push("");
+    lines.push("## Why this method fits");
+    item.reasons.forEach(function (reason) {
+      lines.push("- " + reason);
+    });
+    lines.push("");
+    lines.push("## Critical assumptions to defend");
+    meta.assumptions.forEach(function (entry) {
+      lines.push("- [ ] " + entry);
+    });
+    lines.push("");
+    lines.push("## Robustness checklist");
+    meta.robustnessChecklist.forEach(function (entry) {
+      lines.push("- [ ] " + entry);
+    });
+    lines.push("");
+    lines.push("## What to validate next");
+    meta.nextChecks.forEach(function (entry) {
+      lines.push("- [ ] " + entry);
+    });
+    lines.push("");
+    lines.push("## Suggested packages");
+    meta.packages.forEach(function (entry) {
+      lines.push("- [" + entry.label + "](" + entry.url + "): " + entry.note);
+    });
+    lines.push("");
+    lines.push("## Alternative methods to benchmark");
+    meta.alternatives.forEach(function (entry) {
+      lines.push("- " + entry);
+    });
+
+    if (currentRender.warnings.length) {
+      lines.push("");
+      lines.push("## Identification cautions from the selector");
+      currentRender.warnings.forEach(function (warning) {
+        lines.push("- " + warning);
+      });
+    }
+
+    lines.push("");
+    lines.push("Generated from the causal method selector on pakshingho.com.");
+    return lines.join("\n");
+  }
+
+  function exportChecklist(methodId) {
+    if (!currentRender) {
+      return;
+    }
+
+    var item = null;
+    currentRender.recommendations.forEach(function (entry) {
+      if (entry.id === methodId) {
+        item = entry;
+      }
+    });
+
+    if (!item || !METHODS[methodId]) {
+      return;
+    }
+
+    var meta = METHODS[methodId];
+    var blob = new Blob([buildChecklistContent(item, meta)], { type: "text/markdown;charset=utf-8" });
+    var url = window.URL.createObjectURL(blob);
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "robustness-checklist-" + slugify(meta.title) + ".md";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.setTimeout(function () {
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+    setTransientStatus("Checklist exported.");
+  }
+
   function update() {
     syncVisibility();
     var state = getState();
     var recommendation = recommend(state);
+    currentRender = {
+      state: state,
+      recommendations: recommendation.recommendations,
+      warnings: recommendation.warnings
+    };
     renderPath(state);
     renderWarnings(recommendation.warnings);
     renderResults(recommendation.recommendations);
@@ -677,16 +1008,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function () {
-        outputs.shareStatus.textContent = "Link copied.";
+        setTransientStatus("Link copied.");
       }).catch(function () {
         outputs.shareStatus.textContent = url;
       });
     } else {
       outputs.shareStatus.textContent = url;
     }
-    window.setTimeout(function () {
-      outputs.shareStatus.textContent = "";
-    }, 2200);
   });
 
   resetButton.addEventListener("click", function () {
@@ -704,6 +1032,14 @@ document.addEventListener("DOMContentLoaded", function () {
     fields.overlap.value = "good";
     fields.highDimensional.value = "no";
     update();
+  });
+
+  outputs.results.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-export-checklist]");
+    if (!button) {
+      return;
+    }
+    exportChecklist(button.getAttribute("data-method-id"));
   });
 
   fields.design.addEventListener("change", handleDesignChange);

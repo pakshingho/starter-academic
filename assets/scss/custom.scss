@@ -241,6 +241,29 @@ html {
   margin-top: 1.5rem;
 }
 
+.causal-tool__hero-figure {
+  margin: 1.5rem 0 1.75rem;
+  padding: 1rem 1rem 0.8rem;
+  border: 1px solid rgba(0, 136, 204, 0.16);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.causal-tool__hero-figure img {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.causal-tool__hero-figure figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
 .causal-tool__grid {
   display: grid;
   grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.25fr);
@@ -438,9 +461,39 @@ html {
   margin-bottom: 0.85rem;
 }
 
+.causal-tool__packages {
+  margin-top: 1rem;
+}
+
+.causal-tool__package-list {
+  margin: 0.55rem 0 0.9rem;
+  padding-left: 1.15rem;
+}
+
+.causal-tool__package-list li + li {
+  margin-top: 0.55rem;
+}
+
+.causal-tool__package-note {
+  display: inline;
+  margin-left: 0.4rem;
+  opacity: 0.84;
+}
+
 .causal-tool__alternatives {
   margin-bottom: 0;
   opacity: 0.88;
+}
+
+.causal-tool__method-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.causal-tool__method-actions .causal-tool__button {
+  padding: 0.58rem 0.95rem;
 }
 
 .back-to-top {
@@ -629,6 +682,11 @@ html {
     flex-direction: column;
   }
 
+  .causal-tool__package-note {
+    display: block;
+    margin: 0.18rem 0 0;
+  }
+
   .causal-tool__actions {
     align-items: stretch;
   }
@@ -636,6 +694,10 @@ html {
   .causal-tool__button {
     width: 100%;
     justify-content: center;
+  }
+
+  .causal-tool__method-actions .causal-tool__button {
+    width: 100%;
   }
 
   .article-style th,

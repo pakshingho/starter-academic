@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-labelledby="title desc">
+  <title id="title">Causal method selector overview</title>
+  <desc id="desc">An original flowchart that summarizes the major branches of the causal inference selector: experimental versus observational data, then method families such as CUPED, CACE, propensity adjustment, difference-in-differences, regression discontinuity, instrumental variables, synthetic control, and interrupted time series.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 24; }
+      .root { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2.5; rx: 28; }
+      .exp { fill: #eef2ff; stroke: #4f46e5; stroke-width: 2; rx: 22; }
+      .obs { fill: #ecfdf5; stroke: #059669; stroke-width: 2; rx: 22; }
+      .nodeBlue { fill: #eff6ff; stroke: #60a5fa; stroke-width: 2; rx: 18; }
+      .nodeTeal { fill: #ecfeff; stroke: #14b8a6; stroke-width: 2; rx: 18; }
+      .nodeAmber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2; rx: 18; }
+      .nodeRose { fill: #fff1f2; stroke: #fb7185; stroke-width: 2; rx: 18; }
+      .nodeSlate { fill: #f8fafc; stroke: #64748b; stroke-width: 2; rx: 18; }
+      .headline { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .section { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 19px Arial, sans-serif; fill: #0f172a; }
+      .text { font: 16px Arial, sans-serif; fill: #334155; }
+      .small { font: 15px Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .guide { stroke: #cbd5e1; stroke-width: 2; fill: none; stroke-dasharray: 8 8; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1500" height="860" rx="34" />
+  <text class="headline" x="60" y="64">Causal Method Selector: Overview Map</text>
+  <text class="text" x="60" y="98">Start with identification structure. Then choose an estimator family and a robustness plan.</text>
+
+  <rect class="root" x="480" y="128" width="540" height="92" rx="28" />
+  <text class="label" x="750" y="168" text-anchor="middle">What identifies the causal effect?</text>
+  <text class="text" x="750" y="196" text-anchor="middle">Random assignment, policy timing, threshold, instrument, or adjustment on observed confounders</text>
+
+  <path class="arrow" d="M 660 220 L 460 286" />
+  <path class="arrow" d="M 840 220 L 1040 286" />
+
+  <rect class="exp" x="110" y="286" width="520" height="488" rx="24" />
+  <text class="section" x="150" y="326">Experimental or randomized data</text>
+  <text class="small" x="150" y="354">Uber-style branch: use design strength first, then choose precision or compliance tools.</text>
+
+  <rect class="nodeBlue" x="150" y="388" width="200" height="112" rx="18" />
+  <text class="label" x="250" y="426" text-anchor="middle">Valid randomization</text>
+  <text class="text" x="250" y="454" text-anchor="middle">ITT / covariate-adjusted</text>
+  <text class="text" x="250" y="478" text-anchor="middle">experiment analysis</text>
+
+  <rect class="nodeTeal" x="390" y="388" width="200" height="112" rx="18" />
+  <text class="label" x="490" y="426" text-anchor="middle">Pre-period outcome</text>
+  <text class="text" x="490" y="454" text-anchor="middle">CUPED / ANCOVA for</text>
+  <text class="text" x="490" y="478" text-anchor="middle">variance reduction</text>
+
+  <rect class="nodeAmber" x="150" y="536" width="200" height="112" rx="18" />
+  <text class="label" x="250" y="574" text-anchor="middle">Noncompliance</text>
+  <text class="text" x="250" y="602" text-anchor="middle">CACE / IV using</text>
+  <text class="text" x="250" y="626" text-anchor="middle">assignment as instrument</text>
+
+  <rect class="nodeRose" x="390" y="536" width="200" height="112" rx="18" />
+  <text class="label" x="490" y="574" text-anchor="middle">Heterogeneous effects</text>
+  <text class="text" x="490" y="602" text-anchor="middle">causal forest, uplift,</text>
+  <text class="text" x="490" y="626" text-anchor="middle">meta-learners</text>
+
+  <rect class="nodeSlate" x="270" y="684" width="200" height="70" rx="18" />
+  <text class="label" x="370" y="724" text-anchor="middle">Mediation / mechanism analysis</text>
+
+  <path class="guide" d="M 370 388 L 370 754" />
+
+  <rect class="obs" x="870" y="286" width="520" height="488" rx="24" />
+  <text class="section" x="910" y="326">Observational or non-randomized data</text>
+  <text class="small" x="910" y="354">Uber + Microsoft branch: search for quasi-experimental structure before selection-on-observables.</text>
+
+  <rect class="nodeAmber" x="910" y="388" width="210" height="112" rx="18" />
+  <text class="label" x="1015" y="426" text-anchor="middle">Threshold or cutoff</text>
+  <text class="text" x="1015" y="454" text-anchor="middle">Regression discontinuity</text>
+  <text class="text" x="1015" y="478" text-anchor="middle">around the boundary</text>
+
+  <rect class="nodeBlue" x="1150" y="388" width="200" height="112" rx="18" />
+  <text class="label" x="1250" y="426" text-anchor="middle">Instrument</text>
+  <text class="text" x="1250" y="454" text-anchor="middle">IV / natural experiment</text>
+  <text class="text" x="1250" y="478" text-anchor="middle">with exclusion story</text>
+
+  <rect class="nodeTeal" x="910" y="536" width="210" height="112" rx="18" />
+  <text class="label" x="1015" y="574" text-anchor="middle">Panel rollout</text>
+  <text class="text" x="1015" y="602" text-anchor="middle">DiD / event study</text>
+  <text class="text" x="1015" y="626" text-anchor="middle">with pre-trend checks</text>
+
+  <rect class="nodeRose" x="1150" y="536" width="200" height="112" rx="18" />
+  <text class="label" x="1250" y="574" text-anchor="middle">Single treated unit</text>
+  <text class="text" x="1250" y="602" text-anchor="middle">Synthetic control</text>
+  <text class="text" x="1250" y="626" text-anchor="middle">or interrupted time series</text>
+
+  <rect class="nodeSlate" x="1020" y="684" width="260" height="70" rx="18" />
+  <text class="label" x="1150" y="712" text-anchor="middle">Observed confounders + overlap</text>
+  <text class="text" x="1150" y="736" text-anchor="middle">Matching, IPTW, AIPW, DML</text>
+
+  <path class="guide" d="M 1150 388 L 1150 754" />
+
+  <rect class="panel" x="560" y="792" width="380" height="40" rx="16" />
+  <text class="small" x="750" y="818" text-anchor="middle">If none of these structures hold, redesign, collect better covariates, or run sensitivity analysis.</text>
+</svg>
