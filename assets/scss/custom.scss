@@ -95,6 +95,16 @@
   font: inherit;
 }
 
+.experiment-tool__field select {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: inherit;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+}
+
 .experiment-tool__field p {
   margin: 0.35rem 0 0;
   font-size: 0.92rem;
@@ -129,6 +139,10 @@
 .experiment-tool__notes {
   margin-top: 1rem;
   font-size: 0.95rem;
+}
+
+.experiment-tool__notes p:last-child {
+  margin-bottom: 0;
 }
 
 .experiment-tool__error {

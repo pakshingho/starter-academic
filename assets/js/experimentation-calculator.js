@@ -9,18 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
     mdeRelative: document.getElementById("mde-relative"),
     alpha: document.getElementById("alpha"),
     power: document.getElementById("power"),
+    testSidedness: document.getElementById("test-sidedness"),
     dailyUsers: document.getElementById("daily-users"),
     trafficSplit: document.getElementById("traffic-split"),
-    variants: document.getElementById("variants")
+    variants: document.getElementById("variants"),
+    controlShare: document.getElementById("control-share")
   };
 
   var outputs = {
     absoluteMde: document.getElementById("metric-absolute-mde"),
     treatmentRate: document.getElementById("metric-treatment-rate"),
     samplePerVariant: document.getElementById("metric-sample-per-variant"),
+    controlSample: document.getElementById("metric-control-sample"),
+    treatmentSample: document.getElementById("metric-treatment-sample"),
     totalSample: document.getElementById("metric-total-sample"),
     runtimeDays: document.getElementById("metric-runtime-days"),
-    usersPerVariantDay: document.getElementById("metric-users-per-variant-day"),
+    controlUsersDay: document.getElementById("metric-control-users-day"),
+    treatmentUsersDay: document.getElementById("metric-treatment-users-day"),
     notes: document.getElementById("experiment-tool-notes"),
     error: document.getElementById("experiment-tool-error")
   };
@@ -75,14 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
     outputs.error.textContent = "";
   }
 
-  function setNotes(variants, adjustedAlpha) {
+  function setNotes(variants, adjustedAlpha, sidedness, controlShare, treatmentShare) {
     var comparisonText = variants > 2
       ? "A Bonferroni adjustment is applied across " + (variants - 1) + " treatment-versus-control comparisons."
       : "This is a standard control-versus-treatment two-arm setup.";
+    var sidednessText = sidedness === "one-sided" ? "one-sided" : "two-sided";
 
     outputs.notes.innerHTML =
-      "<p>This calculator uses the normal approximation for a fixed-horizon two-sided test of two conversion rates with equal allocation across variants.</p>" +
-      "<p>" + comparisonText + " Effective two-sided alpha per comparison: <strong>" + adjustedAlpha.toFixed(4) + "</strong>.</p>";
+      "<p>This calculator uses the normal approximation for a fixed-horizon " + sidednessText + " test of two conversion rates.</p>" +
+      "<p>Control share: <strong>" + (controlShare * 100).toFixed(1) + "%</strong>. Each treatment share: <strong>" + (treatmentShare * 100).toFixed(1) + "%</strong>.</p>" +
+      "<p>" + comparisonText + " Effective alpha per comparison tail rule: <strong>" + adjustedAlpha.toFixed(4) + "</strong>.</p>";
   }
 
   function update() {
@@ -92,9 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var mdeRelative = Number(fields.mdeRelative.value) / 100;
     var alpha = Number(fields.alpha.value);
     var power = Number(fields.power.value);
+    var testSidedness = fields.testSidedness.value;
     var dailyUsers = Number(fields.dailyUsers.value);
     var trafficSplit = Number(fields.trafficSplit.value) / 100;
     var variants = Number(fields.variants.value);
+    var controlShare = Number(fields.controlShare.value) / 100;
+    var treatmentArms = variants - 1;
 
     if (
       !(baselineRate > 0 && baselineRate < 1) ||
@@ -103,9 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
       !(power > 0.5 && power < 1) ||
       !(dailyUsers > 0) ||
       !(trafficSplit > 0 && trafficSplit <= 1) ||
-      !(variants >= 2)
+      !(variants >= 2) ||
+      !(controlShare > 0 && controlShare < 1)
     ) {
       showError("Enter valid inputs for all fields.");
+      return;
+    }
+
+    var treatmentShare = (1 - controlShare) / treatmentArms;
+    if (!(treatmentShare > 0)) {
+      showError("Treatment traffic share must be positive.");
       return;
     }
 
@@ -121,14 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    var comparisons = Math.max(1, variants - 1);
+    var comparisons = Math.max(1, treatmentArms);
     var adjustedAlpha = alpha / comparisons;
     if (!(adjustedAlpha > 0 && adjustedAlpha < 1)) {
       showError("Adjusted alpha must stay between 0 and 1.");
       return;
     }
 
-    var zAlpha = inverseNormalCdf(1 - adjustedAlpha / 2);
+    var tailAlpha = testSidedness === "one-sided" ? adjustedAlpha : adjustedAlpha / 2;
+    var zAlpha = inverseNormalCdf(1 - tailAlpha);
     var zPower = inverseNormalCdf(power);
     if (!isFinite(zAlpha) || !isFinite(zPower)) {
       showError("Could not compute z-scores from the selected alpha and power.");
@@ -136,27 +154,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var pooledRate = (baselineRate + treatmentRate) / 2;
-    var pooledVariance = 2 * pooledRate * (1 - pooledRate);
-    var treatmentVariance = baselineRate * (1 - baselineRate) + treatmentRate * (1 - treatmentRate);
-    var samplePerVariant = Math.pow(zAlpha * Math.sqrt(pooledVariance) + zPower * Math.sqrt(treatmentVariance), 2) / Math.pow(absoluteMde, 2);
+    var allocationRatio = controlShare / treatmentShare;
+    var nullVarianceConstant = pooledRate * (1 - pooledRate) * (1 + 1 / allocationRatio);
+    var altVarianceConstant = baselineRate * (1 - baselineRate) / allocationRatio + treatmentRate * (1 - treatmentRate);
+    var samplePerTreatment = Math.pow(zAlpha * Math.sqrt(nullVarianceConstant) + zPower * Math.sqrt(altVarianceConstant), 2) / Math.pow(absoluteMde, 2);
+    var samplePerControl = allocationRatio * samplePerTreatment;
 
     var effectiveDailyUsers = dailyUsers * trafficSplit;
-    var usersPerVariantDay = effectiveDailyUsers / variants;
-    if (usersPerVariantDay <= 0) {
-      showError("Users per variant per day must be positive.");
+    var controlUsersDay = effectiveDailyUsers * controlShare;
+    var treatmentUsersDay = effectiveDailyUsers * treatmentShare;
+    if (controlUsersDay <= 0 || treatmentUsersDay <= 0) {
+      showError("Users per arm per day must be positive.");
       return;
     }
 
-    var runtimeDays = samplePerVariant / usersPerVariantDay;
-    var totalSample = samplePerVariant * variants;
+    var runtimeDays = Math.max(samplePerControl / controlUsersDay, samplePerTreatment / treatmentUsersDay);
+    var totalSample = samplePerControl + samplePerTreatment * treatmentArms;
 
     outputs.absoluteMde.textContent = (absoluteMde * 100).toFixed(2) + " pp";
     outputs.treatmentRate.textContent = formatPercent(treatmentRate);
-    outputs.samplePerVariant.textContent = formatInteger(samplePerVariant);
+    outputs.samplePerVariant.textContent = formatInteger(Math.max(samplePerControl, samplePerTreatment));
+    outputs.controlSample.textContent = formatInteger(samplePerControl);
+    outputs.treatmentSample.textContent = formatInteger(samplePerTreatment);
     outputs.totalSample.textContent = formatInteger(totalSample);
     outputs.runtimeDays.textContent = runtimeDays.toFixed(1) + " days";
-    outputs.usersPerVariantDay.textContent = formatInteger(usersPerVariantDay);
-    setNotes(variants, adjustedAlpha);
+    outputs.controlUsersDay.textContent = formatInteger(controlUsersDay);
+    outputs.treatmentUsersDay.textContent = formatInteger(treatmentUsersDay);
+    setNotes(variants, adjustedAlpha, testSidedness, controlShare, treatmentShare);
   }
 
   Object.keys(fields).forEach(function (key) {
