@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#475569"/>
+    </marker>
+  </defs>
   <rect width="1200" height="400" fill="#f8fafc"/>
   <text x="40" y="48" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">VAE-Style Collaborative Filtering</text>
 
@@ -21,10 +26,7 @@
   <text x="1020" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">reconstruct likely</text>
   <text x="1020" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1e293b">missing preferences</text>
 
-  <line x1="290" y1="195" x2="410" y2="195" stroke="#475569" stroke-width="3"/>
-  <polygon points="410,195 398,189 398,201" fill="#475569"/>
-  <line x1="630" y1="195" x2="702" y2="195" stroke="#475569" stroke-width="3"/>
-  <polygon points="702,195 690,189 690,201" fill="#475569"/>
-  <line x1="818" y1="195" x2="910" y2="195" stroke="#475569" stroke-width="3"/>
-  <polygon points="910,195 898,189 898,201" fill="#475569"/>
+  <path d="M290 195 L410 195" stroke="#475569" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M630 195 L702 195" stroke="#475569" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M818 195 L910 195" stroke="#475569" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 </svg>

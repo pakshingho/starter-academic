@@ -1,65 +1,65 @@
-<svg width="1200" height="640" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1220" height="660" viewBox="0 0 1220 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Two-tower training and serving workflow</title>
   <desc id="desc">The top half shows joint training with positives and negatives. The bottom half shows offline item embedding computation and online ANN retrieval.</desc>
-  <rect width="1200" height="640" fill="#f8fafc"/>
-  <rect x="30" y="30" width="1140" height="270" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-  <rect x="30" y="330" width="1140" height="280" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-
-  <text x="60" y="72" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">Training: joint optimization of query and item towers</text>
-  <text x="60" y="370" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">Serving: precompute item embeddings and search with ANN</text>
-
-  <rect x="70" y="110" width="190" height="120" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
-  <text x="112" y="148" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Query Tower</text>
-  <text x="102" y="184" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">u = ψ(x_q)</text>
-  <text x="94" y="212" font-family="Arial, sans-serif" font-size="16" fill="#475569">context, history, profile</text>
-
-  <rect x="350" y="100" width="160" height="60" rx="14" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
-  <text x="381" y="137" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">positive item</text>
-  <rect x="350" y="180" width="160" height="60" rx="14" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
-  <text x="387" y="217" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">negatives</text>
-
-  <rect x="600" y="110" width="190" height="120" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
-  <text x="648" y="148" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Item Tower</text>
-  <text x="638" y="184" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">v = φ(x_i)</text>
-  <text x="617" y="212" font-family="Arial, sans-serif" font-size="16" fill="#475569">IDs, text, media, metadata</text>
-
-  <rect x="890" y="105" width="220" height="130" rx="18" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="965" y="142" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Loss</text>
-  <text x="926" y="176" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">pointwise / pairwise /</text>
-  <text x="944" y="202" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">contrastive / InfoNCE</text>
-
-  <path d="M260 170 L350 170" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-  <path d="M510 170 L600 170" stroke="#334155" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-  <path d="M790 170 L890 170" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-  <text x="354" y="92" font-family="Arial, sans-serif" font-size="16" fill="#475569">positive and sampled hard negatives</text>
-
-  <rect x="70" y="415" width="190" height="120" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
-  <text x="97" y="452" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Offline item pass</text>
-  <text x="100" y="486" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">run item tower once</text>
-  <text x="105" y="512" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">for the full catalog</text>
-
-  <rect x="340" y="415" width="220" height="120" rx="18" fill="#ecfeff" stroke="#22d3ee" stroke-width="2"/>
-  <text x="415" y="452" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">ANN Index</text>
-  <text x="372" y="486" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Faiss / ScaNN / HNSW over</text>
-  <text x="386" y="512" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">precomputed item vectors</text>
-
-  <rect x="650" y="405" width="190" height="140" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
-  <text x="689" y="442" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Online query</text>
-  <text x="708" y="476" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">compute u = ψ(x_q)</text>
-  <text x="699" y="504" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">single forward pass</text>
-
-  <rect x="920" y="415" width="190" height="120" rx="18" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-  <text x="948" y="452" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Top-K candidates</text>
-  <text x="958" y="486" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">pass to ranking /</text>
-  <text x="980" y="512" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">re-ranking</text>
-
-  <path d="M260 475 L340 475" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-  <path d="M560 475 L650 475" stroke="#334155" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-  <path d="M840 475 L920 475" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
-
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#334155"/>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#334155"/>
     </marker>
   </defs>
+  <rect width="1220" height="660" fill="#f8fafc"/>
+  <rect x="30" y="30" width="1160" height="280" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="30" y="340" width="1160" height="290" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+
+  <text x="60" y="72" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">Training: joint optimization of query and item towers</text>
+  <text x="60" y="382" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">Serving: precompute item embeddings and search with ANN</text>
+
+  <rect x="70" y="118" width="200" height="124" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="170" y="156" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Query Tower</text>
+  <text x="170" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">u = ψ(x_q)</text>
+  <text x="170" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">context, history, profile</text>
+
+  <rect x="350" y="100" width="170" height="62" rx="14" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="435" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">positive item</text>
+  <rect x="350" y="182" width="170" height="62" rx="14" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="435" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">negatives</text>
+
+  <rect x="610" y="118" width="200" height="124" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="710" y="156" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Item Tower</text>
+  <text x="710" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">v = φ(x_i)</text>
+  <text x="710" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">IDs, text, media, metadata</text>
+
+  <rect x="900" y="110" width="230" height="140" rx="18" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="1015" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Loss</text>
+  <text x="1015" y="182" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">pointwise / pairwise /</text>
+  <text x="1015" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">contrastive / InfoNCE</text>
+
+  <path d="M270 180 L350 180" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M520 180 L610 180" stroke="#334155" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M810 180 L900 180" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <text x="435" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">positive items and</text>
+  <text x="435" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">sampled hard negatives</text>
+
+  <rect x="70" y="425" width="200" height="124" rx="18" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text x="170" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Offline item pass</text>
+  <text x="170" y="496" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">run item tower once</text>
+  <text x="170" y="522" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">for the full catalog</text>
+
+  <rect x="345" y="425" width="230" height="124" rx="18" fill="#ecfeff" stroke="#22d3ee" stroke-width="2"/>
+  <text x="460" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">ANN Index</text>
+  <text x="460" y="496" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">Faiss / ScaNN / HNSW over</text>
+  <text x="460" y="522" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">precomputed item vectors</text>
+
+  <rect x="665" y="415" width="200" height="144" rx="18" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="765" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Online query</text>
+  <text x="765" y="486" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">compute u = ψ(x_q)</text>
+  <text x="765" y="514" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">single forward pass</text>
+
+  <rect x="935" y="425" width="190" height="124" rx="18" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <text x="1030" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Top-K candidates</text>
+  <text x="1030" y="496" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">pass to ranking /</text>
+  <text x="1030" y="522" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0f172a">re-ranking</text>
+
+  <path d="M270 487 L345 487" stroke="#16a34a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M575 487 L665 487" stroke="#334155" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M865 487 L935 487" stroke="#2563eb" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
 </svg>
