@@ -82,9 +82,7 @@ Contextual filtering incorporates information about the current situation into t
 - Useful when the same user may want different items under different circumstances
 - Often framed as next-action or next-item prediction rather than only long-run preference estimation
 
-<div class="recommender-figure recommender-figure--compact">
-  <img src="/media/recommender/rs-contextual-filtering.svg" alt="Contextual recommendation diagram">
-</div>
+![Contextual recommendation diagram](/media/recommender/rs-contextual-filtering.svg)
 
 <div id="hybrid-models"></div>
 
@@ -96,9 +94,7 @@ Combine metadata with interaction learning.
 - Handles cold-start better than pure collaborative filtering
 - Usually outperforms pure content-based methods once enough interactions accumulate
 
-<div class="recommender-figure recommender-figure--compact">
-  <img src="/media/recommender/rs-content-vs-cf.svg" alt="Content-based, collaborative filtering, and hybrid model comparison">
-</div>
+![Content-based, collaborative filtering, and hybrid model comparison](/media/recommender/rs-content-vs-cf.svg)
 
 <div id="embedding-spaces-and-similarity-measures"></div>
 
