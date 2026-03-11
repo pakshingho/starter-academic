@@ -6,11 +6,13 @@
 @media (min-width: 1200px) {
   .universal-wrapper,
   .home-section .container {
-    max-width: min(1080px, calc(100vw - 3rem));
+    width: calc(100vw - 3rem);
+    max-width: 1080px;
   }
 
   .article-container {
-    max-width: min(900px, calc(100vw - 3rem));
+    width: calc(100vw - 3rem);
+    max-width: 900px;
   }
 }
 
@@ -66,7 +68,8 @@
 
 .experiment-tool {
   margin-top: 1.5rem;
-  width: min(1120px, calc(100vw - 3rem));
+  width: calc(100vw - 3rem);
+  max-width: 1120px;
   margin-right: auto;
   margin-left: 50%;
   transform: translateX(-50%);
