@@ -20,7 +20,7 @@
 
 [[main]]
   name = "Resources"
-  url = "/resources/"
+  identifier = "resources_group"
   weight = 35
 
 [[main]]
@@ -63,6 +63,12 @@
   url = "/talk/"
   parent = "research_group"
   weight = 32
+
+[[main]]
+  name = "Data Science"
+  url = "/resources/#data-science"
+  parent = "resources_group"
+  weight = 36
 
 [[main]]
   name = "About"
