@@ -30,7 +30,7 @@ html {
 
   .article-container {
     width: calc(100vw - 3rem);
-    max-width: 900px;
+    max-width: 980px;
   }
 }
 
@@ -86,21 +86,22 @@ html {
 
 .experiment-tool {
   margin-top: 1.5rem;
-  width: calc(100vw - 3rem);
-  max-width: 1120px;
+  width: 100%;
+  max-width: 100%;
   margin-right: auto;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  margin-left: auto;
+  transform: none;
 }
 
 .experiment-tool__grid {
   display: grid;
-  grid-template-columns: minmax(320px, 1.05fr) minmax(420px, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.75rem;
   align-items: start;
 }
 
 .experiment-tool__panel {
+  min-width: 0;
   padding: 1.4rem;
   border: 1px solid rgba(0, 136, 204, 0.16);
   border-radius: 1rem;
@@ -150,7 +151,7 @@ html {
 
 .experiment-tool__metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -182,6 +183,7 @@ html {
 .experiment-tool__notes {
   margin-top: 1rem;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 
 .experiment-tool__notes p:last-child {
@@ -326,6 +328,12 @@ html {
   .article-style .katex-display,
   .article-style mjx-container[display="true"] {
     font-size: 0.97rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .experiment-tool__metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
