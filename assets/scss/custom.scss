@@ -54,6 +54,12 @@ html {
   margin: 1.35rem auto;
 }
 
+.docs-article-container .article-style img[src*="/media/recommender/google/"] {
+  width: 86%;
+  max-width: 760px;
+  margin: 1.1rem auto 1.25rem;
+}
+
 .article-style figure {
   margin: 1.35rem 0;
 }
