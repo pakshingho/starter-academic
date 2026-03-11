@@ -55,12 +55,17 @@
 
 .experiment-tool {
   margin-top: 1.5rem;
+  width: min(1120px, calc(100vw - 3rem));
+  margin-right: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .experiment-tool__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(320px, 1.05fr) minmax(420px, 1.2fr);
+  gap: 1.75rem;
+  align-items: start;
 }
 
 .experiment-tool__panel {
@@ -113,27 +118,33 @@
 
 .experiment-tool__metrics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 1rem;
 }
 
 .experiment-tool__metric {
   padding: 1rem;
   border-radius: 0.85rem;
   background: rgba(0, 136, 204, 0.08);
+  min-height: 8.75rem;
 }
 
 .experiment-tool__metric-label {
   display: block;
   margin-bottom: 0.35rem;
   font-size: 0.92rem;
+  line-height: 1.35;
   opacity: 0.82;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .experiment-tool__metric strong {
   display: block;
   font-size: 1.25rem;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .experiment-tool__notes {
@@ -250,12 +261,18 @@
 }
 
 @media (max-width: 991.98px) {
+  .experiment-tool {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+
   .experiment-tool__grid {
     grid-template-columns: 1fr;
   }
 
   .experiment-tool__metrics {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .article-style table {
