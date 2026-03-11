@@ -49,6 +49,10 @@
   display: block;
 }
 
+.site-footer .powered-by:last-child {
+  display: none;
+}
+
 .back-to-top {
   position: fixed;
   right: 1.25rem;
