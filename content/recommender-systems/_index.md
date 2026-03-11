@@ -18,8 +18,6 @@ toc: false
 
 A chapter-based guide to recommender systems for data scientists, spanning problem framing, modeling, evaluation, and production design.
 
-This resource is now organized as a handbook rather than a single long article. Use the chapter navigation to move through the material.
-
 ## Chapter Guide
 
 1. [Why Recommender Systems Matter](why-it-matters/)
