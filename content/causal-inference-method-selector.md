@@ -60,6 +60,14 @@ This tool uses a decision-tree backbone centered on identification structure, bu
           </select>
           <p>Use this only for experimental settings.</p>
         </div>
+        <div class="causal-tool__field" id="group-interference">
+          <label for="ci-interference">Interference or marketplace spillovers across units?</label>
+          <select id="ci-interference">
+            <option value="no" selected>No</option>
+            <option value="yes">Yes</option>
+          </select>
+          <p>Examples: shared driver supply, seller liquidity, auction budgets, inventory competition, or social-network spillovers.</p>
+        </div>
         <div class="causal-tool__field" id="group-noncompliance">
           <label for="ci-noncompliance">Assignment and treatment received differ?</label>
           <select id="ci-noncompliance">
@@ -166,6 +174,7 @@ This tool uses a decision-tree backbone centered on identification structure, bu
 ## Methods covered
 
 - Randomized experiment analysis with covariate adjustment
+- Switchback experiments for interference-heavy marketplaces or networks
 - CUPED / pre-period variance reduction
 - CACE / instrumental variables for noncompliance
 - Heterogeneous treatment effect models such as causal forests, uplift models, and meta-learners

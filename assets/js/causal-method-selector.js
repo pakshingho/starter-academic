@@ -127,6 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/variance-estimation-and-improved-sensitivity-pitfalls-and-solutions/5B071E01319E9939629E6280ECE34C5A",
       note: "Ch. 18, 'Variance Estimation and Improved Sensitivity: Pitfalls and Solutions.'"
     },
+    toce22: {
+      label: "Trustworthy Online Controlled Experiments",
+      url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/trustworthy-online-controlled-experiments/524D7D0FDF6A542F732D047118618645",
+      note: "See Ch. 22, 'Competitive Effects,' for interference, spillovers, and marketplace-style experimentation."
+    },
     cfds1: {
       label: "Causal Inference for Data Science",
       url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-1",
@@ -230,20 +235,30 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   var USE_CASE_REFS = {
-    uberXP: {
-      label: "Uber Engineering: experimentation platform",
-      url: "https://www.uber.com/en-US/blog/xp/",
-      note: "Large-scale randomized experiments for features, app redesign, promotions, and model launches."
+    spotifyExperimentation: {
+      label: "Spotify Engineering: experimentation platform",
+      url: "https://engineering.atspotify.com/2020/10/spotifys-new-experimentation-platform-part-1/",
+      note: "Platformized product experimentation with managed configuration, metric catalogs, and consistent analysis for many concurrent tests."
+    },
+    wayfairGeo: {
+      label: "Wayfair Tech Blog: geo experiments",
+      url: "https://www.aboutwayfair.com/careers/tech-blog/how-wayfair-uses-geo-experiments-to-measure-incrementality",
+      note: "Market-level randomized experiments to measure incrementality when user-level assignment is infeasible."
     },
     toceSpeed: {
       label: "TOCE: speed experiments",
       url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/speed-matters/35D34F276D4AF1AEE4B98D3E09B9E168",
       note: "Backend speed experiments where small latency improvements translated into material annual revenue."
     },
-    uberCuped: {
-      label: "Uber Engineering: CUPED",
-      url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
-      note: "Uses CUPED with pre-experiment data for variance reduction and to reduce pre-existing bias."
+    bookingCuped: {
+      label: "Booking.com Data Science: CUPED",
+      url: "https://booking.ai/how-booking-com-increases-the-power-of-online-experiments-with-cuped-995d186fff1d",
+      note: "Uses CUPED to increase power in online experiments by leveraging pre-experiment outcomes."
+    },
+    boltCupedSwitchback: {
+      label: "Bolt Labs: CUPED for switchback tests",
+      url: "https://medium.com/@garret.oconnell/cuped-for-switchback-tests-ec01a5d4934f",
+      note: "Variance reduction for switchback tests by folding in pre-period signal from repeated marketplace blocks."
     },
     uberFlickers: {
       label: "Uber Engineering: experiment contamination",
@@ -255,45 +270,70 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
       note: "Email or messaging experiments where assignment differs from actual exposure or opens."
     },
-    uberCausalLearning: {
-      label: "Uber Research: retention targeting",
-      url: "https://www.uber.com/blog/research/improve-user-retention-with-causal-learning/",
-      note: "Targeted promotions optimized for heterogeneous treatment effects; deployed live in multiple cities."
+    doordashPromotions: {
+      label: "DoorDash: causal ML for promotions",
+      url: "https://careersatdoordash.com/blog/smarter-promotions-with-causal-machine-learning/",
+      note: "Targets promotions using heterogeneous treatment effects instead of relying only on one average effect."
     },
-    uberMediation: {
-      label: "Uber Engineering: mediation modeling",
-      url: "https://www.uber.com/en-CA/blog/mediation-modeling/",
-      note: "Explains why promotions, menu changes, or customer sentiment move orders, referrals, or satisfaction."
+    bookingMediation: {
+      label: "Booking.com Data Science: mediation analysis",
+      url: "https://booking.ai/understanding-mechanisms-of-change-in-online-experiments-at-booking-com-629201ec74ee",
+      note: "Decomposes experiment effects into direct and indirect paths to understand why product changes move business metrics."
     },
-    uberDelayedDeliveries: {
-      label: "Uber Engineering: delayed deliveries",
-      url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
-      note: "Estimate how delayed deliveries affect future Uber Eats engagement without deliberately delaying orders."
+    etsyImbalance: {
+      label: "Etsy Code as Craft: imbalance detection",
+      url: "https://www.etsy.com/codeascraft/when-a-b-tests-go-bad-healthier-experimentation-with-automated-imbalance-detection",
+      note: "Automated imbalance detection helps teams catch compromised experiments before biased results get trusted."
+    },
+    doordashBackdoor: {
+      label: "DoorDash: back-door adjustment",
+      url: "https://careersatdoordash.com/blog/using-back-door-adjustment-causal-analysis-to-measure-pre-post-effects/",
+      note: "Observed-confounder adjustment for pre/post product changes when clean A/B tests are unavailable."
     },
     microsoftRuntimeConfounding: {
       label: "Microsoft Research: runtime confounding",
       url: "https://www.microsoft.com/en-us/research/publication/counterfactual-predictions-under-runtime-confounding/",
       note: "Counterfactual decision support under observational selection, with examples such as loan approval/default scenarios."
     },
+    boltQuasiAds: {
+      label: "Bolt Tech Blog: quasi-experiments in ads",
+      url: "https://bolt.eu/en/blog/quasi-experiments-in-ads-measurement/",
+      note: "Ad or geo measurement with untreated controls and pre/post time series when classic A/B tests are impractical."
+    },
     uberSurgeRDD: {
       label: "Uber Engineering: surge threshold",
       url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
       note: "Regression discontinuity around surge pricing thresholds to study trip-request behavior."
     },
-    uberCityLaunch: {
-      label: "Uber Engineering: city launch analysis",
-      url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
-      note: "City-level marketing campaigns or new feature launches analyzed with untreated cities or time periods as comparisons."
+    discordSynthetic: {
+      label: "Discord Engineering: synthetic control",
+      url: "https://discord.com/blog/measuring-product-impact-without-a-b-testing-how-discord-used-the-synthetic-control-method-for-voice-messages",
+      note: "Voice Messages were evaluated with synthetic controls because network effects made a standard A/B test invalid."
     },
     googleCausalImpact: {
       label: "Google Research: CausalImpact",
       url: "https://research.google/pubs/pub41854",
       note: "Bayesian structural time-series evaluation of an online advertising campaign on search-related site visits."
     },
+    instacartRDD: {
+      label: "Instacart Engineering: regression discontinuity",
+      url: "https://tech.instacart.com/optimizing-at-the-edge-using-regression-discontinuity-designs-to-power-decision-making-51e296615046",
+      note: "Regression discontinuity at operational thresholds to guide decision-making near product or policy boundaries."
+    },
     uberBugInstrument: {
       label: "Uber Engineering: bugs or outages as IV",
       url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
       note: "Use bugs or outages as instruments when estimating the effect of delayed deliveries on downstream engagement."
+    },
+    doordashSwitchback: {
+      label: "DoorDash Engineering: switchback tests",
+      url: "https://careersatdoordash.com/blog/switchback-tests-and-randomized-experimentation-under-network-effects-at-doordash/",
+      note: "Marketplace experiments with supply-demand interference randomized across time-region blocks rather than individual users."
+    },
+    boltSwitchback: {
+      label: "Bolt Labs: switchback design",
+      url: "https://medium.com/bolt-labs/tips-and-considerations-for-switchback-test-designs-530655541549",
+      note: "Practical guidance on switchback windows, washout, and interference-heavy marketplace testing."
     }
   };
 
@@ -363,8 +403,50 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for absorbed fixed effects and panel-robust inference when randomized experiments are analyzed at user, geo, or time-cell level."
         }
       ]),
-      useCases: useCaseRefs(["uberXP", "toceSpeed"]),
+      useCases: useCaseRefs(["spotifyExperimentation", "wayfairGeo"]),
       bookRefs: bookRefs(["toce2", "cfds1", "mhe2"])
+    },
+    switchback: {
+      title: "Switchback experiment",
+      family: "Interference-aware experiment",
+      summary: "Use when treatment on one unit changes marketplace conditions for others, so you randomize time-location blocks instead of independent users.",
+      pros: [
+        "Handles shared supply, demand, inventory, or network spillovers better than user-level randomization.",
+        "Keeps experimental identification while respecting marketplace interference.",
+        "Fits dispatch, ranking, pricing, and operational experiments where one treated unit affects neighbors."
+      ],
+      cons: [
+        "Usually has less power than independent user-level randomization.",
+        "Carryover across adjacent blocks can bias the estimate if washout is too short.",
+        "Results depend on sensible choices for block length, geography, and assignment unit."
+      ],
+      assumptions: [
+        "Most interference is contained within the randomized time-location block",
+        "Carryover across neighboring blocks is limited or explicitly handled with washout",
+        "Analysis, inference, and logging align with the actual switchback assignment unit"
+      ],
+      nextChecks: [
+        "Choose block length and washout windows based on how long marketplace effects persist",
+        "Run A/A checks across alternating blocks before trusting the design",
+        "Cluster inference at the switchback assignment unit, not only at the user level"
+      ],
+      robustnessChecklist: [
+        "Re-estimate the effect under alternative block lengths or washout choices.",
+        "Check balance across time-of-day, weekday, region, and assignment blocks.",
+        "Look for carryover by testing adjacent or lead blocks for residual treatment effects.",
+        "Report the effect at the randomized block level and explain how it maps to the operational decision."
+      ],
+      alternatives: ["cluster-randomized experiments", "geo experiments", "standard A/B tests only if spillovers are negligible"],
+      packages: packageRefs([
+        "pyfixest",
+        "linearmodels",
+        {
+          key: "statsmodelsCore",
+          note: "Use for block-level regression baselines and cluster-robust inference when analyzing switchback assignments."
+        }
+      ]),
+      useCases: useCaseRefs(["doordashSwitchback", "boltSwitchback"]),
+      bookRefs: bookRefs(["toce22", "toce18"])
     },
     cuped: {
       title: "CUPED or pre-period regression adjustment",
@@ -404,7 +486,7 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for ANCOVA-style adjustments, fixed effects, and fast repeated estimation when CUPED-like adjustments sit inside larger experiment pipelines."
         }
       ]),
-      useCases: useCaseRefs(["uberCuped"]),
+      useCases: useCaseRefs(["bookingCuped", "boltCupedSwitchback"]),
       bookRefs: bookRefs(["toce18", "toce2"])
     },
     cace: {
@@ -488,7 +570,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["subgroup analysis", "AIPW / DR learners"],
       packages: packageRefs(["econml", "causalml", "sklift", "causallib"]),
-      useCases: useCaseRefs(["uberCausalLearning"]),
+      useCases: useCaseRefs(["doordashPromotions"]),
       bookRefs: bookRefs(["cidp9", "cidp10"])
     },
     mediation: {
@@ -523,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["structural causal models", "mechanism-specific experiments"],
       packages: packageRefs(["statsmodelsMediation", "pingouinMediation", "dowhy"]),
-      useCases: useCaseRefs(["uberMediation"]),
+      useCases: useCaseRefs(["bookingMediation"]),
       bookRefs: bookRefs(["explanation2", "explanation3"])
     },
     repair: {
@@ -558,7 +640,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["rerun experiment", "covariate-adjusted ITT"],
       packages: packageRefs(["statsmodelsTreatment", "causallib", "zepid", "dowhy"]),
-      useCases: useCaseRefs(["uberFlickers", "uberDelayedDeliveries"]),
+      useCases: useCaseRefs(["etsyImbalance", "uberFlickers"]),
       bookRefs: bookRefs(["toce11", "cfds5"])
     },
     propensity: {
@@ -593,7 +675,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["AIPW", "double machine learning"],
       packages: packageRefs(["statsmodelsTreatment", "causallib", "zepid", "dowhy"]),
-      useCases: useCaseRefs(["uberDelayedDeliveries"]),
+      useCases: useCaseRefs(["doordashBackdoor"]),
       bookRefs: bookRefs(["cfds5", "mixtape5"])
     },
     aipw: {
@@ -628,7 +710,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["matching", "IPTW", "causal forests / DR learners"],
       packages: packageRefs(["doubleml", "econml", "causallib", "zepid", "statsmodelsAIPW"]),
-      useCases: useCaseRefs(["microsoftRuntimeConfounding", "uberDelayedDeliveries"]),
+      useCases: useCaseRefs(["microsoftRuntimeConfounding", "doordashBackdoor"]),
       bookRefs: bookRefs(["cfds8", "cidp10"])
     },
     did: {
@@ -677,7 +759,7 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for event-study or DiD regression baselines with robust standard errors; full staggered-DiD workflows may need additional tooling."
         }
       ]),
-      useCases: useCaseRefs(["uberCityLaunch"]),
+      useCases: useCaseRefs(["boltQuasiAds"]),
       bookRefs: bookRefs(["mhe5", "cfds11", "mixtape9"])
     },
     synthetic: {
@@ -721,7 +803,7 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for structural-break, seasonality, and counterfactual-trend diagnostics; synthetic control itself usually needs a more specialized library."
         }
       ]),
-      useCases: useCaseRefs(["uberCityLaunch", "googleCausalImpact"]),
+      useCases: useCaseRefs(["discordSynthetic", "googleCausalImpact"]),
       bookRefs: bookRefs(["mixtape10", "cfds11", "cidp11"])
     },
     its: {
@@ -807,7 +889,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         "dowhy"
       ]),
-      useCases: useCaseRefs(["uberSurgeRDD"]),
+      useCases: useCaseRefs(["instacartRDD", "uberSurgeRDD"]),
       bookRefs: bookRefs(["mhe6", "cfds11", "mixtape6"])
     },
     iv: {
@@ -906,6 +988,7 @@ document.addEventListener("DOMContentLoaded", function () {
     goal: document.getElementById("ci-goal"),
     prePeriod: document.getElementById("ci-pre-period"),
     randomizationIssue: document.getElementById("ci-randomization-issue"),
+    interference: document.getElementById("ci-interference"),
     noncompliance: document.getElementById("ci-noncompliance"),
     panelData: document.getElementById("ci-panel-data"),
     staggeredPolicy: document.getElementById("ci-staggered-policy"),
@@ -920,6 +1003,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var groups = {
     prePeriod: document.getElementById("group-pre-period"),
     randomizationIssue: document.getElementById("group-randomization-issue"),
+    interference: document.getElementById("group-interference"),
     noncompliance: document.getElementById("group-noncompliance"),
     panelData: document.getElementById("group-panel-data"),
     staggeredPolicy: document.getElementById("group-staggered-policy"),
@@ -972,6 +1056,7 @@ document.addEventListener("DOMContentLoaded", function () {
       goal: fields.goal.value,
       prePeriod: fields.prePeriod.value,
       randomizationIssue: fields.randomizationIssue.value,
+      interference: fields.interference.value,
       noncompliance: fields.noncompliance.value,
       panelData: fields.panelData.value,
       staggeredPolicy: fields.staggeredPolicy.value,
@@ -994,6 +1079,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideGroup(groups.prePeriod, !((experimental && (goal === "ate" || goal === "variance" || goal === "salvage")) || (observational && goal === "policy")));
     hideGroup(groups.randomizationIssue, !(experimental && (goal === "ate" || goal === "salvage")));
+    hideGroup(groups.interference, !experimental);
     hideGroup(groups.noncompliance, !experimental);
     hideGroup(groups.panelData, !panelVisible);
     hideGroup(groups.staggeredPolicy, !(observational && state.panelData === "yes" && goal === "policy"));
@@ -1033,13 +1119,22 @@ document.addEventListener("DOMContentLoaded", function () {
     var warnings = [];
 
     if (state.design === "experimental") {
+      if (state.interference === "yes") {
+        addRecommendation(methods, "switchback", 3, ["Interference across units means time-location randomization is safer than independent user-level assignment."]);
+        warnings.push("When treatment changes shared marketplace or network state, a standard user-level A/B test can misstate the effect unless spillovers are blocked or modeled.");
+      }
+
       if (state.goal === "ate") {
-        addRecommendation(methods, "experiment", 3, ["Randomization is the primary source of identification."]);
+        addRecommendation(methods, "experiment", state.interference === "yes" ? 2 : 3, [
+          state.interference === "yes"
+            ? "Keep a standard randomized analysis only as a benchmark if spillovers can truly be argued away."
+            : "Randomization is the primary source of identification."
+        ]);
         if (state.prePeriod === "yes") {
           addRecommendation(methods, "cuped", 3, ["Pre-period outcomes are available, so variance reduction is attractive."]);
         }
         if (state.randomizationIssue === "minor") {
-          addRecommendation(methods, "experiment", 3, ["Minor imbalance suggests covariate-adjusted analysis rather than abandoning the experiment."]);
+          addRecommendation(methods, "experiment", state.interference === "yes" ? 2 : 3, ["Minor imbalance suggests covariate-adjusted analysis rather than abandoning the experiment."]);
           warnings.push("Minor imbalance or attrition should be diagnosed, but you should still report the ITT estimate first.");
         }
         if (state.randomizationIssue === "severe") {
@@ -1052,9 +1147,17 @@ document.addEventListener("DOMContentLoaded", function () {
       if (state.goal === "variance") {
         if (state.prePeriod === "yes") {
           addRecommendation(methods, "cuped", 3, ["Your stated goal is precision gain and you have pre-period outcomes."]);
-          addRecommendation(methods, "experiment", 2, ["CUPED should be compared with the plain ITT estimate."]);
+          addRecommendation(methods, state.interference === "yes" ? "switchback" : "experiment", state.interference === "yes" ? 3 : 2, [
+            state.interference === "yes"
+              ? "Variance reduction should sit on top of an interference-aware randomized design."
+              : "CUPED should be compared with the plain ITT estimate."
+          ]);
         } else {
-          addRecommendation(methods, "experiment", 2, ["Without pre-period outcomes, use covariate adjustment or ANCOVA-style analysis for modest gains."]);
+          addRecommendation(methods, state.interference === "yes" ? "switchback" : "experiment", 2, [
+            state.interference === "yes"
+              ? "Without pre-period outcomes, switchback still fixes the design problem even if precision gains are more limited."
+              : "Without pre-period outcomes, use covariate adjustment or ANCOVA-style analysis for modest gains."
+          ]);
           warnings.push("CUPED is only useful when you have uncontaminated pre-treatment outcomes that predict the post-treatment metric.");
         }
       }
@@ -1070,20 +1173,37 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           addRecommendation(methods, "uplift", 2, ["You want heterogeneity analysis, even if a simpler subgroup design may be enough."]);
         }
-        addRecommendation(methods, "experiment", 2, ["A clean randomized baseline remains useful before layering personalization models."]);
+        addRecommendation(methods, state.interference === "yes" ? "switchback" : "experiment", 2, [
+          state.interference === "yes"
+            ? "Personalization analysis still needs an interference-aware experimental baseline."
+            : "A clean randomized baseline remains useful before layering personalization models."
+        ]);
       }
 
       if (state.goal === "mechanism") {
         addRecommendation(methods, "mediation", 3, ["The goal is pathway or mechanism analysis rather than only the total effect."]);
-        addRecommendation(methods, "experiment", 2, ["Mechanism analysis should sit on top of a credible total effect estimate."]);
+        addRecommendation(methods, state.interference === "yes" ? "switchback" : "experiment", 2, [
+          state.interference === "yes"
+            ? "Mechanism analysis should still sit on top of a credible interference-aware total effect estimate."
+            : "Mechanism analysis should sit on top of a credible total effect estimate."
+        ]);
       }
 
       if (state.goal === "salvage") {
         if (state.randomizationIssue === "none") {
-          addRecommendation(methods, "experiment", 2, ["If randomization is actually valid, you probably do not need salvage methods."]);
-          warnings.push("The tool cannot infer salvage needs without evidence of imbalance, leakage, or attrition.");
+          if (state.interference === "yes") {
+            addRecommendation(methods, "switchback", 3, ["If the apparent problem is spillover, redesign the experiment around switchback blocks rather than bias repair."]);
+            warnings.push("What looks like experimental contamination may actually be interference. Redesign the assignment unit before trusting repair estimators.");
+          } else {
+            addRecommendation(methods, "experiment", 2, ["If randomization is actually valid, you probably do not need salvage methods."]);
+            warnings.push("The tool cannot infer salvage needs without evidence of imbalance, leakage, or attrition.");
+          }
         } else if (state.randomizationIssue === "minor") {
-          addRecommendation(methods, "experiment", 3, ["Minor problems usually call for covariate adjustment and careful diagnostics, not a design rewrite."]);
+          addRecommendation(methods, state.interference === "yes" ? "switchback" : "experiment", 3, [
+            state.interference === "yes"
+              ? "Minor issues with interference usually call for a redesign toward switchback blocks, not only regression adjustment."
+              : "Minor problems usually call for covariate adjustment and careful diagnostics, not a design rewrite."
+          ]);
           if (state.prePeriod === "yes") {
             addRecommendation(methods, "cuped", 2, ["Pre-period outcomes can recover precision while addressing measured imbalance."]);
           }
@@ -1239,6 +1359,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (state.design === "experimental") {
       if (state.prePeriod === "yes") {
         chips.push("pre-period data");
+      }
+      if (state.interference === "yes") {
+        chips.push("interference / spillovers");
       }
       if (state.noncompliance === "yes") {
         chips.push("noncompliance");
@@ -1636,6 +1759,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setGoalOptions("experimental", "ate");
     fields.prePeriod.value = "no";
     fields.randomizationIssue.value = "none";
+    fields.interference.value = "no";
     fields.noncompliance.value = "no";
     fields.panelData.value = "no";
     fields.staggeredPolicy.value = "no";
