@@ -1005,35 +1005,49 @@ Use this chapter as the source map for the handbook. The list is grouped by how 
 ## 11. Survey Papers and Further Reading
 
 
-When you want to go beyond a chapter-level handbook, survey papers are the fastest way to widen your map of the field. They help you see which methods are mature, which subproblems have become their own research area, and where evaluation practice is still moving.
+This chapter is not meant to be exhaustive. The goal is to give you a compact reading map: a curated subset to read carefully, followed by other surveys that are still useful but can be skimmed or saved for later.
 
-<div id="model-family-surveys"></div>
+<div id="curated-starting-set"></div>
 
-### 11.1 Model-family surveys
+### 11.1 A curated starting set
 
-**[Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/abs/1707.07435) (2017; later accepted by ACM Computing Surveys).** This survey is one of the clearest early maps of deep-learning recommender systems. It organizes the literature into model families, summarizes how neural architectures were being used across recommendation problems, and identifies broader research trends rather than treating each new model as a disconnected invention. It is especially relevant to this handbook because it gives historical structure to the `Deep Models` chapter and helps explain how modern retrieval, interaction, and representation-learning approaches grew out of earlier neural recommender work.
+**[A Survey on Accuracy-oriented Neural Recommendation: From Collaborative Filtering to Information-rich Recommendation](https://arxiv.org/abs/2104.13030) (2021).** This survey is one of the most useful bridges between classic collaborative filtering and the modern neural recommendation literature. It does not just list architectures; it organizes the field by how recommendation moves from pure user-item interaction modeling toward richer inputs such as context, content, knowledge, and multi-behavior signals. It is relevant to this handbook because it helps place the `Model Families`, `Feature-Rich Recommendation`, and `Deep Models` chapters into one coherent research map instead of treating them as separate toolkits.
 
-**[A Comprehensive Survey of Recommender Systems Based on Deep Learning](https://doi.org/10.3390/app132011378) (2023).** This review takes a more recent and more application-oriented pass over deep-learning recommenders by grouping the field into content-based, sequence, cross-domain, and social recommendation settings. It is useful not just because it catalogs architectures, but because it also frames open challenges such as interpretability, multimodality, privacy, and fairness. For this handbook, the paper is relevant because it extends the taxonomy beyond the core deep models covered here and helps readers see which recommendation problems become distinct subfields once systems move beyond classic user-item ranking.
+**[A Survey on Session-based Recommender Systems](http://hdl.handle.net/10453/168894) (2022).** This survey focuses on settings where long-run user histories are weak, absent, or less useful than short-horizon intent. It lays out the data structure, problem formulation, and method families for session-based recommendation, including the shift from simple Markov-style methods to GRU-, attention-, and transformer-based models. It is relevant to this handbook because the `Explicit vs. Implicit Feedback`, `Model Families`, and `Deep Models` chapters only introduce sequence-aware recommendation at a high level; this paper is the right follow-on when your product is driven by recency, intent shifts, and within-session behavior.
 
-These papers are useful after the `Deep Models` chapter because they show how two-tower, sequence, interaction-heavy, and feature-rich models fit into a larger research taxonomy.
+**[Bias and Debias in Recommender System: A Survey and Future Directions](https://arxiv.org/abs/2010.03240) (2020).** This survey is useful because it reframes recommendation quality as partly a data-generation problem rather than only a model-design problem. It catalogs major bias sources such as exposure bias, selection bias, position bias, and popularity bias, then reviews algorithmic and evaluation-side responses. It is relevant to this handbook because many of the production issues discussed in `Production Concerns` and the evaluation caveats in the ranking chapters become much easier to reason about once you view recommendation pipelines through a bias-and-debias lens.
 
-<div id="session-and-sequential-surveys"></div>
+**[Multimodal Recommender Systems: A Survey](https://arxiv.org/abs/2302.03883) (2023; updated 2024).** This survey covers recommendation systems that use more than IDs and tabular metadata, such as text, images, audio, and video. It is especially useful for understanding how representation learning changes when item understanding itself becomes a multimodal problem instead of a pure interaction problem. It is relevant to this handbook because it extends the `Feature-Rich Recommendation` and `Deep Models` chapters into the part of the field where content understanding and recommendation become tightly coupled.
 
-### 11.2 Session and sequential recommendation surveys
+**[How Can Recommender Systems Benefit from Large Language Models: A Survey](https://dl.acm.org/doi/10.1145/3678004) (2025).** This survey is a strong next read if you want to understand where LLMs fit into recommendation without collapsing everything into hype. It organizes the space around representation, reasoning, generation, user understanding, and agentic or interactive recommendation settings, while also discussing limits such as latency, hallucination, and evaluation mismatch. It is relevant to this handbook because it helps extend the `Deep Models` and `Production Concerns` chapters into the current wave of LLM-assisted retrieval, ranking, explanation, and recommendation workflows.
 
-**[A Survey on Session-based Recommender Systems](http://hdl.handle.net/10453/168894) (2022).** This survey focuses on recommendation settings where long-run user history is weak, unavailable, or less useful than short-horizon intent. It lays out the entities, behaviors, data characteristics, and modeling challenges of session-based recommendation, then develops a taxonomy for the methods used in that setting. It is relevant to this handbook because the `Explicit vs. Implicit Feedback`, `Model Families`, and `Deep Models` chapters touch sequence-aware recommendation only as one branch of the field; this paper is the right next step when session dynamics, recency, and evolving within-session context are central to the product problem.
+**[A Survey of Real-World Recommender Systems: Challenges, Constraints, and Industrial Perspectives](https://arxiv.org/abs/2509.06002) (2025).** This survey is unusually valuable for practitioners because it centers deployment constraints rather than only benchmark performance. It discusses the industrial tradeoffs around latency, retraining cadence, marketplace constraints, product surfaces, organizational limitations, and evaluation gaps between offline results and business outcomes. It is relevant to this handbook because it is the closest survey match to the practical orientation of `Production Concerns` and `Build Sequence`.
 
-This is the right follow-on if your product has weak long-term user histories, strong within-session intent shifts, or feed/search journeys where recency matters more than stable preference.
+These are the papers I would prioritize first if your goal is to deepen judgment, not just expand the size of your reading list.
 
-<div id="long-horizon-and-responsible-recommendation"></div>
+<div id="other-surveys-from-2020-onward"></div>
 
-### 11.3 Long-horizon and responsible recommendation
+### 11.2 Other useful surveys from 2020 onward
 
-**[Reinforcement Learning based Recommender Systems: A Survey](https://arxiv.org/abs/2101.06286) (2021).** This paper reframes recommendation as a sequential decision problem rather than a one-step scoring problem. It surveys both RL- and DRL-based recommenders, then organizes the space around state representation, reward design, policy optimization, and environment modeling. It is relevant to this handbook because the `Production Concerns` chapter already pushes beyond offline ranking quality toward long-term outcomes; this survey is the natural next read when you want to reason about exploration, delayed rewards, and policy learning instead of only immediate CTR or relevance.
+These are still worth keeping in the chapter, but they are more specialized, more overlapping with the core list, or less central to the structure of this handbook.
 
-**[Fairness and Diversity in Recommender Systems: A Survey](https://doi.org/10.1145/3664928) (published online in 2024; ACM TIST issue in 2025).** This survey argues that recommender systems cannot be judged only by utility metrics and develops a joint view of fairness and diversity rather than treating them as unrelated objectives. It covers measurements, debiasing methods, re-ranking approaches, and the link between user-level and item-level concerns. It is relevant to this handbook because the `Production Concerns` chapter already introduces freshness, diversity, fairness, and business constraints; this survey provides the broader literature map you need once recommendation quality is no longer defined only by engagement lift.
+- **[Graph Learning based Recommender Systems: A Review](https://arxiv.org/abs/2105.06339) (2021).** Useful when graph-based message passing, neighborhood propagation, and graph-enhanced collaborative filtering are central to your method selection.
+- **[Reinforcement Learning based Recommender Systems: A Survey](https://arxiv.org/abs/2101.06286) (2021).** Best for long-horizon optimization, exploration, delayed rewards, and policy-learning formulations of recommendation.
+- **[Contemporary Recommendation Systems on Big Data and Their Applications: A Survey](https://arxiv.org/abs/2206.02631) (first posted 2022; updated 2024).** Broad and application-heavy survey that is more useful for field scanning than for deep method selection.
+- **[A Comprehensive Survey of Recommender Systems Based on Deep Learning](https://doi.org/10.3390/app132011378) (2023).** Good catalog of deep-learning recommendation settings, especially if you want a wider taxonomy after reading the core deep chapters.
+- **[Recent Developments in Recommender Systems: A Survey](https://arxiv.org/abs/2306.12680) (2023).** Broad recent-literature snapshot that is useful when you want a compact update on post-classic recommender directions.
+- **[A Comprehensive Review of Recommender Systems: Transitioning from Theory to Practice](https://arxiv.org/abs/2407.13699) (2024).** Useful when you want a paper explicitly framed around the gap between elegant methods and deployable systems.
+- **[Fairness and Diversity in Recommender Systems: A Survey](https://doi.org/10.1145/3664928) (published online in 2024; ACM TIST issue in 2025).** Strong choice if your concern is multi-objective ranking quality rather than only relevance or engagement lift.
 
-These surveys are especially relevant after the `Production Concerns` chapter, because they push beyond offline ranking quality toward long-term value, exploration, fairness, and platform objectives.
+<div id="foundational-pre-2020-surveys"></div>
+
+### 11.3 Foundational pre-2020 surveys worth keeping
+
+These are older than the 2020+ focus of this section, but they are still worth keeping because they remain useful orientation documents.
+
+- **[Deep Learning based Recommender System: A Survey and New Perspectives](https://arxiv.org/abs/1707.07435) (2017; later journal publication in 2019).** Still one of the clearest early maps of neural recommender systems.
+- **[Deep Learning Based Recommender System: A Survey and New Perspectives](https://dl.acm.org/doi/10.1145/3285029) (2019).** The ACM Computing Surveys publication version of the same work, useful if you prefer the journal reference.
+- **[Recommender system application developments: a survey](https://doi.org/10.1016/j.dss.2015.03.008) (2015).** Older and broader than the rest, but still useful if you want historical perspective on application areas and early design patterns.
 
 <div id="how-to-read-survey-papers"></div>
 
