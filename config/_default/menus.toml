@@ -310,6 +310,48 @@
   weight = 85
 
 [[recommender-systems]]
+  name = "7.6 Recommended systems reading"
+  url = "/recommender-systems/production-concerns/#recommended-systems-reading"
+  parent = "chapter-production"
+  weight = 86
+
+[[recommender-systems]]
+  name = "8.1 Define the objective hierarchy"
+  url = "/recommender-systems/build-sequence/#define-the-objective-hierarchy"
+  parent = "chapter-build-sequence"
+  weight = 91
+
+[[recommender-systems]]
+  name = "8.2 Build strong non-ML baselines"
+  url = "/recommender-systems/build-sequence/#build-strong-nonml-baselines"
+  parent = "chapter-build-sequence"
+  weight = 92
+
+[[recommender-systems]]
+  name = "8.3 Add collaborative filtering"
+  url = "/recommender-systems/build-sequence/#add-collaborative-filtering"
+  parent = "chapter-build-sequence"
+  weight = 93
+
+[[recommender-systems]]
+  name = "8.4 Add metadata for hybrid robustness"
+  url = "/recommender-systems/build-sequence/#add-metadata-for-hybrid-robustness"
+  parent = "chapter-build-sequence"
+  weight = 94
+
+[[recommender-systems]]
+  name = "8.5 Introduce two-stage retrieval and ranking"
+  url = "/recommender-systems/build-sequence/#introduce-two-stage-retrieval-and-ranking"
+  parent = "chapter-build-sequence"
+  weight = 95
+
+[[recommender-systems]]
+  name = "8.6 Establish experiment and monitoring standards"
+  url = "/recommender-systems/build-sequence/#establish-experiment-and-monitoring-standards"
+  parent = "chapter-build-sequence"
+  weight = 96
+
+[[recommender-systems]]
   name = "10.1 Guides and courses"
   url = "/recommender-systems/references/#guides-and-courses"
   parent = "chapter-references"
@@ -328,25 +370,49 @@
   weight = 113
 
 [[recommender-systems]]
-  name = "11.1 Model-family surveys"
-  url = "/recommender-systems/survey-papers-and-further-reading/#model-family-surveys"
+  name = "11.1 Start here"
+  url = "/recommender-systems/survey-papers-and-further-reading/#start-here"
   parent = "chapter-survey"
   weight = 121
 
 [[recommender-systems]]
-  name = "11.2 Session and sequential surveys"
-  url = "/recommender-systems/survey-papers-and-further-reading/#session-and-sequential-surveys"
+  name = "11.2 General and industry-facing surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#general-and-industry-surveys"
   parent = "chapter-survey"
   weight = 122
 
 [[recommender-systems]]
-  name = "11.3 Long-horizon and responsible recommendation"
-  url = "/recommender-systems/survey-papers-and-further-reading/#long-horizon-and-responsible-recommendation"
+  name = "11.3 Neural and deep-learning surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#neural-and-deep-learning-surveys"
   parent = "chapter-survey"
   weight = 123
 
 [[recommender-systems]]
-  name = "11.4 How to read survey papers"
-  url = "/recommender-systems/survey-papers-and-further-reading/#how-to-read-survey-papers"
+  name = "11.4 Sequential and decision-oriented surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#sequential-session-and-decision-surveys"
   parent = "chapter-survey"
   weight = 124
+
+[[recommender-systems]]
+  name = "11.5 Responsible and robust recommendation"
+  url = "/recommender-systems/survey-papers-and-further-reading/#responsible-and-robust-recommendation"
+  parent = "chapter-survey"
+  weight = 125
+
+[[recommender-systems]]
+  name = "11.6 Emerging directions"
+  url = "/recommender-systems/survey-papers-and-further-reading/#emerging-directions"
+  parent = "chapter-survey"
+  weight = 126
+
+[[recommender-systems]]
+  name = "11.7 Foundational pre-2020 surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#foundational-pre-2020-surveys"
+  parent = "chapter-survey"
+  weight = 127
+
+[[recommender-systems]]
+  name = "11.8 How to read survey papers"
+  url = "/recommender-systems/survey-papers-and-further-reading/#how-to-read-survey-papers"
+  parent = "chapter-survey"
+  weight = 128
