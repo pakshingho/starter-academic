@@ -142,7 +142,7 @@
   weight = 33
 
 [[recommender-systems]]
-  name = "2.4 Benchmark datasets"
+  name = "2.4 Benchmark datasets and split strategy"
   url = "/recommender-systems/explicit-vs-implicit-feedback/#benchmark-datasets-and-split-strategy"
   parent = "chapter-explicit-implicit"
   weight = 34
@@ -172,13 +172,13 @@
   weight = 44
 
 [[recommender-systems]]
-  name = "3.5 Embedding spaces and similarity"
+  name = "3.5 Embedding spaces and similarity measures for candidate generation"
   url = "/recommender-systems/model-families/#embedding-spaces-and-similarity-measures"
   parent = "chapter-model-families"
   weight = 45
 
 [[recommender-systems]]
-  name = "4.1 PMF / latent factors"
+  name = "4.1 PMF / latent factors (explicit feedback)"
   url = "/recommender-systems/matrix-factorization/#pmf-latent-factors"
   parent = "chapter-matrix-factorization"
   weight = 51
@@ -202,7 +202,7 @@
   weight = 54
 
 [[recommender-systems]]
-  name = "4.5 AutoRec"
+  name = "4.5 AutoRec for nonlinear rating prediction"
   url = "/recommender-systems/matrix-factorization/#autorec"
   parent = "chapter-matrix-factorization"
   weight = 55
@@ -244,7 +244,7 @@
   weight = 64
 
 [[recommender-systems]]
-  name = "6.1 Two-tower retrieval"
+  name = "6.1 Two-tower retrieval models"
   url = "/recommender-systems/deep-models/#two-tower-retrieval-models"
   parent = "chapter-deep-models"
   weight = 71
@@ -256,7 +256,7 @@
   weight = 72
 
 [[recommender-systems]]
-  name = "6.3 Variational autoencoders"
+  name = "6.3 Variational autoencoders for collaborative filtering"
   url = "/recommender-systems/deep-models/#variational-autoencoders-for-collaborative-filtering"
   parent = "chapter-deep-models"
   weight = 73
@@ -268,7 +268,7 @@
   weight = 74
 
 [[recommender-systems]]
-  name = "6.5 Wide-and-deep"
+  name = "6.5 Wide-and-deep style models"
   url = "/recommender-systems/deep-models/#wide-and-deep-style-models"
   parent = "chapter-deep-models"
   weight = 75
@@ -280,7 +280,7 @@
   weight = 76
 
 [[recommender-systems]]
-  name = "7.1 Retrieval + ranking"
+  name = "7.1 Retrieval + ranking architecture"
   url = "/recommender-systems/production-concerns/#retrieval-ranking-architecture"
   parent = "chapter-production"
   weight = 81
@@ -382,13 +382,13 @@
   weight = 122
 
 [[recommender-systems]]
-  name = "11.3 Neural and deep-learning surveys"
+  name = "11.3 Neural and deep-learning recommender surveys"
   url = "/recommender-systems/survey-papers-and-further-reading/#neural-and-deep-learning-surveys"
   parent = "chapter-survey"
   weight = 123
 
 [[recommender-systems]]
-  name = "11.4 Sequential and decision-oriented surveys"
+  name = "11.4 Sequential, session-based, and decision-oriented surveys"
   url = "/recommender-systems/survey-papers-and-further-reading/#sequential-session-and-decision-surveys"
   parent = "chapter-survey"
   weight = 124
@@ -406,7 +406,7 @@
   weight = 126
 
 [[recommender-systems]]
-  name = "11.7 Foundational pre-2020 surveys"
+  name = "11.7 Foundational pre-2020 surveys worth keeping"
   url = "/recommender-systems/survey-papers-and-further-reading/#foundational-pre-2020-surveys"
   parent = "chapter-survey"
   weight = 127
