@@ -391,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Use cluster-robust inference when assignment or interference is clustered.",
         "Check guardrail or spillover outcomes before making rollout recommendations."
       ],
-      alternatives: ["CUPED", "CACE / IV", "heterogeneity models"],
+      alternatives: ["CUPED", "effect among compliers (CACE / LATE)", "heterogeneity models"],
       packages: packageRefs([
         "statsmodelsCore",
         {
@@ -490,9 +490,9 @@ document.addEventListener("DOMContentLoaded", function () {
       bookRefs: bookRefs(["toce18", "toce2"])
     },
     cace: {
-      title: "CACE / instrumental variables for noncompliance",
+      title: "Effect among compliers (CACE / LATE)",
       family: "Experimental",
-      summary: "Use assignment as an instrument when treatment take-up differs from assignment and you need the effect among compliers.",
+      summary: "Use assignment as an instrument when treatment take-up differs from assignment and you need the local effect among compliers.",
       pros: [
         "Recovers an interpretable complier effect when take-up differs from assignment.",
         "Preserves the value of encouragement designs and imperfect experiments.",
@@ -510,7 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       nextChecks: [
         "Report first-stage strength",
-        "Report both ITT and complier estimates",
+        "Report both ITT and CACE / LATE estimates",
         "Explain who the compliers are in business terms"
       ],
       robustnessChecklist: [

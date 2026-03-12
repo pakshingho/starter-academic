@@ -176,7 +176,7 @@ This tool uses a decision-tree backbone centered on identification structure, bu
 - Randomized experiment analysis with covariate adjustment
 - Switchback experiments for interference-heavy marketplaces or networks
 - CUPED / pre-period variance reduction
-- CACE / instrumental variables for noncompliance
+- Effect among compliers (CACE / LATE) via IV for noncompliance
 - Heterogeneous treatment effect models such as causal forests, uplift models, and meta-learners
 - Mediation analysis
 - Matching and propensity-score weighting
