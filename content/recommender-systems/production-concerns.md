@@ -222,3 +222,11 @@ Data scientists should treat recommenders as continuously monitored systems:
 - Candidate recall degradation
 - Online metric drift and alerting
 - Safe fallback policies
+
+<div id="recommended-systems-reading"></div>
+
+### 7.6 Recommended systems reading
+
+If you want a broader production-systems reference beyond recommender-specific papers, [Chip Huyen's *Designing Machine Learning Systems*](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) is a strong complement to this chapter.
+
+It is not a recommender-systems book specifically, but it is useful for recommender practitioners because it covers the operational side of production ML: data pipelines, iterative development, deployment tradeoffs, monitoring, feedback loops, and the gap between offline model quality and deployed system behavior. That makes it a good companion once you move from method selection into long-term system ownership.
