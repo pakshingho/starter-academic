@@ -370,49 +370,49 @@
   weight = 113
 
 [[recommender-systems]]
-  name = "11.1 Start here"
-  url = "/recommender-systems/survey-papers-and-further-reading/#start-here"
+  name = "11.1 How to use survey papers efficiently"
+  url = "/recommender-systems/survey-papers-and-further-reading/#how-to-use-survey-papers-efficiently"
   parent = "chapter-survey"
   weight = 121
 
 [[recommender-systems]]
-  name = "11.2 General and industry-facing surveys"
-  url = "/recommender-systems/survey-papers-and-further-reading/#general-and-industry-surveys"
+  name = "11.2 Start here"
+  url = "/recommender-systems/survey-papers-and-further-reading/#start-here"
   parent = "chapter-survey"
   weight = 122
 
 [[recommender-systems]]
-  name = "11.3 Neural and deep-learning recommender surveys"
-  url = "/recommender-systems/survey-papers-and-further-reading/#neural-and-deep-learning-surveys"
+  name = "11.3 General and industry-facing surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#general-and-industry-surveys"
   parent = "chapter-survey"
   weight = 123
 
 [[recommender-systems]]
-  name = "11.4 Sequential, session-based, and decision-oriented surveys"
-  url = "/recommender-systems/survey-papers-and-further-reading/#sequential-session-and-decision-surveys"
+  name = "11.4 Neural and deep-learning recommender surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#neural-and-deep-learning-surveys"
   parent = "chapter-survey"
   weight = 124
 
 [[recommender-systems]]
-  name = "11.5 Responsible and robust recommendation"
-  url = "/recommender-systems/survey-papers-and-further-reading/#responsible-and-robust-recommendation"
+  name = "11.5 Sequential, session-based, and decision-oriented surveys"
+  url = "/recommender-systems/survey-papers-and-further-reading/#sequential-session-and-decision-surveys"
   parent = "chapter-survey"
   weight = 125
 
 [[recommender-systems]]
-  name = "11.6 Emerging directions"
-  url = "/recommender-systems/survey-papers-and-further-reading/#emerging-directions"
+  name = "11.6 Responsible and robust recommendation"
+  url = "/recommender-systems/survey-papers-and-further-reading/#responsible-and-robust-recommendation"
   parent = "chapter-survey"
   weight = 126
 
 [[recommender-systems]]
-  name = "11.7 Foundational pre-2020 surveys worth keeping"
-  url = "/recommender-systems/survey-papers-and-further-reading/#foundational-pre-2020-surveys"
+  name = "11.7 Emerging directions"
+  url = "/recommender-systems/survey-papers-and-further-reading/#emerging-directions"
   parent = "chapter-survey"
   weight = 127
 
 [[recommender-systems]]
-  name = "11.8 How to read survey papers"
-  url = "/recommender-systems/survey-papers-and-further-reading/#how-to-read-survey-papers"
+  name = "11.8 Foundational pre-2020 surveys worth keeping"
+  url = "/recommender-systems/survey-papers-and-further-reading/#foundational-pre-2020-surveys"
   parent = "chapter-survey"
   weight = 128
