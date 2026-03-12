@@ -244,6 +244,12 @@
   weight = 64
 
 [[recommender-systems]]
+  name = "5.5 Industrial ads CTR architectures"
+  url = "/recommender-systems/feature-rich-recommendation/#industrial-ads-ctr-architectures"
+  parent = "chapter-feature-rich"
+  weight = 65
+
+[[recommender-systems]]
   name = "6.1 Two-tower retrieval models"
   url = "/recommender-systems/deep-models/#two-tower-retrieval-models"
   parent = "chapter-deep-models"
@@ -368,6 +374,12 @@
   url = "/recommender-systems/references/#tools-and-implementations"
   parent = "chapter-references"
   weight = 113
+
+[[recommender-systems]]
+  name = "10.4 Industrial ads CTR papers"
+  url = "/recommender-systems/references/#industrial-ads-ctr-papers"
+  parent = "chapter-references"
+  weight = 114
 
 [[recommender-systems]]
   name = "11.1 How to use survey papers efficiently"

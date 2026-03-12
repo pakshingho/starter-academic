@@ -46,3 +46,10 @@ Use this chapter as the source map for the handbook. The list is grouped by how 
 - [Surprise documentation](https://surpriselib.com/#documentation)
 - [Simon Funk (2006): Netflix Update - Try This at Home](https://sifter.org/~simon/journal/20061211.html)
 - [ScaNN](https://github.com/google-research/google-research/tree/master/scann)
+
+<div id="industrial-ads-ctr-papers"></div>
+
+### 10.4 Industrial ads CTR papers
+
+- [DHEN: A Deep and Hierarchical Ensemble Network for Large-Scale Click-Through Rate Prediction](https://arxiv.org/abs/2203.11014) (2022)
+- [InterFormer: Effective Heterogeneous Interaction Learning for Click-Through Rate Prediction](https://dl.acm.org/doi/10.1145/3746252.3761527) (2025, Meta Ads)
