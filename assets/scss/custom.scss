@@ -263,10 +263,13 @@ html {
 }
 
 .causal-tool__subtitle {
-  margin: 0.1rem 0 1rem;
-  font-size: 1.12rem;
-  line-height: 1.45;
-  opacity: 0.84;
+  margin: -0.35rem 0 1rem;
+  color: #475569;
+  font-size: clamp(1rem, 0.96rem + 0.22vw, 1.08rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
 }
 
 .causal-tool__hero-figure {
@@ -275,6 +278,10 @@ html {
   border: 1px solid rgba(0, 136, 204, 0.16);
   border-radius: 1rem;
   background: rgba(0, 0, 0, 0.02);
+}
+
+.causal-tool__hero-figure picture {
+  display: block;
 }
 
 .causal-tool__hero-figure img {
@@ -767,6 +774,10 @@ html {
 
   .causal-tool__panel {
     padding: 1.1rem;
+  }
+
+  .causal-tool__subtitle {
+    margin-top: -0.2rem;
   }
 
   .causal-tool__method-head {

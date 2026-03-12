@@ -5,15 +5,18 @@ type: page
 draft: false
 ---
 
-<p class="causal-tool__subtitle">How to choose a causal inference method: the basics.</p>
+<p class="causal-tool__subtitle" role="doc-subtitle">How to choose a causal inference method: the basics.</p>
 
 Choose causal inference methods from study design, identification strategy, and business objective.
 
 This tool uses a decision-tree backbone centered on identification structure, but it returns multiple viable methods with assumptions and follow-up checks rather than forcing a single branch.
 
 <figure class="causal-tool__hero-figure">
-  <img src="/media/tools/causal-method-selector-overview.svg" alt="Overview flowchart for choosing causal inference methods across experiments, observational designs, thresholds, instruments, and rollout settings.">
-  <figcaption>Original overview map for the selector. The interactive tool below expands each branch into method recommendations, package suggestions, and exportable robustness checklists.</figcaption>
+  <picture>
+    <source media="(max-width: 767px)" srcset="/media/tools/causal-method-selector-overview-mobile.svg">
+    <img src="/media/tools/causal-method-selector-overview.svg" alt="Overview flowchart for choosing causal inference methods across experiments, observational designs, thresholds, instruments, and rollout settings.">
+  </picture>
+  <figcaption>Overview map for the selector. The interactive tool below expands each branch into method recommendations, package suggestions, and exportable robustness checklists.</figcaption>
 </figure>
 
 <div class="causal-tool" id="causal-tool">
