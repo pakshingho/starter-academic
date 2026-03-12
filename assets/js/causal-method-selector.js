@@ -270,10 +270,15 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
       note: "Email or messaging experiments where assignment differs from actual exposure or opens."
     },
-    doordashPromotions: {
-      label: "DoorDash: causal ML for promotions",
-      url: "https://careersatdoordash.com/blog/smarter-promotions-with-causal-machine-learning/",
-      note: "Targets promotions using heterogeneous treatment effects instead of relying only on one average effect."
+    doordashPromotionsBlog: {
+      label: "DoorDash blog: smarter promotions",
+      url: "https://careersatdoordash.com/blog/doordash-smarter-promotions-with-causal-machine-learning/",
+      note: "Explains how DoorDash targets promotions using heterogeneous treatment effects instead of relying only on one average effect."
+    },
+    doordashPromotionsPaper: {
+      label: "DoorDash technical paper",
+      url: "https://causal-machine-learning.github.io/kdd2025-workshop/papers/16.pdf",
+      note: "Technical paper version of the smarter-promotions causal machine learning workflow, with more methodological detail."
     },
     bookingMediation: {
       label: "Booking.com Data Science: mediation analysis",
@@ -570,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["subgroup analysis", "AIPW / DR learners"],
       packages: packageRefs(["econml", "causalml", "sklift", "causallib"]),
-      useCases: useCaseRefs(["doordashPromotions"]),
+      useCases: useCaseRefs(["doordashPromotionsBlog", "doordashPromotionsPaper"]),
       bookRefs: bookRefs(["cidp9", "cidp10"])
     },
     mediation: {
