@@ -10,4 +10,5 @@ type: page
 
 ### Technical Guides
 
+- [Causal Inference Resources](/causal-inference-resources/)
 - [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))
