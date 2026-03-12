@@ -34,6 +34,46 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "https://causalml.readthedocs.io/",
       note: "Use for uplift trees, meta-learners, and policy targeting workflows."
     },
+    sklift: {
+      label: "scikit-uplift",
+      url: "https://www.uplift-modeling.com/en/latest/",
+      note: "Use for uplift modeling with sklearn-style APIs, ranking metrics such as AUUC/Qini, and campaign targeting evaluation."
+    },
+    causallib: {
+      label: "causallib",
+      url: "https://causallib.readthedocs.io/en/latest/",
+      note: "Use for IPW, standardization, overlap weighting, and doubly robust estimators built around sklearn-style learners."
+    },
+    zepid: {
+      label: "zEpid",
+      url: "https://zepid.readthedocs.io/en/latest/",
+      note: "Use for IPTW, AIPW, TMLE, and epidemiology-style diagnostics for time-fixed or time-varying exposures."
+    },
+    doubleml: {
+      label: "DoubleML",
+      url: "https://docs.doubleml.org/stable/",
+      note: "Use for cross-fitted double/debiased ML, including PLR, PLIV, IRM, and IIVM workflows."
+    },
+    linearmodels: {
+      label: "linearmodels",
+      url: "https://bashtage.github.io/linearmodels/",
+      note: "Use for panel-data estimators, absorbed fixed effects, and instrumental-variable models beyond the core statsmodels stack."
+    },
+    pyfixest: {
+      label: "PyFixest",
+      url: "https://pyfixest.org/pyfixest.html",
+      note: "Use for fast high-dimensional fixed effects, IV regression, clustered inference, and modern difference-in-differences estimators."
+    },
+    causalpy: {
+      label: "CausalPy",
+      url: "https://causalpy.readthedocs.io/",
+      note: "Use for quasi-experimental workflows such as difference-in-differences, interrupted time series, synthetic control, regression discontinuity, and IV."
+    },
+    pingouinMediation: {
+      label: "Pingouin mediation_analysis",
+      url: "https://pingouin-stats.org/build/html/generated/pingouin.mediation_analysis.html",
+      note: "Use for lightweight bootstrap mediation analysis with covariates or multiple parallel mediators."
+    },
     dowhy: {
       label: "DoWhy",
       url: "https://www.pywhy.org/dowhy/v0.13/",
@@ -312,7 +352,17 @@ document.addEventListener("DOMContentLoaded", function () {
         "Check guardrail or spillover outcomes before making rollout recommendations."
       ],
       alternatives: ["CUPED", "CACE / IV", "heterogeneity models"],
-      packages: packageRefs(["statsmodelsCore", "dowhy"]),
+      packages: packageRefs([
+        "statsmodelsCore",
+        {
+          key: "pyfixest",
+          note: "Use for clustered or high-dimensional fixed-effects regressions when experiments are run over panels, markets, or repeated outcomes."
+        },
+        {
+          key: "linearmodels",
+          note: "Use for absorbed fixed effects and panel-robust inference when randomized experiments are analyzed at user, geo, or time-cell level."
+        }
+      ]),
       useCases: useCaseRefs(["uberXP", "toceSpeed"]),
       bookRefs: bookRefs(["toce2", "cfds1", "mhe2"])
     },
@@ -347,7 +397,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "Document whether the adjustment changes interpretation or only precision."
       ],
       alternatives: ["ANCOVA", "standard experiment analysis"],
-      packages: packageRefs(["statsmodelsCore"]),
+      packages: packageRefs([
+        "statsmodelsCore",
+        {
+          key: "pyfixest",
+          note: "Use for ANCOVA-style adjustments, fixed effects, and fast repeated estimation when CUPED-like adjustments sit inside larger experiment pipelines."
+        }
+      ]),
       useCases: useCaseRefs(["uberCuped"]),
       bookRefs: bookRefs(["toce18", "toce2"])
     },
@@ -382,7 +438,21 @@ document.addEventListener("DOMContentLoaded", function () {
         "State clearly who the complier population is and whether that matters for decisions."
       ],
       alternatives: ["ITT only", "encouragement design diagnostics"],
-      packages: packageRefs(["statsmodelsIV", "dowhy"]),
+      packages: packageRefs([
+        "statsmodelsIV",
+        {
+          key: "linearmodels",
+          note: "Use for 2SLS, LIML, GMM, and richer IV diagnostics when assignment is the instrument."
+        },
+        {
+          key: "pyfixest",
+          note: "Use for IV regression with high-dimensional fixed effects and cluster-robust inference."
+        },
+        {
+          key: "causalpy",
+          note: "Use for Bayesian or quasi-experimental IV workflows when you want effect summaries alongside the design."
+        }
+      ]),
       useCases: useCaseRefs(["uberEmailNoncompliance"]),
       bookRefs: bookRefs(["mhe4", "cfds9", "mixtape7"])
     },
@@ -417,7 +487,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Inspect whether treatment recommendations concentrate in unsupported covariate regions."
       ],
       alternatives: ["subgroup analysis", "AIPW / DR learners"],
-      packages: packageRefs(["econml", "causalml", "dowhy"]),
+      packages: packageRefs(["econml", "causalml", "sklift", "causallib"]),
       useCases: useCaseRefs(["uberCausalLearning"]),
       bookRefs: bookRefs(["cidp9", "cidp10"])
     },
@@ -452,7 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare direct/indirect estimates under alternative mediator models."
       ],
       alternatives: ["structural causal models", "mechanism-specific experiments"],
-      packages: packageRefs(["statsmodelsMediation", "dowhy"]),
+      packages: packageRefs(["statsmodelsMediation", "pingouinMediation", "dowhy"]),
       useCases: useCaseRefs(["uberMediation"]),
       bookRefs: bookRefs(["explanation2", "explanation3"])
     },
@@ -487,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Treat the repaired estimate as a fallback and assess whether redesign is cheaper than trusting it."
       ],
       alternatives: ["rerun experiment", "covariate-adjusted ITT"],
-      packages: packageRefs(["statsmodelsTreatment", "dowhy"]),
+      packages: packageRefs(["statsmodelsTreatment", "causallib", "zepid", "dowhy"]),
       useCases: useCaseRefs(["uberFlickers", "uberDelayedDeliveries"]),
       bookRefs: bookRefs(["toce11", "cfds5"])
     },
@@ -522,7 +592,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare the weighted/matched result against a simpler regression-adjusted baseline."
       ],
       alternatives: ["AIPW", "double machine learning"],
-      packages: packageRefs(["statsmodelsTreatment", "dowhy"]),
+      packages: packageRefs(["statsmodelsTreatment", "causallib", "zepid", "dowhy"]),
       useCases: useCaseRefs(["uberDelayedDeliveries"]),
       bookRefs: bookRefs(["cfds5", "mixtape5"])
     },
@@ -557,7 +627,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Report the target estimand explicitly and verify it matches the business question."
       ],
       alternatives: ["matching", "IPTW", "causal forests / DR learners"],
-      packages: packageRefs(["statsmodelsAIPW", "econml", "dowhy"]),
+      packages: packageRefs(["doubleml", "econml", "causallib", "zepid", "statsmodelsAIPW"]),
       useCases: useCaseRefs(["microsoftRuntimeConfounding", "uberDelayedDeliveries"]),
       bookRefs: bookRefs(["cfds8", "cidp10"])
     },
@@ -593,11 +663,19 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["synthetic control", "interrupted time series"],
       packages: packageRefs([
+        "pyfixest",
+        {
+          key: "causalpy",
+          note: "Use for classical DiD and staggered-adoption DiD with decision-ready summaries."
+        },
+        {
+          key: "linearmodels",
+          note: "Use for fixed-effects panel estimators and clustered inference when you need a more econometric panel workflow."
+        },
         {
           key: "statsmodelsCore",
           note: "Use for event-study or DiD regression baselines with robust standard errors; full staggered-DiD workflows may need additional tooling."
-        },
-        "dowhy"
+        }
       ]),
       useCases: useCaseRefs(["uberCityLaunch"]),
       bookRefs: bookRefs(["mhe5", "cfds11", "mixtape9"])
@@ -635,10 +713,13 @@ document.addEventListener("DOMContentLoaded", function () {
       alternatives: ["difference-in-differences", "interrupted time series"],
       packages: packageRefs([
         {
+          key: "causalpy",
+          note: "Use for synthetic-control and Bayesian structural time-series style workflows with effect summaries."
+        },
+        {
           key: "statsmodelsTSA",
           note: "Use for structural-break, seasonality, and counterfactual-trend diagnostics; synthetic control itself usually needs a more specialized library."
-        },
-        "dowhy"
+        }
       ]),
       useCases: useCaseRefs(["uberCityLaunch", "googleCausalImpact"]),
       bookRefs: bookRefs(["mixtape10", "cfds11", "cidp11"])
@@ -674,7 +755,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare against a donor-based or comparison-group design if one becomes available."
       ],
       alternatives: ["synthetic control", "difference-in-differences"],
-      packages: packageRefs(["statsmodelsTSA", "dowhy"]),
+      packages: packageRefs([
+        {
+          key: "causalpy",
+          note: "Use for interrupted time series or comparative ITS analyses with both OLS and Bayesian models."
+        },
+        "statsmodelsTSA"
+      ]),
       useCases: useCaseRefs(["googleCausalImpact"]),
       bookRefs: bookRefs(["cfds11", "cidp11"])
     },
@@ -710,6 +797,10 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       alternatives: ["IV", "matching near the threshold"],
       packages: packageRefs([
+        {
+          key: "causalpy",
+          note: "Use for regression-discontinuity workflows with built-in summaries and quasi-experimental plotting."
+        },
         {
           key: "statsmodelsCore",
           note: "Use for local regression baselines and sensitivity checks; dedicated RDD tooling may still be preferable for production analysis."
@@ -750,7 +841,15 @@ document.addEventListener("DOMContentLoaded", function () {
         "Explain how local the IV estimand is and whether it maps to the business decision."
       ],
       alternatives: ["RDD", "difference-in-differences", "natural-experiment design audit"],
-      packages: packageRefs(["statsmodelsIV", "dowhy"]),
+      packages: packageRefs([
+        "linearmodels",
+        "pyfixest",
+        "statsmodelsIV",
+        {
+          key: "causalpy",
+          note: "Use for instrumental-variable designs when you want quasi-experimental reporting around the first stage and effect summary."
+        }
+      ]),
       useCases: useCaseRefs(["uberBugInstrument", "uberEmailNoncompliance"]),
       bookRefs: bookRefs(["mhe4", "cfds9", "mixtape7"])
     },
@@ -789,8 +888,12 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use it to formalize the design assumptions, DAG, and refutation strategy before choosing an estimator."
         },
         {
-          key: "statsmodelsCore",
-          note: "Use it for descriptive regressions and diagnostics while you improve the design, not as a substitute for identification."
+          key: "causalpy",
+          note: "Use it as a menu of quasi-experimental templates when you suspect the answer is a design change rather than another regression."
+        },
+        {
+          key: "linearmodels",
+          note: "Use it for descriptive panel or IV diagnostics while you test whether stronger design structure is available."
         }
       ]),
       useCases: [],
