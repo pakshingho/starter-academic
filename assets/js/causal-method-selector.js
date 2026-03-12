@@ -71,9 +71,195 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  function packageRefs(items) {
+  var BOOK_REFS = {
+    toce2: {
+      label: "Trustworthy Online Controlled Experiments",
+      url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/running-and-analyzing-experiments/7C945A72A66FF111B5EF27E1BF055134",
+      note: "Ch. 2, 'Running and Analyzing Experiments: An End-to-End Example.'"
+    },
+    toce11: {
+      label: "Trustworthy Online Controlled Experiments",
+      url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/observational-causal-studies/4473AF3C4BAAEA3A12BDAEFBBCB526CC",
+      note: "Ch. 11, 'Observational Causal Studies.'"
+    },
+    toce18: {
+      label: "Trustworthy Online Controlled Experiments",
+      url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/variance-estimation-and-improved-sensitivity-pitfalls-and-solutions/5B071E01319E9939629E6280ECE34C5A",
+      note: "Ch. 18, 'Variance Estimation and Improved Sensitivity: Pitfalls and Solutions.'"
+    },
+    cfds1: {
+      label: "Causal Inference for Data Science",
+      url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-1",
+      note: "Ch. 1, 'Introducing causality,' including A/B testing and RCT basics."
+    },
+    cfds5: {
+      label: "Causal Inference for Data Science",
+      url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-5",
+      note: "Ch. 5, 'Finding comparable cases with propensity scores.'"
+    },
+    cfds8: {
+      label: "Causal Inference for Data Science",
+      url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-8",
+      note: "Ch. 8, 'Advanced tools with the DoubleML library,' covering DML and doubly robust estimators."
+    },
+    cfds9: {
+      label: "Causal Inference for Data Science",
+      url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-9",
+      note: "Ch. 9, 'Instrumental variables,' including IV use in randomized settings."
+    },
+    cfds11: {
+      label: "Causal Inference for Data Science",
+      url: "https://livebook.manning.com/book/causal-inference-for-data-science/chapter-11",
+      note: "Ch. 11, 'The effect of a time-related event,' covering RDD, synthetic control, and DiD."
+    },
+    mhe2: {
+      label: "Mostly Harmless Econometrics",
+      url: "https://www.mostlyharmlesseconometrics.com/book-contents/",
+      note: "Ch. 2, 'The Experimental Ideal.'"
+    },
+    mhe4: {
+      label: "Mostly Harmless Econometrics",
+      url: "https://www.mostlyharmlesseconometrics.com/book-contents/",
+      note: "Ch. 4, 'Instrumental Variables in Action: Sometimes You Get What You Need.'"
+    },
+    mhe5: {
+      label: "Mostly Harmless Econometrics",
+      url: "https://www.mostlyharmlesseconometrics.com/book-contents/",
+      note: "Ch. 5, 'Parallel Worlds: Fixed Effects, Differences-in-Differences, and Panel Data.'"
+    },
+    mhe6: {
+      label: "Mostly Harmless Econometrics",
+      url: "https://www.mostlyharmlesseconometrics.com/book-contents/",
+      note: "Ch. 6, 'Getting a Little Jumpy: Regression Discontinuity Designs.'"
+    },
+    mixtape5: {
+      label: "Causal Inference: The Mixtape",
+      url: "https://mixtape.scunning.com/",
+      note: "Ch. 5, 'Matching and Subclassification.'"
+    },
+    mixtape6: {
+      label: "Causal Inference: The Mixtape",
+      url: "https://mixtape.scunning.com/",
+      note: "Ch. 6, 'Regression Discontinuity.'"
+    },
+    mixtape7: {
+      label: "Causal Inference: The Mixtape",
+      url: "https://mixtape.scunning.com/",
+      note: "Ch. 7, 'Instrumental Variables.'"
+    },
+    mixtape9: {
+      label: "Causal Inference: The Mixtape",
+      url: "https://mixtape.scunning.com/",
+      note: "Ch. 9, 'Difference-in-Differences.'"
+    },
+    mixtape10: {
+      label: "Causal Inference: The Mixtape",
+      url: "https://mixtape.scunning.com/",
+      note: "Ch. 10, 'Synthetic Control.'"
+    },
+    cidp7: {
+      label: "Causal Inference and Discovery in Python",
+      url: "https://www.oreilly.com/library/view/causal-inference-and/9781804612989/B18993_07.xhtml",
+      note: "Ch. 7, 'The Four-Step Process of Causal Inference,' for modeling, identification, estimation, and refutation."
+    },
+    cidp9: {
+      label: "Causal Inference and Discovery in Python",
+      url: "https://www.oreilly.com/library/view/causal-inference-and/9781804612989/B18993_09.xhtml",
+      note: "Ch. 9, 'From Matching to Meta-Learners.'"
+    },
+    cidp10: {
+      label: "Causal Inference and Discovery in Python",
+      url: "https://www.oreilly.com/library/view/causal-inference-and/9781804612989/B18993_10.xhtml",
+      note: "Ch. 10, 'Advanced Estimators,' covering DR, DML, causal forests, and uplift."
+    },
+    cidp11: {
+      label: "Causal Inference and Discovery in Python",
+      url: "https://www.oreilly.com/library/view/causal-inference-and/9781804612989/B18993_11.xhtml",
+      note: "Ch. 11, 'Deep Learning, NLP, and Beyond,' including synthetic controls and time-series interventions."
+    },
+    explanation2: {
+      label: "Explanation in Causal Inference",
+      url: "https://www.barnesandnoble.com/w/explanation-in-causal-inference-tyler-vanderweele/1120346728",
+      note: "Ch. 2, 'Mediation: Introduction and Regression-Based Approaches.'"
+    },
+    explanation3: {
+      label: "Explanation in Causal Inference",
+      url: "https://www.barnesandnoble.com/w/explanation-in-causal-inference-tyler-vanderweele/1120346728",
+      note: "Ch. 3, 'Sensitivity Analysis for Mediation.'"
+    }
+  };
+
+  var USE_CASE_REFS = {
+    uberXP: {
+      label: "Uber Engineering: experimentation platform",
+      url: "https://www.uber.com/en-US/blog/xp/",
+      note: "Large-scale randomized experiments for features, app redesign, promotions, and model launches."
+    },
+    toceSpeed: {
+      label: "TOCE: speed experiments",
+      url: "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/speed-matters/35D34F276D4AF1AEE4B98D3E09B9E168",
+      note: "Backend speed experiments where small latency improvements translated into material annual revenue."
+    },
+    uberCuped: {
+      label: "Uber Engineering: CUPED",
+      url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
+      note: "Uses CUPED with pre-experiment data for variance reduction and to reduce pre-existing bias."
+    },
+    uberFlickers: {
+      label: "Uber Engineering: experiment contamination",
+      url: "https://www.uber.com/en-US/blog/xp/",
+      note: "Uber explicitly audits sample imbalance and 'flickers' when treatment assignment is contaminated and repaired in analysis."
+    },
+    uberEmailNoncompliance: {
+      label: "Uber Engineering: email noncompliance",
+      url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
+      note: "Email or messaging experiments where assignment differs from actual exposure or opens."
+    },
+    uberCausalLearning: {
+      label: "Uber Research: retention targeting",
+      url: "https://www.uber.com/blog/research/improve-user-retention-with-causal-learning/",
+      note: "Targeted promotions optimized for heterogeneous treatment effects; deployed live in multiple cities."
+    },
+    uberMediation: {
+      label: "Uber Engineering: mediation modeling",
+      url: "https://www.uber.com/en-CA/blog/mediation-modeling/",
+      note: "Explains why promotions, menu changes, or customer sentiment move orders, referrals, or satisfaction."
+    },
+    uberDelayedDeliveries: {
+      label: "Uber Engineering: delayed deliveries",
+      url: "https://www.uber.com/en-UY/blog/causal-inference-at-uber/",
+      note: "Estimate how delayed deliveries affect future Uber Eats engagement without deliberately delaying orders."
+    },
+    microsoftRuntimeConfounding: {
+      label: "Microsoft Research: runtime confounding",
+      url: "https://www.microsoft.com/en-us/research/publication/counterfactual-predictions-under-runtime-confounding/",
+      note: "Counterfactual decision support under observational selection, with examples such as loan approval/default scenarios."
+    },
+    uberSurgeRDD: {
+      label: "Uber Engineering: surge threshold",
+      url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
+      note: "Regression discontinuity around surge pricing thresholds to study trip-request behavior."
+    },
+    uberCityLaunch: {
+      label: "Uber Engineering: city launch analysis",
+      url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
+      note: "City-level marketing campaigns or new feature launches analyzed with untreated cities or time periods as comparisons."
+    },
+    googleCausalImpact: {
+      label: "Google Research: CausalImpact",
+      url: "https://research.google/pubs/pub41854",
+      note: "Bayesian structural time-series evaluation of an online advertising campaign on search-related site visits."
+    },
+    uberBugInstrument: {
+      label: "Uber Engineering: bugs or outages as IV",
+      url: "https://www.uber.com/en-BG/blog/causal-inference-at-uber/",
+      note: "Use bugs or outages as instruments when estimating the effect of delayed deliveries on downstream engagement."
+    }
+  };
+
+  function resolveRefs(items, catalog) {
     return items.map(function (item) {
-      var source = PACKAGE_REFS[item.key || item];
+      var source = catalog[item.key || item];
       return {
         label: source.label,
         url: source.url,
@@ -82,11 +268,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function packageRefs(items) {
+    return resolveRefs(items, PACKAGE_REFS);
+  }
+
+  function bookRefs(items) {
+    return resolveRefs(items, BOOK_REFS);
+  }
+
+  function useCaseRefs(items) {
+    return resolveRefs(items, USE_CASE_REFS);
+  }
+
   var METHODS = {
     experiment: {
       title: "Randomized experiment with covariate-adjusted analysis",
       family: "Experimental",
       summary: "Use intention-to-treat as the baseline estimate, with regression adjustment or stratification for precision and imbalance control.",
+      pros: [
+        "Strongest identification strategy when assignment really is random.",
+        "Easy to explain to product, ops, and leadership stakeholders.",
+        "Clean fit for launch, pricing, and guardrail decisions."
+      ],
+      cons: [
+        "Can be expensive, slow, or operationally disruptive to run well.",
+        "Spillovers, attrition, or leakage can quietly break identification.",
+        "A single average effect can hide meaningful segment heterogeneity."
+      ],
       assumptions: [
         "Treatment assignment is randomized and sufficiently implemented",
         "No material interference or spillovers across units unless explicitly modeled",
@@ -104,12 +312,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Check guardrail or spillover outcomes before making rollout recommendations."
       ],
       alternatives: ["CUPED", "CACE / IV", "heterogeneity models"],
-      packages: packageRefs(["statsmodelsCore", "dowhy"])
+      packages: packageRefs(["statsmodelsCore", "dowhy"]),
+      useCases: useCaseRefs(["uberXP", "toceSpeed"]),
+      bookRefs: bookRefs(["toce2", "cfds1", "mhe2"])
     },
     cuped: {
       title: "CUPED or pre-period regression adjustment",
       family: "Experimental",
       summary: "Best when randomization is valid and strong pre-treatment outcomes are available. It reduces variance without changing identification.",
+      pros: [
+        "Often reduces variance and sample-size needs without changing the design.",
+        "Simple extension of standard experiment analysis and reporting.",
+        "Especially effective when pre-period behavior strongly predicts outcomes."
+      ],
+      cons: [
+        "Improves precision, not the underlying identification strategy.",
+        "Requires genuinely pre-treatment metrics with no contamination.",
+        "Adds little value when pre-period signal is weak."
+      ],
       assumptions: [
         "Pre-period outcome is unaffected by treatment",
         "The adjustment variable is predictive of the post-treatment outcome",
@@ -127,12 +347,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Document whether the adjustment changes interpretation or only precision."
       ],
       alternatives: ["ANCOVA", "standard experiment analysis"],
-      packages: packageRefs(["statsmodelsCore"])
+      packages: packageRefs(["statsmodelsCore"]),
+      useCases: useCaseRefs(["uberCuped"]),
+      bookRefs: bookRefs(["toce18", "toce2"])
     },
     cace: {
       title: "CACE / instrumental variables for noncompliance",
       family: "Experimental",
       summary: "Use assignment as an instrument when treatment take-up differs from assignment and you need the effect among compliers.",
+      pros: [
+        "Recovers an interpretable complier effect when take-up differs from assignment.",
+        "Preserves the value of encouragement designs and imperfect experiments.",
+        "Keeps ITT and treatment-receipt effects conceptually separate."
+      ],
+      cons: [
+        "Exclusion and monotonicity are strong and only partly testable.",
+        "The estimate is local to compliers rather than all users.",
+        "Weak first stages can make inference unstable or noisy."
+      ],
       assumptions: [
         "Assignment strongly shifts treatment take-up",
         "Exclusion: assignment affects outcome only through treatment receipt",
@@ -150,12 +382,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "State clearly who the complier population is and whether that matters for decisions."
       ],
       alternatives: ["ITT only", "encouragement design diagnostics"],
-      packages: packageRefs(["statsmodelsIV", "dowhy"])
+      packages: packageRefs(["statsmodelsIV", "dowhy"]),
+      useCases: useCaseRefs(["uberEmailNoncompliance"]),
+      bookRefs: bookRefs(["mhe4", "cfds9", "mixtape7"])
     },
     uplift: {
       title: "Causal forests, uplift models, or meta-learners",
       family: "Heterogeneity",
       summary: "Use when the main goal is differential treatment effects across users, markets, or segments rather than only one overall ATE.",
+      pros: [
+        "Finds who benefits most instead of stopping at one average effect.",
+        "Can materially improve targeting and policy value in large-scale products.",
+        "Works well when rich covariates and experimentation logs already exist."
+      ],
+      cons: [
+        "Easier to overfit than standard ATE estimation.",
+        "Needs overlap and sample size inside the segments you plan to target.",
+        "Policy-value evaluation is more demanding than standard prediction metrics."
+      ],
       assumptions: [
         "Identification assumptions still hold for the underlying design",
         "Enough support exists within important subgroups",
@@ -173,12 +417,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Inspect whether treatment recommendations concentrate in unsupported covariate regions."
       ],
       alternatives: ["subgroup analysis", "AIPW / DR learners"],
-      packages: packageRefs(["econml", "causalml", "dowhy"])
+      packages: packageRefs(["econml", "causalml", "dowhy"]),
+      useCases: useCaseRefs(["uberCausalLearning"]),
+      bookRefs: bookRefs(["cidp9", "cidp10"])
     },
     mediation: {
       title: "Mediation analysis",
       family: "Mechanism",
       summary: "Use after establishing a credible total effect when the goal is to decompose direct and indirect pathways.",
+      pros: [
+        "Helps explain why an intervention worked or failed, not just whether it moved outcomes.",
+        "Useful for product iteration when you need to compare causal channels.",
+        "Can connect business levers to mechanisms such as awareness, conversion, or satisfaction."
+      ],
+      cons: [
+        "Requires stronger assumptions than estimating the total effect alone.",
+        "Sensitive to mediator timing, measurement, and post-treatment confounding.",
+        "Indirect effects are easy to overinterpret causally."
+      ],
       assumptions: [
         "Mediator measurement is well-defined and temporally ordered",
         "No unblocked mediator-outcome confounding after conditioning set",
@@ -196,12 +452,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare direct/indirect estimates under alternative mediator models."
       ],
       alternatives: ["structural causal models", "mechanism-specific experiments"],
-      packages: packageRefs(["statsmodelsMediation", "dowhy"])
+      packages: packageRefs(["statsmodelsMediation", "dowhy"]),
+      useCases: useCaseRefs(["uberMediation"]),
+      bookRefs: bookRefs(["explanation2", "explanation3"])
     },
     repair: {
       title: "Propensity weighting or matching as a repair strategy",
       family: "Bias repair",
       summary: "Use only when experimental integrity is compromised enough that treatment and control are no longer meaningfully exchangeable without adjustment.",
+      pros: [
+        "Can salvage some information when a real experiment drifts off its intended design.",
+        "Makes imbalance and support problems explicit through diagnostics.",
+        "Useful as a fallback benchmark while deciding whether a rerun is necessary."
+      ],
+      cons: [
+        "No longer enjoys the clean identification of a valid randomized trial.",
+        "Results become more model-dependent and easier to dispute.",
+        "Often a worse option than redesigning and rerunning the experiment."
+      ],
       assumptions: [
         "Observed variables can explain the imbalance or attrition process",
         "Overlap remains adequate after filtering or trimming",
@@ -219,12 +487,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Treat the repaired estimate as a fallback and assess whether redesign is cheaper than trusting it."
       ],
       alternatives: ["rerun experiment", "covariate-adjusted ITT"],
-      packages: packageRefs(["statsmodelsTreatment", "dowhy"])
+      packages: packageRefs(["statsmodelsTreatment", "dowhy"]),
+      useCases: useCaseRefs(["uberFlickers", "uberDelayedDeliveries"]),
+      bookRefs: bookRefs(["toce11", "cfds5"])
     },
     propensity: {
       title: "Matching or propensity-score weighting",
       family: "Observational adjustment",
       summary: "Good first-line observational methods when treatment is not randomized but most confounders are observed and overlap is acceptable.",
+      pros: [
+        "Intuitive first observational adjustment method for many business teams.",
+        "Balance and overlap diagnostics are transparent and easy to communicate.",
+        "Useful baseline to benchmark richer doubly robust or ML estimators."
+      ],
+      cons: [
+        "Cannot fix hidden confounding from missing drivers of treatment.",
+        "Extreme weights and weak overlap can dominate the estimate.",
+        "Matching and trimming choices can materially change the result."
+      ],
       assumptions: [
         "Conditional ignorability after measured covariates",
         "Adequate common support between treated and untreated units",
@@ -242,12 +522,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare the weighted/matched result against a simpler regression-adjusted baseline."
       ],
       alternatives: ["AIPW", "double machine learning"],
-      packages: packageRefs(["statsmodelsTreatment", "dowhy"])
+      packages: packageRefs(["statsmodelsTreatment", "dowhy"]),
+      useCases: useCaseRefs(["uberDelayedDeliveries"]),
+      bookRefs: bookRefs(["cfds5", "mixtape5"])
     },
     aipw: {
       title: "AIPW / doubly robust estimation / double machine learning",
       family: "Observational adjustment",
       summary: "Preferred when confounders are observed and the feature space is rich. It combines outcome modeling and propensity modeling for more robust estimation.",
+      pros: [
+        "More robust than weighting-only or outcome-only approaches when one nuisance model is misspecified.",
+        "Works well with rich feature spaces and modern ML nuisance models.",
+        "Strong benchmark for observational ATE and heterogeneous-effect pipelines."
+      ],
+      cons: [
+        "Still depends on credible ignorability and reasonable overlap.",
+        "Easy to misuse without cross-fitting and nuisance-model diagnostics.",
+        "Harder to explain than simpler matching or regression approaches."
+      ],
       assumptions: [
         "Conditional ignorability remains plausible",
         "Overlap is not catastrophically weak",
@@ -265,12 +557,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Report the target estimand explicitly and verify it matches the business question."
       ],
       alternatives: ["matching", "IPTW", "causal forests / DR learners"],
-      packages: packageRefs(["statsmodelsAIPW", "econml", "dowhy"])
+      packages: packageRefs(["statsmodelsAIPW", "econml", "dowhy"]),
+      useCases: useCaseRefs(["microsoftRuntimeConfounding", "uberDelayedDeliveries"]),
+      bookRefs: bookRefs(["cfds8", "cidp10"])
     },
     did: {
       title: "Difference-in-differences / event study",
       family: "Panel or policy",
       summary: "Best for policy or feature rollouts observed over time with untreated comparison units and a credible parallel-trends argument.",
+      pros: [
+        "Natural fit for policy, pricing, and staged rollout questions over time.",
+        "Easy to communicate using treated-versus-control before/after logic.",
+        "Event studies help reveal timing patterns and pre-trend failures."
+      ],
+      cons: [
+        "Parallel trends can be weak in messy real-world product settings.",
+        "Naive two-way fixed-effects estimates can mislead under staggered adoption.",
+        "Concurrent shocks can mimic treatment effects."
+      ],
       assumptions: [
         "Parallel trends or an acceptable approximation",
         "No confounding shocks that align with treatment timing",
@@ -294,12 +598,24 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for event-study or DiD regression baselines with robust standard errors; full staggered-DiD workflows may need additional tooling."
         },
         "dowhy"
-      ])
+      ]),
+      useCases: useCaseRefs(["uberCityLaunch"]),
+      bookRefs: bookRefs(["mhe5", "cfds11", "mixtape9"])
     },
     synthetic: {
       title: "Synthetic control or Bayesian structural time series",
       family: "Panel or policy",
       summary: "Useful when one or a small number of units receive treatment and you can build a credible counterfactual from donor units or pre-period dynamics.",
+      pros: [
+        "Well suited to one or a few treated markets, products, or geographies.",
+        "Makes counterfactual construction transparent through donor weights or pre-period fit.",
+        "Placebo tests and pre-fit plots are intuitive for stakeholders."
+      ],
+      cons: [
+        "Sensitive to donor-pool choice and pre-treatment fit quality.",
+        "Spillovers into donor units can break the design.",
+        "Inference can be fragile with short histories or few donors."
+      ],
       assumptions: [
         "Pre-treatment fit is strong",
         "Donor pool is not contaminated by treatment spillover",
@@ -323,12 +639,24 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for structural-break, seasonality, and counterfactual-trend diagnostics; synthetic control itself usually needs a more specialized library."
         },
         "dowhy"
-      ])
+      ]),
+      useCases: useCaseRefs(["uberCityLaunch", "googleCausalImpact"]),
+      bookRefs: bookRefs(["mixtape10", "cfds11", "cidp11"])
     },
     its: {
       title: "Interrupted time series",
       family: "Panel or policy",
       summary: "Use when the policy effect is identified mainly from a clear break in one unit's time series and a comparison group is weak or unavailable.",
+      pros: [
+        "Practical when only one treated time series is available.",
+        "Can be deployed quickly when historical data quality is strong.",
+        "Highlights abrupt breaks and post-intervention persistence clearly."
+      ],
+      cons: [
+        "Very vulnerable to coincident shocks, seasonality, and model choice.",
+        "Weaker than donor-based designs when good comparison units exist.",
+        "Functional-form decisions can drive the headline result."
+      ],
       assumptions: [
         "Outcome history is stable enough to model the counterfactual trend",
         "No coincident shocks explain the break",
@@ -346,12 +674,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Compare against a donor-based or comparison-group design if one becomes available."
       ],
       alternatives: ["synthetic control", "difference-in-differences"],
-      packages: packageRefs(["statsmodelsTSA", "dowhy"])
+      packages: packageRefs(["statsmodelsTSA", "dowhy"]),
+      useCases: useCaseRefs(["googleCausalImpact"]),
+      bookRefs: bookRefs(["cfds11", "cidp11"])
     },
     rdd: {
       title: "Regression discontinuity design",
       family: "Quasi-experimental",
       summary: "Best when treatment assignment changes sharply at a known cutoff and units near the threshold are comparable.",
+      pros: [
+        "Often delivers a highly credible quasi-experimental estimate near the cutoff.",
+        "Local comparisons are concrete and persuasive to non-technical stakeholders.",
+        "Needs weaker modeling assumptions than broad observational adjustments."
+      ],
+      cons: [
+        "The effect is local to units near the threshold, not necessarily global.",
+        "Manipulation or sorting around the cutoff can invalidate the design.",
+        "Bandwidth and specification choices can materially affect results."
+      ],
       assumptions: [
         "No precise manipulation around the cutoff",
         "Potential outcomes evolve smoothly through the threshold absent treatment",
@@ -375,12 +715,24 @@ document.addEventListener("DOMContentLoaded", function () {
           note: "Use for local regression baselines and sensitivity checks; dedicated RDD tooling may still be preferable for production analysis."
         },
         "dowhy"
-      ])
+      ]),
+      useCases: useCaseRefs(["uberSurgeRDD"]),
+      bookRefs: bookRefs(["mhe6", "cfds11", "mixtape6"])
     },
     iv: {
       title: "Instrumental variables",
       family: "Quasi-experimental",
       summary: "Use when unobserved confounding is likely but you have a strong source of exogenous variation that shifts treatment.",
+      pros: [
+        "Can address unobserved confounding when a credible instrument exists.",
+        "Useful when experiments are infeasible, unethical, or already failed.",
+        "Maps naturally to outages, assignment quirks, or policy discontinuities."
+      ],
+      cons: [
+        "Good instruments are rare and exclusion is hard to defend.",
+        "Weak instruments create unstable and noisy estimates.",
+        "Interpretation is local to the units moved by the instrument."
+      ],
       assumptions: [
         "Relevance: the instrument materially shifts treatment",
         "Exclusion: the instrument affects outcome only through treatment",
@@ -398,12 +750,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Explain how local the IV estimand is and whether it maps to the business decision."
       ],
       alternatives: ["RDD", "difference-in-differences", "natural-experiment design audit"],
-      packages: packageRefs(["statsmodelsIV", "dowhy"])
+      packages: packageRefs(["statsmodelsIV", "dowhy"]),
+      useCases: useCaseRefs(["uberBugInstrument", "uberEmailNoncompliance"]),
+      bookRefs: bookRefs(["mhe4", "cfds9", "mixtape7"])
     },
     design_gap: {
       title: "Design is not identified cleanly yet",
       family: "Warning",
       summary: "Current answers do not support a strong causal identification strategy. The next step is design improvement, not picking a fancier estimator.",
+      pros: [
+        "Prevents false confidence from choosing an estimator before the design is credible.",
+        "Redirects effort toward better variation, covariates, or panel structure.",
+        "Makes identification gaps explicit to stakeholders before claims get baked in."
+      ],
+      cons: [
+        "Does not produce an immediate causal estimate.",
+        "May require extra data collection, redesign, or slower decision timelines.",
+        "Can feel unsatisfying when teams want a quick numerical answer."
+      ],
       assumptions: [
         "You may need stronger design variation, better confounders, or quasi-experimental structure"
       ],
@@ -428,7 +792,9 @@ document.addEventListener("DOMContentLoaded", function () {
           key: "statsmodelsCore",
           note: "Use it for descriptive regressions and diagnostics while you improve the design, not as a substitute for identification."
         }
-      ])
+      ]),
+      useCases: [],
+      bookRefs: bookRefs(["cidp7", "toce11"])
     }
   };
 
@@ -861,6 +1227,55 @@ document.addEventListener("DOMContentLoaded", function () {
       "</ul>";
   }
 
+  function renderBulletSection(title, items) {
+    if (!items || !items.length) {
+      return "";
+    }
+
+    return (
+      "<div><h4>" + title + "</h4><ul>" +
+      items.map(function (entry) {
+        return "<li>" + entry + "</li>";
+      }).join("") +
+      "</ul></div>"
+    );
+  }
+
+  function renderReferenceSection(title, items) {
+    if (!items || !items.length) {
+      return "";
+    }
+
+    return (
+      '<div class="causal-tool__reference-block">' +
+        "<h4>" + title + "</h4>" +
+        '<ul class="causal-tool__reference-list">' +
+          items.map(function (entry) {
+            return (
+              "<li>" +
+                '<a href="' + entry.url + '" target="_blank" rel="noopener noreferrer">' + entry.label + "</a>" +
+                '<span class="causal-tool__reference-note">' + entry.note + "</span>" +
+              "</li>"
+            );
+          }).join("") +
+        "</ul>" +
+      "</div>"
+    );
+  }
+
+  function renderReferenceGrid(meta) {
+    var sections = [
+      renderReferenceSection("Representative industry use cases", meta.useCases),
+      renderReferenceSection("Popular book references", meta.bookRefs)
+    ].filter(Boolean);
+
+    if (!sections.length) {
+      return "";
+    }
+
+    return '<div class="causal-tool__reference-grid">' + sections.join("") + "</div>";
+  }
+
   function renderPackages(packages) {
     if (!packages || !packages.length) {
       return "";
@@ -897,10 +1312,15 @@ document.addEventListener("DOMContentLoaded", function () {
           '</div>' +
           '<p class="causal-tool__summary">' + meta.summary + '</p>' +
           '<div class="causal-tool__columns">' +
-            '<div><h4>Why it fits</h4><ul>' + item.reasons.map(function (reason) { return '<li>' + reason + '</li>'; }).join("") + '</ul></div>' +
-            '<div><h4>Critical assumptions</h4><ul>' + meta.assumptions.map(function (entry) { return '<li>' + entry + '</li>'; }).join("") + '</ul></div>' +
+            renderBulletSection("Why it fits", item.reasons) +
+            renderBulletSection("Critical assumptions", meta.assumptions) +
           '</div>' +
-          '<div><h4>What to validate next</h4><ul>' + meta.nextChecks.map(function (entry) { return '<li>' + entry + '</li>'; }).join("") + '</ul></div>' +
+          '<div class="causal-tool__columns">' +
+            renderBulletSection("Pros", meta.pros) +
+            renderBulletSection("Cons", meta.cons) +
+          '</div>' +
+          renderBulletSection("What to validate next", meta.nextChecks) +
+          renderReferenceGrid(meta) +
           renderPackages(meta.packages) +
           '<p class="causal-tool__alternatives"><strong>Also consider:</strong> ' + meta.alternatives.join(', ') + '.</p>' +
           '<div class="causal-tool__method-actions">' +
@@ -982,6 +1402,16 @@ document.addEventListener("DOMContentLoaded", function () {
       lines.push("- [ ] " + entry);
     });
     lines.push("");
+    lines.push("## Pros");
+    meta.pros.forEach(function (entry) {
+      lines.push("- " + entry);
+    });
+    lines.push("");
+    lines.push("## Cons");
+    meta.cons.forEach(function (entry) {
+      lines.push("- " + entry);
+    });
+    lines.push("");
     lines.push("## Robustness checklist");
     meta.robustnessChecklist.forEach(function (entry) {
       lines.push("- [ ] " + entry);
@@ -996,6 +1426,23 @@ document.addEventListener("DOMContentLoaded", function () {
     meta.packages.forEach(function (entry) {
       lines.push("- [" + entry.label + "](" + entry.url + "): " + entry.note);
     });
+
+    if (meta.useCases && meta.useCases.length) {
+      lines.push("");
+      lines.push("## Representative industry use cases");
+      meta.useCases.forEach(function (entry) {
+        lines.push("- [" + entry.label + "](" + entry.url + "): " + entry.note);
+      });
+    }
+
+    if (meta.bookRefs && meta.bookRefs.length) {
+      lines.push("");
+      lines.push("## Popular book references");
+      meta.bookRefs.forEach(function (entry) {
+        lines.push("- [" + entry.label + "](" + entry.url + "): " + entry.note);
+      });
+    }
+
     lines.push("");
     lines.push("## Alternative methods to benchmark");
     meta.alternatives.forEach(function (entry) {
