@@ -534,6 +534,17 @@ Why data scientists use this:
 
 The Google course makes the same idea concrete from a matrix-factorization angle: you can augment the original interaction matrix with user-feature and item-feature blocks, then factorize the augmented matrix so that side features learn embeddings alongside users and items. Conceptually, this is one of the cleanest bridges between classic WALS-style recommender systems and modern hybrid feature-based models.
 
+<div id="industrial-ads-ctr-architectures"></div>
+
+### 5.5 Industrial ads CTR architectures
+
+If you want a more industrial view of feature-rich ranking, two recent papers are worth reading after the material above.
+
+- [DHEN: A Deep and Hierarchical Ensemble Network for Large-Scale Click-Through Rate Prediction](https://arxiv.org/abs/2203.11014) (2022) is an ads CTR paper about feature interaction modeling at online advertising scale. Its main point is that different interaction modules capture different useful signals, so a hierarchical ensemble can outperform committing to a single interaction design.
+- [InterFormer: Effective Heterogeneous Interaction Learning for Click-Through Rate Prediction](https://dl.acm.org/doi/10.1145/3746252.3761527) (2025) is a Meta Ads CTR paper. It focuses on learning stronger interactions between heterogeneous signals such as profile features, context features, and behavior sequences.
+
+These are useful extensions of the chapter because they show what happens when feature-rich recommendation is pushed into industrial ads ranking. They should not be read as broad recommender-system blueprints or as the state of the art for recommender systems in general. They are narrower and more specific: both are ads CTR architecture papers shaped by impression-level prediction, extreme scale, and production serving constraints.
+
 
 ## 6. Deep Models
 
@@ -1077,6 +1088,13 @@ Use this chapter as the source map for the handbook. The list is grouped by how 
 - [Surprise documentation](https://surpriselib.com/#documentation)
 - [Simon Funk (2006): Netflix Update - Try This at Home](https://sifter.org/~simon/journal/20061211.html)
 - [ScaNN](https://github.com/google-research/google-research/tree/master/scann)
+
+<div id="industrial-ads-ctr-papers"></div>
+
+### 10.4 Industrial ads CTR papers
+
+- [DHEN: A Deep and Hierarchical Ensemble Network for Large-Scale Click-Through Rate Prediction](https://arxiv.org/abs/2203.11014) (2022)
+- [InterFormer: Effective Heterogeneous Interaction Learning for Click-Through Rate Prediction](https://dl.acm.org/doi/10.1145/3746252.3761527) (2025, Meta Ads)
 
 
 ## 11. Survey Papers and Further Reading
