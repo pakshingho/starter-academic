@@ -464,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var outputs = {
     path: document.getElementById("causal-tool-path"),
+    summary: document.getElementById("causal-tool-summary"),
     warning: document.getElementById("causal-tool-warning"),
     results: document.getElementById("causal-tool-results"),
     shareStatus: document.getElementById("causal-tool-share-status")
@@ -536,8 +537,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function addRecommendation(bucket, id, fit, reasons) {
+    if (!Object.prototype.hasOwnProperty.call(bucket, "_rankCounter")) {
+      Object.defineProperty(bucket, "_rankCounter", {
+        value: 0,
+        writable: true,
+        enumerable: false
+      });
+    }
+
     if (!bucket[id]) {
-      bucket[id] = { id: id, fit: fit, reasons: [] };
+      bucket[id] = { id: id, fit: fit, reasons: [], rank: bucket._rankCounter };
+      bucket._rankCounter += 1;
     }
     if (fit > bucket[id].fit) {
       bucket[id].fit = fit;
@@ -708,6 +718,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (b.fit !== a.fit) {
         return b.fit - a.fit;
       }
+      if (a.rank !== b.rank) {
+        return a.rank - b.rank;
+      }
       return a.id.localeCompare(b.id);
     }).slice(0, 4);
 
@@ -749,6 +762,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function buildPathChips(state) {
     var chips = [];
+    var heterogeneityVisible = state.goal === "heterogeneity" || (state.design === "observational" && state.goal === "ate");
+
     chips.push(state.design === "experimental" ? "Experimental" : "Observational");
     chips.push(getGoalLabel(state));
 
@@ -778,7 +793,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    if (state.highDimensional === "yes") {
+    if (heterogeneityVisible && state.highDimensional === "yes") {
       chips.push("high-dimensional features");
     }
 
@@ -789,6 +804,45 @@ document.addEventListener("DOMContentLoaded", function () {
     outputs.path.innerHTML = buildPathChips(state).map(function (chip) {
       return '<span class="causal-tool__chip">' + chip + '</span>';
     }).join("");
+  }
+
+  function renderSummary(recommendations, warnings) {
+    if (!recommendations.length) {
+      outputs.summary.innerHTML = "";
+      return;
+    }
+
+    var primary = recommendations[0];
+    var benchmark = recommendations.length > 1 ? recommendations[1] : null;
+    var primaryMeta = METHODS[primary.id];
+    var benchmarkMeta = benchmark ? METHODS[benchmark.id] : null;
+    var caution = warnings[0] || primaryMeta.assumptions[0];
+
+    outputs.summary.innerHTML =
+      '<div class="causal-tool__brief-card">' +
+        '<div class="causal-tool__brief-head">' +
+          '<h3>Suggested workflow</h3>' +
+          '<p>Use the first method as the working analysis plan, then benchmark it against a strong fallback or diagnostic.</p>' +
+        '</div>' +
+        '<div class="causal-tool__brief-grid">' +
+          '<div class="causal-tool__brief-block">' +
+            '<span class="causal-tool__brief-label">' + (primary.fit >= 3 ? "Start here" : "Current best option") + '</span>' +
+            '<strong>' + primaryMeta.title + '</strong>' +
+            '<p>' + primary.reasons[0] + '</p>' +
+          '</div>' +
+          '<div class="causal-tool__brief-block">' +
+            '<span class="causal-tool__brief-label">' + (benchmark ? "Benchmark next" : "Next move") + '</span>' +
+            (benchmark
+              ? '<strong>' + benchmarkMeta.title + '</strong><p>' + benchmark.reasons[0] + '</p>'
+              : '<strong>' + primaryMeta.nextChecks[0] + '</strong><p>Validate this first before adding more estimator complexity.</p>') +
+          '</div>' +
+          '<div class="causal-tool__brief-block">' +
+            '<span class="causal-tool__brief-label">' + (warnings[0] ? "Main caution" : "Key assumption") + '</span>' +
+            '<strong>' + (warnings[0] ? "Address before shipping conclusions" : "Defend this explicitly") + '</strong>' +
+            '<p>' + caution + '</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
   }
 
   function renderWarnings(warnings) {
@@ -903,6 +957,15 @@ document.addEventListener("DOMContentLoaded", function () {
     lines.push("");
     lines.push("Generated on: " + new Date().toLocaleDateString());
     lines.push("");
+    lines.push("## Suggested workflow");
+    lines.push("- Primary recommendation: " + METHODS[currentRender.recommendations[0].id].title);
+    if (currentRender.recommendations[1] && METHODS[currentRender.recommendations[1].id]) {
+      lines.push("- Benchmark or fallback: " + METHODS[currentRender.recommendations[1].id].title);
+    }
+    if (currentRender.warnings[0]) {
+      lines.push("- Main caution: " + currentRender.warnings[0]);
+    }
+    lines.push("");
     lines.push("## Decision context");
     lines.push("- Design: " + (state.design === "experimental" ? "Experimental or randomized data" : "Observational or non-randomized data"));
     lines.push("- Goal: " + getGoalLabel(state));
@@ -993,6 +1056,7 @@ document.addEventListener("DOMContentLoaded", function () {
       warnings: recommendation.warnings
     };
     renderPath(state);
+    renderSummary(recommendation.recommendations, recommendation.warnings);
     renderWarnings(recommendation.warnings);
     renderResults(recommendation.recommendations);
     updateQueryString(state);

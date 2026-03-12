@@ -143,6 +143,7 @@ This tool uses a decision-tree backbone centered on identification structure, bu
         <p>The tool shows a primary recommendation, strong fallbacks, and identification warnings.</p>
       </div>
       <div class="causal-tool__path" id="causal-tool-path"></div>
+      <div class="causal-tool__brief" id="causal-tool-summary"></div>
       <div class="causal-tool__warning" id="causal-tool-warning" hidden></div>
       <div class="causal-tool__results" id="causal-tool-results"></div>
     </section>
