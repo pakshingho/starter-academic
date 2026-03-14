@@ -8,7 +8,10 @@ type: page
 
 ## Data Science
 
-### Technical Guides
+### Reference Collections
 
 - [Causal Inference Resources](/causal-inference-resources/)
+
+### Technical Guides
+
 - [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))
