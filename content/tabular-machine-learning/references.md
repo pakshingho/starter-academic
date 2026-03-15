@@ -30,11 +30,11 @@ Use these references to deepen specific topics after working through the handboo
 - probability estimation and decision analysis
 - monitoring, drift, and retraining policy
 
-### Related material on this site
+### Topic-specific further reading
 
-- [An Overview of Gradient Descent Optimization Algorithms](/post/an-overview-of-gradient-descent-optimization-algorithms/)
-- [Understanding Decision Trees, Random Forests, Bagging, and Boosting](/post/understanding-decision-trees-random-forests-bagging-and-boosting/)
-- [Machine Learning Interpretability](/post/machine-learning-interpretability/)
+- [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
+- [Understanding Random Forests: From Theory to Practice](https://arxiv.org/abs/1407.7502)
+- [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 
 ### Suggested next step after this course
 
