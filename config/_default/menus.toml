@@ -88,6 +88,12 @@
   weight = 39
 
 [[main]]
+  name = "Marketplace Simulator"
+  url = "/marketplace-simulator/"
+  parent = "tools_group"
+  weight = 40
+
+[[main]]
   name = "About"
   url = "/about/"
   parent = "about_group"
