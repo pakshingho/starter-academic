@@ -1,5 +1,5 @@
 ---
-title: Tree-Based Machine Learning
+title: Decision Trees and Ensemble Methods in Machine Learning
 linktitle: Overview
 summary: A handbook-style short course on decision trees, bagging, random forests, feature importance, and boosting methods for structured data.
 date: 2026-03-14
@@ -16,7 +16,7 @@ weight: 1
 toc: false
 ---
 
-Tree-Based Machine Learning is a handbook-style short course for readers who want a deeper, model-family-specific understanding of decision trees and the ensemble methods built on top of them.
+Decision Trees and Ensemble Methods in Machine Learning is a handbook-style short course for readers who want a deeper, model-family-specific understanding of decision trees and the ensemble methods built on top of them.
 
 ## Why tree-based methods matter
 
@@ -30,6 +30,28 @@ They are often strong choices when:
 - interpretability, feature importance, and operational control still matter
 
 In many real production settings, tree ensembles are still among the first serious baselines worth training and often among the hardest systems to beat.
+
+## Why deep learning is not the default for tabular data
+
+It is tempting to assume that deep learning should dominate everywhere because it dominates so many other areas of machine learning. But tabular data is different enough that this is usually the wrong default assumption.
+
+Across benchmark studies, strong tree-based methods often remain the better starting point for typical tabular prediction tasks because they:
+
+- work very well on medium-sized datasets, which are common in applied tabular problems
+- usually require less feature preprocessing and less hyperparameter tuning
+- handle mixed, irregular, and partly uninformative feature sets well
+- often train faster and are easier to debug than deep tabular architectures
+
+Two references are especially useful here. [Tabular Data: Deep Learning is Not All You Need](https://arxiv.org/abs/2106.03253) compares several deep tabular architectures against strong tree-based baselines and shows that gradient-boosted trees often remained the strongest practical choice on the evaluated datasets, especially once tuning burden is taken seriously. [Why do tree-based models still outperform deep learning on typical tabular data?](https://proceedings.neurips.cc/paper_files/paper/2022/file/0378c7692da36807bdec87ab043cdadc-Paper-Datasets_and_Benchmarks.pdf) reinforces that point and gives a useful explanation for it: many tabular problems do not have the spatial, sequential, or local structure that helps deep networks shine in areas like vision, language, and audio.
+
+There is also a modeling reason. Tabular prediction surfaces are often jagged, heterogeneous, and feature-dependent in ways that trees can represent naturally through recursive partitioning. Neural networks can absolutely be competitive, but they are often not the simplest strong baseline.
+
+This is not a claim that deep learning is bad for tabular data. It is a claim about default order of operations:
+
+- start with strong tree-based baselines
+- move to deep learning when the data scale, problem structure, multimodal setup, or end-to-end differentiability requirement makes that worthwhile
+
+That is also why this course focuses on trees and ensembles first: for many real structured-data problems, this is still the highest-value place to build intuition.
 
 ## Why study them in depth
 

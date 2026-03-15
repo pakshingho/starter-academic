@@ -35,6 +35,13 @@ Use these references to deepen specific topics after working through the handboo
 - [Understanding Random Forests: From Theory to Practice](https://arxiv.org/abs/1407.7502)
   A practical and readable reference for tree ensembles, bias-variance intuition, and random forest variants.
 
+### Deep learning versus trees on tabular data
+
+- [Tabular Data: Deep Learning is Not All You Need](https://arxiv.org/abs/2106.03253)
+  A useful benchmark-style paper showing that XGBoost often outperformed several deep tabular models on the evaluated datasets while also requiring less tuning effort.
+- [Why do tree-based models still outperform deep learning on typical tabular data?](https://proceedings.neurips.cc/paper_files/paper/2022/file/0378c7692da36807bdec87ab043cdadc-Paper-Datasets_and_Benchmarks.pdf)
+  A strong reference for the argument that tree-based models remain the default baseline on many medium-sized tabular tasks, and for the more detailed discussion of why tabular neural networks struggle.
+
 ### Modern tree libraries
 
 - [XGBoost: A Scalable Tree Boosting System](https://arxiv.org/abs/1603.02754)
