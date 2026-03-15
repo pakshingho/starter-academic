@@ -26,6 +26,14 @@ Once the workflow is sound, it becomes reasonable to compare stronger model fami
 
 Boosting builds models sequentially. Each new learner focuses more attention on errors made by earlier learners.
 
+In additive form, a boosting model often looks like:
+
+$$
+F_m(x) = F_{m-1}(x) + \eta h_m(x)
+$$
+
+where $h_m$ is the new weak learner and $\eta$ is the learning-rate shrinkage factor.
+
 That differs from bagging:
 
 - bagging reduces variance through averaging
@@ -35,9 +43,17 @@ This often makes boosting very strong on structured datasets, especially when fe
 
 In practice, gradient boosting libraries are among the most reliable high-performance choices for tabular data.
 
+![Parallel averaging versus sequential correction in ensemble methods](/media/handbooks/shared/ensemble-patterns.svg)
+
 ### Neural networks
 
 Neural networks stack layers of weighted transformations and nonlinear activations. They can represent more flexible functional forms than linear models and can capture rich interactions among features.
+
+A single layer update is usually written as:
+
+$$
+h^{(\ell + 1)} = \phi\left(W^{(\ell)} h^{(\ell)} + b^{(\ell)}\right)
+$$
 
 Still, tabular data is a domain where neural networks are not always the default winner. They can be effective, but they often demand more care in:
 
@@ -94,6 +110,13 @@ The point of learning these libraries is not to memorize tool names. It is to un
 
 In practice, that comparison should include not only other AutoML systems but also strong hand-tuned or well-tuned tree baselines such as CatBoost, LightGBM, XGBoost, and random forests.
 
+| Library | What it automates well | Good first use case | Watch-out |
+| --- | --- | --- | --- |
+| AutoGluon Tabular | strong default ensembling and tabular baselines | quick high-quality benchmark on structured data | can hide a lot of modeling detail if you do not inspect outputs |
+| FLAML | lightweight budget-aware search | time-constrained experiments inside Python workflows | smaller search scope can miss richer ensembles |
+| auto-sklearn | sklearn-adjacent model and pipeline search | teams already invested in sklearn-style pipelines | can be slower and heavier than expected on larger problems |
+| H2O AutoML | broad leaderboard-style search and stacked ensembles | platform-like comparisons across many models | operational workflow can feel more heavyweight than notebook-first tools |
+
 For a live comparison point, see the [TabArena leaderboard](https://tabarena.ai/). As of March 14, 2026, on its public no-imputation / lite / all-tasks / all-datasets board, `RealTabPFN-v2.5 (tuned + ensembled)` is listed first at Elo `1648`, `AutoGluon 1.4 (extreme, 4h)` is next at `1640`, and strong tuned-plus-ensembled tree baselines like `LightGBM` (`1440`), `CatBoost` (`1414`), and `XGBoost` (`1387`) remain highly competitive. That is a good reminder that foundation models, AutoML systems, and classic tree methods should all be part of the same comparison set.
 
 ### Practical model-comparison mindset
@@ -106,6 +129,14 @@ For a serious tabular project, a healthy comparison set might include:
 - optionally a neural network or AutoML run
 
 The winning choice should reflect more than score alone. Also consider robustness, latency, interpretability, maintenance burden, and how likely the result is to survive contact with real data drift.
+
+| Candidate | Typical upside | Typical risk |
+| --- | --- | --- |
+| linear or logistic regression | fastest interpretable baseline | underfits nonlinear interactions |
+| random forest | forgiving strong baseline | can be less sharp than boosting on tabular leaderboards |
+| gradient boosting | often strongest classical tabular performer | easier to overfit through tuning |
+| neural network | flexible architecture for larger or multimodal setups | more tuning, data, and optimization sensitivity |
+| AutoML | broad benchmark quickly | still inherits your split, metric, and leakage mistakes |
 
 ### Chapter takeaway
 

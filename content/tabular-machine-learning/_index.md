@@ -58,6 +58,15 @@ It also gives fast feedback. You can usually iterate quickly, debug mistakes mor
 - how to build intuition for KNN, trees, random forests, regression, boosting, and neural networks
 - how to decide when simple models are enough and when more complex models are justified
 
+## How the handbook builds intuition
+
+| Course block | Main question | Representative tools |
+| --- | --- | --- |
+| Framing and evaluation | What are we predicting, and how do we know if the answer is trustworthy? | task definition, leakage checks, train/validation/test strategy, metrics |
+| Representation | How do raw columns become usable signals? | scaling, encoding, imputation, pipelines, TF-IDF |
+| Model families | What trade-offs do different learners make? | KNN, trees, linear models, boosting, neural networks |
+| Practical comparison | How do we choose responsibly instead of chasing novelty? | baselines, tuning, AutoML, robustness checks |
+
 ## Course path
 
 1. [Start Here](start-here/)

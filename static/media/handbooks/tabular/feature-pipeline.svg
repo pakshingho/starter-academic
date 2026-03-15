@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Feature engineering pipeline</title>
+  <desc id="desc">A pipeline that starts with raw columns, applies transformations, and produces a model-ready matrix.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbf6ee; }
+      .card { fill: #ffffff; stroke: #d9c9b4; stroke-width: 2; rx: 18; }
+      .soft { fill: #dcefeb; }
+      .accent { fill: #145b52; }
+      .label { font: 700 24px "Helvetica Neue", Arial, sans-serif; fill: #1f2624; }
+      .body { font: 500 18px "Helvetica Neue", Arial, sans-serif; fill: #2f3e39; }
+      .note { font: 500 15px "Helvetica Neue", Arial, sans-serif; fill: #5f6d67; }
+      .arrow { stroke: #145b52; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#145b52"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="300" rx="24"/>
+  <text x="40" y="44" class="label">From raw columns to model-ready signals</text>
+
+  <g transform="translate(40 86)">
+    <rect class="card" width="260" height="190" rx="18"/>
+    <text x="24" y="34" class="body">Raw columns</text>
+    <text x="24" y="70" class="note">Age</text>
+    <text x="24" y="98" class="note">City</text>
+    <text x="24" y="126" class="note">Order text</text>
+    <text x="24" y="154" class="note">Signup date</text>
+  </g>
+
+  <g transform="translate(380 86)">
+    <rect class="card soft" width="360" height="190" rx="18"/>
+    <text x="24" y="34" class="body">Transformations</text>
+    <text x="24" y="70" class="note">Scale numeric features</text>
+    <text x="24" y="98" class="note">Encode categories</text>
+    <text x="24" y="126" class="note">Extract TF-IDF from text</text>
+    <text x="24" y="154" class="note">Construct ratios, buckets, flags</text>
+  </g>
+
+  <g transform="translate(820 86)">
+    <rect class="card" width="320" height="190" rx="18"/>
+    <text x="24" y="34" class="body">Model matrix</text>
+    <text x="24" y="70" class="note">[ scaled age | city_Boston |</text>
+    <text x="24" y="90" class="note">  tfidf_urgent | ... ]</text>
+    <text x="24" y="126" class="note">Reusable inside the same</text>
+    <text x="24" y="146" class="note">pipeline</text>
+    <text x="24" y="166" class="note">Consistent across train and</text>
+    <text x="24" y="182" class="note">validation</text>
+  </g>
+
+  <path class="arrow" d="M 302 170 H 366"/>
+  <path class="arrow" d="M 742 170 H 806"/>
+</svg>

@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tabular-machine-learning:
     identifier: chapter-evaluation
@@ -38,6 +39,31 @@ For classification, common choices include:
 
 The main discipline is not to choose a metric because it is familiar. Choose it because it reflects the downstream cost of being wrong.
 
+A few core formulas are worth recognizing:
+
+$$
+\mathrm{MAE} = \frac{1}{n}\sum_{i=1}^{n} |y_i - \hat y_i|,
+\qquad
+\mathrm{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n} (y_i - \hat y_i)^2}
+$$
+
+$$
+\mathrm{Precision} = \frac{TP}{TP + FP},
+\qquad
+\mathrm{Recall} = \frac{TP}{TP + FN},
+\qquad
+F_1 = \frac{2 \cdot \mathrm{Precision} \cdot \mathrm{Recall}}{\mathrm{Precision} + \mathrm{Recall}}
+$$
+
+| Metric | Best fit | Main caution |
+| --- | --- | --- |
+| Accuracy | balanced classification with similar error costs | can look good on imbalanced tasks for the wrong reasons |
+| Precision | costly false positives | may hide missed positives |
+| Recall | costly false negatives | may encourage too many alerts |
+| F1 | need one summary for precision and recall | hides the threshold trade-off and business context |
+| MAE | easy-to-interpret average miss size | treats all errors linearly |
+| RMSE | larger misses should hurt more | can be dominated by a few large outliers |
+
 ### Train, validation, and test
 
 A useful mental model is:
@@ -49,6 +75,8 @@ A useful mental model is:
 If the same data keeps influencing every modeling decision, the test set stops behaving like truly unseen data.
 
 Cross-validation is especially useful when data is limited or when model performance is sensitive to the specific split.
+
+![Roles of train, validation, and test data in one workflow](/media/handbooks/tabular/train-validation-test.svg)
 
 ### Underfitting and overfitting
 

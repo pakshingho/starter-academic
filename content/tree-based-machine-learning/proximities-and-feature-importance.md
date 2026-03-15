@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tree-based-machine-learning:
     identifier: chapter-interpretation
@@ -43,6 +44,14 @@ This makes proximities useful for:
 
 This is one of the more underrated reasons random forests are interesting beyond pure prediction accuracy.
 
+One simple proximity definition is:
+
+$$
+\mathrm{prox}(i, j) = \frac{1}{T}\sum_{t=1}^{T} \mathbf{1}\{\ell_t(x_i) = \ell_t(x_j)\}
+$$
+
+where $\ell_t(x)$ is the terminal leaf reached by point $x$ in tree $t$.
+
 ### Why proximities can help
 
 The forest is effectively learning a task-aware representation of the data.
@@ -61,6 +70,12 @@ A common approach is impurity-based importance:
 - aggregate those reductions through the tree or forest
 
 This is simple and useful, especially for exploratory analysis.
+
+In shorthand, an impurity-based feature score can be written as:
+
+$$
+I_j = \sum_{t \in \text{splits on } j} \frac{n_t}{n}\Delta I_t
+$$
 
 ### Why feature importance can mislead
 
@@ -84,6 +99,14 @@ Permutation importance takes a different approach:
 
 If shuffling a feature hurts performance substantially, the model depended heavily on it.
 
+A compact definition is:
+
+$$
+\mathrm{PI}_j = \mathrm{Score}(D) - \mathrm{Score}(\pi_j(D))
+$$
+
+where $\pi_j(D)$ is the evaluation data after feature $j$ has been permuted.
+
 This is attractive because it is:
 
 - model-agnostic
@@ -91,6 +114,14 @@ This is attractive because it is:
 - often easier to interpret than impurity sums
 
 The trade-off is speed: permutation importance can be expensive, especially for large ensembles.
+
+![A forest can emit learned similarities and importance summaries](/media/handbooks/tree/forest-signals.svg)
+
+| Signal | Strength | Main failure mode | Best use |
+| --- | --- | --- | --- |
+| Impurity importance | fast and built into tree training | favors features with many split opportunities | exploratory ranking |
+| Permutation importance | tied to predictive degradation | can blur under correlated predictors | validation-time interpretation |
+| Proximity matrix | reveals learned similarity structure | less direct to explain to nontechnical audiences | visualization, clustering, downstream features |
 
 ### Practical interpretability rule
 

@@ -42,6 +42,12 @@ def slugify(value: str) -> str:
     return value.strip("-") or "section"
 
 
+def preview_href(url: str) -> str:
+    if url.startswith("/media/"):
+        return "/static" + url
+    return url
+
+
 def format_inline(text: str) -> str:
     escaped = html.escape(text)
     escaped = re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
@@ -49,7 +55,7 @@ def format_inline(text: str) -> str:
     escaped = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", escaped)
     escaped = re.sub(
         r"\[([^\]]+)\]\(([^)]+)\)",
-        lambda match: f'<a href="{html.escape(match.group(2), quote=True)}">{match.group(1)}</a>',
+        lambda match: f'<a href="{html.escape(preview_href(match.group(2)), quote=True)}">{match.group(1)}</a>',
         escaped,
     )
     escaped = re.sub(
@@ -60,11 +66,41 @@ def format_inline(text: str) -> str:
     return escaped
 
 
+def parse_table_row(line: str) -> list[str]:
+    cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+    return cells
+
+
+def is_table_separator(cells: list[str]) -> bool:
+    if not cells:
+        return False
+    return all(re.fullmatch(r":?-{3,}:?", cell) for cell in cells)
+
+
+def render_table(table_lines: list[str]) -> str:
+    rows = [parse_table_row(line) for line in table_lines]
+    if len(rows) < 2 or not is_table_separator(rows[1]):
+        return "\n".join(f"<p>{format_inline(line)}</p>" for line in table_lines)
+
+    header = rows[0]
+    body = rows[2:]
+    parts = ["<table>", "<thead>", "<tr>"]
+    parts.extend(f"<th>{format_inline(cell)}</th>" for cell in header)
+    parts.extend(["</tr>", "</thead>", "<tbody>"])
+    for row in body:
+        parts.append("<tr>")
+        parts.extend(f"<td>{format_inline(cell)}</td>" for cell in row)
+        parts.append("</tr>")
+    parts.extend(["</tbody>", "</table>"])
+    return "\n".join(parts)
+
+
 def markdown_to_html(markdown: str) -> str:
     lines = markdown.splitlines()
     output: list[str] = []
     paragraph: list[str] = []
     list_mode: str | None = None
+    table_lines: list[str] = []
 
     def flush_paragraph() -> None:
         nonlocal paragraph
@@ -80,28 +116,72 @@ def markdown_to_html(markdown: str) -> str:
             output.append(f"</{list_mode}>")
             list_mode = None
 
-    for raw_line in lines:
-        line = raw_line.rstrip()
+    def flush_table() -> None:
+        nonlocal table_lines
+        if table_lines:
+            output.append(render_table(table_lines))
+            table_lines = []
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
         stripped = line.strip()
 
         if not stripped:
             flush_paragraph()
             close_list()
+            flush_table()
+            i += 1
+            continue
+
+        if stripped == "$$":
+            flush_paragraph()
+            close_list()
+            flush_table()
+            i += 1
+            math_lines: list[str] = []
+            while i < len(lines) and lines[i].strip() != "$$":
+                math_lines.append(lines[i])
+                i += 1
+            output.append('<div class="math-block">$$\n' + html.escape("\n".join(math_lines)) + '\n$$</div>')
+            i += 1
+            continue
+
+        image_match = re.match(r"^!\[(.*)\]\(([^)]+)\)$", stripped)
+        if image_match:
+            flush_paragraph()
+            close_list()
+            flush_table()
+            alt_text = html.escape(image_match.group(1))
+            src = html.escape(preview_href(image_match.group(2)), quote=True)
+            figcaption = f"<figcaption>{alt_text}</figcaption>" if alt_text else ""
+            output.append(f'<figure><img src="{src}" alt="{alt_text}">{figcaption}</figure>')
+            i += 1
+            continue
+
+        if stripped.startswith("|") and stripped.endswith("|"):
+            flush_paragraph()
+            close_list()
+            table_lines.append(stripped)
+            i += 1
             continue
 
         heading_match = re.match(r"^(#{1,6})\s+(.*)$", stripped)
         if heading_match:
             flush_paragraph()
             close_list()
+            flush_table()
             level = len(heading_match.group(1))
             title = heading_match.group(2).strip()
             output.append(f'<h{level} id="{slugify(title)}">{format_inline(title)}</h{level}>')
+            i += 1
             continue
 
         unordered_match = re.match(r"^-\s+(.*)$", stripped)
         ordered_match = re.match(r"^\d+\.\s+(.*)$", stripped)
         if unordered_match or ordered_match:
             flush_paragraph()
+            flush_table()
             item_text = unordered_match.group(1) if unordered_match else ordered_match.group(1)
             next_mode = "ul" if unordered_match else "ol"
             if list_mode != next_mode:
@@ -109,18 +189,23 @@ def markdown_to_html(markdown: str) -> str:
                 output.append(f"<{next_mode}>")
                 list_mode = next_mode
             output.append(f"<li>{format_inline(item_text)}</li>")
+            i += 1
             continue
 
         if line.startswith("  ") and list_mode and output and output[-1].startswith("<li>"):
             continuation = format_inline(stripped)
             output[-1] = output[-1][:-5] + f" {continuation}</li>"
+            i += 1
             continue
 
         close_list()
+        flush_table()
         paragraph.append(stripped)
+        i += 1
 
     flush_paragraph()
     close_list()
+    flush_table()
     return "\n".join(output)
 
 
@@ -167,6 +252,16 @@ def render_page(page: Page, body_html: str, sidebar_html: str, base_url: str, co
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{html.escape(page.title)} | Handbook Preview</title>
     <link rel="stylesheet" href="{html.escape(base_url)}style.css">
+    <script>
+      window.MathJax = {{
+        tex: {{
+          inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+          displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']]
+        }},
+        svg: {{ fontCache: 'global' }}
+      }};
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div class="shell">
@@ -366,6 +461,50 @@ blockquote {
   padding: 1rem 1.2rem;
   background: var(--accent-soft);
   border-left: 4px solid var(--accent);
+}
+
+figure {
+  margin: 1.6rem 0;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(215, 201, 182, 0.88);
+  background: #fffdf8;
+}
+
+figcaption {
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+}
+
+th,
+td {
+  padding: 0.75rem 0.8rem;
+  border: 1px solid rgba(215, 201, 182, 0.88);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: rgba(20, 91, 82, 0.08);
+}
+
+.math-block {
+  margin: 1.4rem 0;
+  overflow-x: auto;
 }
 
 @media (max-width: 900px) {

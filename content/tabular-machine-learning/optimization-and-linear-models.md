@@ -26,6 +26,14 @@ Optimization is the engine underneath most machine learning. Even if you never d
 
 Training a model usually means choosing parameters that minimize an error or loss function.
 
+In compact form, many supervised-learning problems look like:
+
+$$
+\min_{\theta} L(\theta)
+=
+\min_{\theta} \frac{1}{n}\sum_{i=1}^{n} \ell\left(y_i, f_{\theta}(x_i)\right)
+$$
+
 Conceptually, the model asks:
 
 - How wrong am I right now?
@@ -46,6 +54,14 @@ The rough picture is:
 
 That is the core idea behind a wide range of models, not just neural networks.
 
+The canonical update is:
+
+$$
+\theta^{(t+1)} = \theta^{(t)} - \eta \nabla_{\theta} L\left(\theta^{(t)}\right)
+$$
+
+where $\eta$ is the learning rate.
+
 ### Linear regression
 
 Linear regression predicts a numeric outcome as a weighted combination of input features.
@@ -58,6 +74,14 @@ It is most useful when:
 
 Even when the world is not perfectly linear, linear regression is often worth fitting because it clarifies direction, magnitude, and baseline difficulty.
 
+The basic model and squared-error loss are:
+
+$$
+\hat y = \beta_0 + x^\top \beta,
+\qquad
+L(\beta) = \frac{1}{n}\sum_{i=1}^{n} \left(y_i - \beta_0 - x_i^\top \beta\right)^2
+$$
+
 ### From linear to logistic regression
 
 Classification needs outputs that behave like probabilities or decisions, not unrestricted numbers. Logistic regression adapts the linear idea by transforming the output through a sigmoid-like mapping and optimizing a classification-appropriate loss.
@@ -67,6 +91,14 @@ This makes logistic regression a foundational model for binary classification:
 - simple
 - interpretable
 - often surprisingly competitive
+
+The usual probability mapping is:
+
+$$
+\mathbb{P}(y=1 \mid x) = \sigma(\beta_0 + x^\top \beta),
+\qquad
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
 
 ### Regularization
 
@@ -81,6 +113,14 @@ A useful intuition:
 
 Good regularization is not about making a model smaller for its own sake. It is about trading a little training fit for better out-of-sample behavior.
 
+Two classic regularized objectives are:
+
+$$
+L_{\mathrm{ridge}}(\beta) = L(\beta) + \lambda \lVert \beta \rVert_2^2,
+\qquad
+L_{\mathrm{lasso}}(\beta) = L(\beta) + \lambda \lVert \beta \rVert_1
+$$
+
 ### Why these models still matter
 
 Linear and logistic regression remain valuable because they:
@@ -91,6 +131,13 @@ Linear and logistic regression remain valuable because they:
 - force clean thinking about features and assumptions
 
 They also provide the conceptual bridge to more advanced optimization-based models.
+
+| Model | Core output | Strength | Typical limitation |
+| --- | --- | --- | --- |
+| Linear regression | numeric prediction | fast, interpretable baseline | misses nonlinear structure |
+| Logistic regression | class probability | strong calibrated baseline for binary tasks | decision boundary is linear in feature space |
+| Ridge regression | shrunk linear coefficients | stable when features are correlated | does not do feature selection directly |
+| Lasso regression | sparse linear coefficients | can simplify wide feature sets | unstable when strong predictors are highly correlated |
 
 ### Chapter takeaway
 

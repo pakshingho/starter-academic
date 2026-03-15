@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tree-based-machine-learning:
     identifier: chapter-forests
@@ -33,6 +34,12 @@ Why is this useful in machine learning?
 
 That variation is exactly what bagging later aggregates.
 
+In a size-$n$ bootstrap sample, the expected fraction of unique observations is:
+
+$$
+1 - \left(1 - \frac{1}{n}\right)^n \approx 1 - e^{-1} \approx 0.632
+$$
+
 ### Bagging
 
 Bagging, or bootstrap aggregating, trains multiple models on bootstrap samples and combines their predictions.
@@ -41,6 +48,12 @@ Bagging, or bootstrap aggregating, trains multiple models on bootstrap samples a
 - for classification: vote across the predictions
 
 Bagging is especially effective when the base learner is unstable. Deep decision trees are a classic example.
+
+For regression, the ensemble prediction is often written as:
+
+$$
+\hat f_{\mathrm{bag}}(x) = \frac{1}{T}\sum_{t=1}^{T} h_t(x)
+$$
 
 ### Out-of-bag error
 
@@ -53,6 +66,12 @@ Out-of-bag error works by:
 - measuring error on that aggregated prediction
 
 This gives bagged tree models a built-in approximate generalization check without requiring a separate validation split every time.
+
+The approximate chance that an observation is left out of one bootstrap sample is:
+
+$$
+\left(1 - \frac{1}{n}\right)^n \approx e^{-1} \approx 0.368
+$$
 
 ### Why plain bagging is not enough
 
@@ -72,6 +91,12 @@ The core idea is:
 - averaging then becomes more powerful
 
 This is why random forests usually outperform plain bagged trees.
+
+| Method | Source of randomness | Main benefit | Main trade-off |
+| --- | --- | --- | --- |
+| Bagging | bootstrap samples | variance reduction from averaging | trees can still stay highly correlated |
+| Random forest | bootstrap samples plus feature subsampling | lower correlation and stronger ensemble averaging | more hyperparameters to reason about |
+| ExtraTrees | feature randomness plus random split thresholds | very decorrelated trees and fast split search | individual trees are weaker and less interpretable |
 
 ### Variants and implementation choices
 
