@@ -18,6 +18,31 @@ toc: false
 
 Applied Machine Learning for Tabular Data is a handbook-style short course for readers who want a practical mental model of how tabular ML projects are scoped, built, evaluated, and improved.
 
+## Why tabular data matters
+
+Tabular data is where a large share of real applied machine learning still lives.
+
+It shows up in:
+
+- customer records, transactions, and operational logs
+- healthcare measurements, risk scores, and clinical outcomes
+- pricing, demand, churn, fraud, credit, and policy decisions
+- scientific and public-sector datasets where each row is an observation and each column is a feature
+
+Even when organizations talk about AI in broader terms, many of their highest-leverage prediction problems still come down to structured tables with mixed numerical, categorical, text, and temporal fields.
+
+## Why start learning machine learning with tabular data
+
+Tabular data is one of the best places to learn machine learning because it forces attention onto the foundations that matter across almost every modeling workflow:
+
+- how to define the target clearly
+- how to avoid leakage
+- how to choose metrics and split strategy
+- how to think about features, baselines, and model comparison
+- how to explain model behavior to collaborators and stakeholders
+
+It also gives fast feedback. You can usually iterate quickly, debug mistakes more easily than in image or language pipelines, and build intuition that transfers to other ML domains later.
+
 ## Course at a glance
 
 - Format: self-paced online handbook
