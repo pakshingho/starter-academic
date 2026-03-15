@@ -1,6 +1,12 @@
 # IDEs
 .idea/
 
+# macOS
+.DS_Store
+
 # Hugo
 /resources/
 public/
+
+# Local previews
+preview/
