@@ -462,7 +462,7 @@ That is the simple dynamic mode in the simulator. It moves price from shortage p
 For the richer control mode, the simulator also targets service quality and a small supply buffer:
 
 $$
-\mu_{t+1} = \operatorname{clip}\left(\mu_t \left[1 + \lambda \left(0.7(f^\star - f_t) + 0.3(b^\star - b_t)\right)\right], 1, \mu_{\max}\right)
+\mu_{t+1} = \min\!\left(\mu_{\max}, \max\!\left(1, \mu_t \left[1 + \lambda \left(0.7(f^\star - f_t) + 0.3(b^\star - b_t)\right)\right]\right)\right)
 $$
 
 where $\mu_t$ is the surge multiplier, $f_t$ is realized fill rate, $f^\star$ is the target fill rate, $b_t = \frac{\widetilde{S}_t - D_t}{\max\{D_t, 1\}}$ is the realized supply buffer, and $b^\star$ is the desired supply buffer.
@@ -470,7 +470,7 @@ where $\mu_t$ is the surge multiplier, $f_t$ is realized fill rate, $f^\star$ is
 The richer mode also allows surge-linked supplier incentives:
 
 $$
-I_t^{\mathrm{dynamic}} = \min\left\{I_{\max}, \kappa \max\{\mu_t - 1, 0\}\right\}
+I_t^{\text{dynamic}} = \min\!\left(I_{\max}, \kappa \max\!\left(\mu_t - 1, 0\right)\right)
 $$
 
 where $\kappa$ is the slope of the extra supplier top-up and $I_{\max}$ caps the payment.

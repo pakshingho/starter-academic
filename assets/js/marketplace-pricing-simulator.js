@@ -383,6 +383,14 @@ document.addEventListener("DOMContentLoaded", function () {
     return formatCurrency(value, 2) + "/unit";
   }
 
+  function formatCurrencyHtml(value, digits) {
+    return "<span class=\"marketplace-pricing-tool__literal-money\">" + formatCurrency(value, digits) + "</span>";
+  }
+
+  function formatCurrencyRateHtml(value) {
+    return "<span class=\"marketplace-pricing-tool__literal-money\">" + formatCurrencyRate(value) + "</span>";
+  }
+
   function formatMinutes(value) {
     return Math.round(value) + "m";
   }
@@ -1504,7 +1512,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function incentiveSummaryText(scenario) {
     var dynamicText = scenario.incentive.dynamicEquivalentPerCompleted > 0
-      ? " An extra surge-linked top-up adds " + formatCurrencyRate(scenario.incentive.dynamicEquivalentPerCompleted) + " on top of the base supplier program."
+      ? " An extra surge-linked top-up adds " + formatCurrencyRateHtml(scenario.incentive.dynamicEquivalentPerCompleted) + " on top of the base supplier program."
       : "";
 
     if (scenario.incentive.modelLabel === "No explicit incentive") {
@@ -1512,10 +1520,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (scenario.incentive.modelLabel === "Per-unit incentive") {
-      return "A direct " + formatCurrencyRate(scenario.incentive.baseEquivalentPerCompleted) + " incentive is layered on top of base payout, shifting effective supply by about " + formatSignedCount(scenario.incrementalEffectiveSupply) + " units at the current price." + dynamicText;
+      return "A direct " + formatCurrencyRateHtml(scenario.incentive.baseEquivalentPerCompleted) + " incentive is layered on top of base payout, shifting effective supply by about " + formatSignedCount(scenario.incrementalEffectiveSupply) + " units at the current price." + dynamicText;
     }
 
-    return "The threshold / guarantee program is converted into an expected " + formatCurrencyRate(scenario.incentive.baseEquivalentPerCompleted) + " incentive at the current price, made up of " + formatCurrencyRate(scenario.incentive.questEquivalentPerCompleted) + " from the quest and " + formatCurrencyRate(scenario.incentive.guaranteeTopUpPerCompleted) + " from the guarantee top-up." + dynamicText;
+    return "The threshold / guarantee program is converted into an expected " + formatCurrencyRateHtml(scenario.incentive.baseEquivalentPerCompleted) + " incentive at the current price, made up of " + formatCurrencyRateHtml(scenario.incentive.questEquivalentPerCompleted) + " from the quest and " + formatCurrencyRateHtml(scenario.incentive.guaranteeTopUpPerCompleted) + " from the guarantee top-up." + dynamicText;
   }
 
   function renderEquilibriumSummary(state, currentScenario, equilibriumScenario, preset) {
@@ -1533,7 +1541,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "<div class=\"marketplace-pricing-tool__insight-grid\">" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Pricing read</span>" +
-      "<p>At " + formatCurrency(state.currentPrice, 2) + ", " + preset.example + "-style demand is " + formatCount(currentScenario.demand) + " " + preset.unitPlural + " per day versus " + formatCount(currentScenario.effectiveSupply) + " of effective " + preset.supplySide + ". That leaves " + gapText + " and a fill rate of " + formatPercent(currentScenario.fillRate, 1) + ".</p>" +
+      "<p>At " + formatCurrencyHtml(state.currentPrice, 2) + ", " + preset.example + "-style demand is " + formatCount(currentScenario.demand) + " " + preset.unitPlural + " per day versus " + formatCount(currentScenario.effectiveSupply) + " of effective " + preset.supplySide + ". That leaves " + gapText + " and a fill rate of " + formatPercent(currentScenario.fillRate, 1) + ".</p>" +
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Promotion read</span>" +
@@ -1541,11 +1549,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Incentive read</span>" +
-      "<p>" + incentiveSummaryText(currentScenario) + " On the modeled completed volume, that incentive profile costs about " + formatCurrency(currentScenario.incentiveCost, 0) + " at the current price.</p>" +
+      "<p>" + incentiveSummaryText(currentScenario) + " On the modeled completed volume, that incentive profile costs about " + formatCurrencyHtml(currentScenario.incentiveCost, 0) + " at the current price.</p>" +
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Marketplace mechanism</span>" +
-      "<p>To clear the market, the model would " + directionText + " price to about " + formatCurrency(equilibriumScenario.price, 2) + " (" + formatRatio(multiplier) + " of the current price). Supplier payout would settle near " + formatCurrency(equilibriumScenario.payout, 2) + ", gross platform revenue would be " + formatCurrency(equilibriumScenario.grossPlatformRevenue, 0) + ", and incentive spend would absorb " + formatCurrency(grossNetSpread, 0) + ", leaving net platform revenue near " + formatCurrency(equilibriumScenario.netPlatformRevenue, 0) + ". " + preset.notes + "</p>" +
+      "<p>To clear the market, the model would " + directionText + " price to about " + formatCurrencyHtml(equilibriumScenario.price, 2) + " (" + formatRatio(multiplier) + " of the current price). Supplier payout would settle near " + formatCurrencyHtml(equilibriumScenario.payout, 2) + ", gross platform revenue would be " + formatCurrencyHtml(equilibriumScenario.grossPlatformRevenue, 0) + ", and incentive spend would absorb " + formatCurrencyHtml(grossNetSpread, 0) + ", leaving net platform revenue near " + formatCurrencyHtml(equilibriumScenario.netPlatformRevenue, 0) + ". " + preset.notes + "</p>" +
       "</article>" +
       "</div>";
   }
@@ -1564,14 +1572,14 @@ document.addEventListener("DOMContentLoaded", function () {
       ? "The fill-rate-targeted controller prices toward a " + formatPercent(state.dynamicTargetFill, 0) + " fill target while trying to keep about " + formatPercent(state.dynamicTargetBuffer, 0) + " spare effective supply."
       : "The simple controller only reacts to excess demand, so it is best read as a lightweight surge benchmark rather than a full operating policy.";
     var dynamicIncentiveText = simulation.hasDynamicTopUp
-      ? "The surge-linked top-up peaks at " + formatCurrencyRate(simulation.peakDynamicIncentivePerCompleted) + " and lifts supply by as much as " + formatSignedCount(simulation.peakDynamicSupplyUplift) + " units relative to the base supplier program."
+      ? "The surge-linked top-up peaks at " + formatCurrencyRateHtml(simulation.peakDynamicIncentivePerCompleted) + " and lifts supply by as much as " + formatSignedCount(simulation.peakDynamicSupplyUplift) + " units relative to the base supplier program."
       : "No extra surge-linked top-up is active, so suppliers only respond through the base incentive program and the price path.";
 
     outputs.summary.innerHTML =
       "<div class=\"marketplace-pricing-tool__insight-grid\">" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Surge read</span>" +
-      "<p>Starting from the base price, the controller reaches a peak of " + formatRatio(simulation.peakMultiplier) + " (" + formatCurrency(simulation.peakPrice, 2) + ") around " + formatMinutes(peakStep.minute) + " and ends near " + formatRatio(finalStep.multiplier) + " after " + formatMinutes(simulation.horizonMinutes - state.dynamicMinutes) + " of simulated time.</p>" +
+      "<p>Starting from the base price, the controller reaches a peak of " + formatRatio(simulation.peakMultiplier) + " (" + formatCurrencyHtml(simulation.peakPrice, 2) + ") around " + formatMinutes(peakStep.minute) + " and ends near " + formatRatio(finalStep.multiplier) + " after " + formatMinutes(simulation.horizonMinutes - state.dynamicMinutes) + " of simulated time.</p>" +
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Supply response</span>" +
@@ -1579,11 +1587,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Incentive read</span>" +
-      "<p>" + dynamicIncentiveText + " Total incentive spend across the modeled horizon is about " + formatCurrency(simulation.cumulativeIncentiveCost, 0) + ".</p>" +
+      "<p>" + dynamicIncentiveText + " Total incentive spend across the modeled horizon is about " + formatCurrencyHtml(simulation.cumulativeIncentiveCost, 0) + ".</p>" +
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Marketplace mechanism</span>" +
-      "<p>" + policyText + " Across the whole run, the platform gives up about " + formatCount(simulation.totalLostDemand) + " " + preset.unitPlural + ", earns " + formatCurrency(simulation.cumulativeGrossRevenue, 0) + " gross revenue, and keeps about " + formatCurrency(simulation.cumulativeNetRevenue, 0) + " net of incentives. " + preset.notes + "</p>" +
+      "<p>" + policyText + " Across the whole run, the platform gives up about " + formatCount(simulation.totalLostDemand) + " " + preset.unitPlural + ", earns " + formatCurrencyHtml(simulation.cumulativeGrossRevenue, 0) + " gross revenue, and keeps about " + formatCurrencyHtml(simulation.cumulativeNetRevenue, 0) + " net of incentives. " + preset.notes + "</p>" +
       "</article>" +
       "</div>";
   }
