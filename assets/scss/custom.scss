@@ -258,6 +258,278 @@ html {
   margin-top: 1.5rem;
 }
 
+.marketplace-tool {
+  margin-top: 1.5rem;
+}
+
+.marketplace-tool__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.marketplace-tool__preset-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.marketplace-tool__button,
+.marketplace-tool__preset {
+  border: 1px solid rgba(8, 145, 178, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 145, 178, 0.08);
+  color: inherit;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.marketplace-tool__button:hover,
+.marketplace-tool__preset:hover {
+  background: rgba(8, 145, 178, 0.14);
+}
+
+.marketplace-tool__button--ghost {
+  background: transparent;
+}
+
+.marketplace-tool__preset--active {
+  background: rgba(8, 145, 178, 0.18);
+  border-color: rgba(8, 145, 178, 0.4);
+}
+
+.marketplace-tool__grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.25fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.marketplace-tool__panel {
+  min-width: 0;
+  padding: 1.45rem;
+  border: 1px solid rgba(8, 145, 178, 0.16);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.marketplace-tool__panel-head h2,
+.marketplace-tool__panel--details h2 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+
+.marketplace-tool__panel-head p {
+  margin-bottom: 0;
+  opacity: 0.84;
+}
+
+.marketplace-tool__field + .marketplace-tool__field {
+  margin-top: 1rem;
+}
+
+.marketplace-tool__field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.marketplace-tool__field input {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: inherit;
+  padding: 0.78rem 0.9rem;
+  font: inherit;
+}
+
+.marketplace-tool__field p {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+.marketplace-tool__chart-card {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(8, 145, 178, 0.06);
+}
+
+.marketplace-tool__chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.marketplace-tool__chart-bg {
+  fill: rgba(255, 255, 255, 0.78);
+  stroke: rgba(8, 145, 178, 0.16);
+}
+
+.marketplace-tool__grid-line {
+  stroke: rgba(100, 116, 139, 0.14);
+  stroke-width: 1;
+}
+
+.marketplace-tool__axis-line {
+  stroke: rgba(71, 85, 105, 0.65);
+  stroke-width: 1.2;
+}
+
+.marketplace-tool__axis-line--strong {
+  stroke-width: 1.5;
+}
+
+.marketplace-tool__curve {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.marketplace-tool__curve--demand {
+  stroke: #0f766e;
+}
+
+.marketplace-tool__curve--supply {
+  stroke: #c2410c;
+}
+
+.marketplace-tool__curve--benchmark {
+  stroke: #64748b;
+  stroke-dasharray: 8 8;
+}
+
+.marketplace-tool__guide {
+  stroke: rgba(15, 23, 42, 0.24);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 5;
+}
+
+.marketplace-tool__wedge {
+  stroke: rgba(8, 145, 178, 0.95);
+  stroke-width: 3;
+}
+
+.marketplace-tool__point {
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.marketplace-tool__point--buyer {
+  fill: #0f766e;
+}
+
+.marketplace-tool__point--seller {
+  fill: #c2410c;
+}
+
+.marketplace-tool__point--benchmark {
+  fill: #64748b;
+}
+
+.marketplace-tool__axis-label,
+.marketplace-tool__annotation {
+  fill: #475569;
+  font-size: 12px;
+}
+
+.marketplace-tool__axis-title {
+  fill: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.marketplace-tool__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.marketplace-tool__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.marketplace-tool__legend-swatch {
+  width: 1.1rem;
+  height: 0.2rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.marketplace-tool__legend-swatch--demand {
+  color: #0f766e;
+}
+
+.marketplace-tool__legend-swatch--supply {
+  color: #c2410c;
+}
+
+.marketplace-tool__legend-swatch--benchmark {
+  color: #64748b;
+}
+
+.marketplace-tool__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.marketplace-tool__metric {
+  padding: 1rem;
+  border-radius: 0.85rem;
+  background: rgba(8, 145, 178, 0.08);
+  min-height: 7.4rem;
+}
+
+.marketplace-tool__metric-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.marketplace-tool__metric strong {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.marketplace-tool__notes {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.marketplace-tool__notes p:last-child {
+  margin-bottom: 0;
+}
+
+.marketplace-tool__error {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  background: rgba(209, 62, 62, 0.12);
+  color: #c73b3b;
+  font-weight: 700;
+}
+
+.marketplace-tool__panel--details {
+  margin-top: 1.5rem;
+}
+
 .causal-tool {
   margin-top: 1.5rem;
 }
@@ -729,6 +1001,10 @@ html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .marketplace-tool__grid {
+    grid-template-columns: 1fr;
+  }
+
   .causal-tool__grid {
     grid-template-columns: 1fr;
   }
@@ -771,6 +1047,10 @@ html {
   .experiment-tool__metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .marketplace-tool__metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -780,6 +1060,29 @@ html {
 
   .experiment-tool__metrics {
     grid-template-columns: 1fr;
+  }
+
+  .marketplace-tool__panel {
+    padding: 1.1rem;
+  }
+
+  .marketplace-tool__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-tool__toolbar {
+    align-items: stretch;
+  }
+
+  .marketplace-tool__preset-group {
+    width: 100%;
+  }
+
+  .marketplace-tool__preset,
+  .marketplace-tool__button {
+    flex: 1 1 10rem;
+    justify-content: center;
+    text-align: center;
   }
 
   .article-style {
