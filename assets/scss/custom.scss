@@ -895,6 +895,319 @@ html {
   padding: 0.58rem 0.95rem;
 }
 
+.marketplace-pricing-tool {
+  margin-top: 1.5rem;
+}
+
+.marketplace-pricing-tool__subtitle {
+  margin: -0.35rem 0 1rem;
+  color: #475569;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+}
+
+.marketplace-pricing-tool__grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.98fr) minmax(0, 1.22fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.marketplace-pricing-tool__panel {
+  min-width: 0;
+  padding: 1.45rem;
+  border: 1px solid rgba(0, 136, 204, 0.16);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(0, 136, 204, 0.04), rgba(15, 23, 42, 0.03));
+}
+
+.marketplace-pricing-tool__panel-head h2,
+.marketplace-pricing-tool__panel--details h2 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+
+.marketplace-pricing-tool__panel-head p {
+  margin-bottom: 0;
+  opacity: 0.84;
+}
+
+.marketplace-pricing-tool__section + .marketplace-pricing-tool__section {
+  margin-top: 1.45rem;
+}
+
+.marketplace-pricing-tool__section h3 {
+  margin-bottom: 0.85rem;
+  font-size: 1.05rem;
+}
+
+.marketplace-pricing-tool__field + .marketplace-pricing-tool__field {
+  margin-top: 1rem;
+}
+
+.marketplace-pricing-tool__field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.marketplace-pricing-tool__field input,
+.marketplace-pricing-tool__field select {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: inherit;
+  padding: 0.78rem 0.9rem;
+  font: inherit;
+}
+
+.marketplace-pricing-tool__field p {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+.marketplace-pricing-tool__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.marketplace-pricing-tool__button {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.98), rgba(37, 99, 235, 0.94));
+  color: #fff;
+  padding: 0.68rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.marketplace-pricing-tool__button--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  border: 1px solid rgba(128, 128, 128, 0.28);
+}
+
+.marketplace-pricing-tool__share-status {
+  min-height: 1.25rem;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.marketplace-pricing-tool__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.marketplace-pricing-tool__metric {
+  min-height: 8.5rem;
+  padding: 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(0, 136, 204, 0.16);
+  background: linear-gradient(145deg, rgba(15, 118, 110, 0.06), rgba(29, 78, 216, 0.06));
+}
+
+.marketplace-pricing-tool__metric-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.marketplace-pricing-tool__metric strong {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1.24;
+  overflow-wrap: anywhere;
+}
+
+.marketplace-pricing-tool__summary {
+  margin-top: 1rem;
+}
+
+.marketplace-pricing-tool__insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.marketplace-pricing-tool__insight {
+  padding: 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.marketplace-pricing-tool__insight p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.marketplace-pricing-tool__insight-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.55rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.marketplace-pricing-tool__error {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 0.95rem;
+  background: rgba(209, 62, 62, 0.12);
+  color: #c73b3b;
+  font-weight: 700;
+}
+
+.marketplace-pricing-tool__panel--charts,
+.marketplace-pricing-tool__panel--details {
+  margin-top: 1.5rem;
+}
+
+.marketplace-pricing-tool__charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.marketplace-pricing-tool__chart-card {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.marketplace-pricing-tool__chart-head h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+}
+
+.marketplace-pricing-tool__chart-head p {
+  margin: 0 0 0.85rem;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.marketplace-pricing-tool__chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.marketplace-pricing-tool__chart-axis {
+  stroke: rgba(15, 23, 42, 0.32);
+  stroke-width: 1.15;
+}
+
+.marketplace-pricing-tool__chart-grid {
+  stroke: rgba(15, 23, 42, 0.12);
+  stroke-dasharray: 3 5;
+}
+
+.marketplace-pricing-tool__chart-marker-line {
+  stroke: rgba(29, 78, 216, 0.32);
+  stroke-width: 1.15;
+  stroke-dasharray: 5 6;
+}
+
+.marketplace-pricing-tool__axis-label,
+.marketplace-pricing-tool__marker-label {
+  fill: currentColor;
+  font-size: 11px;
+  opacity: 0.78;
+}
+
+.marketplace-pricing-tool__axis-label--x,
+.marketplace-pricing-tool__marker-label {
+  text-anchor: middle;
+}
+
+.marketplace-pricing-tool__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.marketplace-pricing-tool__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.marketplace-pricing-tool__legend-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+}
+
+.marketplace-pricing-tool__table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.marketplace-pricing-tool__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.marketplace-pricing-tool__table thead th {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  font-size: 0.92rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.marketplace-pricing-tool__table tbody td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.marketplace-pricing-tool__table-row--highlight td {
+  background: rgba(29, 78, 216, 0.08);
+}
+
+.marketplace-pricing-tool__table-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  border-radius: 999px;
+  padding: 0.12rem 0.48rem;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.marketplace-pricing-tool__table-badge--accent {
+  background: rgba(29, 78, 216, 0.14);
+}
+
 .back-to-top {
   position: fixed;
   right: 1.25rem;
@@ -1021,6 +1334,18 @@ html {
     grid-template-columns: 1fr;
   }
 
+  .marketplace-pricing-tool__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-pricing-tool__charts {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-pricing-tool__insight-grid {
+    grid-template-columns: 1fr;
+  }
+
   .article-style table {
     display: block;
     overflow-x: auto;
@@ -1048,7 +1373,7 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .marketplace-tool__metrics {
+  .marketplace-pricing-tool__metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -1062,11 +1387,11 @@ html {
     grid-template-columns: 1fr;
   }
 
-  .marketplace-tool__panel {
+  .marketplace-pricing-tool__panel {
     padding: 1.1rem;
   }
 
-  .marketplace-tool__metrics {
+  .marketplace-pricing-tool__metrics {
     grid-template-columns: 1fr;
   }
 
@@ -1141,6 +1466,32 @@ html {
 
   .causal-tool__method-actions .causal-tool__button {
     width: 100%;
+  }
+
+  .marketplace-pricing-tool__panel {
+    padding: 1.1rem;
+  }
+
+  .marketplace-pricing-tool__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace-pricing-tool__subtitle {
+    margin-top: -0.2rem;
+    font-size: 1rem;
+  }
+
+  .marketplace-pricing-tool__actions {
+    align-items: stretch;
+  }
+
+  .marketplace-pricing-tool__button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marketplace-pricing-tool__table {
+    font-size: 0.92rem;
   }
 
   .article-style th,
