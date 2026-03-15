@@ -7,7 +7,26 @@ summary: A broad causal inference reference library covering books, courses, sof
 
 A broad reference library for learning, applying, and staying current with causal inference. It is organized by format and use case so you can move from foundations to methods to production practice.
 
-## 1) Books and Core References
+Most readers do not need every section. If you are new to the area, start with the short guides below and then jump into the subsection that matches your problem.
+
+## 1) Start Here
+
+- Foundations first: start with [Causal Inference: What If](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/), [The Effect](https://theeffectbook.net/), and [Causal Inference: The Mixtape](https://mixtape.scunning.com/).
+- Product experimentation: start with [Decision Making at Netflix](https://netflixtechblog.com/decision-making-at-netflix-33065fa06481), [Improving the Sensitivity of Online Controlled Experiments by Utilizing Pre-Experiment Data](https://www.exp-platform.com/Documents/2013-02-CUPED-ImprovingSensitivityOfControlledExperiments.pdf), and [Experiment Rigor for Switchback Experiment Analysis](https://doordash.engineering/2019/02/20/experiment-rigor-for-switchback-experiment-analysis/).
+- Causal ML and personalization: start with [Applied Causal Inference Powered by ML and AI](https://causalml-book.org/), [Double/Debiased Machine Learning for Treatment and Structural Parameters](https://arxiv.org/pdf/1608.00060.pdf), and [EconML](https://github.com/py-why/EconML/).
+- Observational policy evaluation: start with [Causal Inference for Statistics, Social, and Biomedical Sciences](https://www.cambridge.org/core/books/causal-inference-for-statistics-social-and-biomedical-sciences/71126BE90C58F1A431FE9B2DD07938AB), [Matching on the Estimated Propensity Score](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA11293), and [Difference-in-Differences with Multiple Time Periods](https://arxiv.org/abs/1803.09015).
+
+## 2) Choose by Problem
+
+- Need better A/B tests or experimentation systems: use the industry experimentation section for platform design, variance reduction, trustworthy experimentation, and switchbacks.
+- Need uplift, personalization, or treatment heterogeneity: combine the causal ML papers, the Python libraries section, and the heterogeneity case studies.
+- Need matching or weighting for observational studies: use the method-specific package list for `MatchIt`, `WeightIt`, `cobalt`, `CBPS`, `optmatch`, and `PSweight`, then pair them with the observational papers.
+- Need difference-in-differences or staggered adoption methods: use `did`, `did2s`, `DRDID`, `HonestDiD`, `eventStudyInteract`, and the panel-method papers.
+- Need instrumental variables or regression discontinuity: start with the IV/RD package cluster plus the canonical IV and RD papers.
+- Need time-varying treatment or longitudinal causal inference: start with the TMLE and longitudinal package cluster, then move to `Targeted Learning`, `Targeted Learning in Data Science`, and `Causal Inference: What If`.
+- Need marketplace, network, or interference methods: jump directly to the interference papers and the marketplace case studies.
+
+## 3) Books and Core References
 
 ### Open / free books
 
@@ -36,7 +55,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [Targeted Learning](https://link.springer.com/book/10.1007/978-1-4419-9782-1)
 - [Targeted Learning in Data Science](https://link.springer.com/book/10.1007/978-3-319-65304-4)
 
-## 2) Courses, Lecture Notes, and Teaching Material
+## 4) Courses, Lecture Notes, and Teaching Material
 
 ### Video lecture series
 
@@ -62,7 +81,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [R Guide for TMLE in Medical Research](https://ehsanx.github.io/TMLEworkshop/)
 - [Stefan Wager Causal Inference Notes](https://web.stanford.edu/~swager/stats361.pdf)
 
-## 3) Libraries and Tooling
+## 5) Libraries and Tooling
 
 ### Python
 
@@ -102,7 +121,45 @@ A broad reference library for learning, applying, and staying current with causa
 - [CausalInference.jl](https://github.com/mschauer/CausalInference.jl)
 - [FixedEffectModels.jl](https://github.com/FixedEffects/FixedEffectModels.jl)
 
-## 4) Foundational and Canonical Papers
+### Method-specific econometrics and diagnostics
+
+#### Matching, weighting, and balance
+
+- [CBPS](https://imai.fas.harvard.edu/software/CBPS.html)
+- [cobalt](https://ngreifer.github.io/cobalt/)
+- [MatchIt](https://kosukeimai.github.io/MatchIt/)
+- [optmatch](https://cran.r-project.org/package=optmatch)
+- [PSweight](https://cran.r-project.org/package=PSweight)
+- [twang](https://cran.r-project.org/package=twang)
+- [WeightIt](https://ngreifer.github.io/WeightIt/)
+
+#### Difference-in-differences, event studies, and panel methods
+
+- [did](https://bcallaway11.github.io/did/)
+- [did2s](https://github.com/kylebutts/did2s)
+- [DRDID](https://psantanna.com/DRDID/index.html)
+- [eventStudyInteract](https://github.com/lsun20/EventStudyInteract)
+- [HonestDiD](https://github.com/Mixtape-Sessions/HonestDiD)
+- [PanelMatch](https://cran.r-project.org/package=PanelMatch)
+
+#### Instrumental variables and regression discontinuity
+
+- [AER](https://cran.r-project.org/package=AER)
+- [ivmodel](https://cran.r-project.org/package=ivmodel)
+- [ivreg](https://zeileis.github.io/ivreg/)
+- [rdlocrand](https://rdpackages.github.io/rdlocrand/)
+- [rdpower](https://rdpackages.github.io/rdpower/)
+- [rdrobust](https://rdpackages.github.io/rdrobust/)
+
+#### TMLE and longitudinal treatment
+
+- [gfoRmula](https://cran.r-project.org/package=gfoRmula)
+- [ltmle](https://cran.r-project.org/package=ltmle)
+- [stremr](https://cran.r-project.org/package=stremr)
+- [tmle](https://cran.r-project.org/package=tmle)
+- [tmle3](https://tlverse.org/tmle3/)
+
+## 6) Foundational and Canonical Papers
 
 ### Foundations and DAGs
 
@@ -151,7 +208,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [Targeted Maximum Likelihood Estimation for Causal Inference in Observational Studies](https://academic.oup.com/aje/article/185/1/65/2662306)
 - [When Should You Adjust Standard Errors for Clustering?](https://academic.oup.com/qje/article/138/1/1/6750017)
 
-## 5) Tutorials, Surveys, and Practitioner Guides
+## 7) Tutorials, Surveys, and Practitioner Guides
 
 - [A Practical Introduction to Regression Discontinuity Designs: Extensions](https://arxiv.org/pdf/2301.08958.pdf)
 - [A Practical Introduction to Regression Discontinuity Designs: Foundations](https://arxiv.org/pdf/1911.09511.pdf)
@@ -161,7 +218,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [Using Synthetic Controls: Feasibility, Data Requirements, and Methodological Aspects](https://par.nsf.gov/servlets/purl/10331930)
 - [What's Trending in Difference-in-Differences? A Synthesis of the Recent Econometrics Literature](https://arxiv.org/pdf/2201.01194.pdf)
 
-## 6) Industry Experimentation and Applied Case Studies
+## 8) Industry Experimentation and Applied Case Studies
 
 ### Experimentation platforms and systems
 
@@ -225,7 +282,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [Patterns of Trustworthy Experimentation: Pre-Experiment Stage](https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/patterns-of-trustworthy-experimentation-pre-experiment-stage/)
 - [Why We Shouldn't Condition on Posttreatment Variables in Experiments](https://medium.com/@AnalyticsAtMeta/why-we-shouldnt-condition-on-posttreatment-variables-in-experiments-5746220133ca)
 
-## 7) Blogs and Ongoing Writing
+## 9) Blogs and Ongoing Writing
 
 ### Industry and applied experimentation
 
@@ -250,7 +307,7 @@ A broad reference library for learning, applying, and staying current with causa
 - [Statistical Modeling, Causal Inference, and Social Science](https://statmodeling.stat.columbia.edu/)
 - [Statistical Odds and Ends](https://statisticaloddsandends.wordpress.com/)
 
-## 8) Talks, Seminars, and Communities
+## 10) Talks, Seminars, and Communities
 
 ### Talks and recorded lectures
 
