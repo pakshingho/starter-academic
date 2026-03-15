@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tree-based-machine-learning:
     identifier: chapter-boosting
@@ -28,6 +29,8 @@ Random forests are powerful, but they mainly help with variance. Boosting is mot
 - can we reduce bias while keeping variance under control?
 
 That makes boosting especially appealing when a single tree or even a bagged ensemble is still not expressive enough.
+
+![Parallel averaging versus sequential correction in ensemble methods](/media/handbooks/shared/ensemble-patterns.svg)
 
 ### Weak learners
 
@@ -68,6 +71,14 @@ Gradient boosting can be read as:
 
 This creates a powerful additive model, but it also means boosting can overfit if the learning rate, depth, and number of rounds are not controlled.
 
+The stagewise update is often written as:
+
+$$
+F_m(x) = F_{m-1}(x) + \eta h_m(x)
+$$
+
+and in gradient boosting, $h_m$ is chosen to align with the negative gradient of the loss.
+
 ### XGBoost
 
 XGBoost became influential because it combined strong boosting performance with serious systems engineering.
@@ -101,6 +112,12 @@ Two recurring ideas are:
 - ordered boosting to reduce target leakage and prediction shift during training
 
 This makes CatBoost a very important library to know whenever categorical structure is central to the problem.
+
+| Library | Distinguishing idea | Typical strength | Watch-out |
+| --- | --- | --- | --- |
+| XGBoost | highly optimized scalable boosting with strong regularization controls | dependable general-purpose baseline | can invite very large search spaces |
+| LightGBM | histogram-based training, GOSS, and EFB | speed and scale on large or sparse data | categorical handling often needs more care than CatBoost |
+| CatBoost | ordered statistics and categorical-feature handling | strong default when categories matter | slower than LightGBM on some very large setups |
 
 ### Practical comparison mindset
 

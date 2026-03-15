@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tabular-machine-learning:
     identifier: chapter-knn
@@ -41,6 +42,14 @@ That trade-off is why `k` is a tuning parameter rather than a fixed rule.
 
 KNN depends on a distance definition. Euclidean distance is common, but not always best.
 
+For two feature vectors $x$ and $x'$, two common choices are:
+
+$$
+d_2(x, x') = \sqrt{\sum_{j=1}^{p} (x_j - x'_j)^2},
+\qquad
+d_1(x, x') = \sum_{j=1}^{p} |x_j - x'_j|
+$$
+
 The right metric depends on the data:
 
 - Euclidean distance often works well for continuous standardized features
@@ -54,6 +63,23 @@ If one feature is measured on a much larger numeric scale than another, it can d
 That means a distance-based method can become mostly a measurement-unit detector instead of a pattern detector.
 
 Standardization and min-max scaling are therefore not cosmetic cleanup. They directly change what the model considers close.
+
+Two common feature-level transforms are:
+
+$$
+z_j = \frac{x_j - \mu_j}{\sigma_j},
+\qquad
+x'_j = \frac{x_j - \min(x_j)}{\max(x_j) - \min(x_j)}
+$$
+
+![Why scaling changes nearest-neighbor structure](/media/handbooks/tabular/knn-neighborhoods.svg)
+
+| Choice | What it changes | When it is useful | Main caution |
+| --- | --- | --- | --- |
+| Euclidean distance | emphasizes larger coordinate gaps | standardized continuous features | highly scale-sensitive |
+| Manhattan distance | adds absolute coordinate differences | noisier or axis-aligned problems | still sensitive to irrelevant features |
+| Standardization | centers and rescales each feature | mixed-unit numeric inputs | sensitive to extreme outliers |
+| Min-max scaling | maps each feature into a fixed range | bounded features or distance methods in demos | unstable when future values exceed the old range |
 
 ### The curse of dimensionality
 

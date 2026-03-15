@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tabular-machine-learning:
     identifier: chapter-workflow
@@ -34,6 +35,14 @@ For tabular data, a practical first taxonomy is:
 
 The important point is that similar datasets can support very different tasks. A customer table might power churn classification, revenue regression, segment discovery, or next-best-action ranking depending on the objective.
 
+| Task type | Typical output | Example decision | Example metric |
+| --- | --- | --- | --- |
+| Classification | class label or probability | approve, reject, flag, or route | accuracy, precision, recall, F1, AUC |
+| Regression | numeric value | price, demand, time, or risk estimate | MAE, RMSE |
+| Ranking | ordered list | which candidate should be shown first | NDCG, MAP, recall@k |
+| Clustering | group assignment | how to segment or explore behavior | silhouette score, downstream usefulness |
+| Anomaly detection | rarity score or alert | what to escalate for review | precision at top alerts, recall on known events |
+
 ### Supervised and unsupervised learning
 
 Supervised learning means you have an outcome label and want to learn a mapping from features to that label.
@@ -45,6 +54,15 @@ This distinction matters because it changes:
 - how the dataset is prepared
 - what success looks like
 - what kind of evaluation is possible
+
+A compact supervised-learning view is:
+
+$$
+\hat y = f(x), \qquad
+f^* = \arg\min_f \mathbb{E}[\ell(y, f(x))]
+$$
+
+The modeling question is not only what class of function $f$ to use, but what loss $\ell$ corresponds to the decision you actually care about.
 
 ### A practical workflow
 
@@ -59,6 +77,8 @@ Most tabular ML work can be organized into a repeatable lifecycle:
 7. package the workflow so it can be reproduced and monitored
 
 This lifecycle is simple on purpose. It helps prevent the common failure mode of jumping from raw data straight to model training.
+
+![A practical tabular ML workflow from framing through monitoring](/media/handbooks/tabular/workflow-lifecycle.svg)
 
 ### Problem framing questions to ask early
 

@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tabular-machine-learning:
     identifier: chapter-features
@@ -36,6 +37,13 @@ Examples:
 - grouped age bands or tenure buckets
 - one-hot encoded category indicators
 
+| Column pattern | Useful transformation | Why it helps | Main caution |
+| --- | --- | --- | --- |
+| nominal category | one-hot or grouped encoding | avoids fake numeric order | can explode dimensionality |
+| ordered category | ordinal encoding | preserves meaningful order | only valid when order is real |
+| sparse text field | counts or TF-IDF | turns words into structured signals | easy to leak labels through vocabulary choices |
+| skewed numeric variable | log, bucket, or winsorized transform | stabilizes scale and outliers | can make interpretation less direct |
+
 ### Categorical variables
 
 Many tabular datasets contain categories with no natural numeric meaning. A model still needs them represented numerically.
@@ -48,6 +56,12 @@ Useful options include:
 - target-based encodings when used carefully and with leakage awareness
 
 The main caution is simple: numeric codes can accidentally imply rank or distance where none exists.
+
+For a nominal category $c$ with $K$ possible values, one-hot encoding creates a vector $e(c) \in \{0,1\}^K$ where
+
+$$
+e_k(c) = \mathbf{1}\{c = k\}
+$$
 
 ### High-cardinality features
 
@@ -74,6 +88,14 @@ A practical preprocessing path is:
 5. vectorize with counts or TF-IDF
 
 This turns free-form text into structured numeric features that can join the rest of the table.
+
+A common TF-IDF scoring pattern is:
+
+$$
+\mathrm{tfidf}(t, d) = \mathrm{tf}(t, d) \cdot \log\left(\frac{N}{\mathrm{df}(t)}\right)
+$$
+
+![A pipeline from raw columns through transformations to a model matrix](/media/handbooks/tabular/feature-pipeline.svg)
 
 ### Representation choices affect models
 

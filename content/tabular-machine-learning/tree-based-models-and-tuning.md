@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tabular-machine-learning:
     identifier: chapter-trees
@@ -43,6 +44,20 @@ Common ideas include:
 
 You do not need to memorize every formula to use trees well. What matters conceptually is that a strong split creates child groups that are more predictable than the parent group.
 
+For class probabilities $p_1, \dots, p_K$, two common impurity measures are:
+
+$$
+\mathrm{Gini}(p) = 1 - \sum_{k=1}^{K} p_k^2,
+\qquad
+H(p) = -\sum_{k=1}^{K} p_k \log p_k
+$$
+
+If a split produces child nodes $c \in \mathcal{C}$, the reduction in impurity is often written as:
+
+$$
+\mathrm{Gain} = I(\text{parent}) - \sum_{c \in \mathcal{C}} \frac{n_c}{n} I(c)
+$$
+
 ### Strengths and weaknesses of a single tree
 
 Strengths:
@@ -69,6 +84,12 @@ This usually improves:
 
 That is why random forests are such a common baseline for tabular work.
 
+In regression form, a forest prediction can be viewed as an average over trees:
+
+$$
+\hat f_{\mathrm{RF}}(x) = \frac{1}{T}\sum_{t=1}^{T} h_t(x)
+$$
+
 ### Hyperparameter tuning
 
 Useful tuning parameters often include:
@@ -79,6 +100,13 @@ Useful tuning parameters often include:
 - number of features considered per split
 
 The practical goal is not to maximize leaderboard score at all costs. The goal is to find a model that improves validation performance without becoming fragile, slow, or hard to explain.
+
+| Hyperparameter | Main effect | Usual bias/variance direction | Practical note |
+| --- | --- | --- | --- |
+| `max_depth` | limits how many sequential splits are allowed | shallower trees raise bias and reduce variance | one of the fastest ways to calm overfitting |
+| `min_samples_leaf` | prevents tiny terminal regions | larger leaves raise bias and reduce variance | especially useful for noisy tabular data |
+| `n_estimators` | increases ensemble size | usually lowers variance until returns flatten | primarily a compute-versus-stability trade-off |
+| `max_features` | randomizes feature access per split | lower values often reduce correlation and variance | crucial for forest behavior |
 
 ### Search strategies
 

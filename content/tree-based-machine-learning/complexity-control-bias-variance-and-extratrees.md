@@ -6,6 +6,7 @@ type: docs
 date: 2026-03-14
 lastmod: 2026-03-14
 draft: false
+math: true
 menu:
   tree-based-machine-learning:
     identifier: chapter-complexity
@@ -53,6 +54,18 @@ Trees are a natural way to build intuition for bias and variance.
 
 This makes trees a very good teaching example for the bias-variance trade-off: the structure of the model itself is easy to see, and the overfitting behavior can be dramatic.
 
+For squared-error regression, the familiar decomposition is:
+
+$$
+\mathbb{E}\left[(y - \hat f(x))^2\right]
+=
+\mathrm{Bias}\left[\hat f(x)\right]^2
++
+\mathrm{Var}\left[\hat f(x)\right]
++
+\sigma^2
+$$
+
 ### Classification versus regression intuition
 
 The cleanest bias-variance decomposition is usually taught for squared-error regression, but the same practical lesson still carries over:
@@ -61,6 +74,13 @@ The cleanest bias-variance decomposition is usually taught for squared-error reg
 - too much flexibility becomes unstable across training samples
 
 That instability is exactly what later ensemble methods try to exploit and average away.
+
+| Control | If increased | Usual effect | Why it matters |
+| --- | --- | --- | --- |
+| `max_depth` | tree gets shallower | more bias, less variance | coarse but very effective regularization |
+| `min_samples_leaf` | leaves get larger | more bias, less variance | prevents tiny overfit regions |
+| `max_leaf_nodes` | number of terminal regions shrinks | more bias, less variance | useful when interpretability matters |
+| `min_impurity_decrease` | weak splits are blocked | more bias, less variance | discourages chasing tiny local improvements |
 
 ### Randomization as a tool
 

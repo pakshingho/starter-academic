@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Random forest signals beyond prediction</title>
+  <desc id="desc">A forest can produce both learned similarities and feature-importance summaries.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbf6ee; }
+      .panel { fill: #ffffff; stroke: #d9c9b4; stroke-width: 2; rx: 18; }
+      .accent { fill: #145b52; }
+      .soft { fill: #dcefeb; }
+      .warm { fill: #d68435; }
+      .purple { fill: #7a4f92; }
+      .label { font: 700 24px "Helvetica Neue", Arial, sans-serif; fill: #1f2624; }
+      .body { font: 500 18px "Helvetica Neue", Arial, sans-serif; fill: #2f3e39; }
+      .note { font: 500 15px "Helvetica Neue", Arial, sans-serif; fill: #5f6d67; }
+      .arrow { stroke: #145b52; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#145b52"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="360" rx="24"/>
+  <text x="40" y="42" class="label">A forest can emit richer signals than just predictions</text>
+
+  <g transform="translate(40 74)">
+    <rect class="panel" width="320" height="246" rx="18"/>
+    <text x="24" y="34" class="body">Leaf co-occurrence</text>
+    <circle cx="84" cy="110" r="12" class="accent"/>
+    <circle cx="132" cy="88" r="12" class="accent"/>
+    <circle cx="184" cy="150" r="12" class="warm"/>
+    <circle cx="234" cy="130" r="12" class="warm"/>
+    <circle cx="116" cy="158" r="12" class="purple"/>
+    <line x1="84" y1="110" x2="132" y2="88" stroke="#145b52" stroke-width="3"/>
+    <line x1="184" y1="150" x2="234" y2="130" stroke="#d68435" stroke-width="3"/>
+    <text x="24" y="212" class="note">Points that land in the same leaves</text>
+    <text x="24" y="234" class="note">across many trees become proximate.</text>
+  </g>
+
+  <path class="arrow" d="M 372 196 H 430"/>
+
+  <g transform="translate(450 74)">
+    <rect class="panel" width="270" height="246" rx="18"/>
+    <text x="24" y="34" class="body">Forest representation</text>
+    <rect x="40" y="74" width="54" height="96" rx="14" class="accent"/>
+    <rect x="110" y="58" width="54" height="112" rx="14" class="accent"/>
+    <rect x="180" y="82" width="54" height="88" rx="14" class="accent"/>
+    <text x="67" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">T1</text>
+    <text x="137" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">T2</text>
+    <text x="207" y="126" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">T3</text>
+    <text x="24" y="212" class="note">Shared leaf assignments define</text>
+    <text x="24" y="234" class="note">learned similarity in tree space.</text>
+  </g>
+
+  <path class="arrow" d="M 730 196 H 788"/>
+
+  <g transform="translate(808 74)">
+    <rect class="panel" width="352" height="246" rx="18"/>
+    <text x="24" y="34" class="body">Importance signals</text>
+    <text x="24" y="78" class="note">Feature A</text>
+    <rect x="120" y="62" width="170" height="24" rx="12" class="accent"/>
+    <text x="24" y="122" class="note">Feature B</text>
+    <rect x="120" y="106" width="110" height="24" rx="12" class="warm"/>
+    <text x="24" y="166" class="note">Feature C</text>
+    <rect x="120" y="150" width="74" height="24" rx="12" class="purple"/>
+    <text x="24" y="212" class="note">Compare impurity and permutation</text>
+    <text x="24" y="232" class="note">importance before drawing conclusions.</text>
+  </g>
+</svg>

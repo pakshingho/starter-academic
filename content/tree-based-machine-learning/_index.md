@@ -82,6 +82,14 @@ This course focuses on those ideas through one coherent model family rather than
 - how proximities and feature importance extend forests beyond prediction
 - how boosting differs from bagging and how XGBoost, LightGBM, and CatBoost compare
 
+## The method ladder in one view
+
+| Method family | Main lever | Typical strength | Main risk |
+| --- | --- | --- | --- |
+| Single decision tree | recursive partitioning | local interpretability and clear structure | high variance and overfitting |
+| Random forest / ExtraTrees | averaging randomized trees | robust strong baseline with modest preprocessing | importance measures can still mislead |
+| Boosted trees | sequential additive correction | lower bias and often excellent tabular accuracy | more tuning sensitivity and overfitting risk |
+
 ## Course path
 
 1. [Start Here](start-here/)

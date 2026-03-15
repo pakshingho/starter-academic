@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">KNN before and after scaling</title>
+  <desc id="desc">Two panels showing how an unscaled feature can dominate distance and how scaling restores balanced neighborhoods.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbf6ee; }
+      .panel { fill: #ffffff; stroke: #d9c9b4; stroke-width: 2; rx: 18; }
+      .axis { stroke: #54615b; stroke-width: 2; }
+      .accent { fill: #145b52; }
+      .warm { fill: #d68435; }
+      .query { fill: #7a4f92; }
+      .label { font: 700 24px "Helvetica Neue", Arial, sans-serif; fill: #1f2624; }
+      .body { font: 500 18px "Helvetica Neue", Arial, sans-serif; fill: #2f3e39; }
+      .note { font: 500 16px "Helvetica Neue", Arial, sans-serif; fill: #5f6d67; }
+      .halo { fill: none; stroke: #7a4f92; stroke-width: 4; stroke-dasharray: 8 8; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="360" rx="24"/>
+  <text x="40" y="44" class="label">Why scaling changes neighborhood structure</text>
+
+  <g transform="translate(40 76)">
+    <rect class="panel" width="520" height="240" rx="18"/>
+    <text x="24" y="34" class="body">Unscaled: one feature dominates</text>
+    <line x1="70" y1="190" x2="460" y2="190" class="axis"/>
+    <line x1="90" y1="210" x2="90" y2="40" class="axis"/>
+    <text x="310" y="220" class="note">Annual income</text>
+    <text x="18" y="54" class="note" transform="rotate(-90 18,54)">Tenure</text>
+    <circle cx="170" cy="120" r="8" class="accent"/>
+    <circle cx="250" cy="108" r="8" class="accent"/>
+    <circle cx="360" cy="112" r="8" class="warm"/>
+    <circle cx="420" cy="105" r="8" class="warm"/>
+    <circle cx="285" cy="118" r="10" class="query"/>
+    <circle cx="285" cy="118" r="88" class="halo"/>
+    <text x="210" y="72" class="note">Nearby on tenure,</text>
+    <text x="210" y="94" class="note">far on large-scale income</text>
+  </g>
+
+  <g transform="translate(640 76)">
+    <rect class="panel" width="520" height="240" rx="18"/>
+    <text x="24" y="34" class="body">Scaled: both axes contribute</text>
+    <line x1="70" y1="190" x2="460" y2="190" class="axis"/>
+    <line x1="90" y1="210" x2="90" y2="40" class="axis"/>
+    <text x="300" y="220" class="note">Standardized feature 1</text>
+    <text x="18" y="54" class="note" transform="rotate(-90 18,54)">Standardized feature 2</text>
+    <circle cx="170" cy="148" r="8" class="accent"/>
+    <circle cx="230" cy="120" r="8" class="accent"/>
+    <circle cx="330" cy="140" r="8" class="warm"/>
+    <circle cx="370" cy="95" r="8" class="warm"/>
+    <circle cx="275" cy="124" r="10" class="query"/>
+    <circle cx="275" cy="124" r="66" class="halo"/>
+    <text x="205" y="72" class="note">Neighborhood reflects</text>
+    <text x="205" y="94" class="note">both dimensions more fairly</text>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">Tabular ML workflow lifecycle</title>
+  <desc id="desc">A six-step workflow from problem framing through monitoring.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbf6ee; }
+      .card { fill: #ffffff; stroke: #d9c9b4; stroke-width: 2; rx: 18; }
+      .accent { fill: #145b52; }
+      .soft { fill: #dcefeb; }
+      .title { font: 700 24px "Helvetica Neue", Arial, sans-serif; fill: #20302b; }
+      .body { font: 500 17px "Helvetica Neue", Arial, sans-serif; fill: #2f3e39; }
+      .small { font: 500 15px "Helvetica Neue", Arial, sans-serif; fill: #5f6d67; }
+      .arrow { stroke: #145b52; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M 0 0 L 7 3.5 L 0 7 z" fill="#145b52"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="260" rx="24"/>
+  <text x="40" y="42" class="title">A practical tabular ML lifecycle</text>
+
+  <g transform="translate(30 80)">
+    <rect class="card soft" width="150" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">1. Frame</text>
+    <text x="22" y="70" class="small">Target, decision,</text>
+    <text x="22" y="92" class="small">availability, leakage</text>
+  </g>
+
+  <g transform="translate(215 80)">
+    <rect class="card" width="160" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">2. Assemble</text>
+    <text x="22" y="70" class="small">Features, labels,</text>
+    <text x="22" y="92" class="small">time-aware</text>
+    <text x="22" y="112" class="small">constraints</text>
+  </g>
+
+  <g transform="translate(410 80)">
+    <rect class="card soft" width="160" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">3. Split</text>
+    <text x="22" y="70" class="small">Train, validation,</text>
+    <text x="22" y="92" class="small">test, and baseline</text>
+    <text x="22" y="112" class="small">metrics</text>
+  </g>
+
+  <g transform="translate(605 80)">
+    <rect class="card" width="160" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">4. Build</text>
+    <text x="22" y="70" class="small">Pipelines and</text>
+    <text x="22" y="92" class="small">features plus</text>
+    <text x="22" y="112" class="small">simple baselines</text>
+  </g>
+
+  <g transform="translate(800 80)">
+    <rect class="card soft" width="160" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">5. Compare</text>
+    <text x="22" y="70" class="small">Tune, validate,</text>
+    <text x="22" y="92" class="small">and stress-test</text>
+    <text x="22" y="112" class="small">results</text>
+  </g>
+
+  <g transform="translate(995 80)">
+    <rect class="card" width="170" height="120" rx="18"/>
+    <circle class="accent" cx="32" cy="30" r="14"/>
+    <text x="58" y="36" class="body">6. Operate</text>
+    <text x="22" y="70" class="small">Reproduce, monitor,</text>
+    <text x="22" y="92" class="small">and revisit</text>
+    <text x="22" y="112" class="small">drift</text>
+  </g>
+
+  <path class="arrow" d="M 183 140 H 205"/>
+  <path class="arrow" d="M 378 140 H 402"/>
+  <path class="arrow" d="M 573 140 H 597"/>
+  <path class="arrow" d="M 768 140 H 792"/>
+  <path class="arrow" d="M 963 140 H 987"/>
+</svg>

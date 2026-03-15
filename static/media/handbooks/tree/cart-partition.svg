@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">CART-style recursive partitioning</title>
+  <desc id="desc">A diagram connecting recursive threshold splits to partitioned regions in feature space.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbf6ee; }
+      .panel { fill: #ffffff; stroke: #d9c9b4; stroke-width: 2; rx: 18; }
+      .accent { fill: #145b52; }
+      .soft { fill: #dcefeb; }
+      .line { stroke: #145b52; stroke-width: 3; }
+      .dash { stroke: #7a4f92; stroke-width: 3; stroke-dasharray: 8 8; }
+      .label { font: 700 24px "Helvetica Neue", Arial, sans-serif; fill: #1f2624; }
+      .body { font: 500 18px "Helvetica Neue", Arial, sans-serif; fill: #2f3e39; }
+      .note { font: 500 16px "Helvetica Neue", Arial, sans-serif; fill: #5f6d67; }
+      .node { fill: #145b52; }
+      .text-light { font: 700 16px "Helvetica Neue", Arial, sans-serif; fill: #ffffff; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="360" rx="24"/>
+  <text x="40" y="42" class="label">A tree is a recursive partition of feature space</text>
+
+  <g transform="translate(40 76)">
+    <rect class="panel" width="520" height="240" rx="18"/>
+    <text x="24" y="34" class="body">Feature space view</text>
+    <line x1="80" y1="192" x2="450" y2="192" stroke="#54615b" stroke-width="2"/>
+    <line x1="100" y1="212" x2="100" y2="50" stroke="#54615b" stroke-width="2"/>
+    <text x="300" y="222" class="note">Feature 1</text>
+    <text x="18" y="54" class="note" transform="rotate(-90 18,54)">Feature 2</text>
+    <rect x="100" y="72" width="350" height="120" fill="#eef6f4" stroke="#145b52" stroke-width="2"/>
+    <line x1="250" y1="72" x2="250" y2="192" class="line"/>
+    <line x1="250" y1="124" x2="450" y2="124" class="dash"/>
+    <text x="178" y="102" class="note">Region A</text>
+    <text x="320" y="102" class="note">Region B</text>
+    <text x="320" y="160" class="note">Region C</text>
+  </g>
+
+  <g transform="translate(660 76)">
+    <rect class="panel" width="500" height="240" rx="18"/>
+    <text x="24" y="34" class="body">Equivalent tree view</text>
+    <circle cx="250" cy="68" r="34" class="node"/>
+    <text x="250" y="64" text-anchor="middle" class="text-light">x1</text>
+    <text x="250" y="84" text-anchor="middle" class="text-light">&lt; t1?</text>
+    <line x1="250" y1="102" x2="150" y2="152" stroke="#145b52" stroke-width="4"/>
+    <line x1="250" y1="102" x2="350" y2="152" stroke="#145b52" stroke-width="4"/>
+    <circle cx="150" cy="172" r="30" class="node"/>
+    <text x="150" y="178" text-anchor="middle" class="text-light">Leaf A</text>
+    <circle cx="350" cy="172" r="34" class="node"/>
+    <text x="350" y="168" text-anchor="middle" class="text-light">x2</text>
+    <text x="350" y="188" text-anchor="middle" class="text-light">&lt; t2?</text>
+    <line x1="350" y1="206" x2="290" y2="228" stroke="#145b52" stroke-width="4"/>
+    <line x1="350" y1="206" x2="410" y2="228" stroke="#145b52" stroke-width="4"/>
+    <circle cx="290" cy="246" r="28" class="node"/>
+    <circle cx="410" cy="246" r="28" class="node"/>
+    <text x="290" y="252" text-anchor="middle" class="text-light">B</text>
+    <text x="410" y="252" text-anchor="middle" class="text-light">C</text>
+  </g>
+</svg>
