@@ -27,6 +27,14 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
           </select>
           <p>Presets change the default assumptions and interpretation text while keeping the same underlying model.</p>
         </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-simulation-mode">Simulation mode</label>
+          <select id="mp-simulation-mode">
+            <option value="equilibrium" selected>Static equilibrium</option>
+            <option value="dynamic">Dynamic surge simulator</option>
+          </select>
+          <p>Use the one-shot market-clearing view or switch to a multi-step surge-control simulation for Uber-like and DoorDash-like operating shocks.</p>
+        </div>
       </div>
       <div class="marketplace-pricing-tool__section">
         <h3>Demand and promotion</h3>
@@ -62,7 +70,7 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
         <div class="marketplace-pricing-tool__field">
           <label for="mp-demand-shock">Demand shock</label>
           <input id="mp-demand-shock" type="number" min="-90" max="250" step="1" value="12">
-          <p>Percent shift from weather, seasonality, rush hour, events, or holidays.</p>
+          <p>Percent shift from weather, seasonality, rush hour, events, or holidays. In dynamic mode this is the initial shock that can decay over time.</p>
         </div>
       </div>
       <div class="marketplace-pricing-tool__section">
@@ -95,7 +103,7 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
         <div class="marketplace-pricing-tool__field">
           <label for="mp-supply-shock">Supply shock</label>
           <input id="mp-supply-shock" type="number" min="-90" max="250" step="1" value="-4">
-          <p>Use this for regulation, weather, host blocking, or driver availability shocks.</p>
+          <p>Use this for regulation, weather, host blocking, or driver availability shocks. In dynamic mode this is the initial disruption before recovery.</p>
         </div>
       </div>
       <div class="marketplace-pricing-tool__section">
@@ -140,6 +148,67 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
           <p>Minimum effective payout per completed unit. The model only applies a top-up when base payout falls below this floor.</p>
         </div>
       </div>
+      <div class="marketplace-pricing-tool__section" id="group-mp-dynamic-section" hidden>
+        <h3>Dynamic surge controls</h3>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-policy">Dynamic control policy</label>
+          <select id="mp-dynamic-policy">
+            <option value="simple" selected>Simple shortage feedback</option>
+            <option value="targeted">Fill-rate target + surge-linked incentives</option>
+          </select>
+          <p>The simple mode only adjusts price from shortages. The richer mode also targets service quality and adds supplier top-ups tied to surge.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-steps">Time steps</label>
+          <input id="mp-dynamic-steps" type="number" min="3" max="48" step="1" value="12">
+          <p>How many intervals to simulate after the initial shock.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-minutes">Minutes per step</label>
+          <input id="mp-dynamic-minutes" type="number" min="1" max="120" step="1" value="5">
+          <p>Maps the simulation horizon to short marketplace windows such as 5-minute or 10-minute control loops. The simulator prorates the daily demand and supply inputs into each interval.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-aggressiveness">Surge aggressiveness</label>
+          <input id="mp-dynamic-aggressiveness" type="number" min="0.05" max="3.00" step="0.05" value="0.65">
+          <p>Higher values make price react faster to shortages, fill-rate misses, or missing supply buffer.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-cap">Maximum surge multiplier</label>
+          <input id="mp-dynamic-cap" type="number" min="1.00" max="6.00" step="0.05" value="2.40">
+          <p>Caps how far above the base price the controller can move.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-supply-lag">Supply response per step</label>
+          <input id="mp-dynamic-supply-lag" type="number" min="1" max="100" step="1" value="35">
+          <p>Percent of the gap between current and target supply that closes each interval.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-dynamic-shock-decay">Shock decay per step</label>
+          <input id="mp-dynamic-shock-decay" type="number" min="0" max="100" step="1" value="15">
+          <p>Lets the weather, rush, or outage shock gradually fade instead of staying fixed the whole time.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-dynamic-target-fill" hidden>
+          <label for="mp-dynamic-target-fill">Target fill rate</label>
+          <input id="mp-dynamic-target-fill" type="number" min="70" max="100" step="1" value="95">
+          <p>Service quality target for the richer controller.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-dynamic-target-buffer" hidden>
+          <label for="mp-dynamic-target-buffer">Target supply buffer</label>
+          <input id="mp-dynamic-target-buffer" type="number" min="0" max="30" step="1" value="6">
+          <p>Desired extra effective supply as a percent of demand to protect ETAs and cancellations.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-dynamic-linked-incentive" hidden>
+          <label for="mp-dynamic-linked-incentive">Surge-linked incentive slope</label>
+          <input id="mp-dynamic-linked-incentive" type="number" min="0" step="0.25" value="4.00">
+          <p>Extra supplier payout per unit for each additional 1.0x of surge above the base price.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-dynamic-linked-cap" hidden>
+          <label for="mp-dynamic-linked-cap">Surge-linked incentive cap</label>
+          <input id="mp-dynamic-linked-cap" type="number" min="0" step="0.25" value="6.00">
+          <p>Prevents the richer controller from using unbounded supplier top-ups.</p>
+        </div>
+      </div>
       <div class="marketplace-pricing-tool__actions">
         <button type="button" class="marketplace-pricing-tool__button" id="mp-share">Copy shareable link</button>
         <button type="button" class="marketplace-pricing-tool__button marketplace-pricing-tool__button--ghost" id="mp-reset">Reset preset</button>
@@ -153,67 +222,67 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
       </div>
       <div class="marketplace-pricing-tool__metrics">
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Demand at current price</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-demand">Demand at current price</span>
           <strong id="mp-metric-demand">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Increment from promotion</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-promo">Increment from promotion</span>
           <strong id="mp-metric-promo">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Point elasticity</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-elasticity">Point elasticity</span>
           <strong id="mp-metric-elasticity">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Fill rate at current price</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-fill">Fill rate at current price</span>
           <strong id="mp-metric-fill">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Supply gap at current price</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-gap">Supply gap at current price</span>
           <strong id="mp-metric-gap">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Tightness ratio</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-tightness">Tightness ratio</span>
           <strong id="mp-metric-tightness">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Equilibrium price</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-eq-price">Equilibrium price</span>
           <strong id="mp-metric-eq-price">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Equilibrium completed volume</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-eq-volume">Equilibrium completed volume</span>
           <strong id="mp-metric-eq-volume">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Clear-market multiplier</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-surge">Clear-market multiplier</span>
           <strong id="mp-metric-surge">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Gross platform revenue</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-revenue">Gross platform revenue</span>
           <strong id="mp-metric-revenue">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Supplier payout incl. incentives</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-payout">Supplier payout incl. incentives</span>
           <strong id="mp-metric-payout">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Effective supplier incentive</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-incentive-rate">Effective supplier incentive</span>
           <strong id="mp-metric-incentive-rate">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Incentive cost at equilibrium</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-incentive-cost">Incentive cost at equilibrium</span>
           <strong id="mp-metric-incentive-cost">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Net platform revenue</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-net-revenue">Net platform revenue</span>
           <strong id="mp-metric-net-revenue">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Incremental supply from incentives</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-incremental-supply">Incremental supply from incentives</span>
           <strong id="mp-metric-incremental-supply">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Market state</span>
+          <span class="marketplace-pricing-tool__metric-label" id="mp-label-market-state">Market state</span>
           <strong id="mp-metric-state">-</strong>
         </div>
       </div>
@@ -226,22 +295,29 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
     <div class="marketplace-pricing-tool__charts">
       <article class="marketplace-pricing-tool__chart-card">
         <div class="marketplace-pricing-tool__chart-head">
-          <h3>Demand Curve</h3>
-          <p>Shows how the price assumption and promotion change expected demand at a market-day level.</p>
+          <h3 id="mp-chart-title-one">Demand Curve</h3>
+          <p id="mp-chart-text-one">Shows how the price assumption and promotion change expected demand at a market-day level.</p>
         </div>
         <div id="mp-demand-chart"></div>
       </article>
       <article class="marketplace-pricing-tool__chart-card">
         <div class="marketplace-pricing-tool__chart-head">
-          <h3>Supply-Demand Equilibrium</h3>
-          <p>Market clearing occurs when promoted demand meets effective supply after take rate, matching frictions, and any supplier incentive program.</p>
+          <h3 id="mp-chart-title-two">Supply-Demand Equilibrium</h3>
+          <p id="mp-chart-text-two">Market clearing occurs when promoted demand meets effective supply after take rate, matching frictions, and any supplier incentive program.</p>
         </div>
         <div id="mp-equilibrium-chart"></div>
+      </article>
+      <article class="marketplace-pricing-tool__chart-card" id="mp-chart-card-three" hidden>
+        <div class="marketplace-pricing-tool__chart-head">
+          <h3 id="mp-chart-title-three">Service Quality Path</h3>
+          <p id="mp-chart-text-three">Dynamic mode adds a third view for fill rate, shortage pressure, or operating targets over time.</p>
+        </div>
+        <div id="mp-tertiary-chart"></div>
       </article>
     </div>
     <div class="marketplace-pricing-tool__table-wrap">
       <table class="marketplace-pricing-tool__table">
-        <thead>
+        <thead id="mp-table-head">
           <tr>
             <th>Gross price</th>
             <th>Demand</th>
@@ -260,8 +336,10 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
     <h2>How to use this simulator</h2>
     <ul>
       <li>Start with a local market-hour or market-day baseline rather than a platform-wide average.</li>
+      <li>Use static equilibrium mode for planning benchmarks, then switch to dynamic surge mode when you want to stress-test how Uber-like or DoorDash-like control loops react over time.</li>
       <li>Change price elasticity and promotion lift separately so you can tell whether coupons are shifting real demand or just discounting infra-marginal users.</li>
       <li>Use the per-unit incentive mode for clean counterfactuals, then pressure-test the threshold / guarantee mode when operations teams actually run quests or earnings floors.</li>
+      <li>In dynamic mode, the simple controller is the lightweight benchmark. The fill-rate-targeted controller is closer to how operations teams think about ETAs, cancellations, and supplier activation.</li>
       <li>Read the equilibrium price as a market-clearing benchmark, not a universal pricing recommendation.</li>
       <li>For Uber and DoorDash, tightness usually appears as ETAs, batching, and cancellations. For Airbnb, it shows up as occupancy, booking lead time, and host availability.</li>
     </ul>
@@ -378,6 +456,54 @@ P_{t+1} = P_t \left[1 + \lambda \frac{D_t - \widetilde{S}_t}{\max(D_t, 1)}\right
 $$
 
 where $\lambda$ controls how aggressively the pricing system responds.
+
+That is the simple dynamic mode in the simulator. It moves price from shortage pressure alone and treats surge as a fast feedback controller rather than an immediate jump to the market-clearing solution.
+
+For the richer control mode, the simulator also targets service quality and a small supply buffer:
+
+$$
+\mu_{t+1}
+=
+\mathrm{clip}
+\left(
+\mu_t
+\left[
+1 +
+\lambda
+\left(
+0.7(f^\star - f_t) + 0.3(b^\star - b_t)
+\right)
+\right],
+1,
+\mu_{\max}
+\right)
+$$
+
+where $\mu_t$ is the surge multiplier, $f_t$ is realized fill rate, $f^\star$ is the target fill rate, $b_t = (\widetilde{S}_t - D_t)/\max(D_t,1)$ is the realized supply buffer, and $b^\star$ is the desired supply buffer.
+
+The richer mode also allows surge-linked supplier incentives:
+
+$$
+I_t^{\mathrm{dynamic}} =
+\min
+\left\{
+I_{\max},
+\kappa \max(\mu_t - 1, 0)
+\right\}
+$$
+
+where $\kappa$ is the slope of the extra supplier top-up and $I_{\max}$ caps the payment.
+
+Because supply cannot jump instantly, the simulator uses a partial-adjustment rule:
+
+$$
+S_{t+1}^{\mathrm{realized}}
+=
+(1-\beta) S_t^{\mathrm{realized}}
++ \beta S_t^{\mathrm{target}}
+$$
+
+where $\beta$ controls how much of the gap to target supply closes each interval.
 
 ### Matching and equilibrium
 
