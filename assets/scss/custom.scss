@@ -1056,6 +1056,11 @@ html {
   opacity: 0.9;
 }
 
+.marketplace-pricing-tool__literal-money {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .marketplace-pricing-tool__insight-label {
   display: inline-flex;
   align-items: center;
@@ -1374,6 +1379,10 @@ html {
   }
 
   .marketplace-pricing-tool__metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .marketplace-pricing-tool--dynamic .marketplace-pricing-tool__charts {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
