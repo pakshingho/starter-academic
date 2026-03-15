@@ -332,3 +332,32 @@ Interpretation by platform:
 5. Simulate equilibrium before shipping pricing or promo changes platform-wide.
 
 This page is deliberately simple: it is a planning model for reasoning about direction and magnitude, not a replacement for production forecasting or causal identification.
+
+## References and further reading
+
+These references inform the conceptual framing, formulas, and marketplace examples on this page. The simulator defaults are still illustrative rather than calibrated to any one paper or platform.
+
+### Platform economics and equilibrium
+
+- [Rochet, J.-C., and Tirole, J. (2003). *Platform Competition in Two-Sided Markets*. Journal of the European Economic Association.](https://doi.org/10.1162/154247603322493212)
+- [Armstrong, M. (2006). *Competition in Two-Sided Markets*. RAND Journal of Economics. Open-access version via UCL Discovery.](https://discovery.ucl.ac.uk/4324/)
+
+### Demand curves, elasticity, and promotion impact
+
+- [Cohen, P., Hahn, R., Hall, J., Levitt, S., and Metcalfe, R. (2016). *Using Big Data to Estimate Consumer Surplus: The Case of Uber*. NBER Working Paper 22627.](https://www.nber.org/papers/w22627)
+- [Bajari, P., Nekipelov, D., Ryan, S. P., and Yang, M. (2015). *Demand Estimation with Machine Learning and Model Combination*. NBER Working Paper 20955.](https://www.nber.org/papers/w20955)
+- [Dubé, J.-P. H., Fang, Z., Fong, N., and Luo, X. (2016). *Competitive Price Targeting with Smartphone Coupons*. NBER Working Paper 22067.](https://www.nber.org/papers/w22067)
+
+### Dynamic pricing, matching, and marketplace supply
+
+- [Castillo, J. C., Knoepfle, D., and Weyl, E. G. (2017). *Surge Pricing Solves the Wild Goose Chase*. Microsoft Research / ACM EC.](https://www.microsoft.com/en-us/research/publication/surge-pricing-solves-wild-goose-chase/)
+- [Yan, C., Zhu, H., Korolko, N., and Woodard, D. (2020). *Dynamic Pricing and Matching in Ride-Hailing Platforms*. Uber Engineering summary with paper link.](https://www.uber.com/blog/research/dynamic-pricing-and-matching-in-ride-hailing-platforms/)
+- [Chen, M. K., Chevalier, J. A., Rossi, P. E., and Oehlsen, E. (2017). *The Value of Flexible Work: Evidence from Uber Drivers*. NBER Working Paper 23296.](https://www.nber.org/papers/w23296)
+- [DoorDash Engineering (2021). *Managing Supply and Demand Balance Through Machine Learning*.](https://careersatdoordash.com/blog/managing-supply-and-demand-balance-through-machine-learning/)
+- [DoorDash Engineering (2026). *Smarter promotions with causal machine learning*.](https://careersatdoordash.com/blog/doordash-smarter-promotions-with-causal-machine-learning/)
+
+### Airbnb-style flexible supply and pricing
+
+- [Farronato, C., and Fradkin, A. (2018). *The Welfare Effects of Peer Entry in the Accommodation Market: The Case of Airbnb*. NBER Working Paper 24361.](https://www.nber.org/papers/w24361)
+- [Airbnb Resource Center (2023). *What is Smart Pricing?*](https://www.airbnb.com/resources/hosting-homes/a/what-is-smart-pricing-594)
+- [Airbnb Resource Center (2024). *Using Airbnb pricing tools*.](https://www.airbnb.com/resources/hosting-homes/a/using-airbnb-pricing-tools-707)
