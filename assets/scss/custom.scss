@@ -1377,7 +1377,7 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .marketplace-pricing-tool__charts {
+  .marketplace-pricing-tool--dynamic .marketplace-pricing-tool__charts {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

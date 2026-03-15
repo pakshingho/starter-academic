@@ -283,6 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var isDynamic = fields.simulationMode.value === "dynamic";
     var isTargeted = isDynamic && fields.dynamicPolicy.value === "targeted";
 
+    tool.classList.toggle("marketplace-pricing-tool--dynamic", isDynamic);
+
     groups.perUnitIncentive.hidden = incentiveMode !== "per-unit";
     groups.eligibleShare.hidden = incentiveMode !== "threshold";
     groups.questThreshold.hidden = incentiveMode !== "threshold";

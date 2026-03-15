@@ -428,7 +428,7 @@ where $I_u$ is an extra payout per completed trip, order, or booked night.
 For a threshold bonus or guaranteed-earnings regime, the simulator converts the program into an expected per-completed-unit equivalent:
 
 $$
-I_{\mathrm{eff}}(P) = \rho \left[q \frac{B}{T} + \max \left(0, G - (1-\tau)P \right)\right]
+I_{\mathrm{eff}}(P) = \rho \left[q \frac{B}{T} + \max\{0, G - (1-\tau)P\}\right]
 $$
 
 where $\rho$ is the eligible supplier share, $q$ is the expected attainment probability, $B$ is the quest bonus, $T$ is the threshold, and $G$ is the guaranteed payout floor.
@@ -444,7 +444,7 @@ This is a reduced-form approximation. Real quest and guarantee programs are path
 The simulator then applies a matching-efficiency term $m$ to reflect geographic mismatch, acceptance behavior, batching, and routing losses:
 
 $$
-\widetilde{S}(P) = m \cdot S(P)
+\widetilde{S}(P, I) = m \cdot S(P, I)
 $$
 
 ### Dynamic pricing
@@ -452,7 +452,7 @@ $$
 Dynamic pricing on platforms like Uber or DoorDash is usually trying to reduce excess demand, protect service quality, and improve fill rate. In reduced form, you can think of it as nudging price upward when demand exceeds effective supply:
 
 $$
-P_{t+1} = P_t \left[1 + \lambda \frac{D_t - \widetilde{S}_t}{\max(D_t, 1)}\right]
+P_{t+1} = P_t \left[1 + \lambda \frac{D_t - \widetilde{S}_t}{\max\{D_t, 1\}}\right]
 $$
 
 where $\lambda$ controls how aggressively the pricing system responds.
@@ -462,34 +462,15 @@ That is the simple dynamic mode in the simulator. It moves price from shortage p
 For the richer control mode, the simulator also targets service quality and a small supply buffer:
 
 $$
-\mu_{t+1}
-=
-\mathrm{clip}
-\left(
-\mu_t
-\left[
-1 +
-\lambda
-\left(
-0.7(f^\star - f_t) + 0.3(b^\star - b_t)
-\right)
-\right],
-1,
-\mu_{\max}
-\right)
+\mu_{t+1} = \operatorname{clip}\left(\mu_t \left[1 + \lambda \left(0.7(f^\star - f_t) + 0.3(b^\star - b_t)\right)\right], 1, \mu_{\max}\right)
 $$
 
-where $\mu_t$ is the surge multiplier, $f_t$ is realized fill rate, $f^\star$ is the target fill rate, $b_t = (\widetilde{S}_t - D_t)/\max(D_t,1)$ is the realized supply buffer, and $b^\star$ is the desired supply buffer.
+where $\mu_t$ is the surge multiplier, $f_t$ is realized fill rate, $f^\star$ is the target fill rate, $b_t = \frac{\widetilde{S}_t - D_t}{\max\{D_t, 1\}}$ is the realized supply buffer, and $b^\star$ is the desired supply buffer.
 
 The richer mode also allows surge-linked supplier incentives:
 
 $$
-I_t^{\mathrm{dynamic}} =
-\min
-\left\{
-I_{\max},
-\kappa \max(\mu_t - 1, 0)
-\right\}
+I_t^{\mathrm{dynamic}} = \min\left\{I_{\max}, \kappa \max\{\mu_t - 1, 0\}\right\}
 $$
 
 where $\kappa$ is the slope of the extra supplier top-up and $I_{\max}$ caps the payment.
@@ -497,10 +478,7 @@ where $\kappa$ is the slope of the extra supplier top-up and $I_{\max}$ caps the
 Because supply cannot jump instantly, the simulator uses a partial-adjustment rule:
 
 $$
-S_{t+1}^{\mathrm{realized}}
-=
-(1-\beta) S_t^{\mathrm{realized}}
-+ \beta S_t^{\mathrm{target}}
+S_{t+1}^{\mathrm{realized}} = (1-\beta) S_t^{\mathrm{realized}} + \beta S_t^{\mathrm{target}}
 $$
 
 where $\beta$ controls how much of the gap to target supply closes each interval.
@@ -510,7 +488,7 @@ where $\beta$ controls how much of the gap to target supply closes each interval
 Completed transactions are limited by the short side of the market:
 
 $$
-M_t = \min \{D_t, \widetilde{S}_t\}
+M_t = \min\{D_t, \widetilde{S}_t\}
 $$
 
 and market-clearing equilibrium solves
