@@ -20,63 +20,53 @@ In this demo, buyers pay a transaction price, sellers receive a net payout after
     </div>
     <button type="button" class="marketplace-tool__button marketplace-tool__button--ghost" id="marketplace-tool-reset">Reset</button>
   </div>
-
   <div class="marketplace-tool__grid">
     <section class="marketplace-tool__panel">
       <div class="marketplace-tool__panel-head">
         <h2>Inputs</h2>
         <p>Set baseline demand and supply, then introduce shocks or a larger fee wedge.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-demand-intercept">Demand intercept</label>
         <input id="mp-demand-intercept" type="number" min="10" max="400" step="1" value="120">
         <p>Buyer willingness to pay at zero quantity.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-demand-slope">Demand slope</label>
         <input id="mp-demand-slope" type="number" min="0.05" max="10" step="0.05" value="0.80">
         <p>How quickly buyer willingness to pay falls as quantity grows.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-supply-intercept">Supply intercept</label>
         <input id="mp-supply-intercept" type="number" min="0" max="300" step="1" value="20">
         <p>Seller reservation payout at zero quantity.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-supply-slope">Supply slope</label>
         <input id="mp-supply-slope" type="number" min="0.05" max="10" step="0.05" value="0.55">
         <p>How much higher seller payout must be to unlock more supply.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-take-rate">Platform take rate</label>
         <input id="mp-take-rate" type="number" min="0" max="80" step="1" value="18">
         <p>Percent of the transaction price retained by the platform.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-demand-shock">Demand shock</label>
         <input id="mp-demand-shock" type="number" min="-60" max="100" step="1" value="0">
         <p>Percent lift or drop in buyer willingness to pay, for example from ranking or promotion changes.</p>
       </div>
-
       <div class="marketplace-tool__field">
         <label for="mp-seller-cost-shock">Seller cost shock</label>
         <input id="mp-seller-cost-shock" type="number" min="-40" max="120" step="1" value="0">
         <p>Absolute upward or downward shift in seller cost, payout requirement, or logistics burden.</p>
       </div>
     </section>
-
     <section class="marketplace-tool__panel marketplace-tool__panel--results">
       <div class="marketplace-tool__panel-head">
         <h2>Market outcome</h2>
         <p>The chart is drawn in buyer-price space. Sellers receive the net payout after the fee wedge.</p>
       </div>
-
       <div class="marketplace-tool__chart-card">
         <svg class="marketplace-tool__chart" id="marketplace-chart" viewBox="0 0 640 420" role="img" aria-label="Marketplace equilibrium chart"></svg>
         <div class="marketplace-tool__legend" aria-hidden="true">
@@ -85,7 +75,6 @@ In this demo, buyers pay a transaction price, sellers receive a net payout after
           <span class="marketplace-tool__legend-item"><span class="marketplace-tool__legend-swatch marketplace-tool__legend-swatch--benchmark"></span>No-fee benchmark</span>
         </div>
       </div>
-
       <div class="marketplace-tool__metrics">
         <div class="marketplace-tool__metric">
           <span class="marketplace-tool__metric-label">Equilibrium quantity</span>
@@ -128,12 +117,10 @@ In this demo, buyers pay a transaction price, sellers receive a net payout after
           <strong id="mp-metric-deadweight-loss">-</strong>
         </div>
       </div>
-
       <div class="marketplace-tool__notes" id="marketplace-tool-notes"></div>
       <div class="marketplace-tool__error" id="marketplace-tool-error" hidden></div>
     </section>
   </div>
-
   <section class="marketplace-tool__panel marketplace-tool__panel--details">
     <h2>What this demo is good for</h2>
     <ul>
