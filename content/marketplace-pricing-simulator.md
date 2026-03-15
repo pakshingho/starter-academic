@@ -98,6 +98,48 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
           <p>Use this for regulation, weather, host blocking, or driver availability shocks.</p>
         </div>
       </div>
+      <div class="marketplace-pricing-tool__section">
+        <h3>Supplier incentives</h3>
+        <div class="marketplace-pricing-tool__field">
+          <label for="mp-incentive-mode">Incentive model</label>
+          <select id="mp-incentive-mode">
+            <option value="none" selected>No explicit supplier incentive</option>
+            <option value="per-unit">Per-unit incentive</option>
+            <option value="threshold">Threshold bonus / guaranteed earnings</option>
+          </select>
+          <p>Switch between a simple per-trip or per-order top-up and a richer quest / guarantee approximation.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-per-unit-incentive">
+          <label for="mp-per-unit-incentive">Per-unit incentive</label>
+          <input id="mp-per-unit-incentive" type="number" min="0" step="0.25" value="0.00">
+          <p>Extra payout per completed trip, order, or booked night paid on top of the base supplier payout.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-eligible-share" hidden>
+          <label for="mp-eligible-share">Eligible supply share</label>
+          <input id="mp-eligible-share" type="number" min="0" max="100" step="1" value="70">
+          <p>Percent of suppliers expected to see and respond to the quest or guaranteed-earnings program.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-quest-threshold" hidden>
+          <label for="mp-quest-threshold">Quest threshold</label>
+          <input id="mp-quest-threshold" type="number" min="1" step="1" value="60">
+          <p>Completed units needed to unlock the quest bonus in the reduced-form approximation.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-quest-bonus" hidden>
+          <label for="mp-quest-bonus">Quest bonus</label>
+          <input id="mp-quest-bonus" type="number" min="0" step="1" value="150">
+          <p>Lump-sum supplier bonus associated with hitting the target.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-attainment-probability" hidden>
+          <label for="mp-attainment-probability">Expected attainment probability</label>
+          <input id="mp-attainment-probability" type="number" min="0" max="100" step="1" value="60">
+          <p>Percent probability that an eligible supplier treats the quest as attainable enough to respond.</p>
+        </div>
+        <div class="marketplace-pricing-tool__field" id="group-mp-guaranteed-floor" hidden>
+          <label for="mp-guaranteed-floor">Guaranteed payout floor</label>
+          <input id="mp-guaranteed-floor" type="number" min="0" step="0.25" value="18.00">
+          <p>Minimum effective payout per completed unit. The model only applies a top-up when base payout falls below this floor.</p>
+        </div>
+      </div>
       <div class="marketplace-pricing-tool__actions">
         <button type="button" class="marketplace-pricing-tool__button" id="mp-share">Copy shareable link</button>
         <button type="button" class="marketplace-pricing-tool__button marketplace-pricing-tool__button--ghost" id="mp-reset">Reset preset</button>
@@ -147,12 +189,28 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
           <strong id="mp-metric-surge">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Platform revenue at equilibrium</span>
+          <span class="marketplace-pricing-tool__metric-label">Gross platform revenue</span>
           <strong id="mp-metric-revenue">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
-          <span class="marketplace-pricing-tool__metric-label">Supplier payout at equilibrium</span>
+          <span class="marketplace-pricing-tool__metric-label">Supplier payout incl. incentives</span>
           <strong id="mp-metric-payout">-</strong>
+        </div>
+        <div class="marketplace-pricing-tool__metric">
+          <span class="marketplace-pricing-tool__metric-label">Effective supplier incentive</span>
+          <strong id="mp-metric-incentive-rate">-</strong>
+        </div>
+        <div class="marketplace-pricing-tool__metric">
+          <span class="marketplace-pricing-tool__metric-label">Incentive cost at equilibrium</span>
+          <strong id="mp-metric-incentive-cost">-</strong>
+        </div>
+        <div class="marketplace-pricing-tool__metric">
+          <span class="marketplace-pricing-tool__metric-label">Net platform revenue</span>
+          <strong id="mp-metric-net-revenue">-</strong>
+        </div>
+        <div class="marketplace-pricing-tool__metric">
+          <span class="marketplace-pricing-tool__metric-label">Incremental supply from incentives</span>
+          <strong id="mp-metric-incremental-supply">-</strong>
         </div>
         <div class="marketplace-pricing-tool__metric">
           <span class="marketplace-pricing-tool__metric-label">Market state</span>
@@ -176,7 +234,7 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
       <article class="marketplace-pricing-tool__chart-card">
         <div class="marketplace-pricing-tool__chart-head">
           <h3>Supply-Demand Equilibrium</h3>
-          <p>Market clearing occurs when promoted demand meets effective supply after take rate and matching frictions.</p>
+          <p>Market clearing occurs when promoted demand meets effective supply after take rate, matching frictions, and any supplier incentive program.</p>
         </div>
         <div id="mp-equilibrium-chart"></div>
       </article>
@@ -190,6 +248,7 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
             <th>Effective supply</th>
             <th>Imbalance</th>
             <th>Completed volume</th>
+            <th>Net platform revenue</th>
           </tr>
         </thead>
         <tbody id="mp-ladder-body"></tbody>
@@ -202,6 +261,7 @@ Use this simulator to connect demand curves, price elasticity, promotion impact,
     <ul>
       <li>Start with a local market-hour or market-day baseline rather than a platform-wide average.</li>
       <li>Change price elasticity and promotion lift separately so you can tell whether coupons are shifting real demand or just discounting infra-marginal users.</li>
+      <li>Use the per-unit incentive mode for clean counterfactuals, then pressure-test the threshold / guarantee mode when operations teams actually run quests or earnings floors.</li>
       <li>Read the equilibrium price as a market-clearing benchmark, not a universal pricing recommendation.</li>
       <li>For Uber and DoorDash, tightness usually appears as ETAs, batching, and cancellations. For Airbnb, it shows up as occupancy, booking lead time, and host availability.</li>
     </ul>
@@ -277,6 +337,32 @@ $$
 
 where $\tau$ is the platform take rate, $W_0$ is a reference payout, $\epsilon_s$ is the supply elasticity, and $s_S$ is a supply shock.
 
+### Adding supply-side incentives
+
+For a simple per-unit incentive, the effective supplier payout becomes
+
+$$
+W(P, I_u) = (1-\tau)P + I_u
+$$
+
+where $I_u$ is an extra payout per completed trip, order, or booked night.
+
+For a threshold bonus or guaranteed-earnings regime, the simulator converts the program into an expected per-completed-unit equivalent:
+
+$$
+I_{\mathrm{eff}}(P) = \rho \left[q \frac{B}{T} + \max \left(0, G - (1-\tau)P \right)\right]
+$$
+
+where $\rho$ is the eligible supplier share, $q$ is the expected attainment probability, $B$ is the quest bonus, $T$ is the threshold, and $G$ is the guaranteed payout floor.
+
+The incentive-augmented supply curve is therefore
+
+$$
+S(P, I) = S_0 \left(\frac{(1-\tau)P + I_{\mathrm{eff}}(P)}{W_0}\right)^{\epsilon_s} (1 + s_S)
+$$
+
+This is a reduced-form approximation. Real quest and guarantee programs are path-dependent, but converting them into expected per-unit equivalents makes the trade-off between consumer pricing and supplier incentives easier to reason about.
+
 The simulator then applies a matching-efficiency term $m$ to reflect geographic mismatch, acceptance behavior, batching, and routing losses:
 
 $$
@@ -304,10 +390,19 @@ $$
 and market-clearing equilibrium solves
 
 $$
-D(P^\ast, d) = \widetilde{S}(P^\ast)
+D(P^\ast, d) = \widetilde{S}(P^\ast, I)
 $$
 
 for the equilibrium price $P^\ast$.
+
+For the platform, gross revenue and incentive-adjusted net revenue are
+
+$$
+R_t^{\mathrm{gross}} = \tau P_t M_t, \qquad
+R_t^{\mathrm{net}} = \tau P_t M_t - C_t^{\mathrm{incentives}}
+$$
+
+where the simulator approximates incentive cost as completed-volume times the effective per-unit incentive equivalent.
 
 Interpretation by platform:
 

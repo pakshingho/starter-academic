@@ -26,7 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
         supplyElasticity: 1.1,
         takeRate: 25,
         matchingEfficiency: 92,
-        supplyShock: -4
+        supplyShock: -4,
+        incentiveMode: "threshold",
+        perUnitIncentive: 0.0,
+        eligibleShare: 70,
+        questThreshold: 60,
+        questBonus: 180,
+        attainmentProbability: 60,
+        guaranteedFloor: 18.0
       }
     },
     delivery: {
@@ -50,7 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
         supplyElasticity: 0.85,
         takeRate: 22,
         matchingEfficiency: 88,
-        supplyShock: -2
+        supplyShock: -2,
+        incentiveMode: "per-unit",
+        perUnitIncentive: 1.75,
+        eligibleShare: 80,
+        questThreshold: 45,
+        questBonus: 85,
+        attainmentProbability: 55,
+        guaranteedFloor: 11.5
       }
     },
     rental: {
@@ -74,7 +88,14 @@ document.addEventListener("DOMContentLoaded", function () {
         supplyElasticity: 0.45,
         takeRate: 15,
         matchingEfficiency: 81,
-        supplyShock: 4
+        supplyShock: 4,
+        incentiveMode: "none",
+        perUnitIncentive: 0.0,
+        eligibleShare: 35,
+        questThreshold: 4,
+        questBonus: 40,
+        attainmentProbability: 40,
+        guaranteedFloor: 180.0
       }
     }
   };
@@ -93,7 +114,23 @@ document.addEventListener("DOMContentLoaded", function () {
     supplyElasticity: document.getElementById("mp-supply-elasticity"),
     takeRate: document.getElementById("mp-take-rate"),
     matchingEfficiency: document.getElementById("mp-matching-efficiency"),
-    supplyShock: document.getElementById("mp-supply-shock")
+    supplyShock: document.getElementById("mp-supply-shock"),
+    incentiveMode: document.getElementById("mp-incentive-mode"),
+    perUnitIncentive: document.getElementById("mp-per-unit-incentive"),
+    eligibleShare: document.getElementById("mp-eligible-share"),
+    questThreshold: document.getElementById("mp-quest-threshold"),
+    questBonus: document.getElementById("mp-quest-bonus"),
+    attainmentProbability: document.getElementById("mp-attainment-probability"),
+    guaranteedFloor: document.getElementById("mp-guaranteed-floor")
+  };
+
+  var groups = {
+    perUnitIncentive: document.getElementById("group-mp-per-unit-incentive"),
+    eligibleShare: document.getElementById("group-mp-eligible-share"),
+    questThreshold: document.getElementById("group-mp-quest-threshold"),
+    questBonus: document.getElementById("group-mp-quest-bonus"),
+    attainmentProbability: document.getElementById("group-mp-attainment-probability"),
+    guaranteedFloor: document.getElementById("group-mp-guaranteed-floor")
   };
 
   var outputs = {
@@ -108,6 +145,10 @@ document.addEventListener("DOMContentLoaded", function () {
     surge: document.getElementById("mp-metric-surge"),
     revenue: document.getElementById("mp-metric-revenue"),
     payout: document.getElementById("mp-metric-payout"),
+    incentiveRate: document.getElementById("mp-metric-incentive-rate"),
+    incentiveCost: document.getElementById("mp-metric-incentive-cost"),
+    netRevenue: document.getElementById("mp-metric-net-revenue"),
+    incrementalSupply: document.getElementById("mp-metric-incremental-supply"),
     marketState: document.getElementById("mp-metric-state"),
     summary: document.getElementById("mp-summary"),
     error: document.getElementById("mp-error"),
@@ -133,11 +174,31 @@ document.addEventListener("DOMContentLoaded", function () {
     supplyElasticity: "es",
     takeRate: "tau",
     matchingEfficiency: "match",
-    supplyShock: "ss"
+    supplyShock: "ss",
+    incentiveMode: "im",
+    perUnitIncentive: "iu",
+    eligibleShare: "elig",
+    questThreshold: "qt",
+    questBonus: "qb",
+    attainmentProbability: "ap",
+    guaranteedFloor: "gf"
   };
 
   function getPreset(key) {
     return presets[key] || presets.ride;
+  }
+
+  function syncIncentiveFields() {
+    var mode = fields.incentiveMode.value;
+    var isPerUnit = mode === "per-unit";
+    var isThreshold = mode === "threshold";
+
+    groups.perUnitIncentive.hidden = !isPerUnit;
+    groups.eligibleShare.hidden = !isThreshold;
+    groups.questThreshold.hidden = !isThreshold;
+    groups.questBonus.hidden = !isThreshold;
+    groups.attainmentProbability.hidden = !isThreshold;
+    groups.guaranteedFloor.hidden = !isThreshold;
   }
 
   function applyPreset(key) {
@@ -148,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fields[name].value = preset.defaults[name];
     });
 
+    syncIncentiveFields();
     outputs.shareStatus.textContent = "";
   }
 
@@ -161,12 +223,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function formatSignedCount(value) {
     var rounded = Math.round(value);
+
     if (rounded > 0) {
       return "+" + rounded.toLocaleString("en-US");
     }
+
     if (rounded < 0) {
       return "-" + Math.abs(rounded).toLocaleString("en-US");
     }
+
     return "0";
   }
 
@@ -192,6 +257,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return value.toFixed(2) + "x";
   }
 
+  function formatCurrencyRate(value) {
+    return formatCurrency(value, 2) + "/unit";
+  }
+
   function showError(message) {
     outputs.error.hidden = false;
     outputs.error.textContent = message;
@@ -203,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function clearRenderedOutputs() {
-    var metrics = [
+    [
       outputs.demand,
       outputs.promo,
       outputs.elasticity,
@@ -215,10 +284,12 @@ document.addEventListener("DOMContentLoaded", function () {
       outputs.surge,
       outputs.revenue,
       outputs.payout,
+      outputs.incentiveRate,
+      outputs.incentiveCost,
+      outputs.netRevenue,
+      outputs.incrementalSupply,
       outputs.marketState
-    ];
-
-    metrics.forEach(function (node) {
+    ].forEach(function (node) {
       node.textContent = "-";
     });
 
@@ -243,7 +314,14 @@ document.addEventListener("DOMContentLoaded", function () {
       supplyElasticity: Number(fields.supplyElasticity.value),
       takeRate: Number(fields.takeRate.value) / 100,
       matchingEfficiency: Number(fields.matchingEfficiency.value) / 100,
-      supplyShock: Number(fields.supplyShock.value) / 100
+      supplyShock: Number(fields.supplyShock.value) / 100,
+      incentiveMode: fields.incentiveMode.value,
+      perUnitIncentive: Number(fields.perUnitIncentive.value),
+      eligibleShare: Number(fields.eligibleShare.value) / 100,
+      questThreshold: Number(fields.questThreshold.value),
+      questBonus: Number(fields.questBonus.value),
+      attainmentProbability: Number(fields.attainmentProbability.value) / 100,
+      guaranteedFloor: Number(fields.guaranteedFloor.value)
     };
 
     if (
@@ -259,7 +337,13 @@ document.addEventListener("DOMContentLoaded", function () {
       !(state.supplyElasticity > 0) ||
       !(state.takeRate > 0 && state.takeRate < 1) ||
       !(state.matchingEfficiency > 0 && state.matchingEfficiency <= 1) ||
-      !(state.supplyShock > -1)
+      !(state.supplyShock > -1) ||
+      !(state.perUnitIncentive >= 0) ||
+      !(state.eligibleShare >= 0 && state.eligibleShare <= 1) ||
+      !(state.questThreshold >= 1) ||
+      !(state.questBonus >= 0) ||
+      !(state.attainmentProbability >= 0 && state.attainmentProbability <= 1) ||
+      !(state.guaranteedFloor >= 0)
     ) {
       return null;
     }
@@ -283,14 +367,73 @@ document.addEventListener("DOMContentLoaded", function () {
       (1 + state.demandShock);
   }
 
+  function incentiveProfile(price, state) {
+    var basePayout = Math.max(price * (1 - state.takeRate), 0.01);
+    var questEquivalentPerCompleted = 0;
+    var guaranteeTopUpPerCompleted = 0;
+    var modelLabel = "No explicit incentive";
+
+    if (state.incentiveMode === "per-unit") {
+      modelLabel = "Per-unit incentive";
+
+      return {
+        modelLabel: modelLabel,
+        basePayout: basePayout,
+        questEquivalentPerCompleted: 0,
+        guaranteeTopUpPerCompleted: 0,
+        variableEquivalentPerCompleted: state.perUnitIncentive,
+        effectivePayoutBoost: state.perUnitIncentive,
+        hasIncentiveProgram: state.perUnitIncentive > 0
+      };
+    }
+
+    if (state.incentiveMode === "threshold") {
+      modelLabel = "Threshold / guarantee";
+      questEquivalentPerCompleted = state.eligibleShare *
+        state.attainmentProbability *
+        state.questBonus /
+        Math.max(state.questThreshold, 1);
+      guaranteeTopUpPerCompleted = state.eligibleShare *
+        Math.max(0, state.guaranteedFloor - basePayout);
+
+      return {
+        modelLabel: modelLabel,
+        basePayout: basePayout,
+        questEquivalentPerCompleted: questEquivalentPerCompleted,
+        guaranteeTopUpPerCompleted: guaranteeTopUpPerCompleted,
+        variableEquivalentPerCompleted: questEquivalentPerCompleted + guaranteeTopUpPerCompleted,
+        effectivePayoutBoost: questEquivalentPerCompleted + guaranteeTopUpPerCompleted,
+        hasIncentiveProgram: true
+      };
+    }
+
+    return {
+      modelLabel: modelLabel,
+      basePayout: basePayout,
+      questEquivalentPerCompleted: 0,
+      guaranteeTopUpPerCompleted: 0,
+      variableEquivalentPerCompleted: 0,
+      effectivePayoutBoost: 0,
+      hasIncentiveProgram: false
+    };
+  }
+
   function supplyAtPrice(price, state) {
-    var payout = Math.max(price * (1 - state.takeRate), 0.01);
+    var incentive = incentiveProfile(price, state);
+    var payout = Math.max(incentive.basePayout + incentive.effectivePayoutBoost, 0.01);
+    var rawSupplyWithoutIncentive = state.baselineSupply *
+      Math.pow(incentive.basePayout / state.referencePayout, state.supplyElasticity) *
+      (1 + state.supplyShock);
     var rawSupply = state.baselineSupply *
       Math.pow(payout / state.referencePayout, state.supplyElasticity) *
       (1 + state.supplyShock);
 
     return {
+      basePayout: incentive.basePayout,
       payout: payout,
+      incentive: incentive,
+      rawSupplyWithoutIncentive: rawSupplyWithoutIncentive,
+      effectiveSupplyWithoutIncentive: rawSupplyWithoutIncentive * state.matchingEfficiency,
       rawSupply: rawSupply,
       effectiveSupply: rawSupply * state.matchingEfficiency
     };
@@ -301,23 +444,35 @@ document.addEventListener("DOMContentLoaded", function () {
     var demand = demandWithPromo(price, state);
     var supply = supplyAtPrice(price, state);
     var completed = Math.min(demand, supply.effectiveSupply);
+    var completedWithoutIncentive = Math.min(demand, supply.effectiveSupplyWithoutIncentive);
     var fillRate = demand > 0 ? clamp(completed / demand, 0, 1) : 0;
     var gap = supply.effectiveSupply - demand;
     var tightness = supply.effectiveSupply > 0 ? demand / supply.effectiveSupply : Infinity;
+    var grossPlatformRevenue = price * state.takeRate * completed;
+    var incentiveCost = supply.incentive.variableEquivalentPerCompleted * completed;
 
     return {
       price: price,
+      basePayout: supply.basePayout,
       payout: supply.payout,
+      incentive: supply.incentive,
       demandNoPromo: demandNoPromo,
       demand: demand,
       promoIncrement: demand - demandNoPromo,
+      rawSupplyWithoutIncentive: supply.rawSupplyWithoutIncentive,
+      effectiveSupplyWithoutIncentive: supply.effectiveSupplyWithoutIncentive,
       rawSupply: supply.rawSupply,
       effectiveSupply: supply.effectiveSupply,
+      incrementalEffectiveSupply: supply.effectiveSupply - supply.effectiveSupplyWithoutIncentive,
       completed: completed,
+      completedWithoutIncentive: completedWithoutIncentive,
+      incrementalCompleted: completed - completedWithoutIncentive,
       fillRate: fillRate,
       gap: gap,
       tightness: tightness,
-      platformRevenue: price * state.takeRate * completed
+      grossPlatformRevenue: grossPlatformRevenue,
+      incentiveCost: incentiveCost,
+      netPlatformRevenue: grossPlatformRevenue - incentiveCost
     };
   }
 
@@ -397,25 +552,33 @@ document.addEventListener("DOMContentLoaded", function () {
     var xTicks = [minX, (minX + maxX) / 2, maxX];
     var grid = yTicks.map(function (tick) {
       var y = yScale(tick).toFixed(2);
+
       return "<line x1=\"" + padding.left + "\" y1=\"" + y + "\" x2=\"" + (width - padding.right) + "\" y2=\"" + y + "\" class=\"marketplace-pricing-tool__chart-grid\"></line>" +
         "<text x=\"" + (padding.left - 10) + "\" y=\"" + (Number(y) + 4) + "\" class=\"marketplace-pricing-tool__axis-label marketplace-pricing-tool__axis-label--y\">" + formatCount(tick) + "</text>";
     }).join("");
     var xAxisLabels = xTicks.map(function (tick) {
       var x = xScale(tick).toFixed(2);
+
       return "<text x=\"" + x + "\" y=\"" + (height - 10) + "\" class=\"marketplace-pricing-tool__axis-label marketplace-pricing-tool__axis-label--x\">" + formatCurrency(tick, 0) + "</text>";
     }).join("");
     var paths = options.series.map(function (series) {
-      return "<path d=\"" + buildSeriesPath(series.points, xScale, yScale) + "\" fill=\"none\" stroke=\"" + series.color + "\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>";
+      var dasharray = series.dasharray ? " stroke-dasharray=\"" + series.dasharray + "\"" : "";
+      var opacity = typeof series.opacity === "number" ? " opacity=\"" + series.opacity + "\"" : "";
+      var strokeWidth = series.strokeWidth || 3;
+
+      return "<path d=\"" + buildSeriesPath(series.points, xScale, yScale) + "\" fill=\"none\" stroke=\"" + series.color + "\" stroke-width=\"" + strokeWidth + "\" stroke-linecap=\"round\" stroke-linejoin=\"round\"" + dasharray + opacity + "></path>";
     }).join("");
     var markers = options.markers.map(function (marker) {
       var x = xScale(marker.x);
       var y = yScale(marker.y);
       var labelY = y + (marker.dy || -12);
+
       return "<circle cx=\"" + x.toFixed(2) + "\" cy=\"" + y.toFixed(2) + "\" r=\"4.75\" fill=\"" + marker.color + "\"></circle>" +
         "<text x=\"" + x.toFixed(2) + "\" y=\"" + labelY.toFixed(2) + "\" class=\"marketplace-pricing-tool__marker-label\">" + marker.label + "</text>";
     }).join("");
     var verticalLines = (options.verticalLines || []).map(function (line) {
       var x = xScale(line.x).toFixed(2);
+
       return "<line x1=\"" + x + "\" y1=\"" + padding.top + "\" x2=\"" + x + "\" y2=\"" + (height - padding.bottom) + "\" class=\"marketplace-pricing-tool__chart-marker-line\"></line>" +
         "<text x=\"" + x + "\" y=\"" + (padding.top + 12) + "\" class=\"marketplace-pricing-tool__marker-label\">" + line.label + "</text>";
     }).join("");
@@ -487,7 +650,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var maxPrice = Math.max(state.referencePrice, state.currentPrice, equilibriumScenario.price) * 1.45;
     var demandSeries = [];
     var supplySeries = [];
+    var baseSupplySeries = [];
     var maxY = 0;
+    var hasActiveIncentiveProgram = state.incentiveMode !== "none";
     var index;
 
     for (index = 0; index < 28; index += 1) {
@@ -496,6 +661,11 @@ document.addEventListener("DOMContentLoaded", function () {
       demandSeries.push({ x: price, y: scenario.demand });
       supplySeries.push({ x: price, y: scenario.effectiveSupply });
       maxY = Math.max(maxY, scenario.demand, scenario.effectiveSupply);
+
+      if (hasActiveIncentiveProgram) {
+        baseSupplySeries.push({ x: price, y: scenario.effectiveSupplyWithoutIncentive });
+        maxY = Math.max(maxY, scenario.effectiveSupplyWithoutIncentive);
+      }
     }
 
     outputs.equilibriumChart.innerHTML = buildChartMarkup({
@@ -507,11 +677,19 @@ document.addEventListener("DOMContentLoaded", function () {
           color: "#0f766e",
           points: demandSeries
         },
+        hasActiveIncentiveProgram
+          ? {
+            color: "#9a3412",
+            points: baseSupplySeries,
+            dasharray: "7 6",
+            opacity: 0.75
+          }
+          : null,
         {
           color: "#d97706",
           points: supplySeries
         }
-      ],
+      ].filter(Boolean),
       markers: [
         {
           x: equilibriumScenario.price,
@@ -543,9 +721,12 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
       legend: [
         { color: "#0f766e", label: "Demand" },
-        { color: "#d97706", label: "Effective supply after matching frictions" },
+        hasActiveIncentiveProgram
+          ? { color: "#9a3412", label: "Supply without incentives" }
+          : null,
+        { color: "#d97706", label: "Effective supply after matching frictions and incentives" },
         { color: "#1d4ed8", label: preset.dynamicPricing + " clearing point" }
-      ],
+      ].filter(Boolean),
       ariaLabel: "Supply and demand equilibrium chart for the selected marketplace scenario"
     });
   }
@@ -566,6 +747,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var exists = uniquePrices.some(function (stored) {
         return Math.abs(stored - rounded) < 0.01;
       });
+
       if (!exists) {
         uniquePrices.push(rounded);
       }
@@ -599,6 +781,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "<td>" + formatCount(scenario.effectiveSupply) + "</td>" +
         "<td>" + imbalance + "</td>" +
         "<td>" + formatCount(scenario.completed) + "</td>" +
+        "<td>" + formatCurrency(scenario.netPlatformRevenue, 0) + "</td>" +
         "</tr>";
     }).join("");
   }
@@ -607,10 +790,24 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentScenario.fillRate < 0.9 || currentScenario.gap < -0.05 * currentScenario.demand) {
       return "Demand-heavy";
     }
+
     if (currentScenario.gap > 0.08 * currentScenario.demand) {
       return "Supply-heavy";
     }
+
     return "Near balance";
+  }
+
+  function incentiveSummaryText(scenario) {
+    if (scenario.incentive.modelLabel === "No explicit incentive") {
+      return "No explicit supplier incentive is active, so supply only moves through the base payout and the supply shock.";
+    }
+
+    if (scenario.incentive.modelLabel === "Per-unit incentive") {
+      return "A direct " + formatCurrencyRate(scenario.incentive.variableEquivalentPerCompleted) + " incentive is layered on top of base payout, shifting effective supply by about " + formatSignedCount(scenario.incrementalEffectiveSupply) + " units at the current price.";
+    }
+
+    return "The threshold / guarantee program is converted into an expected " + formatCurrencyRate(scenario.incentive.variableEquivalentPerCompleted) + " incentive at the current price, made up of " + formatCurrencyRate(scenario.incentive.questEquivalentPerCompleted) + " from the quest and " + formatCurrencyRate(scenario.incentive.guaranteeTopUpPerCompleted) + " from the guarantee top-up.";
   }
 
   function renderSummary(state, currentScenario, equilibriumScenario, preset) {
@@ -621,9 +818,8 @@ document.addEventListener("DOMContentLoaded", function () {
       ? "A " + formatPercent(state.promoDepth, 0) + " promotion adds about " + formatCount(currentScenario.promoIncrement) + " incremental " + preset.unitPlural + " per day on top of the base price response."
       : "No active promotion is applied, so all demand movement comes from price elasticity and the external demand shock.";
     var multiplier = equilibriumScenario.price / state.currentPrice;
-    var directionText = multiplier >= 1
-      ? "raise"
-      : "lower";
+    var directionText = multiplier >= 1 ? "raise" : "lower";
+    var grossNetSpread = equilibriumScenario.grossPlatformRevenue - equilibriumScenario.netPlatformRevenue;
 
     outputs.summary.innerHTML =
       "<div class=\"marketplace-pricing-tool__insight-grid\">" +
@@ -636,8 +832,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "<p>" + promoText + " If that seems too large, reduce the promotion halo before changing the core price elasticity estimate.</p>" +
       "</article>" +
       "<article class=\"marketplace-pricing-tool__insight\">" +
+      "<span class=\"marketplace-pricing-tool__insight-label\">Incentive read</span>" +
+      "<p>" + incentiveSummaryText(currentScenario) + " On the modeled completed volume, that incentive profile costs about " + formatCurrency(currentScenario.incentiveCost, 0) + " at the current price.</p>" +
+      "</article>" +
+      "<article class=\"marketplace-pricing-tool__insight\">" +
       "<span class=\"marketplace-pricing-tool__insight-label\">Marketplace mechanism</span>" +
-      "<p>To clear the market, the model would " + directionText + " price to about " + formatCurrency(equilibriumScenario.price, 2) + " (" + formatRatio(multiplier) + " of the current price). Supplier payout would move to " + formatCurrency(equilibriumScenario.payout, 2) + ", and completed volume would settle near " + formatCount(equilibriumScenario.completed) + " " + preset.unitPlural + ". " + preset.notes + "</p>" +
+      "<p>To clear the market, the model would " + directionText + " price to about " + formatCurrency(equilibriumScenario.price, 2) + " (" + formatRatio(multiplier) + " of the current price). Supplier payout would settle near " + formatCurrency(equilibriumScenario.payout, 2) + ", gross platform revenue would be " + formatCurrency(equilibriumScenario.grossPlatformRevenue, 0) + ", and incentive spend would absorb " + formatCurrency(grossNetSpread, 0) + ", leaving net platform revenue near " + formatCurrency(equilibriumScenario.netPlatformRevenue, 0) + ". " + preset.notes + "</p>" +
       "</article>" +
       "</div>";
   }
@@ -689,27 +889,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     Object.keys(shareKeys).forEach(function (name) {
       var param = params.get(shareKeys[name]);
+
       if (param !== null && param !== "") {
         fields[name].value = param;
       }
     });
+
+    syncIncentiveFields();
   }
 
   function update() {
     clearError();
     outputs.shareStatus.textContent = "";
+    syncIncentiveFields();
 
     var state = readState();
+    var preset;
+    var currentScenario;
+    var equilibriumScenario;
+    var promoLiftShare;
+
     if (!state) {
       clearRenderedOutputs();
-      showError("Enter valid positive inputs for price, demand, supply, and elasticities. Shocks must stay above -100%.");
+      showError("Enter valid positive inputs for price, demand, supply, and elasticities. Shocks must stay above -100%, and incentive settings must be nonnegative.");
       return;
     }
 
-    var preset = getPreset(state.marketplace);
-    var currentScenario = scenarioAtPrice(state.currentPrice, state);
-    var equilibriumScenario = findEquilibrium(state);
-    var promoLiftShare = currentScenario.demand > 0 ? currentScenario.promoIncrement / currentScenario.demand : 0;
+    preset = getPreset(state.marketplace);
+    currentScenario = scenarioAtPrice(state.currentPrice, state);
+    equilibriumScenario = findEquilibrium(state);
+    promoLiftShare = currentScenario.demand > 0 ? currentScenario.promoIncrement / currentScenario.demand : 0;
 
     outputs.demand.textContent = formatCount(currentScenario.demand);
     outputs.promo.textContent = formatSignedCount(currentScenario.promoIncrement) + " (" + formatSignedPercent(promoLiftShare, 1) + ")";
@@ -722,8 +931,12 @@ document.addEventListener("DOMContentLoaded", function () {
     outputs.equilibriumPrice.textContent = formatCurrency(equilibriumScenario.price, 2);
     outputs.equilibriumVolume.textContent = formatCount(equilibriumScenario.completed);
     outputs.surge.textContent = formatRatio(equilibriumScenario.price / state.currentPrice);
-    outputs.revenue.textContent = formatCurrency(equilibriumScenario.platformRevenue, 0);
+    outputs.revenue.textContent = formatCurrency(equilibriumScenario.grossPlatformRevenue, 0);
     outputs.payout.textContent = formatCurrency(equilibriumScenario.payout, 2);
+    outputs.incentiveRate.textContent = formatCurrencyRate(equilibriumScenario.incentive.variableEquivalentPerCompleted);
+    outputs.incentiveCost.textContent = formatCurrency(equilibriumScenario.incentiveCost, 0);
+    outputs.netRevenue.textContent = formatCurrency(equilibriumScenario.netPlatformRevenue, 0);
+    outputs.incrementalSupply.textContent = formatSignedCount(equilibriumScenario.incrementalEffectiveSupply);
     outputs.marketState.textContent = describeMarketState(currentScenario);
 
     renderSummary(state, currentScenario, equilibriumScenario, preset);
@@ -734,6 +947,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fields.marketplace.addEventListener("change", function () {
     applyPreset(fields.marketplace.value);
+    update();
+  });
+
+  fields.incentiveMode.addEventListener("change", function () {
+    syncIncentiveFields();
     update();
   });
 
@@ -750,7 +968,13 @@ document.addEventListener("DOMContentLoaded", function () {
     "supplyElasticity",
     "takeRate",
     "matchingEfficiency",
-    "supplyShock"
+    "supplyShock",
+    "perUnitIncentive",
+    "eligibleShare",
+    "questThreshold",
+    "questBonus",
+    "attainmentProbability",
+    "guaranteedFloor"
   ].forEach(function (name) {
     fields[name].addEventListener("input", update);
   });
