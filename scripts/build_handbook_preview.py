@@ -146,30 +146,35 @@ def load_pages(source_dir: Path) -> list[Page]:
     return sorted(pages, key=lambda page: (page.weight, page.slug))
 
 
-def nav_html(pages: list[Page]) -> str:
+def normalize_base_url(base_url: str) -> str:
+    base_url = "/" + base_url.strip("/") + "/"
+    return base_url
+
+
+def nav_html(pages: list[Page], base_url: str) -> str:
     links = []
     for page in pages:
-        href = "/preview/handbook/" if not page.slug else f"/preview/handbook/{page.slug}/"
+        href = base_url if not page.slug else f"{base_url}{page.slug}/"
         links.append(f'<li><a href="{href}">{html.escape(page.linktitle)}</a></li>')
     return "<ul class=\"course-nav\">\n" + "\n".join(links) + "\n</ul>"
 
 
-def render_page(page: Page, body_html: str, sidebar_html: str) -> str:
+def render_page(page: Page, body_html: str, sidebar_html: str, base_url: str, course_title: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{html.escape(page.title)} | Handbook Preview</title>
-    <link rel="stylesheet" href="/preview/handbook/style.css">
+    <link rel="stylesheet" href="{html.escape(base_url)}style.css">
   </head>
   <body>
     <div class="shell">
       <aside class="sidebar">
         <div class="sidebar-inner">
           <p class="eyebrow">Preview</p>
-          <h1>Applied ML for Tabular Data</h1>
-          <p class="deck">Handbook-style short course preview built from the new docs pages.</p>
+          <h1>{html.escape(course_title)}</h1>
+          <p class="deck">Handbook-style short course preview built from the course docs pages.</p>
           {sidebar_html}
           <div class="sidebar-footer">
             <span>Self-paced short course preview</span>
@@ -397,15 +402,19 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build a local HTML preview for handbook-style docs.")
     parser.add_argument("source_dir", type=Path, help="Docs section directory")
     parser.add_argument("output_dir", type=Path, help="Preview output directory")
+    parser.add_argument("--base-url", default="/preview/handbook/", help="Base URL where the preview will be served")
     args = parser.parse_args()
 
     pages = load_pages(args.source_dir)
+    base_url = normalize_base_url(args.base_url)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     write_styles(args.output_dir)
-    sidebar = nav_html(pages)
+    root_page = next((page for page in pages if not page.slug), pages[0])
+    course_title = root_page.title
+    sidebar = nav_html(pages, base_url)
 
     for page in pages:
-        rendered = render_page(page, markdown_to_html(page.body), sidebar)
+        rendered = render_page(page, markdown_to_html(page.body), sidebar, base_url, course_title)
         if not page.slug:
             destination = args.output_dir / "index.html"
         else:

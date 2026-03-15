@@ -10,6 +10,8 @@ Teaching notes, handbook-style short courses, and course materials.
 
 - [Applied Machine Learning for Tabular Data](/tabular-machine-learning/)
   A self-paced handbook short course on problem framing, evaluation, feature engineering, trees, optimization, and model selection for tabular ML.
+- [Tree-Based Machine Learning](/tree-based-machine-learning/)
+  A self-paced handbook short course on decision trees, random forests, feature importance, and boosting methods for structured data.
 
 ## Current Focus
 
