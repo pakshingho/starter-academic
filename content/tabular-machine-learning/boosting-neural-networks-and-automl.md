@@ -81,6 +81,21 @@ But AutoML still depends on human decisions about:
 
 AutoML is most useful when you already know what a valid workflow looks like.
 
+### Representative AutoML libraries
+
+If you want concrete tools to try, a useful starting set is:
+
+- AutoGluon Tabular, when you want a strong tabular baseline quickly with modern ensembling and a relatively simple user experience
+- FLAML, when you want a lighter-weight and time-budget-aware AutoML workflow that can fit well into Python experimentation loops
+- auto-sklearn, when you are already working in the scikit-learn ecosystem and want an AutoML layer that stays close to that style of workflow
+- H2O AutoML, when you want a broader leaderboard-style AutoML system with stacked ensembles and a more platform-oriented workflow
+
+The point of learning these libraries is not to memorize tool names. It is to understand what they automate well, where they still need supervision, and how they compare against your manual baselines.
+
+In practice, that comparison should include not only other AutoML systems but also strong hand-tuned or well-tuned tree baselines such as CatBoost, LightGBM, XGBoost, and random forests.
+
+For a live comparison point, see the [TabArena leaderboard](https://tabarena.ai/). As of March 14, 2026, on its public no-imputation / lite / all-tasks / all-datasets board, `RealTabPFN-v2.5 (tuned + ensembled)` is listed first at Elo `1648`, `AutoGluon 1.4 (extreme, 4h)` is next at `1640`, and strong tuned-plus-ensembled tree baselines like `LightGBM` (`1440`), `CatBoost` (`1414`), and `XGBoost` (`1387`) remain highly competitive. That is a good reminder that foundation models, AutoML systems, and classic tree methods should all be part of the same comparison set.
+
 ### Practical model-comparison mindset
 
 For a serious tabular project, a healthy comparison set might include:
