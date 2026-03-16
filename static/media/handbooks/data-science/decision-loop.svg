@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Minimum working loop for data science</title>
+  <desc id="desc">A four-step loop showing problem framing, data work, analysis or modeling, and decision and measurement.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .card { fill: #ffffff; stroke: #23423a; stroke-width: 3; rx: 22; }
+      .accent { fill: #d8eee3; }
+      .accent2 { fill: #f8dfc5; }
+      .accent3 { fill: #d9e8f7; }
+      .accent4 { fill: #f4d8d8; }
+      .title { font: 700 33px Georgia, serif; fill: #1f2d2a; }
+      .label { font: 700 25px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #324642; }
+      .arrow { stroke: #23423a; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .note { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #526863; }
+    </style>
+    <marker id="arrow" markerWidth="3.8" markerHeight="3.8" refX="3.2" refY="1.9" orient="auto">
+      <path d="M0,0 L3.8,1.9 L0,3.8 z" fill="#23423a"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="560"/>
+  <text class="title" x="600" y="60" text-anchor="middle">The Minimum Working Loop</text>
+
+  <g transform="translate(52 120)">
+    <rect class="card accent" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">1. Clarify</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Decision to support</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Metric and unit</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Constraints and risks</text>
+  </g>
+
+  <g transform="translate(324 120)">
+    <rect class="card accent2" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">2. Data</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Pull the right tables</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Check grain and joins</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Validate quality</text>
+  </g>
+
+  <g transform="translate(596 120)">
+    <rect class="card accent3" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">3. Analyze</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Baseline first</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Estimate or model</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Quantify uncertainty</text>
+  </g>
+
+  <g transform="translate(868 120)">
+    <rect class="card accent4" width="280" height="204" rx="22"/>
+    <text class="label" x="140" y="50" text-anchor="middle">4. Decide</text>
+    <text class="body" x="140" y="96" text-anchor="middle">Recommend action</text>
+    <text class="body" x="140" y="128" text-anchor="middle">Measure outcome</text>
+    <text class="body" x="140" y="160" text-anchor="middle">Decide whether to iterate</text>
+  </g>
+
+  <path class="arrow" d="M294 226 H312"/>
+  <path class="arrow" d="M566 226 H584"/>
+  <path class="arrow" d="M838 226 H856"/>
+  <path class="arrow" d="M1008 338 C1008 408, 172 408, 172 338"/>
+
+  <text class="note" x="600" y="466" text-anchor="middle">
+    <tspan x="600" dy="0">Repeat the loop until decision quality improves,</tspan>
+    <tspan x="600" dy="24">not until the analysis simply becomes more complicated.</tspan>
+  </text>
+</svg>

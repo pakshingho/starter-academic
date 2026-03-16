@@ -10,3 +10,7 @@ public/
 
 # Local previews
 preview/
+
+# Local tooling
+tools/
+.cache/

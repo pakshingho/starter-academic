@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Experiment lifecycle</title>
+  <desc id="desc">A diagram showing the main phases of a practical A/B test from design through rollout.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .title { font: 700 33px Georgia, serif; fill: #1f2d2a; }
+      .card { stroke: #26433b; stroke-width: 3; fill: #fff; rx: 22; }
+      .c1 { fill: #d8eee3; }
+      .c2 { fill: #dbe8f6; }
+      .c3 { fill: #f8e0c7; }
+      .c4 { fill: #f3d9da; }
+      .c5 { fill: #e9e3f7; }
+      .label { font: 700 23px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .arrow { stroke: #26433b; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arrow" markerWidth="3.8" markerHeight="3.8" refX="3.2" refY="1.9" orient="auto">
+      <path d="M0,0 L3.8,1.9 L0,3.8 z" fill="#26433b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="620"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Experiment Decision Flow</text>
+
+  <g transform="translate(40 130)">
+    <rect class="card c1" width="200" height="184" rx="22"/>
+    <text class="label" x="100" y="48" text-anchor="middle">1. Design</text>
+    <text class="body" x="100" y="94" text-anchor="middle">Primary metric</text>
+    <text class="body" x="100" y="126" text-anchor="middle">Guardrails</text>
+    <text class="body" x="100" y="158" text-anchor="middle">Stopping rule</text>
+  </g>
+
+  <g transform="translate(270 130)">
+    <rect class="card c2" width="200" height="184" rx="22"/>
+    <text class="label" x="100" y="48" text-anchor="middle">2. Randomize</text>
+    <text class="body" x="100" y="94" text-anchor="middle">Treatment and control</text>
+    <text class="body" x="100" y="126" text-anchor="middle">Check balance</text>
+    <text class="body" x="100" y="158" text-anchor="middle">Watch for SRM</text>
+  </g>
+
+  <g transform="translate(500 130)">
+    <rect class="card c3" width="200" height="184" rx="22"/>
+    <text class="label" x="100" y="48" text-anchor="middle">3. Measure</text>
+    <text class="body" x="100" y="94" text-anchor="middle">Compute effect size</text>
+    <text class="body" x="100" y="126" text-anchor="middle">Estimate uncertainty</text>
+    <text class="body" x="100" y="158" text-anchor="middle">Segment carefully</text>
+  </g>
+
+  <g transform="translate(730 130)">
+    <rect class="card c4" width="200" height="184" rx="22"/>
+    <text class="label" x="100" y="48" text-anchor="middle">4. Judge</text>
+    <text class="body" x="100" y="94" text-anchor="middle">Statistical evidence</text>
+    <text class="body" x="100" y="126" text-anchor="middle">Practical impact</text>
+    <text class="body" x="100" y="158" text-anchor="middle">Guardrail trade-offs</text>
+  </g>
+
+  <g transform="translate(960 130)">
+    <rect class="card c5" width="200" height="184" rx="22"/>
+    <text class="label" x="100" y="48" text-anchor="middle">5. Act</text>
+    <text class="body" x="100" y="94" text-anchor="middle">Roll out</text>
+    <text class="body" x="100" y="126" text-anchor="middle">Hold out</text>
+    <text class="body" x="100" y="158" text-anchor="middle">Iterate</text>
+  </g>
+
+  <path class="arrow" d="M242 224 H258"/>
+  <path class="arrow" d="M472 224 H488"/>
+  <path class="arrow" d="M702 224 H718"/>
+  <path class="arrow" d="M932 224 H948"/>
+
+  <g transform="translate(180 396)">
+    <rect class="card" width="840" height="98" rx="22" fill="#f6f2e8"/>
+    <text class="small" x="420" y="40" text-anchor="middle">
+      <tspan x="420" dy="0">Monitor novelty effects, interference, metric-definition changes,</tspan>
+      <tspan x="420" dy="24">multiple testing, sample-ratio mismatch, and logging bugs throughout the run.</tspan>
+    </text>
+  </g>
+</svg>

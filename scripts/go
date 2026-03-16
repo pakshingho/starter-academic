@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+LOCAL_GO_ROOT="${ROOT_DIR}/tools/go/1.26.1/go"
+
+if [ ! -x "${LOCAL_GO_ROOT}/bin/go" ]; then
+  echo "Go was not found. Install the local toolchain into tools/go/1.26.1/ or add go to PATH." >&2
+  exit 1
+fi
+
+export GOROOT="${LOCAL_GO_ROOT}"
+export GOPATH="${ROOT_DIR}/.cache/gopath"
+export GOCACHE="${ROOT_DIR}/.cache/go-build"
+export GOMODCACHE="${ROOT_DIR}/.cache/gomod"
+mkdir -p "${GOPATH}" "${GOCACHE}" "${GOMODCACHE}"
+
+exec "${GOROOT}/bin/go" "$@"

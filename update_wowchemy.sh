@@ -6,6 +6,8 @@
 #
 # Command: bash ./update_wowchemy.sh
 
+HUGO_BIN="${HUGO_BIN:-./scripts/hugo}"
+
 # Check for prerequisites.
 if [ ! -d content ]; then
   echo "ERROR: `cd` into your website folder before running this tool."
@@ -16,8 +18,8 @@ fi
 function update_wowchemy () {
   # Update Wowchemy to the latest master version
   echo -e "Updating Wowchemy to the latest master version...\n"
-  hugo mod get github.com/wowchemy/wowchemy-hugo-modules/wowchemy/@master
-  hugo mod tidy
+  "${HUGO_BIN}" mod get github.com/wowchemy/wowchemy-hugo-modules/wowchemy/@master
+  "${HUGO_BIN}" mod tidy
 }
 
 # Update Netlify config

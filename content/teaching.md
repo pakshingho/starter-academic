@@ -1,6 +1,7 @@
 ---
 title: Teaching
 date: 2026-03-15
+lastmod: 2026-03-15
 type: page
 ---
 
@@ -8,6 +9,8 @@ This page combines current handbook-style course material with earlier universit
 
 ## Handbook Short Courses
 
+- [Data Science Foundations for New Grads](/data-science-foundations/)
+  A self-paced handbook short course on the minimum practical knowledge needed to start working credibly in data science: probability, experiments, machine learning, SQL, coding, and product thinking.
 - [Applied Machine Learning for Tabular Data](/tabular-machine-learning/)
   A self-paced handbook short course on problem framing, evaluation, feature engineering, trees, optimization, and model selection for tabular ML.
 - [Decision Trees and Ensemble Methods in Machine Learning](/tree-based-machine-learning/)
