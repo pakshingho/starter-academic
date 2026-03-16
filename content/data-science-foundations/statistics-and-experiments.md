@@ -300,7 +300,7 @@ Here is a practical end-to-end setup:
 | minimum detectable effect | 0.8 percentage points |
 | significance and power | $\alpha = 0.05$, power = 80 percent |
 
-Using the rough sample-size formula from above with $p = 0.10$ and $\delta = 0.008$, you would need about 22,000 sessions per group. That gives the team a realistic traffic target before launch instead of hoping the answer will be obvious after only a few days.
+Using the rough sample-size formula from above with $p = 0.10$ and $\delta = 0.008$, you would need about 22,000 sessions per group. That gives the team a realistic traffic target before launch instead of hoping the answer will be obvious after only a few days. If you want to plug in different baselines, MDEs, or traffic assumptions, try the [A/B Test Sample Size Calculator](/experimentation-calculator/).
 
 Before trusting any lift, the team should confirm the experiment is healthy:
 
