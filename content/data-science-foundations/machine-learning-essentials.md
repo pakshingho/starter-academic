@@ -117,6 +117,6 @@ You do need to know how to answer these questions:
 
 Good machine learning practice is usually conservative before it is clever.
 
-From here, the best next step is depth in a subdomain. If you want more modeling detail, continue with [Applied Machine Learning for Tabular Data](/tabular-machine-learning/). If you want a domain-specific example of end-to-end modeling systems, try [Understanding Recommender Systems](/recommender-systems/).
+From here, the best next step is depth in a subdomain. If you want a broader modeling workflow for structured data, continue with [Applied Machine Learning for Tabular Data](/tabular-machine-learning/). If you want deeper coverage of tree models, try [Decision Trees and Ensemble Methods in Machine Learning](/tree-based-machine-learning/). If you want a domain-specific example of end-to-end modeling systems, try [Understanding Recommender Systems](/recommender-systems/).
 
 Next: [SQL and Data Modeling](../sql-and-data-modeling/).
