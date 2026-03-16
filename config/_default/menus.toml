@@ -106,22 +106,28 @@
   weight = 41
 
 [[main]]
+  name = "CV"
+  url = "/cv/"
+  parent = "about_group"
+  weight = 42
+
+[[main]]
   name = "Contact"
   url = "/contact/"
   parent = "about_group"
-  weight = 42
+  weight = 43
 
 [[main]]
   name = "LinkedIn"
   url = "https://www.linkedin.com/in/pakshingho/"
   parent = "about_group"
-  weight = 43
+  weight = 44
 
 [[main]]
   name = "GitHub"
   url = "https://github.com/pakshingho"
   parent = "about_group"
-  weight = 44
+  weight = 45
 
 [[recommender-systems]]
   name = "1.1 Common applications"
