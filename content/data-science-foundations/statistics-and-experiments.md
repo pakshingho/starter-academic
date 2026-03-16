@@ -112,6 +112,38 @@ If these are vague before launch, the interpretation often becomes vague after l
 | novelty effects | short-term excitement may not represent steady-state behavior |
 | interference | one user's treatment can affect another user's outcome |
 
+### Bonferroni correction and multiple testing
+
+If you test many hypotheses at once, the chance of at least one false positive rises. That is why a result can look significant in one metric or segment even when nothing real changed.
+
+The Bonferroni correction is the simplest adjustment:
+
+$$
+\alpha_{\text{per test}} = \frac{\alpha_{\text{family}}}{m}
+$$
+
+where $m$ is the number of hypotheses being tested.
+
+For example, if you want a family-wise error rate of $0.05$ across 5 tests, you would judge each individual test against $0.01$ instead of $0.05$.
+
+You can think about it in two equivalent ways:
+
+- divide the acceptable error budget by the number of tests
+- or multiply each p-value by the number of tests and compare the adjusted value to the original threshold
+
+Why this matters in experimentation:
+
+- comparing many product metrics increases the chance of a spurious win
+- slicing results across many segments can create noisy "discoveries"
+- testing many variants at once makes naive interpretation too optimistic
+
+The main downside is that Bonferroni is conservative. It reduces false positives, but it also makes real effects harder to detect, especially when the number of tests is large or when many tests are correlated.
+
+So the practical rule is:
+
+- use Bonferroni when the number of tests is modest and you want a simple, cautious adjustment
+- avoid treating it as a substitute for pre-registering a primary metric and limiting unnecessary comparisons
+
 ### Statistical significance is not business significance
 
 With large enough sample sizes, tiny effects can look statistically convincing while still being irrelevant to the business. The reverse can also happen: a meaningful effect may fail to reach significance because the experiment was underpowered.
