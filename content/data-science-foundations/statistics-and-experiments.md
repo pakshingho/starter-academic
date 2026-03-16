@@ -78,7 +78,7 @@ Use a z-test when:
 Use a t-test when:
 
 - you are testing a mean and the population variance is unknown
-- the sample is not especially large
+- the sample is not especially large and the data are approximately normal
 - you estimate uncertainty using the sample standard deviation rather than a known population value
 
 The main idea is simple:
@@ -103,10 +103,12 @@ where $\sigma$ is the population standard deviation and $s$ is the sample standa
 In practice:
 
 - for many large-scale online experiments on proportions, z-based tests are common
-- for smaller-sample mean comparisons, t-tests are usually the safer default
+- for smaller-sample mean comparisons, t-tests are usually the safer default when normality is a reasonable approximation
 - as sample size grows, the t-test and z-test often become numerically very similar
 
-The main mistake to avoid is using a z-test out of habit when the variance is unknown and the sample is small. In that setting, a t-test is usually the more defensible choice.
+One important caveat is that the classical small-sample t-test relies on the underlying variable being approximately normally distributed. If the sample is small and the data are strongly skewed, heavy-tailed, or dominated by outliers, a t-test may not be reliable.
+
+The main mistake to avoid is using a t-test as an automatic default for any small sample. In small samples with doubtful normality, a transformation, permutation test, bootstrap procedure, or a suitable nonparametric method may be more defensible.
 
 ### Type I error, Type II error, and power
 
