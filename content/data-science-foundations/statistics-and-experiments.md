@@ -197,13 +197,57 @@ In practice, sample size is part of experiment design, not a formality. It deter
 
 If these are vague before launch, the interpretation often becomes vague after launch too.
 
+### Check balance, watch for SRM, and use A/A tests
+
+Before reading outcome metrics, make sure the experiment itself looks healthy.
+
+Start with balance checks. In a randomized experiment, treatment and control should look similar on important pre-treatment variables such as geography, device mix, historical activity, or prior spend. A small imbalance can happen by chance, especially in smaller samples, but a systematic pattern is a warning sign.
+
+What balance checks are good for:
+
+- catching broken randomization or eligibility logic
+- spotting exposure definitions that accidentally exclude some users
+- finding logging problems that affect one arm more than the other
+
+Use judgment here. If you test many covariates, some will differ just by randomness. The goal is not to demand a perfect match on every column. The goal is to notice patterns that are too large or too consistent to ignore.
+
+One especially important check is sample ratio mismatch (SRM). If a test was designed for a 50/50 split, but the observed exposed traffic is much closer to 57/43, that is often a stronger warning than any movement in the business metric.
+
+A common diagnostic statistic is:
+
+$$
+\chi^2 = \sum_i \frac{(O_i - E_i)^2}{E_i}
+$$
+
+where $O_i$ is the observed count in arm $i$ and $E_i$ is the expected count from the planned split.
+
+SRM often points to one of these problems:
+
+- assignment or bucketing bugs
+- eligibility filters that differ by arm
+- delayed or missing exposure logs
+- user flows where one group drops out before measurement
+
+When SRM appears, pause before interpreting lift. If the traffic split is not trustworthy, the effect estimate usually is not trustworthy either.
+
+An A/A test is another useful diagnostic. In an A/A test, both groups get the same experience, so any measured difference should be explainable by ordinary noise.
+
+Why A/A tests help:
+
+- they validate the randomization and exposure pipeline
+- they reveal whether metric definitions are stable
+- they show whether false positives are appearing too often
+- they give a reality check on the variance assumptions used in power calculations
+
+An A/A test is most useful when you are launching a new experimentation framework, changing logging, or introducing an especially important metric. It is less useful as a ritual before every small feature test.
+
 ### Common mistakes in real experiments
 
 | Failure mode | Why it matters |
 | --- | --- |
 | peeking too early | repeated looks inflate false positives unless handled correctly |
 | multiple testing | some "wins" appear by chance when enough metrics or variants are checked |
-| sample ratio mismatch | treatment assignment or logging may be broken |
+| sample ratio mismatch | traffic allocation, exposure logging, or eligibility rules may be broken |
 | novelty effects | short-term excitement may not represent steady-state behavior |
 | interference | one user's treatment can affect another user's outcome |
 
