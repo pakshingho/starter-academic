@@ -92,6 +92,56 @@ $$
 
 That estimate helps you judge whether a measured conversion lift is large relative to ordinary noise.
 
+### Sample size requirements and minimum detectable effect
+
+Before launching an experiment, you should ask a simple question:
+
+- how much traffic do we need before this test can realistically detect an effect we care about?
+
+That is a sample-size question. If the experiment is too small, even a real improvement may look indistinguishable from noise.
+
+The key inputs are:
+
+- significance level $\alpha$
+- desired power, often $1-\beta$
+- baseline rate or variance
+- the minimum detectable effect (MDE), meaning the smallest effect worth detecting
+
+The MDE is especially important. If you set it too small, sample requirements can become impractically large. If you set it too large, the test may miss effects that actually matter.
+
+For a balanced two-group experiment on a proportion metric, a common rough approximation for the required sample size per group is:
+
+$$
+n \approx
+\frac{
+2\left(z_{1-\alpha/2} + z_{1-\beta}\right)^2 p(1-p)
+}{
+\delta^2
+}
+$$
+
+where:
+
+- $p$ is the baseline conversion rate
+- $\delta$ is the absolute lift you want to detect
+
+This formula captures the main intuition:
+
+- smaller effects need much larger samples
+- noisier metrics need larger samples
+- higher confidence and higher power both require more data
+
+As a concrete example, a 0.2 percentage-point lift can require far more traffic than a 2 percentage-point lift, even when everything else stays the same.
+
+### Practical sample-size guidance
+
+- decide the MDE from business value, not wishful thinking
+- estimate sample size before launch instead of after seeing weak results
+- remember that guardrail metrics often need their own power analysis
+- expect segment-level reads to need much more traffic than the headline result
+
+In practice, sample size is part of experiment design, not a formality. It determines whether the test can answer the question it was meant to answer.
+
 ### What to decide before launching an experiment
 
 - the unit of randomization
