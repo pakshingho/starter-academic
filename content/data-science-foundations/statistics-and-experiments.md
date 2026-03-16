@@ -283,6 +283,78 @@ So the practical rule is:
 - use Bonferroni when the number of tests is modest and you want a simple, cautious adjustment
 - avoid treating it as a substitute for pre-registering a primary metric and limiting unnecessary comparisons
 
+### Worked example: an e-commerce checkout conversion test
+
+Suppose an online retailer wants to test a simpler checkout page. The product team believes fewer form fields will reduce friction and increase completed purchases.
+
+Here is a practical end-to-end setup:
+
+| Decision | Example choice |
+| --- | --- |
+| business question | does a simpler checkout increase completed orders? |
+| unit of randomization | eligible checkout sessions |
+| primary metric | purchase conversion rate |
+| guardrails | average order value, payment failure rate, page latency |
+| planned split | 50 percent control, 50 percent treatment |
+| baseline conversion | 10 percent |
+| minimum detectable effect | 0.8 percentage points |
+| significance and power | $\alpha = 0.05$, power = 80 percent |
+
+Using the rough sample-size formula from above with $p = 0.10$ and $\delta = 0.008$, you would need about 22,000 sessions per group. That gives the team a realistic traffic target before launch instead of hoping the answer will be obvious after only a few days.
+
+Before trusting any lift, the team should confirm the experiment is healthy:
+
+- the observed traffic split is close to the intended 50/50 allocation
+- pre-treatment covariates such as device mix and returning-user share look broadly balanced
+- the exposure log fires consistently for both arms
+
+Assume the launch passes those checks and the experiment runs until each group reaches 24,000 sessions.
+
+| Group | Sessions | Purchases | Conversion |
+| --- | --- | --- | --- |
+| control | 24,000 | 2,400 | 10.0 percent |
+| treatment | 24,000 | 2,640 | 11.0 percent |
+
+The estimated lift is:
+
+$$
+\hat p_T - \hat p_C = 0.11 - 0.10 = 0.01
+$$
+
+or 1.0 percentage point.
+
+Using the standard error for two proportions:
+
+$$
+\mathrm{SE}(\hat p_T - \hat p_C) \approx 0.0028
+$$
+
+so the z-statistic is:
+
+$$
+z = \frac{0.01}{0.0028} \approx 3.57
+$$
+
+That is strong evidence against the null of no difference. A rough 95 percent confidence interval is:
+
+$$
+0.01 \pm 1.96 \times 0.0028 \approx [0.0045,\;0.0155]
+$$
+
+So the likely true lift is somewhere between about 0.45 and 1.55 percentage points.
+
+Now the team should ask the second question: is the effect large enough to matter?
+
+If the company gets 2 million eligible checkout sessions per month, a 1.0 percentage-point lift translates to about 20,000 additional monthly orders. If average order value and payment failure rate stay stable, the test may be worth shipping. If the treatment raises conversions but also increases refunds, customer complaints, or latency, the decision becomes less obvious.
+
+This example ties together the main experimentation ideas:
+
+- define the metric and guardrails before launch
+- power the test around a meaningful MDE
+- check balance and SRM before reading lift
+- use the effect size, uncertainty, and business impact together
+- avoid celebrating noisy wins from many unplanned segment cuts
+
 ### Statistical significance is not business significance
 
 With large enough sample sizes, tiny effects can look statistically convincing while still being irrelevant to the business. The reverse can also happen: a meaningful effect may fail to reach significance because the experiment was underpowered.
