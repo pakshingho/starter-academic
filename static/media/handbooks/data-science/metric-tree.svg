@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Metric tree</title>
+  <desc id="desc">A metric hierarchy connecting business outcome, north star metric, supporting behavior metrics, and guardrails.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf5; }
+      .title { font: 700 34px Georgia, serif; fill: #1f2d2a; }
+      .card { stroke: #26433b; stroke-width: 3; fill: #fff; rx: 22; }
+      .top { fill: #d8eee3; }
+      .mid { fill: #dbe8f6; }
+      .left { fill: #f8dfc5; }
+      .center { fill: #ede5f7; }
+      .right { fill: #f3d9da; }
+      .guard { fill: #f6f2e8; }
+      .label { font: 700 24px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .arrow { stroke: #26433b; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#26433b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="700"/>
+  <text class="title" x="600" y="56" text-anchor="middle">From Business Goal to Usable Metrics</text>
+
+  <g transform="translate(410 90)">
+    <rect class="card top" width="380" height="96" rx="22"/>
+    <text class="label" x="190" y="42" text-anchor="middle">Business Outcome</text>
+    <text class="body" x="190" y="72" text-anchor="middle">Growth, efficiency, trust, or retention</text>
+  </g>
+
+  <g transform="translate(390 250)">
+    <rect class="card mid" width="420" height="106" rx="22"/>
+    <text class="label" x="210" y="44" text-anchor="middle">North Star Metric</text>
+    <text class="body" x="210" y="78" text-anchor="middle">One main measure of user value or team success</text>
+  </g>
+
+  <g transform="translate(420 400)">
+    <rect class="card guard" width="360" height="92" rx="22"/>
+    <text class="label" x="180" y="38" text-anchor="middle">Guardrails</text>
+    <text class="body" x="180" y="68" text-anchor="middle">latency, abuse, support load, cancellations</text>
+  </g>
+
+  <g transform="translate(120 540)">
+    <rect class="card left" width="260" height="110" rx="22"/>
+    <text class="label" x="130" y="44" text-anchor="middle">Acquisition / Activation</text>
+    <text class="body" x="130" y="78" text-anchor="middle">arrival, signup, first value</text>
+  </g>
+
+  <g transform="translate(470 540)">
+    <rect class="card center" width="260" height="110" rx="22"/>
+    <text class="label" x="130" y="44" text-anchor="middle">Engagement / Retention</text>
+    <text class="body" x="130" y="78" text-anchor="middle">repeat usage, depth, habit</text>
+  </g>
+
+  <g transform="translate(820 540)">
+    <rect class="card right" width="260" height="110" rx="22"/>
+    <text class="label" x="130" y="44" text-anchor="middle">Revenue / Efficiency</text>
+    <text class="body" x="130" y="78" text-anchor="middle">margin, cost, throughput</text>
+  </g>
+
+  <path class="arrow" d="M600 186 V238"/>
+  <path class="arrow" d="M600 356 V388"/>
+  <path class="arrow" d="M600 356 L250 530"/>
+  <path class="arrow" d="M600 356 V530"/>
+  <path class="arrow" d="M600 356 L950 530"/>
+</svg>

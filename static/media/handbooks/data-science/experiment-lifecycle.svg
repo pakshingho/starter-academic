@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Experiment lifecycle</title>
+  <desc id="desc">A diagram showing the main phases of a practical A/B test from design through rollout.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .title { font: 700 34px Georgia, serif; fill: #1f2d2a; }
+      .card { stroke: #26433b; stroke-width: 3; fill: #fff; rx: 22; }
+      .c1 { fill: #d8eee3; }
+      .c2 { fill: #dbe8f6; }
+      .c3 { fill: #f8e0c7; }
+      .c4 { fill: #f3d9da; }
+      .c5 { fill: #e9e3f7; }
+      .label { font: 700 24px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .arrow { stroke: #26433b; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#26433b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="560"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Experiment Decision Flow</text>
+
+  <g transform="translate(40 130)">
+    <rect class="card c1" width="205" height="180" rx="22"/>
+    <text class="label" x="102" y="48" text-anchor="middle">1. Design</text>
+    <text class="body" x="22" y="90">Primary metric</text>
+    <text class="body" x="22" y="122">Guardrails</text>
+    <text class="body" x="22" y="154">Stopping rule</text>
+  </g>
+
+  <g transform="translate(275 130)">
+    <rect class="card c2" width="205" height="180" rx="22"/>
+    <text class="label" x="102" y="48" text-anchor="middle">2. Randomize</text>
+    <text class="body" x="22" y="90">Treatment and control</text>
+    <text class="body" x="22" y="122">Check balance</text>
+    <text class="body" x="22" y="154">Watch for SRM</text>
+  </g>
+
+  <g transform="translate(510 130)">
+    <rect class="card c3" width="205" height="180" rx="22"/>
+    <text class="label" x="102" y="48" text-anchor="middle">3. Measure</text>
+    <text class="body" x="22" y="90">Compute effect size</text>
+    <text class="body" x="22" y="122">Estimate uncertainty</text>
+    <text class="body" x="22" y="154">Segment carefully</text>
+  </g>
+
+  <g transform="translate(745 130)">
+    <rect class="card c4" width="205" height="180" rx="22"/>
+    <text class="label" x="102" y="48" text-anchor="middle">4. Judge</text>
+    <text class="body" x="22" y="90">Statistical evidence</text>
+    <text class="body" x="22" y="122">Practical impact</text>
+    <text class="body" x="22" y="154">Guardrail trade-offs</text>
+  </g>
+
+  <g transform="translate(980 130)">
+    <rect class="card c5" width="180" height="180" rx="22"/>
+    <text class="label" x="90" y="48" text-anchor="middle">5. Act</text>
+    <text class="body" x="20" y="90">Roll out</text>
+    <text class="body" x="20" y="122">Hold out</text>
+    <text class="body" x="20" y="154">Iterate</text>
+  </g>
+
+  <path class="arrow" d="M245 220 H265"/>
+  <path class="arrow" d="M480 220 H500"/>
+  <path class="arrow" d="M715 220 H735"/>
+  <path class="arrow" d="M950 220 H970"/>
+
+  <text class="small" x="600" y="420" text-anchor="middle">Common issues to monitor throughout: novelty effects, interference, metric definition changes, multiple testing, and logging bugs.</text>
+</svg>

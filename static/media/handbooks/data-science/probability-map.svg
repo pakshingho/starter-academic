@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Probability map for common data science situations</title>
+  <desc id="desc">A diagram mapping common data-generating stories to useful probability distributions and Bayes updating.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf5; }
+      .title { font: 700 34px Georgia, serif; fill: #1f2d2a; }
+      .card { stroke: #26433b; stroke-width: 3; fill: #fff; rx: 20; }
+      .c1 { fill: #d9efe4; }
+      .c2 { fill: #f7e1c8; }
+      .c3 { fill: #dbe8f6; }
+      .c4 { fill: #f4dcdd; }
+      .c5 { fill: #ede6f7; }
+      .label { font: 700 25px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #4a5f5a; }
+      .arrow { stroke: #26433b; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#26433b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="640"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Choose the Model by the Story Behind the Data</text>
+
+  <g transform="translate(70 110)">
+    <rect class="card c1" width="230" height="170" rx="20"/>
+    <text class="label" x="115" y="48" text-anchor="middle">Binary Outcome</text>
+    <text class="body" x="28" y="88">Did the user convert?</text>
+    <text class="body" x="28" y="118">Did the alert fire?</text>
+    <text class="small" x="28" y="148">Bernoulli or Binomial</text>
+  </g>
+
+  <g transform="translate(350 110)">
+    <rect class="card c2" width="230" height="170" rx="20"/>
+    <text class="label" x="115" y="48" text-anchor="middle">Count in Window</text>
+    <text class="body" x="28" y="88">Orders this hour</text>
+    <text class="body" x="28" y="118">Tickets this day</text>
+    <text class="small" x="28" y="148">Poisson</text>
+  </g>
+
+  <g transform="translate(630 110)">
+    <rect class="card c3" width="230" height="170" rx="20"/>
+    <text class="label" x="115" y="48" text-anchor="middle">Continuous Noise</text>
+    <text class="body" x="28" y="88">Measurement error</text>
+    <text class="body" x="28" y="118">Averages over many effects</text>
+    <text class="small" x="28" y="148">Normal approximation</text>
+  </g>
+
+  <g transform="translate(910 110)">
+    <rect class="card c4" width="220" height="170" rx="20"/>
+    <text class="label" x="110" y="48" text-anchor="middle">Waiting Time</text>
+    <text class="body" x="28" y="88">Time until arrival</text>
+    <text class="body" x="28" y="118">Time until failure</text>
+    <text class="small" x="28" y="148">Exponential</text>
+  </g>
+
+  <g transform="translate(280 360)">
+    <rect class="card c5" width="640" height="170" rx="20"/>
+    <text class="label" x="320" y="48" text-anchor="middle">Update Beliefs with New Evidence</text>
+    <text class="body" x="40" y="92">Start with a prior belief.</text>
+    <text class="body" x="40" y="122">Use observed evidence and its likelihood.</text>
+    <text class="body" x="40" y="152">Produce a posterior belief with Bayes' rule.</text>
+    <text class="small" x="395" y="122" text-anchor="middle">P(A | B) = P(B | A) P(A) / P(B)</text>
+  </g>
+
+  <path class="arrow" d="M185 280 V338"/>
+  <path class="arrow" d="M465 280 V338"/>
+  <path class="arrow" d="M745 280 V338"/>
+  <path class="arrow" d="M1020 280 V338"/>
+</svg>
