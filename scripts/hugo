@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+LOCAL_HUGO="${ROOT_DIR}/tools/hugo/0.78.2/hugo"
+LOCAL_GO="${ROOT_DIR}/tools/go/1.26.1/go"
+
+if [ -x "${LOCAL_GO}/bin/go" ]; then
+  export GOROOT="${LOCAL_GO}"
+  export GOPATH="${ROOT_DIR}/.cache/gopath"
+  export GOCACHE="${ROOT_DIR}/.cache/go-build"
+  export GOMODCACHE="${ROOT_DIR}/.cache/gomod"
+  mkdir -p "${GOPATH}" "${GOCACHE}" "${GOMODCACHE}"
+  export PATH="${GOROOT}/bin:${PATH}"
+fi
+
+if [ -x "${LOCAL_HUGO}" ]; then
+  if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ]; then
+    exec arch -x86_64 "${LOCAL_HUGO}" "$@"
+  fi
+
+  exec "${LOCAL_HUGO}" "$@"
+fi
+
+if command -v hugo >/dev/null 2>&1; then
+  exec "$(command -v hugo)" "$@"
+fi
+
+echo "Hugo was not found. Install the local binary into tools/hugo/0.78.2/ or add hugo to PATH." >&2
+exit 1
