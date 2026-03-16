@@ -1,5 +1,5 @@
 ---
-title: CV
+title: Academic CV
 date: 2026-03-15
 type: page
 ---
@@ -27,7 +27,7 @@ This page adapts the public academic CV from my earlier Google Site for the curr
 
 - Economist, Amazon.com, Seattle, May-Aug 2020
 - Quantitative Researcher, Geode Capital Management, Boston, Jun-Aug 2019
-- Research Assistant to Tarek A. Hassan (NBER affiliated), May 2018-Jan 2019
+- Research Associate, Boston University (NBER-affiliated project), May 2018-Jan 2019
 
 ## Teaching Experience
 

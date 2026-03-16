@@ -106,7 +106,7 @@
   weight = 41
 
 [[main]]
-  name = "CV"
+  name = "Academic CV"
   url = "/cv/"
   parent = "about_group"
   weight = 42

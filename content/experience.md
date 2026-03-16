@@ -1,10 +1,10 @@
 ---
 title: Experience
-date: 2026-02-24
+date: 2026-03-15
 type: page
 ---
 
-I build data science systems that connect causal inference, experimentation, and forecasting to guide business decisions at scale.
+My work sits at the intersection of economics, machine learning, and decision-making. I moved from academic research in macroeconomics and firm dynamics into applied science roles focused on experimentation, forecasting, and high-stakes product and business decisions.
 
 ## Recent Roles
 
@@ -19,6 +19,28 @@ I build data science systems that connect causal inference, experimentation, and
 - Developed experimentation and forecasting workflows in fast-paced operational environments
 - Supported decisions related to growth, marketing effectiveness, and financial outcomes
 - Operationalized modeling outputs into production decision processes
+
+## Earlier Research and Applied Roles
+
+### Quantitative Researcher, Geode Capital Management
+
+- Worked on empirical asset-pricing and ESG-focused research in a quantitative investing setting
+- Built and evaluated research signals using financial and alternative data
+
+### Research Associate, Boston University
+
+- Contributed to research in economics and finance using large-scale text and structured datasets
+- Worked on empirical analysis related to firm behavior, markets, and macro-financial questions
+
+### Teaching Fellow, Boston University, Universitat Pompeu Fabra, and Barcelona Graduate School of Economics
+
+- Taught graduate and undergraduate macroeconomics, microeconomics, and quantitative methods
+- Supported course delivery, student learning, and assessment across multiple economics programs
+
+## Academic Background
+
+- Ph.D. in Economics, Boston University
+- Earlier research focused on firm dynamics, macroeconomics, and related quantitative methods
 
 ## Core Strengths
 
