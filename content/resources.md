@@ -13,7 +13,10 @@ type: page
 
 - [Causal Inference Resources](/causal-inference-resources/)
 
-### Technical Guides
+### Handbook Courses
 
 - [Data Science Foundations for New Grads](/data-science-foundations/)
+
+### Technical Guides
+
 - [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))

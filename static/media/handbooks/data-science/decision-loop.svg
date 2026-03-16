@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
   <title id="title">Minimum working loop for data science</title>
   <desc id="desc">A four-step loop showing problem framing, data work, analysis or modeling, and decision and measurement.</desc>
   <defs>
@@ -9,55 +9,58 @@
       .accent2 { fill: #f8dfc5; }
       .accent3 { fill: #d9e8f7; }
       .accent4 { fill: #f4d8d8; }
-      .title { font: 700 34px Georgia, serif; fill: #1f2d2a; }
-      .label { font: 700 26px Georgia, serif; fill: #1f2d2a; }
-      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #324642; }
-      .arrow { stroke: #23423a; stroke-width: 4; fill: none; marker-end: url(#arrow); }
-      .note { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #526863; }
+      .title { font: 700 33px Georgia, serif; fill: #1f2d2a; }
+      .label { font: 700 25px Georgia, serif; fill: #1f2d2a; }
+      .body { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #324642; }
+      .arrow { stroke: #23423a; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .note { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #526863; }
     </style>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-      <path d="M0,0 L12,6 L0,12 z" fill="#23423a"/>
+    <marker id="arrow" markerWidth="3.8" markerHeight="3.8" refX="3.2" refY="1.9" orient="auto">
+      <path d="M0,0 L3.8,1.9 L0,3.8 z" fill="#23423a"/>
     </marker>
   </defs>
-  <rect class="bg" width="1200" height="520"/>
+  <rect class="bg" width="1200" height="560"/>
   <text class="title" x="600" y="60" text-anchor="middle">The Minimum Working Loop</text>
 
-  <g transform="translate(70 120)">
-    <rect class="card accent" width="230" height="200" rx="22"/>
-    <text class="label" x="115" y="48" text-anchor="middle">1. Clarify</text>
-    <text class="body" x="30" y="92">Decision to support</text>
-    <text class="body" x="30" y="124">Metric and unit</text>
-    <text class="body" x="30" y="156">Constraints and risks</text>
+  <g transform="translate(52 120)">
+    <rect class="card accent" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">1. Clarify</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Decision to support</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Metric and unit</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Constraints and risks</text>
   </g>
 
-  <g transform="translate(340 120)">
-    <rect class="card accent2" width="230" height="200" rx="22"/>
-    <text class="label" x="115" y="48" text-anchor="middle">2. Data</text>
-    <text class="body" x="30" y="92">Pull the right tables</text>
-    <text class="body" x="30" y="124">Check grain and joins</text>
-    <text class="body" x="30" y="156">Validate quality</text>
+  <g transform="translate(324 120)">
+    <rect class="card accent2" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">2. Data</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Pull the right tables</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Check grain and joins</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Validate quality</text>
   </g>
 
-  <g transform="translate(610 120)">
-    <rect class="card accent3" width="230" height="200" rx="22"/>
-    <text class="label" x="115" y="48" text-anchor="middle">3. Analyze</text>
-    <text class="body" x="30" y="92">Baseline first</text>
-    <text class="body" x="30" y="124">Estimate or model</text>
-    <text class="body" x="30" y="156">Quantify uncertainty</text>
+  <g transform="translate(596 120)">
+    <rect class="card accent3" width="240" height="204" rx="22"/>
+    <text class="label" x="120" y="50" text-anchor="middle">3. Analyze</text>
+    <text class="body" x="120" y="96" text-anchor="middle">Baseline first</text>
+    <text class="body" x="120" y="128" text-anchor="middle">Estimate or model</text>
+    <text class="body" x="120" y="160" text-anchor="middle">Quantify uncertainty</text>
   </g>
 
-  <g transform="translate(880 120)">
-    <rect class="card accent4" width="250" height="200" rx="22"/>
-    <text class="label" x="125" y="48" text-anchor="middle">4. Decide</text>
-    <text class="body" x="30" y="92">Recommend action</text>
-    <text class="body" x="30" y="124">Measure outcome</text>
-    <text class="body" x="30" y="156">Iterate if needed</text>
+  <g transform="translate(868 120)">
+    <rect class="card accent4" width="280" height="204" rx="22"/>
+    <text class="label" x="140" y="50" text-anchor="middle">4. Decide</text>
+    <text class="body" x="140" y="96" text-anchor="middle">Recommend action</text>
+    <text class="body" x="140" y="128" text-anchor="middle">Measure outcome</text>
+    <text class="body" x="140" y="160" text-anchor="middle">Decide whether to iterate</text>
   </g>
 
-  <path class="arrow" d="M300 220 H330"/>
-  <path class="arrow" d="M570 220 H600"/>
-  <path class="arrow" d="M840 220 H870"/>
-  <path class="arrow" d="M1005 332 C1005 410, 180 410, 180 332"/>
+  <path class="arrow" d="M294 226 H312"/>
+  <path class="arrow" d="M566 226 H584"/>
+  <path class="arrow" d="M838 226 H856"/>
+  <path class="arrow" d="M1008 338 C1008 408, 172 408, 172 338"/>
 
-  <text class="note" x="600" y="462" text-anchor="middle">Repeat the loop until decision quality improves, not until the analysis simply becomes more complicated.</text>
+  <text class="note" x="600" y="466" text-anchor="middle">
+    <tspan x="600" dy="0">Repeat the loop until decision quality improves,</tspan>
+    <tspan x="600" dy="24">not until the analysis simply becomes more complicated.</tspan>
+  </text>
 </svg>
