@@ -65,6 +65,51 @@ What a p-value does not mean:
 - the probability that the result will replicate
 - proof that the effect matters in practice
 
+### When to use a z-test versus a t-test
+
+Two common test statistics for mean comparisons are the z-test and the t-test. They are closely related, but they are not interchangeable in every setting.
+
+Use a z-test when:
+
+- the sampling distribution is approximately normal and the population variance is known
+- or the sample is large enough that the standard normal approximation is acceptable
+- or you are working with proportions, where z-based approximations are common in large-sample experiments
+
+Use a t-test when:
+
+- you are testing a mean and the population variance is unknown
+- the sample is not especially large and the data are approximately normal
+- you estimate uncertainty using the sample standard deviation rather than a known population value
+
+The main idea is simple:
+
+- z-tests treat the scale of uncertainty as known
+- t-tests account for the extra uncertainty from estimating that scale from the sample itself
+
+That is why the t-distribution has heavier tails than the standard normal. It is more cautious, especially in smaller samples.
+
+In formulas, the classic one-sample statistics look like:
+
+$$
+z = \frac{\bar X - \mu_0}{\sigma / \sqrt{n}}
+\qquad
+\text{and}
+\qquad
+t = \frac{\bar X - \mu_0}{s / \sqrt{n}}
+$$
+
+where $\sigma$ is the population standard deviation and $s$ is the sample standard deviation.
+
+In practice:
+
+- for many large-scale online experiments on proportions, z-based tests are common
+- for smaller-sample mean comparisons, t-tests are usually the safer default when normality is a reasonable approximation
+- as sample size grows, the t-test and z-test often become numerically very similar
+
+One important caveat is that the classical small-sample t-test relies on the underlying variable being approximately normally distributed. If the sample is small and the data are strongly skewed, heavy-tailed, or dominated by outliers, a t-test may not be reliable.
+
+The main mistake to avoid is using a t-test as an automatic default for any small sample. In small samples with doubtful normality, a transformation, permutation test, bootstrap procedure, or a suitable nonparametric method may be more defensible.
+
 ### Type I error, Type II error, and power
 
 - Type I error: false alarm
