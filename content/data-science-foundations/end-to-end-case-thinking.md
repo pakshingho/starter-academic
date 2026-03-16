@@ -76,5 +76,3 @@ then the work is incomplete even if the modeling was technically sound.
 ### Final takeaway
 
 The minimum bar for working well in data science is not mastery of every tool. It is the ability to move from a vague question to a clear, measured, and honest recommendation.
-
-From here, the best next step is depth in a subdomain. If you want more modeling detail, continue with [Applied Machine Learning for Tabular Data](/tabular-machine-learning/). If you want a domain-specific example of end-to-end modeling systems, try [Understanding Recommender Systems](/recommender-systems/).
