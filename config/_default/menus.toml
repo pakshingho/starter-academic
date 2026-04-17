@@ -76,6 +76,12 @@
   weight = 36
 
 [[main]]
+  name = "Philosophy Notes"
+  url = "https://pakshingho.github.io/philosophy-notes/"
+  parent = "resources_group"
+  weight = 37
+
+[[main]]
   name = "A/B Test Sample Size Calculator"
   url = "/experimentation-calculator/"
   parent = "tools_group"
