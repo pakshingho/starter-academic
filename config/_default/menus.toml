@@ -489,6 +489,12 @@
   weight = 24
 
 [[economics-of-digital-platforms]]
+  name = "1.7 Matching platforms"
+  url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#matching-platforms"
+  parent = "chapter-network-effects"
+  weight = 25
+
+[[economics-of-digital-platforms]]
   name = "2.1 Business model basics"
   url = "/economics-of-digital-platforms/designing-digital-platforms/#business-model-basics"
   parent = "chapter-platform-design"
@@ -531,7 +537,7 @@
   weight = 43
 
 [[economics-of-digital-platforms]]
-  name = "3.6 Richer trust signals"
+  name = "3.7 Richer trust signals"
   url = "/economics-of-digital-platforms/trust-in-online-markets/#richer-signals"
   parent = "chapter-trust"
   weight = 44

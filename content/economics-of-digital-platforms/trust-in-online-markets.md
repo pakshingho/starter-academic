@@ -74,7 +74,7 @@ Platforms are modern institution-builders in exactly that sense. Ratings, identi
 
 ### 3.4 eBay's feedback system shows both the power and the limits of reputation
 
-`eBay` is the session's main case study. The PDF notes for this chapter explicitly cited [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback), which is helpful for the concrete mechanics of the scoring system described here. The basic public feedback structure is simple:
+`eBay` is the session's main case study. A guide to seller feedback mechanics [1](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback) is helpful for the concrete structure described here. The basic public feedback system is simple:
 
 - positive feedback adds to a seller's score
 - negative feedback subtracts from it
@@ -113,7 +113,20 @@ Without those design choices, the reputation layer can look healthy while convey
 
 <div id="richer-signals"></div>
 
-### 3.6 Better trust systems use operational data, not only star ratings
+### 3.6 Why perfect scores can be less informative than slightly imperfect ones
+
+One of the more interesting observations in the source material is that buyers who purchased from sellers with a perfect `100%` positive-feedback score were reportedly less likely to return to `eBay` than buyers who purchased from sellers with slightly lower scores.
+
+The notes suggest at least two plausible explanations:
+
+- selection bias, where experienced buyers may choose less-established sellers for price or niche reasons
+- reputation compression, where a near-perfect score no longer differentiates seller quality meaningfully
+
+This is an important extension of the trust argument. A reputation system can look reassuring while conveying almost no marginal information. That is exactly when platforms need richer internal signals instead of relying on the visible headline metric.
+
+<div id="richer-signals"></div>
+
+### 3.7 Better trust systems use operational data, not only star ratings
 
 One of the best parts of the session is the move from visible ratings to richer inferred trust signals. The notes describe `eBay` experiments that used:
 
@@ -137,7 +150,7 @@ Those are ranking and causal-inference problems as much as policy problems.
 
 <div id="design-patterns"></div>
 
-### 3.7 Trust design patterns that platforms repeatedly rediscover
+### 3.8 Trust design patterns that platforms repeatedly rediscover
 
 The session implies a practical design toolkit:
 
@@ -150,7 +163,7 @@ The session implies a practical design toolkit:
 
 Trust is therefore not separate from the marketplace algorithm. It shapes search ranking, supplier visibility, matching quality, and long-run retention.
 
-### 3.8 Trust is the bridge between network effects and durable growth
+### 3.9 Trust is the bridge between network effects and durable growth
 
 If Chapter 1 explains how platforms grow and Chapter 2 explains how they monetize, this chapter explains why both can fail.
 
@@ -170,6 +183,6 @@ With trust:
 
 That is why trust belongs at the center of platform economics rather than at the edge of operations.
 
-### 3.9 Session references from the PDF notes
+### 3.10 References
 
-- [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback)
+1. [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback)

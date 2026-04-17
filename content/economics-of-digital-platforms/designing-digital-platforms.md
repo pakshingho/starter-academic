@@ -13,7 +13,7 @@ menu:
 weight: 3
 ---
 
-The second session turns from "why platforms can scale" to "how they are designed to make money without breaking participation." That shift matters because a large user base is not itself a business model. Platform strategy has to specify who pays, why they pay, and how monetization interacts with network growth. The PDF notes for this session explicitly referenced the [session video](https://vimeo.com/928404650), which is useful context for the pricing and monetization examples below.
+The second session turns from "why platforms can scale" to "how they are designed to make money without breaking participation." That shift matters because a large user base is not itself a business model. Platform strategy has to specify who pays, why they pay, and how monetization interacts with network growth. The original session video is [1](https://vimeo.com/928404650).
 
 ![Two-sided pricing and participation flywheel](/media/platforms/platform-pricing-flywheel.svg)
 
@@ -51,7 +51,7 @@ The rough timeline in the notes is:
 - `eBay` acquired `PayPal` in 2002
 - later, `PayPal`'s stand-alone value ultimately exceeded the value of the acquisition by a wide margin
 
-This example expands the idea of network effects. Sometimes the valuable complement is not another user group in the same app but an adjacent service that makes the platform more usable. Payments, logistics, identity, and analytics can all play that role.
+This example expands the idea of network effects [2](https://en.wikipedia.org/wiki/Network_effect). Sometimes the valuable complement is not another user group in the same app but an adjacent service that makes the platform more usable. Payments, logistics, identity, and analytics can all play that role.
 
 <div id="willingness-to-pay"></div>
 
@@ -108,7 +108,7 @@ Freemium model:
 - a free tier preserves network growth
 - a smaller set of users pays for premium quality, status, convenience, or functionality
 
-The `Discord` example is especially useful. The notes explain that Discord avoided a heavy advertising model because interest-based communities rely on trust, shared identity, and conversational quality. A premium tier for enhanced quality fit the product better than an ad-heavy experience that could have degraded community trust. That sits squarely inside the broader [Freemium](https://en.wikipedia.org/wiki/Freemium) model referenced in the PDF notes.
+The `Discord` example is especially useful. The notes explain that Discord avoided a heavy advertising model because interest-based communities rely on trust, shared identity, and conversational quality. A premium tier for enhanced quality fit the product better than an ad-heavy experience that could have degraded community trust. That sits squarely inside the broader freemium model [3](https://en.wikipedia.org/wiki/Freemium).
 
 The `Napster` example points to another idea: even platforms that fail legally or operationally can still have monetizable user bases if engagement is unusually sticky. The notes mention that Napster's users retained substantial value despite the service's collapse.
 
@@ -140,7 +140,7 @@ Pricing is therefore part economics, part sequencing problem.
 
 ### 2.7 Versioning is broader than freemium
 
-The session treats versioning as a general pricing architecture rather than a narrow premium-upgrade trick. The PDF notes linked to a concise explainer, [What is Price Versioning?](https://dealhub.io/glossary/price-versioning/), and the session uses the same broader idea. Versioning can include:
+The session treats versioning as a general pricing architecture rather than a narrow premium-upgrade trick. A concise explainer on price versioning [4](https://dealhub.io/glossary/price-versioning/) uses the same broader idea. Versioning can include:
 
 - quality-ranked versions, such as better audio or premium features
 - quantity discounts for high-volume sellers
@@ -198,9 +198,9 @@ The notes also make an important ad-market point. Advertising works especially w
 
 The practical lesson from this session is that platform monetization is not a single decision. It is a system of choices about subsidy, trust, versioning, and what additional layers of service the platform should own.
 
-### 2.10 Session references from the PDF notes
+### 2.10 References
 
-- [EODP-session-2 W22 | Videos & Movies on Vimeo](https://vimeo.com/928404650)
-- [Network effect](https://en.wikipedia.org/wiki/Network_effect)
-- [Freemium](https://en.wikipedia.org/wiki/Freemium)
-- [What is Price Versioning?](https://dealhub.io/glossary/price-versioning/)
+1. [EODP-session-2 W22 | Videos & Movies on Vimeo](https://vimeo.com/928404650)
+2. [Network effect](https://en.wikipedia.org/wiki/Network_effect)
+3. [Freemium](https://en.wikipedia.org/wiki/Freemium)
+4. [What is Price Versioning?](https://dealhub.io/glossary/price-versioning/)

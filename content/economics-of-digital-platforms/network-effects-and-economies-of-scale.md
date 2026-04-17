@@ -51,7 +51,7 @@ The key point is that scale economies do not require user-to-user interaction. T
 
 ### 1.3 Network effects are demand-side
 
-Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. The PDF notes for this session pointed readers to a general [Network effect](https://en.wikipedia.org/wiki/Network_effect) overview and a shorter explainer, [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects), which line up closely with the distinction used in the lecture.
+Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. General overviews [1](https://en.wikipedia.org/wiki/Network_effect) [2](https://online.hbs.edu/blog/post/what-are-network-effects) line up closely with the distinction used in the lecture.
 
 The session distinguishes two main forms:
 
@@ -120,9 +120,35 @@ That is why many platform markets sustain more than one important player:
 
 The takeaway is subtle but important: network effects raise the odds of concentration, but they do not remove the need for differentiated product design, stronger tools, or better trust and retention.
 
+<div id="matching-platforms"></div>
+
+### 1.7 Matching (two-sided) platforms
+
+The source material explicitly carves out matching platforms as their own section, and that deserves to appear clearly in the chapter rather than being left implicit.
+
+A matching platform connects groups that hold complementary resources or needs:
+
+- buyers and sellers in e-commerce
+- riders and drivers in ride-sharing
+- shippers and truckers in logistics
+- people seeking jobs and employers
+- individuals seeking partners in dating markets
+
+Indirect network effects are the central mechanism. More participation on one side improves the expected value for the other side because it raises the odds of a useful match, shortens waiting time, improves variety, or thickens liquidity. A marketplace-focused explainer is helpful on exactly this intuition [3](https://www.cs-cart.com/blog/marketplace-network-effects/).
+
+The notes also emphasize familiar examples:
+
+- `Amazon`
+- `eBay`
+- `Craigslist`
+- `Etsy`
+- ride-sharing platforms
+
+This is also where the "Uber for X" pattern shows up. Founders often try to transplant matching-platform logic into new verticals, but success depends on whether the market truly has a coordination problem, whether enough participation can be concentrated locally, and whether users actually care about thick liquidity.
+
 <div id="case-studies"></div>
 
-### 1.7 Case studies from the session
+### 1.8 Case studies from the session
 
 The examples in the notes are useful because they show where the simple story breaks.
 
@@ -146,7 +172,7 @@ Messaging and ride-sharing coexistence:
 
 These examples are a healthy corrective to simplistic "network effects = monopoly" thinking.
 
-### 1.8 Working diagnostic
+### 1.9 Working diagnostic
 
 When reading any platform market, it helps to ask:
 
@@ -157,8 +183,8 @@ When reading any platform market, it helps to ask:
 
 Those four questions set up almost everything that follows in later chapters.
 
-### 1.9 Session references from the PDF notes
+### 1.10 References
 
-- [Network effect](https://en.wikipedia.org/wiki/Network_effect)
-- [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects)
-- [Marketplace Network Effects: Building Self-Growing Platforms](https://www.cs-cart.com/blog/marketplace-network-effects/)
+1. [Network effect](https://en.wikipedia.org/wiki/Network_effect)
+2. [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects)
+3. [Marketplace Network Effects: Building Self-Growing Platforms](https://www.cs-cart.com/blog/marketplace-network-effects/)
