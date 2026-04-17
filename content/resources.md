@@ -25,6 +25,6 @@ type: page
 
 ## Tech Economics
 
-### Reader Chapters
+### Notes
 
 - [Economics of Digital Platforms](/economics-of-digital-platforms/)
