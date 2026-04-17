@@ -8,6 +8,7 @@ interests:
   - Time Series Forecasting
   - Experimentation and Uplift Modeling
   - Machine Learning Systems
+  - Philosophy
 social:
   - icon: envelope
     icon_pack: fas
