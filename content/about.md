@@ -24,11 +24,6 @@ I am an Applied Scientist at LinkedIn (ex-Amazon) with 8+ years of experience de
 - EconML, DoWhy, Nixtla
 - Flyte, SageMaker, Tableau
 
-## Personal Interests
-
-- Philosophy
-- Philosophy Notes: <https://pakshingho.github.io/philosophy-notes/>
-
 ## Profiles
 
 - LinkedIn: <https://www.linkedin.com/in/pakshingho/>

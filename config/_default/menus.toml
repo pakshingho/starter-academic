@@ -34,6 +34,11 @@
   weight = 40
 
 [[main]]
+  name = "Personal Interests"
+  identifier = "personal_interests_group"
+  weight = 45
+
+[[main]]
   name = "Projects"
   url = "/projects/"
   parent = "work"
@@ -74,12 +79,6 @@
   url = "/resources/#data-science"
   parent = "resources_group"
   weight = 36
-
-[[main]]
-  name = "Philosophy Notes"
-  url = "https://pakshingho.github.io/philosophy-notes/"
-  parent = "resources_group"
-  weight = 37
 
 [[main]]
   name = "A/B Test Sample Size Calculator"
@@ -134,6 +133,12 @@
   url = "https://github.com/pakshingho"
   parent = "about_group"
   weight = 45
+
+[[main]]
+  name = "Philosophy Notes"
+  url = "https://pakshingho.github.io/philosophy-notes/"
+  parent = "personal_interests_group"
+  weight = 46
 
 [[recommender-systems]]
   name = "1.1 Common applications"
