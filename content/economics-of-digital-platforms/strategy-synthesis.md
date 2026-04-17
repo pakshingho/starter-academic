@@ -13,13 +13,29 @@ menu:
 weight: 7
 ---
 
-Taken together, the sessions form a coherent operating model for digital-platform strategy. The ideas are not separate modules. They describe one system.
+Taken together, the sessions and the closing course-summary discussion form a coherent operating model for digital-platform strategy. The ideas are not separate modules. They describe one system.
+
+<div id="course-summary"></div>
+
+### 6.1 Course summary and Q&A themes
+
+The shared notes close with a course summary and a short Q&A-style synthesis. That material is worth keeping explicit because it shows how the sessions were meant to fit together rather than leaving the notes to imply the connections on their own.
+
+The recurring themes are:
+
+- network effects and economies of scale matter, but they do not mechanically imply monopoly because multi-homing, differentiation, and local liquidity still matter
+- platform design is inseparable from monetization because subsidy, take rates, versioning, and operational services shape participation
+- trust is not a soft afterthought because market liquidity depends on whether users believe exchange will be safe enough to try
+- observed behavior usually beats stated preference when evaluating privacy, advertising, and marketing effectiveness
+- regulation is part of platform economics because rules about access, pricing, data, and visibility reshape who can compete
+
+That end-of-course framing is useful because it turns the notes from a stack of topics into a single applied framework.
 
 <div id="integrated-model"></div>
 
-### 6.1 The integrated model behind the sessions
+### 6.2 The integrated model behind the sessions
 
-The reader can be summarized as a chain of economic questions:
+The notes can be summarized as a chain of economic questions:
 
 1. Why will this platform create increasing value as it grows?
 2. How will the platform monetize without preventing participation?
@@ -37,7 +53,7 @@ For example:
 
 <div id="design-sequence"></div>
 
-### 6.2 A practical sequence for platform builders and operators
+### 6.3 A practical sequence for platform builders and operators
 
 One reason the sessions work well together is that they imply a rough order of operations.
 
@@ -63,7 +79,7 @@ This sequence is not rigid, but it is a useful way to connect the sessions into 
 
 <div id="common-failure-modes"></div>
 
-### 6.3 Common platform failure modes
+### 6.4 Common platform failure modes
 
 The session set also reads as a catalog of failure modes.
 
@@ -92,7 +108,7 @@ The virtue of the course sequence is that it anticipates all five.
 
 <div id="diagnostic-checklist"></div>
 
-### 6.4 A compact diagnostic checklist
+### 6.5 A compact diagnostic checklist
 
 For any digital platform, it is worth asking:
 
@@ -105,7 +121,7 @@ For any digital platform, it is worth asking:
 
 Those questions are useful precisely because they cut across product, economics, data science, and policy.
 
-### 6.5 Final takeaway
+### 6.6 Final takeaway
 
 The sessions do not argue that digital platforms are mysterious. They argue that they are institution builders.
 

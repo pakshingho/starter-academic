@@ -13,13 +13,13 @@ menu:
 weight: 3
 ---
 
-The second session turns from "why platforms can scale" to "how they are designed to make money without breaking participation." That shift matters because a large user base is not itself a business model. Platform strategy has to specify who pays, why they pay, and how monetization interacts with network growth. The original session video is [1](https://vimeo.com/928404650).
+The second session turns from "why platforms can scale" to "how they are designed to make money without breaking participation." That shift matters because a large user base is not itself a business model. Platform strategy has to specify who pays, why they pay, and how monetization interacts with network growth. The session also opened with brief housekeeping and a topic map that named the same blocks the notes now follow more closely: digital-platform business models, revenue generation, connectivity platforms, matching-platform pricing, versioning, and data as a strategic asset. The original session video is [1](https://vimeo.com/928404650).
 
 ![Two-sided pricing and participation flywheel](/media/platforms/platform-pricing-flywheel.svg)
 
 <div id="business-model-basics"></div>
 
-### 2.1 A business model is a monetization logic, not a growth slogan
+### 2.1 Introduction and housekeeping: a business model is a monetization logic, not a growth slogan
 
 The session uses a line from Michael Lewis's *The New New Thing* to make an old but still relevant point: a business model is a plan for making money. During the dot-com era, firms often blurred user attention with actual monetization.
 
@@ -34,7 +34,7 @@ The right question is not only "How do we grow?" It is "How does the platform ev
 
 <div id="ebay-paypal"></div>
 
-### 2.2 eBay and PayPal as a platform-complement story
+### 2.2 Digital-platform business models through the eBay and PayPal story
 
 One of the session's most helpful examples is the early relationship between `eBay` and `PayPal`.
 
@@ -55,7 +55,7 @@ This example expands the idea of network effects [2](https://en.wikipedia.org/wi
 
 <div id="willingness-to-pay"></div>
 
-### 2.3 From willingness to pay to the demand curve
+### 2.3 Revenue generation: pricing, demand, and elasticity
 
 The session uses a step-function view of willingness to pay to build intuition about demand:
 
@@ -116,7 +116,7 @@ The design lesson is not that one model is always superior. It is that monetizat
 
 <div id="matching-platform-pricing"></div>
 
-### 2.6 Matching platforms should price for liquidity, not symmetry
+### 2.6 Matching (two-sided) platforms and pricing
 
 In marketplaces, the lecture emphasizes that "one side pays everything" and "both sides pay something" are not fundamentally different business models. Setting one side's price to zero is just an extreme point on a pricing schedule.
 
@@ -138,7 +138,7 @@ Pricing is therefore part economics, part sequencing problem.
 
 <div id="versioning-and-vas"></div>
 
-### 2.7 Versioning is broader than freemium
+### 2.7 Versioning and price discrimination
 
 The session treats versioning as a general pricing architecture rather than a narrow premium-upgrade trick. A concise explainer on price versioning [4](https://dealhub.io/glossary/price-versioning/) uses the same broader idea. Versioning can include:
 
@@ -176,9 +176,9 @@ This is an important extension of the session. Platform design is often about de
 
 <div id="data-and-ads"></div>
 
-### 2.9 Data is a strategic asset, but monetization has trade-offs
+### 2.9 Knowing your customer, data as a strategic asset, and advertising trade-offs
 
-The session closes by stressing customer understanding and data use. Because platforms mediate interaction, they observe:
+The session closes by stressing customer understanding and data use. This is the "knowing your customer" part of the notes, and it sits next to an explicit warning about advertising revenue and its trade-offs. Because platforms mediate interaction, they observe:
 
 - search and browsing behavior
 - transaction patterns

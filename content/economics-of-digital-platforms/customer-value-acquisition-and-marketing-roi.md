@@ -46,7 +46,7 @@ The `eBay` example in the notes captures this nicely: the median buyer makes onl
 
 <div id="cac"></div>
 
-### 4.2 Naive CAC is usually too optimistic
+### 4.2 Customer acquisition cost: naive CAC is usually too optimistic
 
 Customer acquisition cost, or CAC, is often presented as:
 
@@ -95,7 +95,7 @@ Good platform measurement therefore asks about incremental ecosystem activity, n
 
 <div id="experimentation"></div>
 
-### 4.4 Experiments are the cleanest answer when they are feasible
+### 4.4 Experiments, including multi-channel experiments, are the cleanest answer when they are feasible
 
 The session strongly favors experimental measurement:
 
@@ -107,7 +107,7 @@ The `eBay` paid-search example is the memorable case. Shutting off branded keywo
 
 This is a classic platform-growth trap. Strong brands and habitual users make last-click metrics look better than reality.
 
-The notes also discuss multi-channel experiments, especially `2 x 2` designs, to test whether channels are substitutes or complements. That extension matters because platforms often run overlapping acquisition tactics whose effects are not additive.
+The notes also discuss multi-channel experiments, especially `2 x 2` designs, to test whether channels are substitutes or complements. That extension is treated as a real design choice rather than a footnote, because platforms often run overlapping acquisition tactics whose effects are not additive.
 
 <div id="selection-and-small-samples"></div>
 
@@ -127,7 +127,7 @@ That is not anti-analytics. It is disciplined analytics.
 
 <div id="narrative"></div>
 
-### 4.6 Communicating measurement to decision-makers
+### 4.6 Communicating analysis to decision-makers
 
 The session includes an important applied point about executive communication. Data scientists often want to say they have "proven" a result. The lecture argues for a better approach:
 
@@ -151,7 +151,7 @@ The guest-speaker material in the notes adds a grounded founder perspective. Two
 
 That is why early platform strategy often involves extreme manual effort, local focus, subsidy, or hand-built liquidity.
 
-The notes also emphasize an abundance mindset: build around a genuine user pain point instead of starting with the goal of "building a unicorn." That framing fits the rest of the reader well. Customer economics become much easier to interpret when the platform is solving a real coordination problem instead of manufacturing growth theater.
+The notes also emphasize an abundance mindset: build around a genuine user pain point instead of starting with the goal of "building a unicorn." That framing fits the rest of the notes well. Customer economics become much easier to interpret when the platform is solving a real coordination problem instead of manufacturing growth theater.
 
 ### 4.8 The measurement lesson for platform strategy
 

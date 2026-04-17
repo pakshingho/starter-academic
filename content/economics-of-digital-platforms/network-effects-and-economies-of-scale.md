@@ -13,13 +13,13 @@ menu:
 weight: 2
 ---
 
-The opening session sets up the core distinction that the rest of the reader keeps returning to: some advantages are supply-side and some are demand-side. Digital platforms often combine both, but they are not the same mechanism and they imply different strategic choices.
+The opening session sets up the core distinction that the rest of the notes keep returning to: some advantages are supply-side and some are demand-side. Digital platforms often combine both, but they are not the same mechanism and they imply different strategic choices.
 
 ![Supply-side scale and demand-side network effects](/media/platforms/platform-scale-network-effects.svg)
 
 <div id="session-framing"></div>
 
-### 1.1 Session framing: why the distinction matters
+### 1.1 Orientation & cohort: why the distinction matters
 
 The original session opened with a cohort-oriented introduction and emphasized that participants came from product, strategy, marketing, and technical roles across industries and company sizes. That framing is useful because platform economics is one of those topics where the same concept needs to work for founders, operators, economists, and data scientists at the same time.
 
@@ -33,7 +33,7 @@ Those questions map to economies of scale, network effects, and market tipping. 
 
 <div id="scale-economies"></div>
 
-### 1.2 Economies of scale are supply-side
+### 1.2 Costs and scale
 
 An industry with no meaningful scale economies stays fragmented more easily. If firms cannot spread fixed cost over larger output, growing demand simply supports more firms rather than dramatically advantaging a single larger one.
 
@@ -49,7 +49,7 @@ The key point is that scale economies do not require user-to-user interaction. T
 
 <div id="network-effects"></div>
 
-### 1.3 Network effects are demand-side
+### 1.3 Network effects: definitions and types
 
 Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. General overviews [1](https://en.wikipedia.org/wiki/Network_effect) [2](https://online.hbs.edu/blog/post/what-are-network-effects) line up closely with the distinction used in the lecture.
 
@@ -60,11 +60,11 @@ The session distinguishes two main forms:
 
 This distinction matters because the growth tactics are different. A messaging product needs enough density within a user's social graph. A marketplace needs enough supply and demand simultaneously.
 
-The session also notes that network effects are not automatically positive forever. Congestion, ad overload, spam, and poor-quality supply can turn growth into lower utility. That is the first hint that platform design and trust systems matter, which becomes central later in the reader.
+The session also notes that network effects are not automatically positive forever. Congestion, ad overload, spam, and poor-quality supply can turn growth into lower utility. That is the first hint that platform design and trust systems matter, which becomes central later in the notes.
 
 <div id="when-effects-are-strong"></div>
 
-### 1.4 When network effects are especially strong
+### 1.4 Strength of network effects
 
 The notes highlight several conditions that make network effects more powerful:
 
@@ -82,7 +82,7 @@ That loop is powerful, but it is not magic. The loop can stall if onboarding is 
 
 <div id="combined-advantages"></div>
 
-### 1.5 The strongest platforms combine both mechanisms
+### 1.5 Economies of networks and scale
 
 The lecture's most important strategic observation is that many digital platforms benefit from both falling average cost and rising average value:
 
@@ -100,7 +100,7 @@ Those are different channels, and strong platform strategy usually depends on un
 
 <div id="tipping-and-multihoming"></div>
 
-### 1.6 Winner-take-all is possible, not automatic
+### 1.6 Winner-take-all versus multi-homing
 
 The notes are careful not to overstate tipping dynamics. Dominance becomes more likely when:
 
@@ -148,7 +148,7 @@ This is also where the "Uber for X" pattern shows up. Founders often try to tran
 
 <div id="case-studies"></div>
 
-### 1.8 Case studies from the session
+### 1.8 Case studies and examples from the session
 
 The examples in the notes are useful because they show where the simple story breaks.
 
@@ -172,7 +172,7 @@ Messaging and ride-sharing coexistence:
 
 These examples are a healthy corrective to simplistic "network effects = monopoly" thinking.
 
-### 1.9 Working diagnostic
+### 1.9 Key takeaways and working diagnostic
 
 When reading any platform market, it helps to ask:
 

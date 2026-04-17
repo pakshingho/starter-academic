@@ -465,13 +465,13 @@
   weight = 128
 
 [[economics-of-digital-platforms]]
-  name = "1.1 Session framing"
+  name = "1.1 Orientation & cohort"
   url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#session-framing"
   parent = "chapter-network-effects"
   weight = 21
 
 [[economics-of-digital-platforms]]
-  name = "1.2 Scale economies"
+  name = "1.2 Costs and scale"
   url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#scale-economies"
   parent = "chapter-network-effects"
   weight = 22
@@ -483,25 +483,25 @@
   weight = 23
 
 [[economics-of-digital-platforms]]
-  name = "1.6 Tipping and multi-homing"
+  name = "1.6 Winner-take-all vs multi-homing"
   url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#tipping-and-multihoming"
   parent = "chapter-network-effects"
   weight = 24
 
 [[economics-of-digital-platforms]]
-  name = "1.7 Matching platforms"
+  name = "1.7 Matching (two-sided) platforms"
   url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#matching-platforms"
   parent = "chapter-network-effects"
   weight = 25
 
 [[economics-of-digital-platforms]]
-  name = "2.1 Business model basics"
+  name = "2.1 Intro and business-model framing"
   url = "/economics-of-digital-platforms/designing-digital-platforms/#business-model-basics"
   parent = "chapter-platform-design"
   weight = 31
 
 [[economics-of-digital-platforms]]
-  name = "2.3 Willingness to pay"
+  name = "2.3 Revenue generation"
   url = "/economics-of-digital-platforms/designing-digital-platforms/#willingness-to-pay"
   parent = "chapter-platform-design"
   weight = 32
@@ -513,7 +513,7 @@
   weight = 33
 
 [[economics-of-digital-platforms]]
-  name = "2.7 Versioning and value-added services"
+  name = "2.7 Versioning and price discrimination"
   url = "/economics-of-digital-platforms/designing-digital-platforms/#versioning-and-vas"
   parent = "chapter-platform-design"
   weight = 34
@@ -525,7 +525,7 @@
   weight = 41
 
 [[economics-of-digital-platforms]]
-  name = "3.2 Trust game"
+  name = "3.2 Trust problem"
   url = "/economics-of-digital-platforms/trust-in-online-markets/#trust-game"
   parent = "chapter-trust"
   weight = 42
@@ -537,7 +537,7 @@
   weight = 43
 
 [[economics-of-digital-platforms]]
-  name = "3.7 Richer trust signals"
+  name = "3.7 Data-driven improvements"
   url = "/economics-of-digital-platforms/trust-in-online-markets/#richer-signals"
   parent = "chapter-trust"
   weight = 44
@@ -561,13 +561,13 @@
   weight = 53
 
 [[economics-of-digital-platforms]]
-  name = "4.4 Experimentation"
+  name = "4.4 Experiments and multi-channel tests"
   url = "/economics-of-digital-platforms/customer-value-acquisition-and-marketing-roi/#experimentation"
   parent = "chapter-customer-economics"
   weight = 54
 
 [[economics-of-digital-platforms]]
-  name = "5.1 Behavior versus surveys"
+  name = "5.1 Behavior, surveys, and self-reports"
   url = "/economics-of-digital-platforms/regulation-and-public-policy/#behavior-versus-surveys"
   parent = "chapter-regulation"
   weight = 61
@@ -591,25 +591,31 @@
   weight = 64
 
 [[economics-of-digital-platforms]]
-  name = "5.7 Privacy and discrimination"
+  name = "5.7 Privacy paradox and discrimination"
   url = "/economics-of-digital-platforms/regulation-and-public-policy/#privacy-and-discrimination"
   parent = "chapter-regulation"
   weight = 65
 
 [[economics-of-digital-platforms]]
-  name = "6.1 Integrated model"
-  url = "/economics-of-digital-platforms/strategy-synthesis/#integrated-model"
+  name = "6.1 Course summary and Q&A"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#course-summary"
   parent = "chapter-synthesis"
   weight = 71
 
 [[economics-of-digital-platforms]]
-  name = "6.2 Design sequence"
-  url = "/economics-of-digital-platforms/strategy-synthesis/#design-sequence"
+  name = "6.2 Integrated model"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#integrated-model"
   parent = "chapter-synthesis"
   weight = 72
 
 [[economics-of-digital-platforms]]
-  name = "6.4 Diagnostic checklist"
-  url = "/economics-of-digital-platforms/strategy-synthesis/#diagnostic-checklist"
+  name = "6.3 Design sequence"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#design-sequence"
   parent = "chapter-synthesis"
   weight = 73
+
+[[economics-of-digital-platforms]]
+  name = "6.5 Diagnostic checklist"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#diagnostic-checklist"
+  parent = "chapter-synthesis"
+  weight = 74

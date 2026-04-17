@@ -17,7 +17,7 @@ The final substantive session broadens the lens from platform design to platform
 
 <div id="behavior-versus-surveys"></div>
 
-### 5.1 Behavior matters more than self-reports
+### 5.1 Behavior matters more than surveys and self-reports
 
 The session opens by revisiting a theme from measurement: surveys can be misleading because people often report what they believe sounds responsible rather than what they actually do.
 
@@ -103,7 +103,7 @@ The session notes that drip pricing can add very large amounts to the final pric
 
 <div id="privacy-and-discrimination"></div>
 
-### 5.7 Privacy and personalization create genuine trade-offs
+### 5.7 Privacy paradox, personalization, and discrimination create genuine trade-offs
 
 The notes use the privacy paradox to show that stated concern about privacy is not always matched by actual behavior. The well-known pizza-for-data experiment, summarized here [6](https://siepr.stanford.edu/news/pizza-over-privacy-paradox-digital-age), is meant to capture exactly that mismatch.
 
@@ -121,7 +121,7 @@ Platform neutrality, in practice, is never fully neutral. Search display, identi
 
 <div id="gdpr-and-unintended-consequences"></div>
 
-### 5.8 Regulation can help users and still create unintended market structure effects
+### 5.8 Regulation trade-offs: GDPR and unintended market structure effects
 
 The session mentions evidence and claims around GDPR's effects, including reduced venture-capital investment and increased relative strength for dominant firms such as `Google`. An ITIF write-up [8](https://itif.org/publications/2025/12/01/gdpr-reduced-eu-VC-investment-in-technology-26-percent-relative-to-united-states/) and a Hausfeld summary [9](https://www.hausfeld.com/en-us/what-we-think/publications/study-gdpr-boosted-google-market-share-and-cut-third-party-cookies) are the references being summarized here. The exact magnitudes matter less here than the mechanism:
 
@@ -131,6 +131,8 @@ The session mentions evidence and claims around GDPR's effects, including reduce
 That creates a recurring policy challenge in tech economics. A rule can be pro-privacy or pro-consumer in one dimension while simultaneously entrenching concentration in another.
 
 The lesson is not that regulation is bad. It is that policy needs to account for equilibrium effects, not only immediate intentions.
+
+The closing course-summary discussion in the notes pulls exactly on this point: platform policy questions rarely stay in the policy box. They feed back into growth, trust, monetization, and market structure.
 
 ### 5.9 Policy is part of platform strategy, not only external risk
 

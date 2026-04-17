@@ -1,7 +1,7 @@
 ---
 title: Economics of Digital Platforms
 linktitle: Overview
-summary: A chapter-based reader built from course sessions on network effects, platform design, trust, growth measurement, and regulation.
+summary: A chapter-based set of notes built from course sessions on network effects, platform design, trust, growth measurement, and regulation.
 date: 2026-04-17
 lastmod: 2026-04-17
 draft: false
@@ -16,9 +16,9 @@ weight: 1
 toc: false
 ---
 
-A chapter-based reader on digital-platform economics, organized around the session flow in the uploaded notes: network effects and scale, platform design and monetization, trust, customer economics, and regulation.
+A chapter-based set of notes on digital-platform economics, organized around the session flow in the uploaded materials: network effects and scale, platform design and monetization, trust, customer economics, and regulation.
 
-This version is intentionally not a compressed summary. It preserves the session structure and extends it with more explanation, more connective tissue across sessions, and additional diagrams to make the material easier to study like a handbook.
+These notes are intentionally not a compressed summary. They preserve the session structure and extend it with more explanation, more connective tissue across sessions, and additional diagrams to make the material easier to study like a handbook.
 
 ## Chapter Guide
 
@@ -29,7 +29,7 @@ This version is intentionally not a compressed summary. It preserves the session
 5. [Regulation and Public Policy](regulation-and-public-policy/)
 6. [Strategy Synthesis](strategy-synthesis/)
 
-## What This Reader Covers
+## What These Notes Cover
 
 - when scale economies matter and when network effects matter more
 - how direct and indirect network effects change platform design
@@ -41,7 +41,7 @@ This version is intentionally not a compressed summary. It preserves the session
 
 ![Supply-side scale and demand-side network effects](/media/platforms/platform-scale-network-effects.svg)
 
-## How To Read It
+## How To Use These Notes
 
 - If you want the conceptual core first, start with Chapters 1 and 2.
 - If you care most about marketplaces and reputation systems, go straight to Chapter 3.
@@ -51,7 +51,7 @@ This version is intentionally not a compressed summary. It preserves the session
 
 ## Source Basis
 
-The reader is based on the uploaded session-note PDFs for the course material on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
+These notes are based on the uploaded session-note PDFs for the course material on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
 
 Where the PDFs included explicit URLs, those links are now preserved inside the relevant chapters and collected again in short session reference sections.
 

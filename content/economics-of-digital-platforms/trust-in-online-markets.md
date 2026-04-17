@@ -57,7 +57,7 @@ So the platform has to build substitute institutions.
 
 <div id="historical-institutions"></div>
 
-### 3.3 Historical institutions help explain modern design
+### 3.3 Historical institutions and the Maghribi traders help explain modern design
 
 The notes reference Avner Greif's work on medieval Mediterranean trade and the Maghribi traders. The historical lesson is not that digital platforms resemble medieval guilds literally. It is that trust can emerge when a community develops:
 
@@ -111,11 +111,11 @@ The broader lesson is that reputation systems must be designed to elicit honest 
 
 Without those design choices, the reputation layer can look healthy while conveying very little real information.
 
-<div id="richer-signals"></div>
+<div id="reputation-effects"></div>
 
-### 3.6 Why perfect scores can be less informative than slightly imperfect ones
+### 3.6 Effect of reputation on buyer behavior
 
-One of the more interesting observations in the source material is that buyers who purchased from sellers with a perfect `100%` positive-feedback score were reportedly less likely to return to `eBay` than buyers who purchased from sellers with slightly lower scores.
+One of the more interesting observations in the source material is about the effect of reputation on buyer behavior: buyers who purchased from sellers with a perfect `100%` positive-feedback score were reportedly less likely to return to `eBay` than buyers who purchased from sellers with slightly lower scores.
 
 The notes suggest at least two plausible explanations:
 
@@ -126,7 +126,7 @@ This is an important extension of the trust argument. A reputation system can lo
 
 <div id="richer-signals"></div>
 
-### 3.7 Better trust systems use operational data, not only star ratings
+### 3.7 Data-driven improvements: better trust systems use operational data, not only star ratings
 
 One of the best parts of the session is the move from visible ratings to richer inferred trust signals. The notes describe `eBay` experiments that used:
 
