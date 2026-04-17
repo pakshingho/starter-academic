@@ -115,7 +115,7 @@ But the session does not treat this as a reason to dismiss privacy. Instead, it 
 
 That makes regulation difficult. Personalization may help users, but it can also strengthen incumbents with richer first-party data and more integrated ecosystems.
 
-The notes also preserve the session's concern about discrimination. The Airbnb field-experiment example, cited here [7](https://news.harvard.edu/wp-content/uploads/2015/12/airbnb-guest-discrimination-2015-12-09.pdf), shows that platform design can permit discriminatory outcomes even when discrimination is not formally part of the product.
+The notes also preserve the session's concern about discrimination. The Airbnb field-experiment example, cited here [7](https://www.aeaweb.org/articles?id=10.1257%2Fapp.20160213), shows that platform design can permit discriminatory outcomes even when discrimination is not formally part of the product.
 
 Platform neutrality, in practice, is never fully neutral. Search display, identity cues, ranking rules, and information revelation all influence who gets selected.
 
@@ -157,6 +157,6 @@ That is why platform firms cannot treat public policy as a purely external compl
 4. [Protecting Consumers From Hidden Fees](https://policyintegrity.org/policy-impacts/protecting-consumers-from-hidden-fees)
 5. [What Is Drip Pricing & How Is It Dangerous?](https://www.shortform.com/blog/what-is-drip-pricing/)
 6. [Pizza over privacy? A paradox of the digital age](https://siepr.stanford.edu/news/pizza-over-privacy-paradox-digital-age)
-7. [Racial Discrimination in the Sharing Economy: Evidence from a Field Experiment](https://news.harvard.edu/wp-content/uploads/2015/12/airbnb-guest-discrimination-2015-12-09.pdf)
+7. [Racial Discrimination in the Sharing Economy: Evidence from a Field Experiment](https://www.aeaweb.org/articles?id=10.1257%2Fapp.20160213)
 8. [Fact of the Week: GDPR Reduced EU Venture Capital Investment in Technology by 26 Percent Relative to the United States](https://itif.org/publications/2025/12/01/gdpr-reduced-eu-VC-investment-in-technology-26-percent-relative-to-united-states/)
 9. [Study: GDPR Boosted Google Market Share and Cut Third-Party Cookies](https://www.hausfeld.com/en-us/what-we-think/publications/study-gdpr-boosted-google-market-share-and-cut-third-party-cookies)

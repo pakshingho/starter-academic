@@ -16,7 +16,7 @@ weight: 1
 toc: false
 ---
 
-A chapter-based set of notes on digital-platform economics, organized around the session flow in the uploaded materials: network effects and scale, platform design and monetization, trust, customer economics, and regulation.
+A chapter-based set of notes on digital-platform economics, organized around the course session flow: network effects and scale, platform design and monetization, trust, customer economics, and regulation.
 
 These notes are intentionally not a compressed summary. They preserve the session structure and extend it with more explanation, more connective tissue across sessions, and additional diagrams to make the material easier to study like a handbook.
 
@@ -51,9 +51,9 @@ These notes are intentionally not a compressed summary. They preserve the sessio
 
 ## Source Basis
 
-These notes are based on the uploaded session-note PDFs for the course material on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
+These notes are based on the course sessions on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
 
-Where the PDFs included explicit URLs, those links are now preserved inside the relevant chapters and collected again in short session reference sections.
+Where the source material included explicit URLs, those links are now preserved inside the relevant chapters and collected again in short reference sections.
 
 <div class="article-widget">
   <div class="post-nav">
