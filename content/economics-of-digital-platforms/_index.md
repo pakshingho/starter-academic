@@ -53,8 +53,6 @@ These notes are intentionally not a compressed summary. They preserve the sessio
 
 These notes are based on the course sessions on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
 
-Where the source material included explicit URLs, those links are now preserved inside the relevant chapters and collected again in short reference sections.
-
 <div class="article-widget">
   <div class="post-nav">
     <div class="post-nav-item"></div>
