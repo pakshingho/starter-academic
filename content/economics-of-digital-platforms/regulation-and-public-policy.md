@@ -13,7 +13,7 @@ menu:
 weight: 6
 ---
 
-The final substantive session broadens the lens from platform design to platform governance. Once platforms gain scale, questions about neutrality, competition, privacy, hidden fees, and discrimination stop being peripheral. They become part of how the market itself is structured.
+The final substantive session broadens the lens from platform design to platform governance. Once platforms gain scale, questions about neutrality, competition, privacy, hidden fees, and discrimination stop being peripheral. They become part of how the market itself is structured. The PDF notes for this session also referenced the [session video](https://vimeo.com/928405699), which pairs naturally with the policy sources listed at the end of this chapter.
 
 <div id="behavior-versus-surveys"></div>
 
@@ -33,7 +33,7 @@ The notes emphasize that observed behavior and experiments are often more inform
 
 ### 5.2 Net neutrality is a debate about downstream competition
 
-Net neutrality is presented as the principle that internet service providers should treat online traffic equally rather than privileging some content, websites, or platforms over others.
+Net neutrality is presented as the principle that internet service providers should treat online traffic equally rather than privileging some content, websites, or platforms over others. The PDF notes linked to a general [Net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) overview, which matches the basic definition used here.
 
 The session lays out the standard trade-off:
 
@@ -80,7 +80,7 @@ The session uses the case to show how "platform governance" is really market arc
 
 ### 5.5 Killer acquisitions are a real concern, but the economics are nuanced
 
-The notes discuss the worry that large incumbents acquire smaller firms mainly to eliminate future competition. But they also preserve an important counterargument: not every startup acquisition is anti-competitive, and acquisition can provide a monetization path that encourages venture investment.
+The notes discuss the worry that large incumbents acquire smaller firms mainly to eliminate future competition. But they also preserve an important counterargument: not every startup acquisition is anti-competitive, and acquisition can provide a monetization path that encourages venture investment. The PDF notes explicitly pointed to [“Killer Acquisitions” Reexamined: Economic Hyperbole in the Age of Populist Antitrust](https://businesslawreview.uchicago.edu/print-archive/killer-acquisitions-reexamined-economic-hyperbole-age-populist-antitrust), which is the main external reference behind that cautionary view.
 
 That tension matters because policy can fail in both directions:
 
@@ -93,7 +93,7 @@ The session's framing is appropriately cautious. Platform policy should not rely
 
 ### 5.6 Consumer protection matters because price architecture shapes competition
 
-Drip pricing is the practice of advertising a low upfront price and adding mandatory fees later in the purchase flow. The notes stress that this is not just a user-experience annoyance. It changes market competition because it:
+Drip pricing is the practice of advertising a low upfront price and adding mandatory fees later in the purchase flow. The PDF notes linked both [Protecting Consumers From Hidden Fees](https://policyintegrity.org/policy-impacts/protecting-consumers-from-hidden-fees) and [What Is Drip Pricing & How Is It Dangerous?](https://www.shortform.com/blog/what-is-drip-pricing/), and those references support the lecture's point that this is not just a user-experience annoyance. It changes market competition because it:
 
 - makes prices harder to compare
 - rewards less transparent sellers
@@ -105,7 +105,7 @@ The session notes that drip pricing can add very large amounts to the final pric
 
 ### 5.7 Privacy and personalization create genuine trade-offs
 
-The notes use the privacy paradox to show that stated concern about privacy is not always matched by actual behavior. The well-known pizza-for-data experiment is meant to capture exactly that mismatch.
+The notes use the privacy paradox to show that stated concern about privacy is not always matched by actual behavior. The well-known pizza-for-data experiment, summarized in [Pizza over privacy? A paradox of the digital age](https://siepr.stanford.edu/news/pizza-over-privacy-paradox-digital-age), is meant to capture exactly that mismatch.
 
 But the session does not treat this as a reason to dismiss privacy. Instead, it highlights a deeper difficulty:
 
@@ -115,7 +115,7 @@ But the session does not treat this as a reason to dismiss privacy. Instead, it 
 
 That makes regulation difficult. Personalization may help users, but it can also strengthen incumbents with richer first-party data and more integrated ecosystems.
 
-The notes also preserve the session's concern about discrimination. The Airbnb field-experiment example shows that platform design can permit discriminatory outcomes even when discrimination is not formally part of the product.
+The notes also preserve the session's concern about discrimination. The Airbnb field-experiment example, cited in [Racial Discrimination in the Sharing Economy: Evidence from a Field Experiment](https://news.harvard.edu/wp-content/uploads/2015/12/airbnb-guest-discrimination-2015-12-09.pdf), shows that platform design can permit discriminatory outcomes even when discrimination is not formally part of the product.
 
 Platform neutrality, in practice, is never fully neutral. Search display, identity cues, ranking rules, and information revelation all influence who gets selected.
 
@@ -123,7 +123,7 @@ Platform neutrality, in practice, is never fully neutral. Search display, identi
 
 ### 5.8 Regulation can help users and still create unintended market structure effects
 
-The session mentions evidence and claims around GDPR's effects, including reduced venture-capital investment and increased relative strength for dominant firms such as `Google`. The exact magnitudes matter less here than the mechanism:
+The session mentions evidence and claims around GDPR's effects, including reduced venture-capital investment and increased relative strength for dominant firms such as `Google`. The PDF notes linked to both [Fact of the Week: GDPR Reduced EU Venture Capital Investment in Technology by 26 Percent Relative to the United States](https://itif.org/publications/2025/12/01/gdpr-reduced-eu-VC-investment-in-technology-26-percent-relative-to-united-states/) and [Study: GDPR Boosted Google Market Share and Cut Third-Party Cookies](https://www.hausfeld.com/en-us/what-we-think/publications/study-gdpr-boosted-google-market-share-and-cut-third-party-cookies), which are the references being summarized here. The exact magnitudes matter less here than the mechanism:
 
 - compliance costs can be easier for large incumbents to absorb
 - restrictions on third-party data can weaken smaller entrants more than integrated giants
@@ -146,3 +146,15 @@ By the end of this session, the boundary between economics and governance become
 are really questions about who gets to design the rules of exchange.
 
 That is why platform firms cannot treat public policy as a purely external compliance function. The design of the product, the business model, and the regulatory environment co-evolve.
+
+### 5.10 Session references from the PDF notes
+
+- [EODP-session-5 W22 | Videos & Movies on Vimeo](https://vimeo.com/928405699)
+- [Net neutrality](https://en.wikipedia.org/wiki/Net_neutrality)
+- [“Killer Acquisitions” Reexamined: Economic Hyperbole in the Age of Populist Antitrust](https://businesslawreview.uchicago.edu/print-archive/killer-acquisitions-reexamined-economic-hyperbole-age-populist-antitrust)
+- [Protecting Consumers From Hidden Fees](https://policyintegrity.org/policy-impacts/protecting-consumers-from-hidden-fees)
+- [What Is Drip Pricing & How Is It Dangerous?](https://www.shortform.com/blog/what-is-drip-pricing/)
+- [Pizza over privacy? A paradox of the digital age](https://siepr.stanford.edu/news/pizza-over-privacy-paradox-digital-age)
+- [Racial Discrimination in the Sharing Economy: Evidence from a Field Experiment](https://news.harvard.edu/wp-content/uploads/2015/12/airbnb-guest-discrimination-2015-12-09.pdf)
+- [Fact of the Week: GDPR Reduced EU Venture Capital Investment in Technology by 26 Percent Relative to the United States](https://itif.org/publications/2025/12/01/gdpr-reduced-eu-VC-investment-in-technology-26-percent-relative-to-united-states/)
+- [Study: GDPR Boosted Google Market Share and Cut Third-Party Cookies](https://www.hausfeld.com/en-us/what-we-think/publications/study-gdpr-boosted-google-market-share-and-cut-third-party-cookies)

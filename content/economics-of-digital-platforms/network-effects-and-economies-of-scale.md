@@ -51,7 +51,7 @@ The key point is that scale economies do not require user-to-user interaction. T
 
 ### 1.3 Network effects are demand-side
 
-Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach.
+Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. The PDF notes for this session pointed readers to a general [Network effect](https://en.wikipedia.org/wiki/Network_effect) overview and a shorter explainer, [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects), which line up closely with the distinction used in the lecture.
 
 The session distinguishes two main forms:
 
@@ -156,3 +156,9 @@ When reading any platform market, it helps to ask:
 4. What preferences or features keep the market segmented?
 
 Those four questions set up almost everything that follows in later chapters.
+
+### 1.9 Session references from the PDF notes
+
+- [Network effect](https://en.wikipedia.org/wiki/Network_effect)
+- [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects)
+- [Marketplace Network Effects: Building Self-Growing Platforms](https://www.cs-cart.com/blog/marketplace-network-effects/)

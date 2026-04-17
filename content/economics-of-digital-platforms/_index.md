@@ -53,6 +53,8 @@ This version is intentionally not a compressed summary. It preserves the session
 
 The reader is based on the uploaded session-note PDFs for the course material on economics of digital platforms. The writing here keeps the session-specific concepts and examples intact while expanding the explanation around them.
 
+Where the PDFs included explicit URLs, those links are now preserved inside the relevant chapters and collected again in short session reference sections.
+
 <div class="article-widget">
   <div class="post-nav">
     <div class="post-nav-item"></div>

@@ -14,7 +14,7 @@ menu:
 weight: 5
 ---
 
-The fourth session shifts attention from platform structure to measurement. Once a platform has some traction, it has to answer a different set of questions: which customers are valuable, which acquisition spend is truly incremental, and how much of observed growth is actually caused by marketing?
+The fourth session shifts attention from platform structure to measurement. Once a platform has some traction, it has to answer a different set of questions: which customers are valuable, which acquisition spend is truly incremental, and how much of observed growth is actually caused by marketing? The PDF notes for this session pointed back to the [session video](https://vimeo.com/928405260), which is useful if you want the original framing behind the measurement examples.
 
 ![Observed growth versus incremental growth](/media/platforms/platform-growth-metrics.svg)
 
@@ -54,7 +54,7 @@ $$
 \mathrm{CAC} = \frac{\text{sales and marketing spend}}{\text{new customers}}
 $$
 
-The session argues that this is frequently wrong in practice because the denominator mixes:
+The session argues that this is frequently wrong in practice because the denominator mixes. The notes linked to a baseline explainer, [Customer Acquisition Cost (CAC) - Definition, Formula, and Example](https://corporatefinanceinstitute.com/resources/accounting/customer-acquisition-cost-cac/), but the lecture's point is that platform settings often need a stricter, incrementality-based interpretation of the same metric:
 
 - truly incremental customers
 - customers who would have arrived anyway
@@ -170,3 +170,8 @@ It should be evaluated by:
 - whether acquisition deepens the network in a durable way
 
 That is a much stricter standard, but it is closer to the economics of what platforms are actually trying to build.
+
+### 4.9 Session references from the PDF notes
+
+- [EODP-session-4 W22 | Videos & Movies on Vimeo](https://vimeo.com/928405260)
+- [Customer Acquisition Cost (CAC) - Definition, Formula, and Example](https://corporatefinanceinstitute.com/resources/accounting/customer-acquisition-cost-cac/)

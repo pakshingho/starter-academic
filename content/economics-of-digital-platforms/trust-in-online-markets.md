@@ -74,7 +74,7 @@ Platforms are modern institution-builders in exactly that sense. Ratings, identi
 
 ### 3.4 eBay's feedback system shows both the power and the limits of reputation
 
-`eBay` is the session's main case study. The basic public feedback structure is simple:
+`eBay` is the session's main case study. The PDF notes for this chapter explicitly cited [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback), which is helpful for the concrete mechanics of the scoring system described here. The basic public feedback structure is simple:
 
 - positive feedback adds to a seller's score
 - negative feedback subtracts from it
@@ -169,3 +169,7 @@ With trust:
 - the platform can rely less on blanket subsidy and more on durable reputation
 
 That is why trust belongs at the center of platform economics rather than at the edge of operations.
+
+### 3.9 Session references from the PDF notes
+
+- [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback)
