@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Two-sided pricing and participation flywheel</title>
+  <desc id="desc">A diagram showing how buyer and seller pricing affect participation, liquidity, and monetization on a platform.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .title { font: 700 34px Georgia, serif; fill: #20312d; }
+      .subtitle { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .card { stroke: #26433b; stroke-width: 2.5; rx: 22; }
+      .c1 { fill: #dbe8f6; }
+      .c2 { fill: #d8eee3; }
+      .c3 { fill: #f8e0c7; }
+      .c4 { fill: #f3d9da; }
+      .label { font: 700 25px Georgia, serif; fill: #20312d; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .arrow { stroke: #26433b; stroke-width: 3; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .callout { fill: #f6f0e2; stroke: #26433b; stroke-width: 2.5; rx: 24; }
+    </style>
+    <marker id="arrow" markerWidth="4.2" markerHeight="4.2" refX="3.6" refY="2.1" orient="auto">
+      <path d="M0,0 L4.2,2.1 L0,4.2 z" fill="#26433b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="700"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Two-Sided Pricing Is a Participation Problem</text>
+  <text class="subtitle" x="600" y="90" text-anchor="middle">Platforms do not only set prices. They decide which side to subsidize so liquidity can form.</text>
+
+  <g transform="translate(80 172)">
+    <rect class="card c1" width="210" height="128" rx="22"/>
+    <text class="label" x="105" y="48" text-anchor="middle">Buyer Price</text>
+    <text class="body" x="105" y="82" text-anchor="middle">Lower price can</text>
+    <text class="body" x="105" y="108" text-anchor="middle">thicken demand</text>
+  </g>
+
+  <g transform="translate(355 172)">
+    <rect class="card c2" width="210" height="128" rx="22"/>
+    <text class="label" x="105" y="48" text-anchor="middle">Buyer Side</text>
+    <text class="body" x="105" y="82" text-anchor="middle">More buyers raise</text>
+    <text class="body" x="105" y="108" text-anchor="middle">seller value</text>
+  </g>
+
+  <g transform="translate(630 172)">
+    <rect class="card c3" width="210" height="128" rx="22"/>
+    <text class="label" x="105" y="48" text-anchor="middle">Seller Side</text>
+    <text class="body" x="105" y="82" text-anchor="middle">More sellers raise</text>
+    <text class="body" x="105" y="108" text-anchor="middle">buyer value</text>
+  </g>
+
+  <g transform="translate(905 172)">
+    <rect class="card c4" width="210" height="128" rx="22"/>
+    <text class="label" x="105" y="48" text-anchor="middle">Seller Fees</text>
+    <text class="body" x="105" y="82" text-anchor="middle">Higher fees monetize</text>
+    <text class="body" x="105" y="108" text-anchor="middle">the thickened network</text>
+  </g>
+
+  <path class="arrow" d="M290 236 H338"/>
+  <path class="arrow" d="M565 236 H613"/>
+  <path class="arrow" d="M840 236 H888"/>
+  <path class="arrow" d="M1010 300 C1010 418 840 490 735 490"/>
+  <path class="arrow" d="M465 490 C360 490 190 418 190 300"/>
+
+  <g transform="translate(225 404)">
+    <rect class="callout" width="750" height="148" rx="24"/>
+    <text class="small" x="375" y="44" text-anchor="middle">
+      <tspan x="375" dy="0">Cross-side elasticity is the key idea: charging one side changes participation</tspan>
+      <tspan x="375" dy="24">on that side, which changes value on the other side. That is why "one side pays zero"</tspan>
+      <tspan x="375" dy="24">is still a pricing choice rather than a different business model.</tspan>
+    </text>
+  </g>
+</svg>

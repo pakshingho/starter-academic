@@ -457,3 +457,147 @@
   url = "/recommender-systems/survey-papers-and-further-reading/#foundational-pre-2020-surveys"
   parent = "chapter-survey"
   weight = 128
+
+[[economics-of-digital-platforms]]
+  name = "1.1 Session framing"
+  url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#session-framing"
+  parent = "chapter-network-effects"
+  weight = 21
+
+[[economics-of-digital-platforms]]
+  name = "1.2 Scale economies"
+  url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#scale-economies"
+  parent = "chapter-network-effects"
+  weight = 22
+
+[[economics-of-digital-platforms]]
+  name = "1.3 Network effects"
+  url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#network-effects"
+  parent = "chapter-network-effects"
+  weight = 23
+
+[[economics-of-digital-platforms]]
+  name = "1.6 Tipping and multi-homing"
+  url = "/economics-of-digital-platforms/network-effects-and-economies-of-scale/#tipping-and-multihoming"
+  parent = "chapter-network-effects"
+  weight = 24
+
+[[economics-of-digital-platforms]]
+  name = "2.1 Business model basics"
+  url = "/economics-of-digital-platforms/designing-digital-platforms/#business-model-basics"
+  parent = "chapter-platform-design"
+  weight = 31
+
+[[economics-of-digital-platforms]]
+  name = "2.3 Willingness to pay"
+  url = "/economics-of-digital-platforms/designing-digital-platforms/#willingness-to-pay"
+  parent = "chapter-platform-design"
+  weight = 32
+
+[[economics-of-digital-platforms]]
+  name = "2.6 Matching-platform pricing"
+  url = "/economics-of-digital-platforms/designing-digital-platforms/#matching-platform-pricing"
+  parent = "chapter-platform-design"
+  weight = 33
+
+[[economics-of-digital-platforms]]
+  name = "2.7 Versioning and value-added services"
+  url = "/economics-of-digital-platforms/designing-digital-platforms/#versioning-and-vas"
+  parent = "chapter-platform-design"
+  weight = 34
+
+[[economics-of-digital-platforms]]
+  name = "3.1 DoorDash Kitchens"
+  url = "/economics-of-digital-platforms/trust-in-online-markets/#doordash-kitchens"
+  parent = "chapter-trust"
+  weight = 41
+
+[[economics-of-digital-platforms]]
+  name = "3.2 Trust game"
+  url = "/economics-of-digital-platforms/trust-in-online-markets/#trust-game"
+  parent = "chapter-trust"
+  weight = 42
+
+[[economics-of-digital-platforms]]
+  name = "3.4 eBay feedback"
+  url = "/economics-of-digital-platforms/trust-in-online-markets/#ebay-feedback"
+  parent = "chapter-trust"
+  weight = 43
+
+[[economics-of-digital-platforms]]
+  name = "3.6 Richer trust signals"
+  url = "/economics-of-digital-platforms/trust-in-online-markets/#richer-signals"
+  parent = "chapter-trust"
+  weight = 44
+
+[[economics-of-digital-platforms]]
+  name = "4.1 CLV"
+  url = "/economics-of-digital-platforms/customer-value-acquisition-and-marketing-roi/#clv"
+  parent = "chapter-customer-economics"
+  weight = 51
+
+[[economics-of-digital-platforms]]
+  name = "4.2 CAC"
+  url = "/economics-of-digital-platforms/customer-value-acquisition-and-marketing-roi/#cac"
+  parent = "chapter-customer-economics"
+  weight = 52
+
+[[economics-of-digital-platforms]]
+  name = "4.3 Incrementality"
+  url = "/economics-of-digital-platforms/customer-value-acquisition-and-marketing-roi/#incrementality"
+  parent = "chapter-customer-economics"
+  weight = 53
+
+[[economics-of-digital-platforms]]
+  name = "4.4 Experimentation"
+  url = "/economics-of-digital-platforms/customer-value-acquisition-and-marketing-roi/#experimentation"
+  parent = "chapter-customer-economics"
+  weight = 54
+
+[[economics-of-digital-platforms]]
+  name = "5.1 Behavior versus surveys"
+  url = "/economics-of-digital-platforms/regulation-and-public-policy/#behavior-versus-surveys"
+  parent = "chapter-regulation"
+  weight = 61
+
+[[economics-of-digital-platforms]]
+  name = "5.2 Net neutrality"
+  url = "/economics-of-digital-platforms/regulation-and-public-policy/#net-neutrality"
+  parent = "chapter-regulation"
+  weight = 62
+
+[[economics-of-digital-platforms]]
+  name = "5.3 Antitrust"
+  url = "/economics-of-digital-platforms/regulation-and-public-policy/#antitrust"
+  parent = "chapter-regulation"
+  weight = 63
+
+[[economics-of-digital-platforms]]
+  name = "5.6 Drip pricing"
+  url = "/economics-of-digital-platforms/regulation-and-public-policy/#drip-pricing"
+  parent = "chapter-regulation"
+  weight = 64
+
+[[economics-of-digital-platforms]]
+  name = "5.7 Privacy and discrimination"
+  url = "/economics-of-digital-platforms/regulation-and-public-policy/#privacy-and-discrimination"
+  parent = "chapter-regulation"
+  weight = 65
+
+[[economics-of-digital-platforms]]
+  name = "6.1 Integrated model"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#integrated-model"
+  parent = "chapter-synthesis"
+  weight = 71
+
+[[economics-of-digital-platforms]]
+  name = "6.2 Design sequence"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#design-sequence"
+  parent = "chapter-synthesis"
+  weight = 72
+
+[[economics-of-digital-platforms]]
+  name = "6.4 Diagnostic checklist"
+  url = "/economics-of-digital-platforms/strategy-synthesis/#diagnostic-checklist"
+  parent = "chapter-synthesis"
+  weight = 73

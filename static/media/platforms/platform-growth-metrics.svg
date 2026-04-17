@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Observed growth versus incremental growth</title>
+  <desc id="desc">A flow chart showing how marketing spend leads to observed conversions, but only some conversions are incremental and should be used for CAC and ROI.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .title { font: 700 34px Georgia, serif; fill: #20312d; }
+      .subtitle { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .card { stroke: #26433b; stroke-width: 2.5; rx: 20; }
+      .c1 { fill: #dbe8f6; }
+      .c2 { fill: #d8eee3; }
+      .c3 { fill: #f8e0c7; }
+      .c4 { fill: #f3d9da; }
+      .c5 { fill: #e9e3f7; }
+      .label { font: 700 24px Georgia, serif; fill: #20312d; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .arrow { stroke: #26433b; stroke-width: 3; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arrow" markerWidth="4.2" markerHeight="4.2" refX="3.6" refY="2.1" orient="auto">
+      <path d="M0,0 L4.2,2.1 L0,4.2 z" fill="#26433b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="680"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Observed Growth Is Not the Same as Incremental Growth</text>
+  <text class="subtitle" x="600" y="90" text-anchor="middle">Platform CAC and ROI should be based on caused outcomes, not all post-campaign activity.</text>
+
+  <g transform="translate(70 180)">
+    <rect class="card c1" width="200" height="112" rx="20"/>
+    <text class="label" x="100" y="48" text-anchor="middle">Marketing Spend</text>
+    <text class="body" x="100" y="82" text-anchor="middle">Coupons, search, ads,</text>
+    <text class="body" x="100" y="106" text-anchor="middle">referrals, promos</text>
+  </g>
+
+  <g transform="translate(350 180)">
+    <rect class="card c2" width="220" height="112" rx="20"/>
+    <text class="label" x="110" y="48" text-anchor="middle">Observed Signups</text>
+    <text class="body" x="110" y="82" text-anchor="middle">All exposed conversions</text>
+    <text class="body" x="110" y="106" text-anchor="middle">look attributable</text>
+  </g>
+
+  <g transform="translate(650 120)">
+    <rect class="card c3" width="220" height="112" rx="20"/>
+    <text class="label" x="110" y="48" text-anchor="middle">Would Have Happened</text>
+    <text class="body" x="110" y="82" text-anchor="middle">Organic, habitual,</text>
+    <text class="body" x="110" y="106" text-anchor="middle">or already-intentful</text>
+  </g>
+
+  <g transform="translate(650 300)">
+    <rect class="card c4" width="220" height="112" rx="20"/>
+    <text class="label" x="110" y="48" text-anchor="middle">Incremental Users</text>
+    <text class="body" x="110" y="82" text-anchor="middle">Lift caused by the</text>
+    <text class="body" x="110" y="106" text-anchor="middle">campaign itself</text>
+  </g>
+
+  <g transform="translate(950 180)">
+    <rect class="card c5" width="180" height="112" rx="20"/>
+    <text class="label" x="90" y="48" text-anchor="middle">True CAC</text>
+    <text class="body" x="90" y="82" text-anchor="middle">Spend divided by</text>
+    <text class="body" x="90" y="106" text-anchor="middle">incremental users</text>
+  </g>
+
+  <path class="arrow" d="M270 236 H333"/>
+  <path class="arrow" d="M570 236 H633"/>
+  <path class="arrow" d="M570 236 C620 236 620 356 633 356"/>
+  <path class="arrow" d="M870 176 H933"/>
+  <path class="arrow" d="M870 356 C925 356 925 262 933 262"/>
+
+  <g transform="translate(170 492)">
+    <rect class="card" width="860" height="110" rx="20" fill="#f6f0e2"/>
+    <text class="small" x="430" y="42" text-anchor="middle">
+      <tspan x="430" dy="0">If the campaign brings in 10,000 signups but only 2,000 are incremental,</tspan>
+      <tspan x="430" dy="24">naive CAC can look five times better than the true causal CAC.</tspan>
+      <tspan x="430" dy="24">That is the core measurement trap in platform growth.</tspan>
+    </text>
+  </g>
+</svg>

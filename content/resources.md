@@ -19,5 +19,12 @@ type: page
 
 ### Technical Guides
 
-- [Economics of Digital Platforms](/economics-of-digital-platforms/)
 - [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))
+
+<div id="tech-economics"></div>
+
+## Tech Economics
+
+### Reader Chapters
+
+- [Economics of Digital Platforms](/economics-of-digital-platforms/)
