@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Trust loop in an online market</title>
+  <desc id="desc">A circular flow showing how identity, safety systems, and richer signals reinforce trust and market participation.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fcfbf7; }
+      .title { font: 700 34px Georgia, serif; fill: #20312d; }
+      .subtitle { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .ring { fill: none; stroke: #d4dfd8; stroke-width: 16; }
+      .card { stroke: #26433b; stroke-width: 2.5; rx: 18; }
+      .c1 { fill: #d8eee3; }
+      .c2 { fill: #dbe8f6; }
+      .c3 { fill: #f8e0c7; }
+      .c4 { fill: #f3d9da; }
+      .c5 { fill: #e9e3f7; }
+      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #334743; }
+      .small { font: 16px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .arrow { stroke: #26433b; stroke-width: 3; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .center { fill: #f6f0e2; stroke: #26433b; stroke-width: 2.5; rx: 28; }
+    </style>
+    <marker id="arrow" markerWidth="4.2" markerHeight="4.2" refX="3.6" refY="2.1" orient="auto">
+      <path d="M0,0 L4.2,2.1 L0,4.2 z" fill="#26433b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="680"/>
+  <text class="title" x="600" y="56" text-anchor="middle">Trust Loop for Online Markets</text>
+  <text class="subtitle" x="600" y="88" text-anchor="middle">Platforms grow more safely when trust systems improve participation and generate better signals.</text>
+
+  <circle class="ring" cx="600" cy="360" r="214"/>
+
+  <g transform="translate(420 126)">
+    <rect class="card c1" width="360" height="96" rx="18"/>
+    <text class="body" x="180" y="42" text-anchor="middle">Identity, guarantees, and</text>
+    <text class="body" x="180" y="68" text-anchor="middle">clear platform rules</text>
+  </g>
+
+  <g transform="translate(784 284)">
+    <rect class="card c2" width="284" height="96" rx="18"/>
+    <text class="body" x="142" y="42" text-anchor="middle">More trustworthy</text>
+    <text class="body" x="142" y="68" text-anchor="middle">transactions</text>
+  </g>
+
+  <g transform="translate(690 484)">
+    <rect class="card c3" width="360" height="96" rx="18"/>
+    <text class="body" x="180" y="42" text-anchor="middle">Richer signals: reviews, returns,</text>
+    <text class="body" x="180" y="68" text-anchor="middle">disputes, messages, and timing</text>
+  </g>
+
+  <g transform="translate(150 484)">
+    <rect class="card c4" width="360" height="96" rx="18"/>
+    <text class="body" x="180" y="42" text-anchor="middle">Better ranking, screening,</text>
+    <text class="body" x="180" y="68" text-anchor="middle">and enforcement</text>
+  </g>
+
+  <g transform="translate(132 284)">
+    <rect class="card c5" width="284" height="96" rx="18"/>
+    <text class="body" x="142" y="42" text-anchor="middle">More buyer and seller</text>
+    <text class="body" x="142" y="68" text-anchor="middle">confidence</text>
+  </g>
+
+  <path class="arrow" d="M600 222 V254"/>
+  <path class="arrow" d="M780 332 H820"/>
+  <path class="arrow" d="M830 430 C830 468 804 496 776 510"/>
+  <path class="arrow" d="M330 532 H642"/>
+  <path class="arrow" d="M240 430 C240 468 266 496 294 510"/>
+  <path class="arrow" d="M274 332 H378"/>
+
+  <g transform="translate(362 286)">
+    <rect class="center" width="476" height="148" rx="28"/>
+    <text class="body" x="238" y="54" text-anchor="middle">Trust is not just a policy layer.</text>
+    <text class="body" x="238" y="82" text-anchor="middle">It is part of matching quality, retention,</text>
+    <text class="body" x="238" y="110" text-anchor="middle">and long-run monetization.</text>
+    <text class="small" x="238" y="132" text-anchor="middle">Average star ratings alone are usually too shallow.</text>
+  </g>
+</svg>

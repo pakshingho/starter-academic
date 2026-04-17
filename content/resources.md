@@ -1,7 +1,7 @@
 ---
 title: Resources
 date: 2026-02-24
-lastmod: 2026-03-15
+lastmod: 2026-04-17
 type: page
 ---
 
@@ -20,3 +20,11 @@ type: page
 ### Technical Guides
 
 - [Understanding Recommender Systems](/recommender-systems/) ([single-page version](/recommender-systems-single-page/))
+
+<div id="tech-economics"></div>
+
+## Tech Economics
+
+### Notes
+
+- [Economics of Digital Platforms](/economics-of-digital-platforms/)
