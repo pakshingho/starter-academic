@@ -1,5 +1,5 @@
 ---
-title: "Econometric Analysis: A Numerical Tour with Simulations"
+title: "Econometrics Theory"
 linktitle: Overview
 summary: An outline-first handbook designed to grow into a simulation-driven course on asymptotics, identification, estimation, and testing.
 date: 2026-04-17
@@ -16,7 +16,7 @@ weight: 1
 toc: false
 ---
 
-This handbook is currently an outline-first course structure. The aim is to turn it into a numerical tour of econometrics, where each chapter later combines theory with simulations, worked examples, and intuition-building computation.
+Econometrics Theory is currently an outline-first course structure. The aim is to turn it into a numerical tour of econometrics, where each chapter later combines theory with simulations, worked examples, and intuition-building computation.
 
 ## Course at a glance
 
