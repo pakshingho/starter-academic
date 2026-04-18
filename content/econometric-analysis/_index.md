@@ -37,6 +37,7 @@ This handbook is currently an outline-first course structure. The aim is to turn
 8. [Nonlinear Simultaneous Equations and GMM](nonlinear-simultaneous-equations-and-gmm/)
 9. [Hypothesis Testing](hypothesis-testing/)
 10. [Boundary Asymptotics and Nonlinear Models](boundary-asymptotics-and-nonlinear-models/)
+11. [Reading List](reading-list/)
 
 ## Planned throughline
 
