@@ -16,7 +16,7 @@ This page combines current handbook-style course material with earlier universit
 - [Decision Trees and Ensemble Methods in Machine Learning](/tree-based-machine-learning/)
   A self-paced handbook short course on decision trees, random forests, feature importance, and boosting methods for structured data.
 - [Econometric Analysis: A Numerical Tour with Simulations](/econometric-analysis/)
-  An outline-first handbook scaffold based on an EC484 econometrics note, designed to grow into a numerical course on asymptotics, simultaneous equations, identification, estimation, and testing.
+  An outline-first handbook designed to grow into a numerical course on asymptotics, simultaneous equations, identification, estimation, and testing.
 
 ## University Teaching Experience
 

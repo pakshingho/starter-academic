@@ -1,7 +1,7 @@
 ---
 title: "Econometric Analysis: A Numerical Tour with Simulations"
 linktitle: Overview
-summary: An outline-first handbook based on EC484 econometrics notes, designed to grow into a simulation-driven course on asymptotics, identification, estimation, and testing.
+summary: An outline-first handbook designed to grow into a simulation-driven course on asymptotics, identification, estimation, and testing.
 date: 2026-04-17
 lastmod: 2026-04-17
 draft: false
@@ -16,14 +16,14 @@ weight: 1
 toc: false
 ---
 
-This handbook is currently an outline scaffold derived from the attached EC484 econometrics note. The aim is to turn it into a numerical tour of econometrics, where each chapter later combines theory with simulations, worked examples, and intuition-building computation.
+This handbook is currently an outline-first course structure. The aim is to turn it into a numerical tour of econometrics, where each chapter later combines theory with simulations, worked examples, and intuition-building computation.
 
 ## Course at a glance
 
 - Format: handbook outline, to be expanded into a self-paced numerical course
-- Source note: EC484 econometrics notes
+- Scope: chapter and section titles only for now
 - Direction: simulations, numerical experiments, and structural-model intuition
-- Status: chapter and section titles only for now
+- Status: ready for later chapter expansion
 
 ## Planned course path
 
