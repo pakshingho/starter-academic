@@ -18,7 +18,7 @@ This chapter begins with the matrix tools used repeatedly throughout the rest of
 
 ## 1.1 Matrix notation and useful results
 
-We treat vectors as column vectors by default. A generic $p \times 1$ vector is written as
+Following the note, vectors are treated as column vectors by default unless a transpose is written explicitly. A generic $p \times 1$ vector is written as
 
 <div>$$x = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_p \end{pmatrix}$$</div>
 
@@ -26,7 +26,11 @@ and the inner product of two vectors $x$ and $y$ is
 
 <div>$$\langle x, y \rangle = \sum_{i=1}^p x_i y_i.$$</div>
 
-A $p \times q$ matrix $A$ may be written as $A = (a_{ij})$, with transpose
+A $p \times q$ matrix $A$ may be written by columns as
+
+<div>$$A = (a_1, \dots, a_q) = (a_{ij}),$$</div>
+
+where each $a_j$ is a $p \times 1$ column vector. Its transpose is
 
 <div>$$A^\prime = (a_{ji}).$$</div>
 
