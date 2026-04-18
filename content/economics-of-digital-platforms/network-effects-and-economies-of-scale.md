@@ -62,6 +62,15 @@ This distinction matters because the growth tactics are different. A messaging p
 
 The session also notes that network effects are not automatically positive forever. Congestion, ad overload, spam, and poor-quality supply can turn growth into lower utility. That is the first hint that platform design and trust systems matter, which becomes central later in the notes.
 
+Operating systems provide another useful illustration because they show that network effects do not have to look like overt social-media virality in order to matter economically. `Windows` historically benefited not only from lower-cost hardware and a more open device ecosystem, but also from compatibility. When more schools, offices, and households use the same operating system, the surrounding environment begins to standardize around it:
+
+- files are easier to exchange
+- more software developers build for the dominant installed base
+- more peripheral makers and enterprise IT systems optimize around the same environment
+- workers and students learn habits that are easier to carry into the next workplace
+
+That is a genuine demand-side advantage because each additional adopter strengthens the value of the broader ecosystem for everyone else. It also helps explain why outcomes can diverge across regions. In lower-income markets, cheaper compatible hardware and wider software availability can reinforce one another until the installed base becomes self-sustaining. The lesson is that network effects can operate through coordination and complementarity, not only through direct social interaction.
+
 <div id="when-effects-are-strong"></div>
 
 ### 1.4 Strength of network effects
@@ -98,6 +107,8 @@ This is why the same firm can simultaneously talk about:
 
 Those are different channels, and strong platform strategy usually depends on understanding both.
 
+`Amazon`'s well-known flywheel is a clean example of how the two channels interact. More buyers make the marketplace more attractive to sellers. More sellers improve variety, availability, and price competition for buyers. Higher marketplace activity then justifies larger investments in fulfillment centers, software, and logistics coordination. Those investments lower average cost and improve reliability, which attracts still more buyers. Once the loop is written out in full, it becomes clear why platform strategy is often so hard to imitate: a rival may need to match both the network thickness and the operational scale at the same time.
+
 <div id="tipping-and-multihoming"></div>
 
 ### 1.6 Winner-take-all versus multi-homing
@@ -124,7 +135,7 @@ The takeaway is subtle but important: network effects raise the odds of concentr
 
 ### 1.7 Matching (two-sided) platforms
 
-The source material explicitly carves out matching platforms as their own section, and that deserves to appear clearly in the chapter rather than being left implicit.
+Matching platforms deserve their own treatment because they are the form of platform most people have in mind when they talk about digital-platform economics. They are also the easiest place to confuse scale with network value, because the platform does not simply produce output more cheaply as it grows. It improves the probability, speed, and quality of a match.
 
 A matching platform connects groups that hold complementary resources or needs:
 
@@ -169,6 +180,21 @@ Messaging and ride-sharing coexistence:
 - low switching and multi-homing costs weaken winner-take-all pressure
 - users do not always want one universal network for every use case
 - differentiation can matter as much as raw scale
+
+`Amazon` versus `eBay`:
+
+- `Amazon`'s flywheel was built around buyer experience and what the company called customer obsession
+- more buyer traffic attracted more sellers, which improved variety and sharpened the indirect network effect
+- `eBay`, by contrast, historically oriented more strongly toward sellers because sellers paid the fees and were treated as the immediate business customers
+- that contrast shows how network effects can still be weakened when a platform optimizes too narrowly for the side that pays today rather than the side that determines long-run marketplace trust and demand
+- even a platform with strong indirect network effects can underperform if it treats marketplace design as fee extraction instead of demand creation
+
+`Craigslist` and local liquidity:
+
+- `Craigslist` is a reminder that matching power can come from local liquidity rather than from product sophistication
+- one broad platform later fragmented into vertical specialists, which is a reminder that sub-networks can peel off from a generalist incumbent
+- local matching markets also show why a platform can remain durable without turning into a universal global winner: what matters is thickness where users actually need the match
+- this matters especially in labor, housing, dating, and local resale markets, where a platform can dominate a specific locality or use case without controlling the whole category everywhere
 
 These examples are a healthy corrective to simplistic "network effects = monopoly" thinking.
 

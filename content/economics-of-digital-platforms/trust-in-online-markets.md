@@ -82,6 +82,8 @@ Platforms are modern institution-builders in exactly that sense. Ratings, identi
 
 The surprising empirical result in the notes is that seller reputation scores are extremely compressed. Median positive feedback is effectively perfect, the mean is around `99.3%`, and even lower percentiles remain very high.
 
+The compression problem becomes even more striking once the base rate of visible punishment is stated directly. Outright negative feedback showed up in only about `0.4%` of transactions in one large `eBay` sample. When visible punishment is that rare, public ratings can look reassuring while hiding a great deal of unresolved variation in transaction quality. In practical terms, the badge still looks informative, but its informational content has been squeezed into an extremely narrow range.
+
 That creates an information problem:
 
 - if almost everyone looks excellent, buyers cannot distinguish high-quality sellers from merely adequate ones
@@ -115,12 +117,14 @@ Without those design choices, the reputation layer can look healthy while convey
 
 ### 3.6 Effect of reputation on buyer behavior
 
-One of the more interesting observations in the source material is about the effect of reputation on buyer behavior: buyers who purchased from sellers with a perfect `100%` positive-feedback score were reportedly less likely to return to `eBay` than buyers who purchased from sellers with slightly lower scores.
+One of the more interesting observations in the course is about the effect of reputation on buyer behavior: buyers who purchased from sellers with a perfect `100%` positive-feedback score were reportedly less likely to return to `eBay` than buyers who purchased from sellers with slightly lower scores.
 
 The notes suggest at least two plausible explanations:
 
 - selection bias, where experienced buyers may choose less-established sellers for price or niche reasons
 - reputation compression, where a near-perfect score no longer differentiates seller quality meaningfully
+
+A third interpretation is also economically useful. The buyers most likely to insist on a perfect score may be exactly the buyers who are least inclined to trust the platform in the first place. They enter cautiously, choose the safest-looking visible option, and then leave after a single purchase regardless of how the transaction goes. If that is true, the public score is not merely failing to predict quality. It is partly capturing buyer anxiety and one-time behavior.
 
 This is an important extension of the trust argument. A reputation system can look reassuring while conveying almost no marginal information. That is exactly when platforms need richer internal signals instead of relying on the visible headline metric.
 
@@ -137,6 +141,8 @@ One of the best parts of the session is the move from visible ratings to richer 
 - broader patterns of buyer satisfaction
 
 An A/B test that weighted predicted feedback rather than only simple historical percent-positive scores improved repeat purchasing. That is a major platform-design insight: trust can be improved through ranking models, not just policy language.
+
+What makes that move so important is that operational data often reveal disappointment earlier than formal reviews do. A tense message exchange, a return request, or a shipping complaint may be a much better signal of trust failure than a public star rating that never gets submitted. Once that is understood, the trust problem starts to look less like a review-interface problem and more like an inference problem over many weak signals.
 
 Public reputation and internal trust prediction are related but not identical.
 

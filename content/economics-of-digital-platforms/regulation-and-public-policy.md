@@ -13,13 +13,22 @@ menu:
 weight: 6
 ---
 
-The final substantive session broadens the lens from platform design to platform governance. Once platforms gain scale, questions about neutrality, competition, privacy, hidden fees, and discrimination stop being peripheral. They become part of how the market itself is structured. The original session video is [1](https://vimeo.com/928405699).
+The final substantive session broadens the lens from platform design to platform governance. Once platforms gain scale, questions about neutrality, competition, privacy, hidden fees, and discrimination stop being peripheral. They become part of how the market itself is structured.
 
 <div id="behavior-versus-surveys"></div>
 
 ### 5.1 Behavior matters more than surveys and self-reports
 
-The session opens by revisiting a theme from measurement: surveys can be misleading because people often report what they believe sounds responsible rather than what they actually do.
+The session opens with a marketplace-email puzzle that makes the identification problem concrete. Survey responses and customer feedback say users dislike marketing emails, yet the raw data show that customers who receive more emails also buy more. The right question is therefore not whether the two variables move together. It is whether email is causing purchases, or whether active customers simply trigger more email volume because they already browse and buy more.
+
+Once that distinction is made, several complications appear immediately:
+
+- unsubscribers can mechanically disappear from the "more email" group
+- relevance and segmentation can matter more than raw volume
+- retention and churn effects may offset short-run purchase lift
+- observational correlations can easily reflect reverse causation rather than treatment effects
+
+That is why the discussion quickly moves toward experiments and segmentation rather than toward a simplistic "send more email" conclusion. The example is useful because it shows how easy it is to tell the wrong policy story from raw behavior. If firms or regulators confuse correlation with causation here, they can end up recommending the wrong intervention for the wrong reason.
 
 That matters for policy because many platform debates rely on stated preferences:
 
