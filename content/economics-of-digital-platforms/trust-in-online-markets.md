@@ -74,7 +74,7 @@ Platforms are modern institution-builders in exactly that sense. Ratings, identi
 
 ### 3.4 eBay's feedback system shows both the power and the limits of reputation
 
-`eBay` is the session's main case study. A guide to seller feedback mechanics [1](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback) is helpful for the concrete structure described here. The basic public feedback system is simple:
+`eBay` is the session's main case study. A guide to seller feedback mechanics [2](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback) is helpful for the concrete structure described here. The basic public feedback system is simple:
 
 - positive feedback adds to a seller's score
 - negative feedback subtracts from it
@@ -191,4 +191,5 @@ That is why trust belongs at the center of platform economics rather than at the
 
 ### 3.10 References
 
-1. [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback)
+1. [EODP-session-3 W22 | Videos & Movies on Vimeo](https://vimeo.com/928404934)
+2. [The Complete Guide to eBay Seller Feedback](https://www.3dsellers.com/blog/the-complete-guide-to-ebay-seller-feedback)

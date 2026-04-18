@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
   <title id="title">Economies of scale and network effects</title>
   <desc id="desc">A two-panel diagram comparing the supply-side flywheel of economies of scale with the demand-side flywheel of network effects.</desc>
   <defs>
@@ -13,89 +13,112 @@
       .left2 { fill: #eaf4ed; }
       .right1 { fill: #dbe8f6; }
       .right2 { fill: #edf4fb; }
-      .body { font: 18px 'Helvetica Neue', Arial, sans-serif; fill: #344744; }
-      .note { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
+      .body { font: 17px 'Helvetica Neue', Arial, sans-serif; fill: #344744; }
+      .note { font: 15px 'Helvetica Neue', Arial, sans-serif; fill: #50655f; }
       .arrow { stroke: #26433b; stroke-width: 3; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
       .callout { fill: #f6f0e2; stroke: #26433b; stroke-width: 2.5; rx: 20; }
     </style>
-    <marker id="arrow" markerWidth="4.2" markerHeight="4.2" refX="3.6" refY="2.1" orient="auto">
-      <path d="M0,0 L4.2,2.1 L0,4.2 z" fill="#26433b"/>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.4" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#26433b"/>
     </marker>
   </defs>
 
-  <rect class="bg" width="1200" height="700"/>
-  <text class="title" x="600" y="56" text-anchor="middle">Why Platforms Can Scale So Fast</text>
-  <text class="subtitle" x="600" y="88" text-anchor="middle">Supply-side cost advantages and demand-side value creation often reinforce each other.</text>
+  <rect class="bg" width="1200" height="760"/>
+  <text class="title" x="600" y="58" text-anchor="middle">Why Platforms Can Scale So Fast</text>
+  <text class="subtitle" x="600" y="90" text-anchor="middle">Supply-side cost advantages and demand-side value creation often reinforce each other.</text>
 
-  <g transform="translate(52 132)">
-    <rect class="panel" width="520" height="410" rx="28"/>
+  <g transform="translate(52 136)">
+    <rect class="panel" width="520" height="500" rx="28"/>
     <text class="panelTitle" x="260" y="50" text-anchor="middle">Economies of Scale</text>
     <text class="subtitle" x="260" y="82" text-anchor="middle">Supply-side flywheel</text>
 
-    <rect class="card left1" x="70" y="128" width="150" height="84" rx="18"/>
-    <text class="body" x="145" y="162" text-anchor="middle">More output</text>
-    <text class="body" x="145" y="188" text-anchor="middle">or usage</text>
-
-    <rect class="card left2" x="300" y="128" width="150" height="84" rx="18"/>
-    <text class="body" x="375" y="162" text-anchor="middle">Fixed costs</text>
-    <text class="body" x="375" y="188" text-anchor="middle">spread wider</text>
-
-    <rect class="card left1" x="300" y="270" width="150" height="84" rx="18"/>
-    <text class="body" x="375" y="304" text-anchor="middle">Lower average</text>
-    <text class="body" x="375" y="330" text-anchor="middle">cost</text>
-
-    <rect class="card left2" x="70" y="270" width="150" height="84" rx="18"/>
-    <text class="body" x="145" y="304" text-anchor="middle">More room to</text>
-    <text class="body" x="145" y="330" text-anchor="middle">reinvest or cut price</text>
-
-    <path class="arrow" d="M220 170 H286"/>
-    <path class="arrow" d="M375 212 V254"/>
-    <path class="arrow" d="M300 312 H234"/>
-    <path class="arrow" d="M145 270 V226"/>
-
-    <text class="note" x="260" y="388" text-anchor="middle">
-      <tspan x="260" dy="0">Classic examples: cloud software, logistics networks,</tspan>
-      <tspan x="260" dy="24">payments infrastructure, and other high-fixed-cost systems.</tspan>
+    <rect class="card left1" x="52" y="128" width="168" height="104" rx="18"/>
+    <text class="body" x="136" y="164" text-anchor="middle">
+      <tspan x="136" dy="0">More output</tspan>
+      <tspan x="136" dy="22">or usage</tspan>
     </text>
+
+    <rect class="card left2" x="300" y="128" width="168" height="104" rx="18"/>
+    <text class="body" x="384" y="164" text-anchor="middle">
+      <tspan x="384" dy="0">Fixed costs</tspan>
+      <tspan x="384" dy="22">spread wider</tspan>
+    </text>
+
+    <rect class="card left1" x="300" y="272" width="168" height="104" rx="18"/>
+    <text class="body" x="384" y="308" text-anchor="middle">
+      <tspan x="384" dy="0">Lower average</tspan>
+      <tspan x="384" dy="22">cost</tspan>
+    </text>
+
+    <rect class="card left2" x="52" y="272" width="168" height="104" rx="18"/>
+    <text class="body" x="136" y="298" text-anchor="middle">
+      <tspan x="136" dy="0">More room</tspan>
+      <tspan x="136" dy="22">to reinvest</tspan>
+      <tspan x="136" dy="22">or cut price</tspan>
+    </text>
+
+    <path class="arrow" d="M220 180 H282"/>
+    <path class="arrow" d="M384 232 V256"/>
+    <path class="arrow" d="M300 324 H238"/>
+    <path class="arrow" d="M136 272 V242"/>
+
+    <g transform="translate(40 406)">
+      <rect class="callout" width="440" height="62" rx="20"/>
+      <text class="note" x="220" y="26" text-anchor="middle">
+        <tspan x="220" dy="0">Examples: cloud software, logistics, payments,</tspan>
+        <tspan x="220" dy="20">and other high-fixed-cost systems.</tspan>
+      </text>
+    </g>
   </g>
 
-  <g transform="translate(628 132)">
-    <rect class="panel" width="520" height="410" rx="28"/>
+  <g transform="translate(628 136)">
+    <rect class="panel" width="520" height="500" rx="28"/>
     <text class="panelTitle" x="260" y="50" text-anchor="middle">Network Effects</text>
     <text class="subtitle" x="260" y="82" text-anchor="middle">Demand-side flywheel</text>
 
-    <rect class="card right1" x="70" y="128" width="150" height="84" rx="18"/>
-    <text class="body" x="145" y="162" text-anchor="middle">More users</text>
-    <text class="body" x="145" y="188" text-anchor="middle">join</text>
-
-    <rect class="card right2" x="300" y="128" width="150" height="84" rx="18"/>
-    <text class="body" x="375" y="162" text-anchor="middle">More liquidity,</text>
-    <text class="body" x="375" y="188" text-anchor="middle">content, or data</text>
-
-    <rect class="card right1" x="300" y="270" width="150" height="84" rx="18"/>
-    <text class="body" x="375" y="304" text-anchor="middle">Higher user</text>
-    <text class="body" x="375" y="330" text-anchor="middle">value</text>
-
-    <rect class="card right2" x="70" y="270" width="150" height="84" rx="18"/>
-    <text class="body" x="145" y="304" text-anchor="middle">More retention</text>
-    <text class="body" x="145" y="330" text-anchor="middle">and acquisition</text>
-
-    <path class="arrow" d="M220 170 H286"/>
-    <path class="arrow" d="M375 212 V254"/>
-    <path class="arrow" d="M300 312 H234"/>
-    <path class="arrow" d="M145 270 V226"/>
-
-    <text class="note" x="260" y="388" text-anchor="middle">
-      <tspan x="260" dy="0">Classic examples: marketplaces, app stores,</tspan>
-      <tspan x="260" dy="24">social networks, and messaging products.</tspan>
+    <rect class="card right1" x="52" y="128" width="168" height="104" rx="18"/>
+    <text class="body" x="136" y="164" text-anchor="middle">
+      <tspan x="136" dy="0">More users</tspan>
+      <tspan x="136" dy="22">join</tspan>
     </text>
+
+    <rect class="card right2" x="300" y="128" width="168" height="104" rx="18"/>
+    <text class="body" x="384" y="164" text-anchor="middle">
+      <tspan x="384" dy="0">More liquidity,</tspan>
+      <tspan x="384" dy="22">content, or data</tspan>
+    </text>
+
+    <rect class="card right1" x="300" y="272" width="168" height="104" rx="18"/>
+    <text class="body" x="384" y="308" text-anchor="middle">
+      <tspan x="384" dy="0">Higher user</tspan>
+      <tspan x="384" dy="22">value</tspan>
+    </text>
+
+    <rect class="card right2" x="52" y="272" width="168" height="104" rx="18"/>
+    <text class="body" x="136" y="298" text-anchor="middle">
+      <tspan x="136" dy="0">More retention</tspan>
+      <tspan x="136" dy="22">and acquisition</tspan>
+    </text>
+
+    <path class="arrow" d="M220 180 H282"/>
+    <path class="arrow" d="M384 232 V256"/>
+    <path class="arrow" d="M300 324 H238"/>
+    <path class="arrow" d="M136 272 V242"/>
+
+    <g transform="translate(40 406)">
+      <rect class="callout" width="440" height="62" rx="20"/>
+      <text class="note" x="220" y="26" text-anchor="middle">
+        <tspan x="220" dy="0">Examples: marketplaces, app stores, social</tspan>
+        <tspan x="220" dy="20">networks, and messaging products.</tspan>
+      </text>
+    </g>
   </g>
 
-  <g transform="translate(190 584)">
-    <rect class="callout" width="820" height="74" rx="20"/>
-    <text class="note" x="410" y="32" text-anchor="middle">
-      <tspan x="410" dy="0">When both loops are strong, platforms can scale fast and tip markets.</tspan>
-      <tspan x="410" dy="24">Multi-homing, differentiation, and regulation can still keep markets contestable.</tspan>
+  <g transform="translate(170 664)">
+    <rect class="callout" width="860" height="70" rx="20"/>
+    <text class="note" x="430" y="28" text-anchor="middle">
+      <tspan x="430" dy="0">When both loops are strong, platforms can scale fast and tip markets.</tspan>
+      <tspan x="430" dy="20">Multi-homing, differentiation, and regulation can still keep markets contestable.</tspan>
     </text>
   </g>
 </svg>

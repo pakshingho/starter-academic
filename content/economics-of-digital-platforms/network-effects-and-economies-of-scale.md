@@ -51,7 +51,7 @@ The key point is that scale economies do not require user-to-user interaction. T
 
 ### 1.3 Network effects: definitions and types
 
-Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. General overviews [1](https://en.wikipedia.org/wiki/Network_effect) [2](https://online.hbs.edu/blog/post/what-are-network-effects) line up closely with the distinction used in the lecture.
+Network effects appear when the value to one user depends on how many other users are present. The telephone network remains the classic example: each additional user increases the number of people everyone else can reach. General overviews [2](https://en.wikipedia.org/wiki/Network_effect) [3](https://online.hbs.edu/blog/post/what-are-network-effects) line up closely with the distinction used in the lecture.
 
 The session distinguishes two main forms:
 
@@ -145,7 +145,7 @@ A matching platform connects groups that hold complementary resources or needs:
 - people seeking jobs and employers
 - individuals seeking partners in dating markets
 
-Indirect network effects are the central mechanism. More participation on one side improves the expected value for the other side because it raises the odds of a useful match, shortens waiting time, improves variety, or thickens liquidity. A marketplace-focused explainer is helpful on exactly this intuition [3](https://www.cs-cart.com/blog/marketplace-network-effects/).
+Indirect network effects are the central mechanism. More participation on one side improves the expected value for the other side because it raises the odds of a useful match, shortens waiting time, improves variety, or thickens liquidity. A marketplace-focused explainer is helpful on exactly this intuition [4](https://www.cs-cart.com/blog/marketplace-network-effects/).
 
 The notes also emphasize familiar examples:
 
@@ -211,6 +211,7 @@ Those four questions set up almost everything that follows in later chapters.
 
 ### 1.10 References
 
-1. [Network effect](https://en.wikipedia.org/wiki/Network_effect)
-2. [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects)
-3. [Marketplace Network Effects: Building Self-Growing Platforms](https://www.cs-cart.com/blog/marketplace-network-effects/)
+1. [EODP-session-1 W22 | Videos & Movies on Vimeo](https://vimeo.com/928404357)
+2. [Network effect](https://en.wikipedia.org/wiki/Network_effect)
+3. [What Are Network Effects?](https://online.hbs.edu/blog/post/what-are-network-effects)
+4. [Marketplace Network Effects: Building Self-Growing Platforms](https://www.cs-cart.com/blog/marketplace-network-effects/)
