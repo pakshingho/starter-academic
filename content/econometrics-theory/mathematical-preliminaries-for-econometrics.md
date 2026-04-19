@@ -14,7 +14,7 @@ menu:
 weight: 2
 ---
 
-This chapter begins with the matrix tools used repeatedly throughout the rest of the course. For now, Section 1.1 is filled in, while Sections 1.2 and 1.3 remain as outline placeholders.
+This chapter begins with the matrix and probability tools used repeatedly throughout the rest of the course. For now, Sections 1.1 and 1.2 are filled in, while Section 1.3 remains as an outline placeholder.
 
 ## 1.1 Matrix notation and useful results
 
@@ -244,6 +244,153 @@ Three useful properties are:
 
 ## 1.2 Elementary properties in probability
 
-- 1.2.1 Some probability properties
+When analyzing econometric models, the data come from random experiments. If the same experiment were repeated, the outcome would not generally be identical from one repetition to the next. The key stabilizing idea is that, over many repetitions, frequencies tend to settle down. That long-run stabilization is the foundation on which the note builds later statistical and asymptotic results.
+
+We begin with the basic probability setup.
+
+### Sample space, sample points, and events
+
+The sample space is the set of all possible outcomes of a random experiment. It is denoted by $\Omega$.
+
+A sample point, denoted $\omega$, is a single element of $\Omega$.
+
+Subsets of $\Omega$ are called events.
+
+The next step is to equip $\Omega$ with a probability measure. The measure $\Pr(\cdot)$ must satisfy:
+
+1. $\Pr(\Omega) = 1$.
+2. For pairwise disjoint events $A_i$,  
+   <div>$$\Pr\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \Pr(A_i).$$</div>
+
+If $\Omega$ has only finitely many sample points, then we have the simple but important formula
+
+<div>$$\Pr(A) = \frac{\#\{A\}}{\#\{\Omega\}}.$$</div>
+
+### 1.2.1 Some properties on probability
+
+The note lists the following standard properties.
+
+1. If $A \subseteq B$, then $\Pr(A) \leq \Pr(B)$.
+2. <div>$$\Pr(A^c) = 1 - \Pr(A).$$</div>
+3. If $A \subseteq B$, then <div>$$\Pr(B \setminus A) = \Pr(B) - \Pr(A).$$</div>
+4. <div>$$0 \leq \Pr(A) \leq 1.$$</div>
+5. <div>$$\Pr\left(\bigcup_{i=1}^{\infty} A_i\right) \leq \sum_{i=1}^{\infty} \Pr(A_i).$$</div>
+6. <div>$$\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B).$$</div>
+7. If $A_1 \subseteq A_2 \subseteq \cdots$, then  
+   <div>$$\lim_{n \to \infty} \Pr(A_n) = \Pr\left(\bigcup_{i=1}^{\infty} A_i\right).$$</div>
+8. If $A_i$ is a nonincreasing sequence of sets with $\lim_{i \to \infty} A_i = \bigcap_{i=1}^{\infty} A_i$, then  
+   <div>$$\lim_{i \to \infty} \Pr(A_i) = \Pr\left(\lim_{i \to \infty} A_i\right).$$</div>
+9. Bonferroni's inequality:  
+   <div>$$\Pr\left(\bigcap_{i=1}^{k} A_i\right) \geq 1 - \sum_{i=1}^{k} \Pr(A_i^c).$$</div>
+
+#### Conditional probability
+
+If $\Pr(B) > 0$, then the conditional probability of $A$ given $B$ is
+
+<div>$$\Pr(A \mid B) = \frac{\Pr(A \cap B)}{\Pr(B)}.$$</div>
+
+For disjoint events $A_i$,
+
+<div>$$\Pr\left(\bigcup_{i=1}^{k} A_i \,\middle|\, B\right) = \sum_{i=1}^{k} \frac{\Pr(A_i \cap B)}{\Pr(B)}.$$</div>
+
+#### Independence
+
+The events $A_1, A_2, \dots, A_n$ are independent if
+
+<div>$$\Pr(A_{i_1} \cap \cdots \cap A_{i_k}) = \prod_{j=1}^{k} \Pr(A_{i_j})$$</div>
+
+for every subset of indices $\{i_1, \dots, i_k\}$.
+
+If all $\Pr(A_i) > 0$, this is equivalent to saying
+
+<div>$$\Pr(A_j \mid A_{i_1}, \dots, A_{i_k}) = \Pr(A_j)$$</div>
+
+for any $j \notin \{i_1, \dots, i_k\}$.
+
+### Random variables and induced distributions
+
+A random variable $X$ is a function from the sample space $\Omega$ to $\mathbb{R}$ such that for every Borel set $B$,
+
+<div>$$X^{-1}(B) = \{\omega : X(\omega) \in B\}$$</div>
+
+is an event.
+
+The note's intuition is that we often care not about the raw sample points in $\Omega$, but about a measurable quantity induced by them, such as a student's height. Once a random variable $X$ is defined, it induces a probability measure on $\mathbb{R}$:
+
+<div>$$Q(B) = \Pr\bigl(X^{-1}(B)\bigr) = \Pr\bigl(\omega : X(\omega) \in B\bigr).$$</div>
+
+For an interval $[a,b] \subseteq \mathbb{R}$,
+
+<div>$$Q([a,b]) = \Pr\bigl(X^{-1}[a,b]\bigr).$$</div>
+
+When $a = -\infty$, the note defines the distribution function by
+
+<div>$$F(b) = \Pr((-\infty, b]).$$</div>
+
+If $F$ is differentiable, then its derivative
+
+<div>$$f(x) = \frac{d}{dx}F(x)$$</div>
+
+is the density function.
+
+The key properties of $F$ are:
+
+1. <div>$$F(-\infty) = 0, \qquad F(\infty) = 1.$$</div>
+2. If $x \leq y$, then <div>$$F(x) \leq F(y).$$</div>
+3. If $x_n \to x^+$, then <div>$$F(x_n) \to F(x).$$</div>
+
+### Characteristic functions and expectations
+
+Every random variable $X$ has a characteristic function:
+
+<div>$$\phi(t) = E\!\left(e^{itX}\right), \qquad t \in \mathbb{R}.$$</div>
+
+The note motivates this using
+
+<div>$$\exp(iz) = \cos(z) + i \sin(z).$$</div>
+
+If $g(x)$ is a function of $x$, we say that the expectation $E[g(X)]$ exists if
+
+<div>$$\int |g(x)|\, dF(x) < \infty.$$</div>
+
+In that case,
+
+<div>$$E[g(X)] = \int g(x)\, dF(x).$$</div>
+
+One useful warning from the note is:
+
+<div>$$E(X/Y) \neq E(X)/E(Y)$$</div>
+
+in general.
+
+### Inequalities used later in probability arguments
+
+The note ends the section by collecting a few inequalities that recur later.
+
+Jensen's inequality:
+
+<div>$$f(E[X]) \leq E[f(X)]$$</div>
+
+when $f$ is convex, meaning
+
+<div>$$f(\alpha x + \beta y) \leq \alpha f(x) + \beta f(y).$$</div>
+
+Equality holds when $X$ is constant.
+
+The note also records the moment bound
+
+<div>$$E\{|X - E(X)|^p\} \leq C\,E\bigl(|X|^p + |E(X)|^p\bigr),$$</div>
+
+and because
+
+<div>$$|E(X)| \leq E|X| \leq \bigl(E|X|^p\bigr)^{1/p},$$</div>
+
+we obtain
+
+<div>$$E\{|X - E(X)|^p\} \leq C\,E|X|^p.$$</div>
+
+Finally, the note lists the covariance-style bound
+
+<div>$$|E(XY)| \leq \bigl(E|X|^2 E|Y|^2\bigr)^{1/2} \leq \frac{1}{2}\bigl(E|X|^2 + E|Y|^2\bigr).$$</div>
 
 ## 1.3 Distribution of quadratic forms of normal random variables
