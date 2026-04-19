@@ -278,8 +278,10 @@ The note lists the following standard properties.
 6. <div>$$\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B).$$</div>
 7. If $A_1 \subseteq A_2 \subseteq \cdots$, then  
    <div>$$\lim_{n \to \infty} \Pr(A_n) = \Pr\left(\bigcup_{i=1}^{\infty} A_i\right).$$</div>
+   Intuition: when the events keep expanding, their probabilities increase toward the probability of the full event formed by collecting everything that eventually appears.
 8. If $A_i$ is a nonincreasing sequence of sets with $\lim_{i \to \infty} A_i = \bigcap_{i=1}^{\infty} A_i$, then  
    <div>$$\lim_{i \to \infty} \Pr(A_i) = \Pr\left(\lim_{i \to \infty} A_i\right).$$</div>
+   Intuition: when the events keep shrinking, their probabilities decrease toward the probability of the common core that remains in every set.
 9. Bonferroni's inequality:  
    <div>$$\Pr\left(\bigcap_{i=1}^{k} A_i\right) \geq 1 - \sum_{i=1}^{k} \Pr(A_i^c).$$</div>
 
