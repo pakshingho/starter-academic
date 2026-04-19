@@ -581,3 +581,82 @@ Likewise, a necessary and sufficient condition for the two quadratic forms
 to be independent is
 
 <div>$$\Sigma A \Sigma B \Sigma = 0.$$</div>
+
+#### Why these are the right conditions
+
+The clean way to prove both results is to reduce everything to the standard normal case. Assume for exposition that $\Sigma$ is positive definite, and define
+
+<div>$$X = \Sigma^{-1/2}(Y-\mu),$$</div>
+
+so that
+
+<div>$$X \sim N_p(0,I_p).$$</div>
+
+Now set
+
+<div>$$M = \Sigma^{1/2}A\Sigma^{1/2},\qquad N = \Sigma^{1/2}B\Sigma^{1/2},\qquad c = \Sigma^{1/2}P.$$</div>
+
+Then
+
+<div>$$P^\prime Y = P^\prime\mu + c^\prime X,$$</div>
+
+and
+
+<div>$$(Y-\mu)^\prime A(Y-\mu) = X^\prime M X,\qquad (Y-\mu)^\prime B(Y-\mu) = X^\prime N X.$$</div>
+
+Since adding the constant $P^\prime \mu$ does not affect independence, the two claims reduce to the standard-normal statements:
+
+1. $c^\prime X$ is independent of $X^\prime M X$ if and only if $Mc=0$.
+2. $X^\prime M X$ is independent of $X^\prime N X$ if and only if $MN=0$.
+
+Translating these conditions back gives
+
+<div>$$Mc=0 \iff \Sigma^{1/2}A\Sigma P = 0 \iff \Sigma A \Sigma P = 0,$$</div>
+
+and
+
+<div>$$MN=0 \iff \Sigma^{1/2}A\Sigma B\Sigma^{1/2}=0 \iff \Sigma A \Sigma B \Sigma = 0.$$</div>
+
+For the first statement, choose an orthogonal matrix $H$ such that
+
+<div>$$Hc = \|c\|e_1,$$</div>
+
+and define $U = HX$. Then $U \sim N_p(0,I_p)$ and
+
+<div>$$c^\prime X = \|c\|U_1.$$</div>
+
+Also,
+
+<div>$$X^\prime M X = U^\prime (HMH^\prime) U.$$</div>
+
+If $Mc=0$, then $(HMH^\prime)e_1 = 0$. Because $HMH^\prime$ is symmetric, its first row and first column are both zero. Therefore the quadratic form depends only on $U_2,\dots,U_p$, while the linear form depends only on $U_1$. Since the coordinates of a standard normal vector are independent, the two forms are independent.
+
+Conversely, if $c^\prime X$ and $X^\prime M X$ are independent, then the joint moment generating function must factor. In the Gaussian case this implies
+
+<div>$$c^\prime (I-2sM)^{-1} c = c^\prime c$$</div>
+
+for all sufficiently small $s$. Expanding around $s=0$ yields
+
+<div>$$c^\prime M^2 c = 0.$$</div>
+
+Because $M$ is symmetric, this means $\|Mc\|^2 = 0$, so $Mc=0$.
+
+For the second statement, if $MN=0$ and $M,N$ are symmetric, then also $NM=0$ because
+
+<div>$$(MN)^\prime = NM.$$</div>
+
+Thus $M$ and $N$ commute and can be simultaneously diagonalized by an orthogonal matrix. In rotated coordinates $U=HX$,
+
+<div>$$X^\prime M X = \sum_i m_i U_i^2,\qquad X^\prime N X = \sum_i n_i U_i^2,$$</div>
+
+where $m_i n_i = 0$ for every $i$. So the two quadratic forms are built from disjoint groups of the independent variables $U_i^2$, which makes them independent.
+
+Conversely, if the two quadratic forms are independent, then their joint moment generating function must factor:
+
+<div>$$E\exp\{sX^\prime M X + tX^\prime N X\} = E\exp\{sX^\prime M X\}\,E\exp\{tX^\prime N X\}.$$</div>
+
+For a standard normal vector this factorization is equivalent to
+
+<div>$$\det(I-2sM-2tN) = \det(I-2sM)\det(I-2tN),$$</div>
+
+and the latter holds if and only if $MN=0$. This is the classical Craig characterization for independence of quadratic forms in normal vectors.
