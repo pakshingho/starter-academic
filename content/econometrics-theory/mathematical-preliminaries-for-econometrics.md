@@ -304,6 +304,18 @@ The note lists the following standard properties.
    Rule 8 can also be derived from Rule 7 by taking complements. If $A_n$ decreases, then $A_n^c$ increases. Applying Rule 7 to $A_n^c$ and then using $\Pr(A_n)=1-\Pr(A_n^c)$ gives the result for decreasing sequences.
 9. Bonferroni's inequality:  
    <div>$$\Pr\left(\bigcap_{i=1}^{k} A_i\right) \geq 1 - \sum_{i=1}^{k} \Pr(A_i^c).$$</div>
+   This gives a lower bound for the probability that all the events occur. The key idea is that the complement of the intersection is the event that at least one of the $A_i$ fails:
+   <div>$$\left(\bigcap_{i=1}^{k} A_i\right)^c = \bigcup_{i=1}^{k} A_i^c.$$</div>
+   Therefore,
+   <div>$$\Pr\left(\bigcap_{i=1}^{k} A_i\right) = 1 - \Pr\left(\bigcup_{i=1}^{k} A_i^c\right).$$</div>
+   Applying the union bound from Rule 5 gives
+   <div>$$\Pr\left(\bigcup_{i=1}^{k} A_i^c\right) \leq \sum_{i=1}^{k} \Pr(A_i^c),$$</div>
+   which implies Bonferroni's inequality. Intuitively, if each event is very likely, then the probability that all of them happen must also be large.
+   For example, if
+   <div>$$\Pr(A_1^c)=0.02,\qquad \Pr(A_2^c)=0.03,\qquad \Pr(A_3^c)=0.01,$$</div>
+   then
+   <div>$$\Pr(A_1 \cap A_2 \cap A_3) \geq 1-(0.02+0.03+0.01)=0.94.$$</div>
+   So even without knowing whether the events are independent, we can still guarantee that the probability that all three occur is at least $0.94$.
 
 #### Conditional probability
 
