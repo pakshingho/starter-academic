@@ -170,6 +170,105 @@ for n in [10, 20, 50, 100, 250, 500]:
     print(n, np.mean(np.abs(ubar) > delta))
 ```
 
+<div class="probability-tool" id="probability-tool">
+  <div class="probability-tool__grid">
+    <section class="probability-tool__panel">
+      <p class="probability-tool__eyebrow">Interactive Monte Carlo</p>
+      <h3>Convergence in probability simulator</h3>
+      <p id="probability-tool-example-copy">Pick an example, choose a tolerance band, and rerun the simulation. The chart tracks how often the statistic falls outside the band as the sample size grows.</p>
+      <div class="probability-tool__field">
+        <label for="probability-tool-example">Example</label>
+        <select id="probability-tool-example">
+          <option value="rare-jump" selected>Rare jump to theta + 1</option>
+          <option value="sample-mean">Sample mean of iid N(0,1)</option>
+        </select>
+        <p>The first matches the note's toy example. The second is the law of large numbers in simulation form.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="probability-tool-delta">Tolerance delta</label>
+        <input id="probability-tool-delta" type="number" min="0.01" step="0.01" value="0.50">
+        <p>The simulator estimates <code>Pr(|x_n - x| &gt; delta)</code> for each sample size <code>n</code>.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="probability-tool-reps">Monte Carlo repetitions</label>
+        <input id="probability-tool-reps" type="number" min="500" max="20000" step="500" value="5000">
+        <p>More repetitions smooth the simulated curve but take slightly longer to run.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="probability-tool-snapshot">Snapshot sample size</label>
+        <select id="probability-tool-snapshot"></select>
+        <p>This controls the dot plot on the right, which shows one Monte Carlo cross-section of simulated outcomes at a fixed <code>n</code>.</p>
+      </div>
+      <div class="probability-tool__actions">
+        <button type="button" class="probability-tool__button" id="probability-tool-run">Run simulation</button>
+        <button type="button" class="probability-tool__button probability-tool__button--ghost" id="probability-tool-reset">Reset preset</button>
+      </div>
+    </section>
+    <section class="probability-tool__panel probability-tool__panel--results">
+      <p class="probability-tool__eyebrow">Current Run</p>
+      <h3>What the simulation is showing</h3>
+      <div class="probability-tool__metrics">
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Target limit</span>
+          <strong id="probability-tool-metric-target">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Tolerance band</span>
+          <strong id="probability-tool-metric-band">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Miss probability at smallest n</span>
+          <strong id="probability-tool-metric-small">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Miss probability at largest n</span>
+          <strong id="probability-tool-metric-large">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Inside-band share at snapshot n</span>
+          <strong id="probability-tool-metric-inside">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Theoretical miss probability at largest n</span>
+          <strong id="probability-tool-metric-theory">-</strong>
+        </div>
+      </div>
+      <div class="probability-tool__notes" id="probability-tool-notes"></div>
+      <div class="probability-tool__error" id="probability-tool-error" hidden></div>
+    </section>
+  </div>
+  <section class="probability-tool__panel probability-tool__panel--charts">
+    <div class="probability-tool__charts">
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Miss probability versus sample size</h3>
+          <p>The teal line is simulated. The dashed line is the exact probability when it is available in closed form.</p>
+        </div>
+        <div id="probability-tool-tail-chart"></div>
+      </article>
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Snapshot of simulated draws at one n</h3>
+          <p>The shaded band is <code>[x - delta, x + delta]</code>. Blue points land inside the band; orange points miss it.</p>
+        </div>
+        <div id="probability-tool-snapshot-chart"></div>
+      </article>
+    </div>
+    <div class="probability-tool__table-wrap">
+      <table class="probability-tool__table">
+        <thead>
+          <tr>
+            <th>Sample size n</th>
+            <th>Simulated Pr(|x_n - x| &gt; delta)</th>
+            <th>Theoretical Pr(|x_n - x| &gt; delta)</th>
+          </tr>
+        </thead>
+        <tbody id="probability-tool-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
 The key lesson from both tours is the same: convergence in probability does not mean that every realization is close to the limit, nor that the sequence moves monotonically toward it. It means that the probability of being noticeably far away becomes negligible as $n$ increases.
 
 #### Example: almost sure convergence
