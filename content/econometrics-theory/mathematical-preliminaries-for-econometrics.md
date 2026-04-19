@@ -389,8 +389,12 @@ we obtain
 
 <div>$$E\{|X - E(X)|^p\} \leq C\,E|X|^p.$$</div>
 
-Finally, the note lists the covariance-style bound
+Finally, the note lists a covariance-style inequality chain. First,
 
-<div>$$|E(XY)| \leq \bigl(E|X|^2 E|Y|^2\bigr)^{1/2} \leq \frac{1}{2}\bigl(E|X|^2 + E|Y|^2\bigr).$$</div>
+<div>$$|E(XY)| \leq \bigl(E|X|^2 E|Y|^2\bigr)^{1/2}.$$</div>
+
+Second,
+
+<div>$$\bigl(E|X|^2 E|Y|^2\bigr)^{1/2} \leq \frac{1}{2}\bigl(E|X|^2 + E|Y|^2\bigr).$$</div>
 
 ## 1.3 Distribution of quadratic forms of normal random variables
