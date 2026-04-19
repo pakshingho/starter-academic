@@ -7,7 +7,7 @@ date: 2026-04-17
 lastmod: 2026-04-17
 draft: false
 menu:
-  econometric-analysis:
+  econometrics-theory:
     identifier: chapter-nonlinear-gmm
     weight: 9
 weight: 9

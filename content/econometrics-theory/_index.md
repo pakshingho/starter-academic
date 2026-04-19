@@ -8,7 +8,7 @@ draft: false
 type: docs
 layout: docs
 menu:
-  econometric-analysis:
+  econometrics-theory:
     name: Overview
     identifier: chapter-overview
     weight: 1

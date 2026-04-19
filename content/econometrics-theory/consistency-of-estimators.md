@@ -7,7 +7,7 @@ date: 2026-04-17
 lastmod: 2026-04-17
 draft: false
 menu:
-  econometric-analysis:
+  econometrics-theory:
     identifier: chapter-consistency
     weight: 7
 weight: 7

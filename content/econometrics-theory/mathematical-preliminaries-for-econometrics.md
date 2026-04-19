@@ -8,7 +8,7 @@ lastmod: 2026-04-17
 draft: false
 math: true
 menu:
-  econometric-analysis:
+  econometrics-theory:
     identifier: chapter-preliminaries
     weight: 2
 weight: 2

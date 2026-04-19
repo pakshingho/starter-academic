@@ -7,7 +7,7 @@ date: 2026-04-17
 lastmod: 2026-04-17
 draft: false
 menu:
-  econometric-analysis:
+  econometrics-theory:
     identifier: chapter-asymptotic-normality
     weight: 8
 weight: 8
