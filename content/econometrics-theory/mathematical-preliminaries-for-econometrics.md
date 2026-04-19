@@ -14,7 +14,7 @@ menu:
 weight: 2
 ---
 
-This chapter begins with the matrix and probability tools used repeatedly throughout the rest of the course. For now, Sections 1.1 and 1.2 are filled in, while Section 1.3 remains as an outline placeholder.
+This chapter begins with the matrix and probability tools used repeatedly throughout the rest of the course. Sections 1.1, 1.2, and 1.3 now collect the main matrix, probability, and quadratic-form results used later in the course.
 
 ## 1.1 Matrix notation and useful results
 
@@ -431,3 +431,153 @@ Finally, the note lists the covariance-style bound in the following two forms:
 \end{array}\right.$$</div>
 
 ## 1.3 Distribution of quadratic forms of normal random variables
+
+This section collects the normal-based distributions that show up repeatedly in econometrics, especially when we study least squares, likelihood theory, and test statistics built from quadratic forms.
+
+### Central chi-square distributions
+
+Consider
+
+<div>$$x = (x_1,\dots,x_p)^\prime \sim N_p\!\left(\mu,\operatorname{diag}(\sigma_1^2,\dots,\sigma_p^2)\right),$$</div>
+
+where
+
+<div>$$\mu = (\mu_1,\dots,\mu_p)^\prime.$$</div>
+
+Then the standardized quadratic form
+
+<div>$$Z = \sum_{i=1}^{p}\left(\frac{x_i-\mu_i}{\sigma_i}\right)^2$$</div>
+
+has a chi-square distribution with $p$ degrees of freedom:
+
+<div>$$Z \sim \chi_p^2.$$</div>
+
+The note also records the decomposition result:
+
+<div>$$Q = Q_1 + Q_2,$$</div>
+
+where
+
+<div>$$Q \sim \chi_a^2,\qquad Q_1 \sim \chi_b^2,\qquad Q_2 \geq 0.$$</div>
+
+Then
+
+<div>$$Q_2 \sim \chi_{a-b}^2.$$</div>
+
+### F and Student's t distributions
+
+Let $Z_1$ and $Z_2$ be independent chi-square random variables with
+
+<div>$$Z_1 \sim \chi_p^2,\qquad Z_2 \sim \chi_q^2.$$</div>
+
+Then
+
+<div>$$F = \frac{Z_1/p}{Z_2/q} \sim F_{p,q},$$</div>
+
+that is, $F$ has an $F$-Snedecor distribution with $p$ and $q$ degrees of freedom.
+
+In the special case $p=1$, the note links this directly to the Student's $t$ distribution. Equivalently, if $Z \sim N(0,1)$ and $Z_2 \sim \chi_q^2$ are independent, then
+
+<div>$$t = \frac{Z}{\sqrt{Z_2/q}} \sim t_q,$$</div>
+
+and therefore
+
+<div>$$t^2 \sim F_{1,q}.$$</div>
+
+### Noncentral chi-square distributions
+
+Consider the scalar case
+
+<div>$$X \sim N(\mu,\sigma^2).$$</div>
+
+Then
+
+<div>$$\frac{X^2}{\sigma^2} \sim \chi_1^2\!\left(\frac{\mu^2}{\sigma^2}\right),$$</div>
+
+where $\mu^2/\sigma^2$ is the noncentrality parameter.
+
+More generally, if
+
+<div>$$x = (x_1,\dots,x_p)^\prime \sim N_p\!\left(\mu,\operatorname{diag}(\sigma_1^2,\dots,\sigma_p^2)\right),$$</div>
+
+then
+
+<div>$$\sum_{i=1}^{p}\left(\frac{x_i}{\sigma_i}\right)^2 \sim \chi_p^2\!\left(\sum_{i=1}^{p}\frac{\mu_i^2}{\sigma_i^2}\right),$$</div>
+
+and the noncentrality parameter is
+
+<div>$$\sum_{i=1}^{p}\frac{\mu_i^2}{\sigma_i^2}.$$</div>
+
+### Quadratic forms in normal vectors
+
+Let $A$ be a symmetric matrix, and let
+
+<div>$$X \sim N_q(0,I_q).$$</div>
+
+Then
+
+<div>$$X^\prime A X \sim \chi_p^2$$</div>
+
+if and only if $A$ is idempotent, with
+
+<div>$$p = \operatorname{tr}(A) = \operatorname{rank}(A) \leq q.$$</div>
+
+The note then extends this to the case
+
+<div>$$X \sim N_q(0,\Sigma).$$</div>
+
+In that case,
+
+<div>$$X^\prime A X \sim \chi_p^2$$</div>
+
+if and only if
+
+<div>$$\Sigma A \Sigma A \Sigma = \Sigma A \Sigma$$</div>
+
+and
+
+<div>$$p = \operatorname{rank}(A\Sigma) \leq q.$$</div>
+
+The proof uses a whitening transformation. Let
+
+<div>$$Y = \Sigma^{-1/2}X,$$</div>
+
+so that
+
+<div>$$Y \sim N_q(0,I_q).$$</div>
+
+Then
+
+<div>$$X^\prime A X = Y^\prime \Sigma^{1/2}A\Sigma^{1/2}Y.$$</div>
+
+By the previous result, this quadratic form is chi-square precisely when
+
+<div>$$\Sigma^{1/2}A\Sigma^{1/2} = \Sigma^{1/2}A\Sigma^{1/2}\Sigma^{1/2}A\Sigma^{1/2},$$</div>
+
+which is equivalent to
+
+<div>$$\Sigma A \Sigma A \Sigma = \Sigma A \Sigma.$$</div>
+
+### Independence results for linear and quadratic forms
+
+The note closes the section with two classical independence conditions.
+
+Let
+
+<div>$$Y \sim N_p(\mu,\Sigma).$$</div>
+
+A necessary and sufficient condition for the linear form $P^\prime Y$ and the quadratic form
+
+<div>$$(Y-\mu)^\prime A(Y-\mu)$$</div>
+
+to be independent is
+
+<div>$$\Sigma A \Sigma P = 0.$$</div>
+
+Likewise, a necessary and sufficient condition for the two quadratic forms
+
+<div>$$(Y-\mu)^\prime A(Y-\mu)\qquad\text{and}\qquad (Y-\mu)^\prime B(Y-\mu)$$</div>
+
+to be independent is
+
+<div>$$\Sigma A \Sigma B \Sigma = 0.$$</div>
