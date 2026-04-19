@@ -278,10 +278,30 @@ The note lists the following standard properties.
 6. <div>$$\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B).$$</div>
 7. If $A_1 \subseteq A_2 \subseteq \cdots$, then  
    <div>$$\lim_{n \to \infty} \Pr(A_n) = \Pr\left(\bigcup_{i=1}^{\infty} A_i\right).$$</div>
-   Intuition: when the events keep expanding, their probabilities increase toward the probability of the full event formed by collecting everything that eventually appears.
+   This is the continuity property of probability for increasing sequences of events. The sets keep expanding, so each new event contains all the previous ones. As a result, the probabilities move upward toward the probability of the limiting event formed by collecting everything that ever appears:
+   <div>$$\bigcup_{i=1}^{\infty} A_i.$$</div>
+   A useful way to picture it is that $A_1$ is a small event, $A_2$ contains $A_1$, $A_3$ contains $A_2$, and so on. The union is the full event obtained by taking all outcomes that show up at any stage. Rule 7 says that the probabilities of these finite approximations converge to the probability of that full event.
+   For example, let
+   <div>$$A_n = (-\infty, 1 - 1/n].$$</div>
+   Then $A_1 \subseteq A_2 \subseteq \cdots$, and
+   <div>$$\bigcup_{n=1}^{\infty} A_n = (-\infty, 1).$$</div>
+   Therefore,
+   <div>$$\Pr(X \leq 1 - 1/n) \to \Pr(X < 1).$$</div>
+   This matters because it lets us approximate an infinite or limiting event by simpler expanding events whose probabilities are easier to work with.
 8. If $A_i$ is a nonincreasing sequence of sets with $\lim_{i \to \infty} A_i = \bigcap_{i=1}^{\infty} A_i$, then  
    <div>$$\lim_{i \to \infty} \Pr(A_i) = \Pr\left(\lim_{i \to \infty} A_i\right).$$</div>
-   Intuition: when the events keep shrinking, their probabilities decrease toward the probability of the common core that remains in every set.
+   This is the matching continuity property for decreasing sequences of events. Here the sets keep shrinking:
+   <div>$$A_1 \supseteq A_2 \supseteq A_3 \supseteq \cdots,$$</div>
+   so the probabilities move downward toward the probability of the common core that remains in every set:
+   <div>$$\bigcap_{i=1}^{\infty} A_i.$$</div>
+   Intuitively, we begin with a large event and keep removing outcomes. What survives forever is the intersection, and Rule 8 says the probabilities converge to the probability of that surviving core.
+   For example, let
+   <div>$$A_n = [-1/n, 1/n].$$</div>
+   Then $A_1 \supseteq A_2 \supseteq \cdots$, and
+   <div>$$\bigcap_{n=1}^{\infty} A_n = \{0\}.$$</div>
+   Therefore,
+   <div>$$\Pr\bigl(X \in [-1/n,1/n]\bigr) \to \Pr(X = 0).$$</div>
+   Rule 8 can also be derived from Rule 7 by taking complements. If $A_n$ decreases, then $A_n^c$ increases. Applying Rule 7 to $A_n^c$ and then using $\Pr(A_n)=1-\Pr(A_n^c)$ gives the result for decreasing sequences.
 9. Bonferroni's inequality:  
    <div>$$\Pr\left(\bigcap_{i=1}^{k} A_i\right) \geq 1 - \sum_{i=1}^{k} \Pr(A_i^c).$$</div>
 
