@@ -86,6 +86,92 @@ because for any fixed $0<\delta\le 1$,
 
 <div>$$\Pr\{|X_n-\theta|>\delta\}=\Pr\{X_n=1+\theta\}=\frac{1}{n}\to 0.$$</div>
 
+#### How to understand convergence in probability
+
+The most useful intuition is that convergence in probability is about repeated samples, not about one single sample path being smooth. Fix a tolerance band around the target value $x$, say
+
+<div>$$[x-\delta,\;x+\delta].$$</div>
+
+Then ask: if we repeated the experiment many times at the same sample size $n$, what fraction of those repetitions would land outside that band? Convergence in probability says that, for every fixed $\delta>0$, that fraction goes to zero as $n$ grows.
+
+So the right mental picture is:
+
+1. Fix a band width $\delta$ around the limit.
+2. For each $n$, simulate many independent repetitions of $x_n$.
+3. Count how often $|x_n-x|>\delta$.
+4. If those frequencies shrink toward zero, we are seeing convergence in probability numerically.
+
+#### Numerical simulation tour
+
+##### Tour 1: the rare-jump example
+
+Take the same example as above with $\theta=2$ and $\delta=0.5$:
+
+<div>$$X_n =
+\begin{cases}
+2, & \text{with probability } 1-\frac{1}{n},\\
+3, & \text{with probability } \frac{1}{n}.
+\end{cases}$$</div>
+
+In 50,000 Monte Carlo repetitions, the simulated probability of falling outside the band $[1.5,2.5]$ behaves as follows:
+
+| $n$ | simulated $\Pr(|X_n-2|>0.5)$ |
+| --- | --- |
+| 10 | 0.0981 |
+| 20 | 0.0499 |
+| 50 | 0.0194 |
+| 100 | 0.0093 |
+| 500 | 0.0020 |
+| 1000 | 0.0011 |
+
+This is exactly what the definition predicts: misses still happen, but they become rarer and rarer as $n$ increases.
+
+##### Tour 2: sample averages
+
+Now take a more econometric example. Let
+
+<div>$$\bar U_n = \frac{1}{n}\sum_{i=1}^n U_i,\qquad U_i \stackrel{iid}{\sim} N(0,1).$$</div>
+
+Then $\bar U_n \xrightarrow{P} 0$. To see this numerically, fix $\delta=0.1$ and simulate 50,000 sample averages for each $n$:
+
+| $n$ | simulated $\Pr(|\bar U_n|>0.1)$ |
+| --- | --- |
+| 10 | 0.7512 |
+| 20 | 0.6534 |
+| 50 | 0.4780 |
+| 100 | 0.3164 |
+| 250 | 0.1116 |
+| 500 | 0.0259 |
+
+At small sample sizes, the average is still noisy, so missing the band is common. But as the sample size grows, the average concentrates near $0$, and the fraction of large deviations falls sharply.
+
+##### Reproducible Python sketch
+
+The following code reproduces the same idea:
+
+```python
+import numpy as np
+
+rng = np.random.default_rng(20260419)
+reps = 50_000
+
+# Tour 1: rare-jump example
+theta = 2.0
+delta = 0.5
+for n in [10, 20, 50, 100, 500, 1000]:
+    x = np.where(rng.random(reps) < 1 / n, theta + 1, theta)
+    print(n, np.mean(np.abs(x - theta) > delta))
+
+# Tour 2: sample mean example
+delta = 0.1
+for n in [10, 20, 50, 100, 250, 500]:
+    u = rng.normal(0, 1, size=(reps, n))
+    ubar = u.mean(axis=1)
+    print(n, np.mean(np.abs(ubar) > delta))
+```
+
+The key lesson from both tours is the same: convergence in probability does not mean that every realization is close to the limit, nor that the sequence moves monotonically toward it. It means that the probability of being noticeably far away becomes negligible as $n$ increases.
+
 #### Example: almost sure convergence
 
 Let
