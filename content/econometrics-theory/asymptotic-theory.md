@@ -115,14 +115,22 @@ Take the same example as above with $\theta=2$ and $\delta=0.5$:
 
 In 50,000 Monte Carlo repetitions, the simulated probability of falling outside the band $[1.5,2.5]$ behaves as follows:
 
-| $n$ | simulated $\Pr(|X_n-2|>0.5)$ |
-| --- | --- |
-| 10 | 0.0981 |
-| 20 | 0.0499 |
-| 50 | 0.0194 |
-| 100 | 0.0093 |
-| 500 | 0.0020 |
-| 1000 | 0.0011 |
+<table>
+  <thead>
+    <tr>
+      <th>n</th>
+      <th>simulated Pr(|X_n - 2| &gt; 0.5)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>10</td><td>0.0981</td></tr>
+    <tr><td>20</td><td>0.0499</td></tr>
+    <tr><td>50</td><td>0.0194</td></tr>
+    <tr><td>100</td><td>0.0093</td></tr>
+    <tr><td>500</td><td>0.0020</td></tr>
+    <tr><td>1000</td><td>0.0011</td></tr>
+  </tbody>
+</table>
 
 This is exactly what the definition predicts: misses still happen, but they become rarer and rarer as $n$ increases.
 
@@ -134,14 +142,22 @@ Now take a more econometric example. Let
 
 Then $\bar U_n \xrightarrow{P} 0$. To see this numerically, fix $\delta=0.1$ and simulate 50,000 sample averages for each $n$:
 
-| $n$ | simulated $\Pr(|\bar U_n|>0.1)$ |
-| --- | --- |
-| 10 | 0.7512 |
-| 20 | 0.6534 |
-| 50 | 0.4780 |
-| 100 | 0.3164 |
-| 250 | 0.1116 |
-| 500 | 0.0259 |
+<table>
+  <thead>
+    <tr>
+      <th>n</th>
+      <th>simulated Pr(|Ubar_n| &gt; 0.1)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>10</td><td>0.7512</td></tr>
+    <tr><td>20</td><td>0.6534</td></tr>
+    <tr><td>50</td><td>0.4780</td></tr>
+    <tr><td>100</td><td>0.3164</td></tr>
+    <tr><td>250</td><td>0.1116</td></tr>
+    <tr><td>500</td><td>0.0259</td></tr>
+  </tbody>
+</table>
 
 At small sample sizes, the average is still noisy, so missing the band is common. But as the sample size grows, the average concentrates near $0$, and the fraction of large deviations falls sharply.
 
