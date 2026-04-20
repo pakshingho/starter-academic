@@ -497,6 +497,239 @@ if for every $\delta>0$,
 
 <div>$$\sum_{n=0}^{\infty}\Pr\{|x_n-x|>\delta\}<\infty.$$</div>
 
+#### How to understand uniform convergence in probability
+
+For ordinary convergence in probability, we fix one parameter value $\theta$ and ask whether $x_n(\theta)$ is close to $x(\theta)$ with high probability. Uniform convergence in probability is stronger because it asks for the whole graph to be close at once.
+
+The key random quantity is
+
+<div>$$\sup_{\theta\in\Theta}|x_n(\theta)-x(\theta)|.$$</div>
+
+So the right mental picture is not one point on the graph, but the largest vertical gap between the random curve $x_n(\theta)$ and the target curve $x(\theta)$ over all $\theta\in\Theta$.
+
+#### Numerical simulation tour: uniform convergence in probability
+
+The two examples below show the main contrast:
+
+1. a shrinking common shock, where the entire graph moves together and the sup distance really goes to zero
+2. a moving spike, where each fixed $\theta$ looks fine, but somewhere on the graph there is always a large spike, so the sup distance never shrinks
+
+<div class="probability-tool" id="uniform-probability-tool">
+  <div class="probability-tool__grid">
+    <section class="probability-tool__panel">
+      <p class="probability-tool__eyebrow">Interactive Monte Carlo</p>
+      <h3>Uniform convergence simulator</h3>
+      <p id="uniform-probability-tool-example-copy">This tool tracks the probability that the entire random graph leaves a uniform band around the target function.</p>
+      <div class="probability-tool__field">
+        <label for="uniform-probability-tool-example">Example</label>
+        <select id="uniform-probability-tool-example">
+          <option value="common-shock" selected>Shrinking common shock</option>
+          <option value="moving-spike">Moving spike</option>
+        </select>
+        <p>The first example converges uniformly in probability. The second converges pointwise in probability but not uniformly.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="uniform-probability-tool-delta">Tolerance delta</label>
+        <input id="uniform-probability-tool-delta" type="number" min="0.05" step="0.05" value="0.30">
+        <p>The simulator estimates <code>Pr(sup_theta |x_n(theta) - x(theta)| &gt; delta)</code>.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="uniform-probability-tool-reps">Monte Carlo repetitions</label>
+        <input id="uniform-probability-tool-reps" type="number" min="500" max="12000" step="500" value="3000">
+        <p>More repetitions make the probability curve smoother.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="uniform-probability-tool-snapshot">Snapshot sample size</label>
+        <select id="uniform-probability-tool-snapshot"></select>
+        <p>The function chart on the right uses this sample size when drawing example curves over <code>theta in [0,1]</code>.</p>
+      </div>
+      <div class="probability-tool__actions">
+        <button type="button" class="probability-tool__button" id="uniform-probability-tool-run">Run simulation</button>
+        <button type="button" class="probability-tool__button probability-tool__button--ghost" id="uniform-probability-tool-reset">Reset preset</button>
+      </div>
+    </section>
+    <section class="probability-tool__panel probability-tool__panel--results">
+      <p class="probability-tool__eyebrow">Current Run</p>
+      <h3>What the sup error says</h3>
+      <div class="probability-tool__metrics">
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Target function</span>
+          <strong id="uniform-probability-tool-metric-target">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Uniform band</span>
+          <strong id="uniform-probability-tool-metric-band">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Uniform miss probability at smallest n</span>
+          <strong id="uniform-probability-tool-metric-small">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Uniform miss probability at largest n</span>
+          <strong id="uniform-probability-tool-metric-large">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Exact theory at largest n</span>
+          <strong id="uniform-probability-tool-metric-theory">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Interpretation</span>
+          <strong id="uniform-probability-tool-metric-mode">-</strong>
+        </div>
+      </div>
+      <div class="probability-tool__notes" id="uniform-probability-tool-notes"></div>
+      <div class="probability-tool__error" id="uniform-probability-tool-error" hidden></div>
+    </section>
+  </div>
+  <section class="probability-tool__panel probability-tool__panel--charts">
+    <div class="probability-tool__charts">
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Uniform miss probability versus n</h3>
+          <p>The curve tracks the event that the entire graph leaves the band somewhere over <code>theta in [0,1]</code>.</p>
+        </div>
+        <div id="uniform-probability-tool-tail-chart"></div>
+      </article>
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Function draws at one sample size</h3>
+          <p>The dark line is the target <code>x(theta)=theta</code>. The shaded strip is the uniform band, and the colored curves are simulated realizations.</p>
+        </div>
+        <div id="uniform-probability-tool-function-chart"></div>
+      </article>
+    </div>
+    <div class="probability-tool__table-wrap">
+      <table class="probability-tool__table">
+        <thead>
+          <tr>
+            <th>Sample size n</th>
+            <th>Simulated uniform miss probability</th>
+            <th>Exact uniform miss probability</th>
+          </tr>
+        </thead>
+        <tbody id="uniform-probability-tool-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+#### How to understand complete convergence
+
+Complete convergence asks for more than the individual probabilities
+
+<div>$$\Pr\{|x_n-x|>\delta\}$$</div>
+
+to go to zero. It asks whether they are summable over time. So the right question is:
+
+<div>$$\sum_{n=1}^{\infty}\Pr\{|x_n-x|>\delta\} < \infty?$$</div>
+
+If the total probability budget is finite, then large deviations are so rare across the whole sequence that they can only matter finitely often. This is why complete convergence implies almost sure convergence.
+
+#### Numerical simulation tour: complete convergence
+
+The family below keeps the jump size fixed at `1` but changes the jump probability to `1 / n^p`. For every `p > 0`, the one-period miss probability goes to zero, so we still have convergence in probability. But complete convergence happens only when `p > 1`, because only then does
+
+<div>$$\sum_{n=1}^{\infty}\frac{1}{n^p}$$</div>
+
+converge.
+
+<div class="probability-tool" id="complete-convergence-tool">
+  <div class="probability-tool__grid">
+    <section class="probability-tool__panel">
+      <p class="probability-tool__eyebrow">Interactive Monte Carlo</p>
+      <h3>Complete convergence simulator</h3>
+      <p id="complete-convergence-tool-example-copy">This tool tracks both the miss probability at each n and the cumulative partial sums that define complete convergence.</p>
+      <div class="probability-tool__field">
+        <label for="complete-convergence-tool-exponent">Exponent p</label>
+        <input id="complete-convergence-tool-exponent" type="number" min="0.20" max="3.00" step="0.10" value="1.20">
+        <p>The threshold is at <code>p = 1</code>: above it the probability series converges, at or below it the series diverges.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="complete-convergence-tool-delta">Tolerance delta</label>
+        <input id="complete-convergence-tool-delta" type="number" min="0.05" max="1.50" step="0.05" value="0.50">
+        <p>The jump size is <code>1</code>, so choosing <code>delta &lt; 1</code> makes the complete-convergence threshold visible.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="complete-convergence-tool-horizon">Partial-sum horizon N</label>
+        <input id="complete-convergence-tool-horizon" type="number" min="100" max="1500" step="100" value="600">
+        <p>The cumulative chart computes <code>sum_{n=1}^N Pr(|X_n| &gt; delta)</code> up to this horizon.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="complete-convergence-tool-reps">Monte Carlo repetitions</label>
+        <input id="complete-convergence-tool-reps" type="number" min="500" max="4000" step="500" value="2500">
+        <p>Simulation is used to estimate the probabilities alongside the exact `1 / n^p` benchmark.</p>
+      </div>
+      <div class="probability-tool__actions">
+        <button type="button" class="probability-tool__button" id="complete-convergence-tool-run">Run simulation</button>
+        <button type="button" class="probability-tool__button probability-tool__button--ghost" id="complete-convergence-tool-reset">Reset preset</button>
+      </div>
+    </section>
+    <section class="probability-tool__panel probability-tool__panel--results">
+      <p class="probability-tool__eyebrow">Current Run</p>
+      <h3>What the series says</h3>
+      <div class="probability-tool__metrics">
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Target limit</span>
+          <strong id="complete-convergence-tool-metric-target">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Exponent p</span>
+          <strong id="complete-convergence-tool-metric-exponent">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Miss probability at n = 20</span>
+          <strong id="complete-convergence-tool-metric-20">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Miss probability at largest n</span>
+          <strong id="complete-convergence-tool-metric-large">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Exact partial sum up to N</span>
+          <strong id="complete-convergence-tool-metric-sum">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Interpretation</span>
+          <strong id="complete-convergence-tool-metric-mode">-</strong>
+        </div>
+      </div>
+      <div class="probability-tool__notes" id="complete-convergence-tool-notes"></div>
+      <div class="probability-tool__error" id="complete-convergence-tool-error" hidden></div>
+    </section>
+  </div>
+  <section class="probability-tool__panel probability-tool__panel--charts">
+    <div class="probability-tool__charts">
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Miss probability versus n</h3>
+          <p>This is the one-period deviation probability <code>Pr(|X_n - 0| &gt; delta)</code>.</p>
+        </div>
+        <div id="complete-convergence-tool-prob-chart"></div>
+      </article>
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Cumulative partial sums</h3>
+          <p>This chart accumulates the probabilities over time. Complete convergence means the exact curve levels off instead of drifting upward forever.</p>
+        </div>
+        <div id="complete-convergence-tool-sum-chart"></div>
+      </article>
+    </div>
+    <div class="probability-tool__table-wrap">
+      <table class="probability-tool__table">
+        <thead>
+          <tr>
+            <th>Sample size n</th>
+            <th>Simulated miss probability</th>
+            <th>Exact miss probability</th>
+            <th>Exact cumulative sum</th>
+          </tr>
+        </thead>
+        <tbody id="complete-convergence-tool-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
 ### Relations among the different modes of convergence
 
 The note records two basic implications:
