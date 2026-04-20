@@ -293,6 +293,133 @@ Indeed, for any $\delta>0$,
 
 since $\sum_{m=1}^{\infty} m^{-2}<\infty$.
 
+#### How to understand almost sure convergence
+
+Almost sure convergence is stronger than convergence in probability because it is about whole sample paths. The right question is not just whether
+
+<div>$$\Pr\{|x_n-x|>\delta\}$$</div>
+
+gets small for a fixed $n$. Instead, the definition asks whether the probability of ever leaving the band again after time $n$ goes to zero:
+
+<div>$$\Pr\{|x_m-x|>\delta \text{ for some } m\ge n\} \to 0.$$</div>
+
+So the mental picture is:
+
+1. Fix a tolerance band around the limit.
+2. Look at one realized path of the sequence.
+3. Ask whether that path eventually stays inside the band forever.
+4. Almost sure convergence means that this eventual staying-inside happens for almost every path.
+
+This is why almost sure convergence is often called a pathwise notion of convergence.
+
+#### Numerical simulation tour
+
+The most helpful numerical comparison is between:
+
+1. a sequence with jump probability $1/n^2$, where the jumps are rare enough that they occur only finitely many times almost surely
+2. a sequence with jump probability $1/n$, where the jumps still become rare at each fixed $n$, but they keep reappearing infinitely often along typical paths
+
+Both sequences can have small one-period miss probabilities for large $n$, but only the first one has the tail-event probability going to zero.
+
+<div class="probability-tool" id="almost-sure-tool">
+  <div class="probability-tool__grid">
+    <section class="probability-tool__panel">
+      <p class="probability-tool__eyebrow">Interactive Monte Carlo</p>
+      <h3>Almost sure convergence simulator</h3>
+      <p id="almost-sure-tool-example-copy">This tool focuses on the tail event in the definition: after time n, does the path ever leave the band again?</p>
+      <div class="probability-tool__field">
+        <label for="almost-sure-tool-example">Example</label>
+        <select id="almost-sure-tool-example">
+          <option value="summable" selected>Jump probability 1 / n^2</option>
+          <option value="nonsummable">Jump probability 1 / n</option>
+        </select>
+        <p>The first example converges almost surely. The second converges in probability but not almost surely.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="almost-sure-tool-delta">Tolerance delta</label>
+        <input id="almost-sure-tool-delta" type="number" min="0.01" step="0.01" value="0.50">
+        <p>The tool studies whether future values ever leave the band <code>[x - delta, x + delta]</code>.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="almost-sure-tool-horizon">Finite horizon N</label>
+        <input id="almost-sure-tool-horizon" type="number" min="100" max="5000" step="100" value="1000">
+        <p>The Monte Carlo approximation tracks the tail event from <code>n</code> up to <code>N</code>. Larger horizons make the pathwise contrast sharper.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="almost-sure-tool-paths">Displayed sample paths</label>
+        <input id="almost-sure-tool-paths" type="number" min="8" max="36" step="2" value="18">
+        <p>The heatmap below shows the first few simulated paths and where their jumps occur.</p>
+      </div>
+      <div class="probability-tool__actions">
+        <button type="button" class="probability-tool__button" id="almost-sure-tool-run">Run simulation</button>
+        <button type="button" class="probability-tool__button probability-tool__button--ghost" id="almost-sure-tool-reset">Reset preset</button>
+      </div>
+    </section>
+    <section class="probability-tool__panel probability-tool__panel--results">
+      <p class="probability-tool__eyebrow">Current Run</p>
+      <h3>What the tail event says</h3>
+      <div class="probability-tool__metrics">
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Target limit</span>
+          <strong id="almost-sure-tool-metric-target">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Tolerance band</span>
+          <strong id="almost-sure-tool-metric-band">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Tail-event probability at n = 20</span>
+          <strong id="almost-sure-tool-metric-20">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Tail-event probability at n = 100</span>
+          <strong id="almost-sure-tool-metric-100">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Exact finite-horizon theory at n = 100</span>
+          <strong id="almost-sure-tool-metric-theory">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Interpretation</span>
+          <strong id="almost-sure-tool-metric-mode">-</strong>
+        </div>
+      </div>
+      <div class="probability-tool__notes" id="almost-sure-tool-notes"></div>
+      <div class="probability-tool__error" id="almost-sure-tool-error" hidden></div>
+    </section>
+  </div>
+  <section class="probability-tool__panel probability-tool__panel--charts">
+    <div class="probability-tool__charts">
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Tail-event probability from n to N</h3>
+          <p>This is the finite-horizon analogue of the definition: the probability that the path will leave the band again at some future time.</p>
+        </div>
+        <div id="almost-sure-tool-tail-chart"></div>
+      </article>
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Jump heatmap across sample paths</h3>
+          <p>Each row is one simulated path. Orange cells mark jumps that leave the band; pale cells stay inside it.</p>
+        </div>
+        <div id="almost-sure-tool-path-chart"></div>
+      </article>
+    </div>
+    <div class="probability-tool__table-wrap">
+      <table class="probability-tool__table">
+        <thead>
+          <tr>
+            <th>Cutoff n</th>
+            <th>Simulated tail probability</th>
+            <th>Exact finite-horizon probability</th>
+          </tr>
+        </thead>
+        <tbody id="almost-sure-tool-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
 ### Uniform convergence in probability and complete convergence
 
 Up to this point the sequence has not been indexed by an additional parameter. If instead $x_n(\theta)$ is indexed by $\theta \in \Theta$, then the note defines uniform convergence in probability by
