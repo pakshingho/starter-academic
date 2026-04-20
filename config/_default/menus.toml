@@ -39,12 +39,6 @@
   weight = 45
 
 [[main]]
-  name = "Projects"
-  url = "/projects/"
-  parent = "work"
-  weight = 21
-
-[[main]]
   name = "Experience"
   url = "/experience/"
   parent = "work"

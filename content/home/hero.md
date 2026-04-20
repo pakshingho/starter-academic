@@ -33,14 +33,6 @@ hero_media = "hero-academic.png"
   # Text color (true=light or false=dark).
   text_color_light = true
 
-# Call to action links (optional).
-#   Display link(s) by specifying a URL and label below. Icon is optional for `[cta]`.
-#   Remove a link/note by deleting a cta/note block.
-[cta]
-  url = "/projects/"
-  label = "View Projects"
-  icon_pack = "fas"
-  icon = "chart-line"
 +++
 
 **From experiment design to decision systems: turning data into reliable business actions.**
