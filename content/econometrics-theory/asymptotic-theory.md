@@ -347,8 +347,8 @@ Both sequences can have small one-period miss probabilities for large $n$, but o
       </div>
       <div class="probability-tool__field">
         <label for="almost-sure-tool-paths">Displayed sample paths</label>
-        <input id="almost-sure-tool-paths" type="number" min="8" max="36" step="2" value="18">
-        <p>The heatmap below shows the first few simulated paths and where their jumps occur.</p>
+        <input id="almost-sure-tool-paths" type="number" min="8" max="36" step="2" value="20">
+        <p>The heatmap below shows the first few simulated paths and where their jumps occur. Using 20 paths makes the row-by-row comparison especially easy to read.</p>
       </div>
       <div class="probability-tool__actions">
         <button type="button" class="probability-tool__button" id="almost-sure-tool-run">Run simulation</button>
@@ -419,6 +419,53 @@ Both sequences can have small one-period miss probabilities for large $n$, but o
     </div>
   </section>
 </div>
+
+#### How to read the same 20 sample paths
+
+To see the difference between convergence in probability and almost sure convergence, set the simulator to the same choices in both examples:
+
+1. set `Displayed sample paths = 20`
+2. keep the same `delta`
+3. keep the same horizon `N`
+4. switch only the jump probability from `1/n^2` to `1/n`
+
+Then read the two charts in two different directions.
+
+##### Read columns for convergence in probability
+
+Pick one column, say the column for time $n=100$. Looking down that column asks:
+
+<div>$$\Pr\{|X_{100}-0|>\delta\}.$$</div>
+
+If only a small fraction of rows are orange in that column, then the sequence is close to the limit with high probability at that particular time. This is the convergence-in-probability question: at one large date, how many paths are far away?
+
+Both `1/n^2` and `1/n` look good from this column viewpoint, because the chance of a jump at any fixed large $n$ is small in both examples.
+
+##### Read rows for almost sure convergence
+
+Now pick one row and scan to the right. This asks:
+
+<div>$$\text{Does this one path eventually stop leaving the band?}$$</div>
+
+This is the almost-sure question. We are no longer looking at one date across many paths. We are looking at one path across many future dates.
+
+With jump probability `1/n^2`, most rows eventually become entirely pale after some point. That means each path has a last jump, so after that last jump it stays inside the band forever.
+
+With jump probability `1/n`, orange cells keep reappearing farther to the right on many rows. Even though each single future column has only a small orange share, there are so many future chances to jump that a typical path does not settle down forever.
+
+##### The picture to keep in mind
+
+The simplest memory aid is:
+
+1. convergence in probability reads the picture column by column
+2. almost sure convergence reads the picture row by row
+
+So:
+
+1. “large $n$ columns are mostly pale” suggests convergence in probability
+2. “most rows are eventually all pale from some point onward” suggests almost sure convergence
+
+That is why `1/n` can converge in probability without converging almost surely: every large column looks mostly fine, but many rows still contain infinitely many orange returns.
 
 ### Uniform convergence in probability and complete convergence
 

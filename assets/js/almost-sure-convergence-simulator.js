@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       copy: "Each X_n equals 0 most of the time, but with probability 1 / n^2 it jumps to n. Because those probabilities are summable, typical paths only jump finitely many times.",
       defaultDelta: 0.5,
       defaultHorizon: 1000,
-      defaultPaths: 18,
+      defaultPaths: 20,
       modeLabel: "Almost sure convergence",
       jumpProbability: function (n) {
         return 1 / (n * n);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       copy: "Now the one-period miss probability still shrinks, so X_n converges in probability to 0. But the probabilities 1 / n are not summable, so independent jumps keep returning along typical paths.",
       defaultDelta: 0.5,
       defaultHorizon: 1000,
-      defaultPaths: 18,
+      defaultPaths: 20,
       modeLabel: "Convergence in probability only",
       jumpProbability: function (n) {
         return 1 / n;
