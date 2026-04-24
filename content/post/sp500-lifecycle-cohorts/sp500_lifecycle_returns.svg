@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<style>text{font-family:Arial,sans-serif;fill:#111827}.title{font-size:24px;font-weight:700}.axis{font-size:13px}.small{font-size:12px;fill:#4b5563}</style>
+<rect width="1200" height="700" fill="white"/>
+<text x="600.0" y="30" text-anchor="middle" class="title">Lifecycle S&amp;P 500 returns by birth year (1926-2025)</text>
+<line x1="90" y1="620.00" x2="1170" y2="620.00" stroke="#e5e7eb"/>
+<text x="80" y="624.00" text-anchor="end" class="axis">-249%</text>
+<line x1="90" y1="523.33" x2="1170" y2="523.33" stroke="#e5e7eb"/>
+<text x="80" y="527.33" text-anchor="end" class="axis">352%</text>
+<line x1="90" y1="426.67" x2="1170" y2="426.67" stroke="#e5e7eb"/>
+<text x="80" y="430.67" text-anchor="end" class="axis">953%</text>
+<line x1="90" y1="330.00" x2="1170" y2="330.00" stroke="#e5e7eb"/>
+<text x="80" y="334.00" text-anchor="end" class="axis">1554%</text>
+<line x1="90" y1="233.33" x2="1170" y2="233.33" stroke="#e5e7eb"/>
+<text x="80" y="237.33" text-anchor="end" class="axis">2155%</text>
+<line x1="90" y1="136.67" x2="1170" y2="136.67" stroke="#e5e7eb"/>
+<text x="80" y="140.67" text-anchor="end" class="axis">2756%</text>
+<line x1="90" y1="40.00" x2="1170" y2="40.00" stroke="#e5e7eb"/>
+<text x="80" y="44.00" text-anchor="end" class="axis">3357%</text>
+<line x1="90.00" y1="40" x2="90.00" y2="620" stroke="#f3f4f6"/>
+<text x="90.00" y="645" text-anchor="middle" class="axis">1926</text>
+<line x1="242.73" y1="40" x2="242.73" y2="620" stroke="#f3f4f6"/>
+<text x="242.73" y="645" text-anchor="middle" class="axis">1940</text>
+<line x1="460.91" y1="40" x2="460.91" y2="620" stroke="#f3f4f6"/>
+<text x="460.91" y="645" text-anchor="middle" class="axis">1960</text>
+<line x1="679.09" y1="40" x2="679.09" y2="620" stroke="#f3f4f6"/>
+<text x="679.09" y="645" text-anchor="middle" class="axis">1980</text>
+<line x1="897.27" y1="40" x2="897.27" y2="620" stroke="#f3f4f6"/>
+<text x="897.27" y="645" text-anchor="middle" class="axis">2000</text>
+<line x1="1170.00" y1="40" x2="1170.00" y2="620" stroke="#f3f4f6"/>
+<text x="1170.00" y="645" text-anchor="middle" class="axis">2025</text>
+<line x1="90" y1="620" x2="1170" y2="620" stroke="#111827"/>
+<line x1="90" y1="40" x2="90" y2="620" stroke="#111827"/>
+<polyline points="90.00,301.45 100.91,313.94 111.82,322.29 122.73,350.57 133.64,304.63 144.55,267.09 155.45,196.54 166.36,128.53 177.27,80.00 188.18,153.71 199.09,236.79 210.00,335.44 220.91,299.36 231.82,289.85 242.73,296.90 253.64,276.09 264.55,280.63 275.45,404.20 286.36,382.75 297.27,366.59 308.18,378.48 319.09,366.51 330.00,318.21 340.91,301.83 351.82,328.14 362.73,336.32 373.64,316.59 384.55,354.59 395.45,327.32 406.36,318.37 417.27,285.60 428.18,365.18 439.09,352.74 450.00,330.52 460.91,321.62 471.82,350.31 482.73,372.98 493.64,393.56 504.55,412.73 515.45,428.23 526.36,441.88 537.27,454.50 548.18,464.97 559.09,474.86 570.00,484.58 580.91,493.00 591.82,499.02 602.73,503.34 613.64,506.06 624.55,507.70 635.45,509.16 646.36,511.34 657.27,514.95 668.18,519.04 679.09,522.13 690.00,524.99 700.91,527.55 711.82,529.73 722.73,533.51 733.64,538.95 744.55,543.37 755.45,547.68 766.36,552.01 777.27,555.43 788.18,557.98 799.09,560.54 810.00,563.26 820.91,565.61 831.82,568.02 842.73,570.48 853.64,572.19 864.55,573.17 875.45,574.38 886.36,576.83 897.27,578.72 908.18,580.00 919.09,580.00 930.00,580.00 940.91,580.00 951.82,580.00 962.73,580.00 973.64,580.00 984.55,580.00 995.45,580.00 1006.36,580.00 1017.27,580.00 1028.18,580.00 1039.09,580.00 1050.00,580.00 1060.91,580.00 1071.82,580.00 1082.73,580.00 1093.64,580.00 1104.55,580.00 1115.45,580.00 1126.36,580.00 1137.27,580.00 1148.18,580.00 1159.09,580.00 1170.00,580.00" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<text x="600.0" y="680" text-anchor="middle" class="axis">Birth year</text>
+<text transform="translate(25 350.0) rotate(-90)" text-anchor="middle" class="axis">Cumulative return (%)</text>
+<text x="90" y="655" class="small">Assumptions: $1/month from age 25, retire at 65 or hold through Dec 2025; annual returns smoothed to monthly.</text>
+</svg>
