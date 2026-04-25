@@ -7,6 +7,7 @@ import csv
 import datetime as dt
 import json
 import math
+import re
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -19,7 +20,7 @@ LABOR_FORCE_AGE = 25
 RETIREMENT_AGE = 65
 SIMULATION_END = dt.date(2025, 12, 31)
 BASE_INDEX_LEVEL = 100.0
-MARKET_DATA_START = dt.date(1926, 1, 1)
+OFFICIALDATA_URL = "https://www.officialdata.org/us/stocks/s-p-500/1880"
 
 # Baseline fallback annual total returns (S&P 500 total return), 1926-2025.
 # Source used to populate fallback values: https://www.slickcharts.com/sp500/returns
@@ -94,6 +95,38 @@ def fetch_yahoo_annual_total_returns() -> tuple[dict[int, float], str]:
     return annual_returns, "yahoo_adjusted_close_annualized"
 
 
+def fetch_officialdata_annual_total_returns() -> tuple[dict[int, float], str]:
+    """Fetch annual returns by scraping officialdata.org monthly return rows."""
+    with urllib.request.urlopen(OFFICIALDATA_URL, timeout=30) as response:
+        body = response.read().decode("utf-8", errors="ignore")
+
+    pattern = r"(?<!\\d)(18\\d{2}|19\\d{2}|20\\d{2})\\s+([1-9]|1[0-2])\\s*([+-]?\\d+(?:\\.\\d+)?)%"
+    matches = re.findall(pattern, body)
+    if not matches:
+        raise ValueError("No monthly return rows found on officialdata page")
+
+    monthly_by_year: dict[int, dict[int, float]] = {}
+    for year_str, month_str, ret_str in matches:
+        year = int(year_str)
+        month = int(month_str)
+        monthly_by_year.setdefault(year, {})
+        if month not in monthly_by_year[year]:
+            monthly_by_year[year][month] = float(ret_str) / 100.0
+
+    annual_returns: dict[int, float] = {}
+    for year, month_map in sorted(monthly_by_year.items()):
+        if len(month_map) == 12:
+            growth = 1.0
+            for m in range(1, 13):
+                growth *= 1.0 + month_map[m]
+            annual_returns[year] = growth - 1.0
+
+    if len(annual_returns) < 20:
+        raise ValueError("OfficialData scrape yielded too few full years")
+
+    return annual_returns, "officialdata_monthly_compounded_annual"
+
+
 def fetch_fred_annual_price_returns() -> tuple[dict[int, float], str]:
     """Fallback: fetch annual price returns from FRED SP500 index (no dividends)."""
     url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500"
@@ -125,6 +158,13 @@ def fetch_fred_annual_price_returns() -> tuple[dict[int, float], str]:
 
 
 def load_annual_returns() -> tuple[dict[int, float], str]:
+    try:
+        returns, source = fetch_officialdata_annual_total_returns()
+        if returns:
+            return returns, source
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ValueError):
+        pass
+
     try:
         returns, source = fetch_yahoo_annual_total_returns()
         if returns:
