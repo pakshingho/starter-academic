@@ -9,8 +9,9 @@ This simulation tracks **200 people**, one born in each year from **1826 to 2025
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
-- Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
-- For cohorts whose labor-force entry starts before 1926, the simulation begins at **January 1926** (first available market return year in this dataset).
+- Uses annual returns derived from source: **fallback_slickcharts_annual_total_return**.
+- Market data coverage in this run: **1926 to 2025**.
+- For cohorts whose labor-force entry starts before the first available market year, simulation starts at that first available year.
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 

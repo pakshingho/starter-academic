@@ -7,6 +7,9 @@ import csv
 import datetime as dt
 import json
 import math
+import urllib.error
+import urllib.parse
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -18,9 +21,9 @@ SIMULATION_END = dt.date(2025, 12, 31)
 BASE_INDEX_LEVEL = 100.0
 MARKET_DATA_START = dt.date(1926, 1, 1)
 
-# Source used to populate values: https://www.slickcharts.com/sp500/returns
-# (S&P 500 total returns by year, 1926-2025).
-ANNUAL_TOTAL_RETURNS = {
+# Baseline fallback annual total returns (S&P 500 total return), 1926-2025.
+# Source used to populate fallback values: https://www.slickcharts.com/sp500/returns
+FALLBACK_ANNUAL_TOTAL_RETURNS = {
     1926: 0.1162, 1927: 0.3749, 1928: 0.4361, 1929: -0.0842, 1930: -0.2490,
     1931: -0.4334, 1932: -0.0819, 1933: 0.5399, 1934: -0.0144, 1935: 0.4767,
     1936: 0.3392, 1937: -0.3503, 1938: 0.3112, 1939: -0.0041, 1940: -0.0978,
@@ -42,6 +45,101 @@ ANNUAL_TOTAL_RETURNS = {
     2016: 0.1196, 2017: 0.2183, 2018: -0.0438, 2019: 0.3149, 2020: 0.1840,
     2021: 0.2871, 2022: -0.1811, 2023: 0.2629, 2024: 0.2502, 2025: 0.1788,
 }
+
+DATA_SOURCE_NOTE = "fallback_slickcharts_annual_total_return"
+
+
+def _safe_float(text: str) -> float | None:
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return None
+
+
+def fetch_yahoo_annual_total_returns() -> tuple[dict[int, float], str]:
+    """Fetch annual returns from Yahoo Finance using monthly adjusted close."""
+    base = "https://query1.finance.yahoo.com/v7/finance/download/^GSPC"
+    params = {
+        "period1": "0",
+        "period2": str(int(dt.datetime(2026, 1, 1, tzinfo=dt.timezone.utc).timestamp())),
+        "interval": "1mo",
+        "events": "history",
+        "includeAdjustedClose": "true",
+    }
+    url = f"{base}?{urllib.parse.urlencode(params)}"
+    with urllib.request.urlopen(url, timeout=30) as response:
+        body = response.read().decode("utf-8")
+
+    rows = list(csv.DictReader(body.splitlines()))
+    year_to_last_adj_close: dict[int, float] = {}
+    for row in rows:
+        date_str = row.get("Date")
+        adj = _safe_float(row.get("Adj Close"))
+        if not date_str or adj is None:
+            continue
+        year = int(date_str[:4])
+        year_to_last_adj_close[year] = adj
+
+    years = sorted(year_to_last_adj_close)
+    if len(years) < 3:
+        raise ValueError("Yahoo dataset too short")
+
+    annual_returns: dict[int, float] = {}
+    for i in range(1, len(years)):
+        y_prev, y_curr = years[i - 1], years[i]
+        prev_close, curr_close = year_to_last_adj_close[y_prev], year_to_last_adj_close[y_curr]
+        if prev_close > 0:
+            annual_returns[y_curr] = curr_close / prev_close - 1.0
+
+    return annual_returns, "yahoo_adjusted_close_annualized"
+
+
+def fetch_fred_annual_price_returns() -> tuple[dict[int, float], str]:
+    """Fallback: fetch annual price returns from FRED SP500 index (no dividends)."""
+    url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500"
+    with urllib.request.urlopen(url, timeout=30) as response:
+        body = response.read().decode("utf-8")
+
+    rows = list(csv.DictReader(body.splitlines()))
+    year_to_last_price: dict[int, float] = {}
+    for row in rows:
+        date_str = row.get("DATE")
+        val = _safe_float(row.get("SP500"))
+        if not date_str or val is None:
+            continue
+        year = int(date_str[:4])
+        year_to_last_price[year] = val
+
+    years = sorted(year_to_last_price)
+    if len(years) < 3:
+        raise ValueError("FRED dataset too short")
+
+    annual_returns: dict[int, float] = {}
+    for i in range(1, len(years)):
+        y_prev, y_curr = years[i - 1], years[i]
+        prev_price, curr_price = year_to_last_price[y_prev], year_to_last_price[y_curr]
+        if prev_price > 0:
+            annual_returns[y_curr] = curr_price / prev_price - 1.0
+
+    return annual_returns, "fred_sp500_price_annualized"
+
+
+def load_annual_returns() -> tuple[dict[int, float], str]:
+    try:
+        returns, source = fetch_yahoo_annual_total_returns()
+        if returns:
+            return returns, source
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ValueError):
+        pass
+
+    try:
+        returns, source = fetch_fred_annual_price_returns()
+        if returns:
+            return returns, source
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ValueError):
+        pass
+
+    return FALLBACK_ANNUAL_TOTAL_RETURNS, DATA_SOURCE_NOTE
 
 
 @dataclass
@@ -67,12 +165,12 @@ def month_iter(start_month: dt.date, end_month: dt.date):
             cursor = dt.date(cursor.year, cursor.month + 1, 1)
 
 
-def build_monthly_index() -> dict[dt.date, float]:
+def build_monthly_index(annual_returns: dict[int, float]) -> dict[dt.date, float]:
     monthly_prices: dict[dt.date, float] = {}
     level = BASE_INDEX_LEVEL
 
-    for year in range(min(ANNUAL_TOTAL_RETURNS), max(ANNUAL_TOTAL_RETURNS) + 1):
-        annual_ret = ANNUAL_TOTAL_RETURNS[year]
+    for year in range(min(annual_returns), max(annual_returns) + 1):
+        annual_ret = annual_returns[year]
         monthly_growth = math.pow(1.0 + annual_ret, 1.0 / 12.0)
 
         for month in range(1, 13):
@@ -87,13 +185,13 @@ def age_in_years(birth_year: int, month: dt.date) -> float:
     return (month.year - birth_year) + (month.month - 1) / 12.0
 
 
-def simulate(monthly_prices: dict[dt.date, float]) -> tuple[list[CohortResult], list[dict[str, object]]]:
+def simulate(monthly_prices: dict[dt.date, float], data_start: dt.date) -> tuple[list[CohortResult], list[dict[str, object]]]:
     results: list[CohortResult] = []
     curves: list[dict[str, object]] = []
 
     for birth_year in range(START_BIRTH_YEAR, END_BIRTH_YEAR + 1):
         labor_force_start_month = dt.date(birth_year + LABOR_FORCE_AGE, 1, 1)
-        start_month = max(labor_force_start_month, MARKET_DATA_START)
+        start_month = max(labor_force_start_month, data_start)
         scheduled_end = dt.date(birth_year + RETIREMENT_AGE, 12, 1)
         end_month = min(scheduled_end, dt.date(SIMULATION_END.year, SIMULATION_END.month, 1))
 
@@ -177,7 +275,13 @@ def write_csv(results: list[CohortResult], output_path: Path) -> None:
             ])
 
 
-def write_curve_json(curves: list[dict[str, object]], output_path: Path) -> None:
+def write_curve_json(
+    curves: list[dict[str, object]],
+    output_path: Path,
+    source_name: str,
+    data_start_year: int,
+    data_end_year: int,
+) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
@@ -188,19 +292,31 @@ def write_curve_json(curves: list[dict[str, object]], output_path: Path) -> None
             "simulation_end": SIMULATION_END.isoformat(),
             "frequency": "monthly",
             "contribution_per_period": 1.0,
+            "market_data_source": source_name,
+            "market_data_year_start": data_start_year,
+            "market_data_year_end": data_end_year,
         },
         "series": curves,
     }
     output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
 
-def write_summary_json(results: list[CohortResult], output_path: Path) -> None:
+def write_summary_json(
+    results: list[CohortResult],
+    output_path: Path,
+    source_name: str,
+    data_start_year: int,
+    data_end_year: int,
+) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
             "birth_year_start": START_BIRTH_YEAR,
             "birth_year_end": END_BIRTH_YEAR,
             "simulation_end": SIMULATION_END.isoformat(),
+            "market_data_source": source_name,
+            "market_data_year_start": data_start_year,
+            "market_data_year_end": data_end_year,
         },
         "points": [
             {
@@ -253,10 +369,9 @@ def write_svg(results: list[CohortResult], output_path: Path) -> None:
     output_path.write_text("\n".join(out + ["</svg>"]), encoding="utf-8")
 
 
-def write_post(output_path: Path) -> None:
+def write_post(output_path: Path, source_name: str, data_start_year: int, data_end_year: int) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        """---
+    post_template = """---
 title: Lifecycle investment simulation across 200 birth cohorts
 date: 2026-04-25
 draft: false
@@ -267,8 +382,9 @@ This simulation tracks **200 people**, one born in each year from **1826 to 2025
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
-- Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
-- For cohorts whose labor-force entry starts before 1926, the simulation begins at **January 1926** (first available market return year in this dataset).
+- Uses annual returns derived from source: **__SOURCE_NAME__**.
+- Market data coverage in this run: **__DATA_START_YEAR__ to __DATA_END_YEAR__**.
+- For cohorts whose labor-force entry starts before the first available market year, simulation starts at that first available year.
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
@@ -353,20 +469,28 @@ async function renderLifecycleChart() {
 renderSummaryChart();
 renderLifecycleChart();
 </script>
-""",
+"""
+    output_path.write_text(
+        post_template
+        .replace("__SOURCE_NAME__", source_name)
+        .replace("__DATA_START_YEAR__", str(data_start_year))
+        .replace("__DATA_END_YEAR__", str(data_end_year)),
         encoding="utf-8",
     )
 
 
 def main() -> None:
     out_dir = Path("content/post/sp500-lifecycle-cohorts")
-    monthly_prices = build_monthly_index()
-    results, curves = simulate(monthly_prices)
+    annual_returns, source_name = load_annual_returns()
+    data_start_year = min(annual_returns)
+    data_end_year = max(annual_returns)
+    monthly_prices = build_monthly_index(annual_returns)
+    results, curves = simulate(monthly_prices, dt.date(data_start_year, 1, 1))
     write_csv(results, out_dir / "sp500_lifecycle_returns.csv")
     write_svg(results, out_dir / "sp500_lifecycle_returns.svg")
-    write_summary_json(results, out_dir / "sp500_lifecycle_summary.json")
-    write_curve_json(curves, out_dir / "monthly_lifecycle_curves.json")
-    write_post(out_dir / "index.md")
+    write_summary_json(results, out_dir / "sp500_lifecycle_summary.json", source_name, data_start_year, data_end_year)
+    write_curve_json(curves, out_dir / "monthly_lifecycle_curves.json", source_name, data_start_year, data_end_year)
+    write_post(out_dir / "index.md", source_name, data_start_year, data_end_year)
 
 
 if __name__ == "__main__":
