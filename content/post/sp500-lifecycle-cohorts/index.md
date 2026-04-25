@@ -14,7 +14,7 @@ This simulation tracks **200 people**, one born in each year from **1826 to 2025
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
-![Lifecycle S&P 500 cohort returns](sp500_lifecycle_returns.svg)
+<div id="cohort-summary-chart" style="width:100%;height:500px"></div>
 
 Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
@@ -26,6 +26,40 @@ Hover with a cursor (desktop) or press a point (mobile touch) to view each point
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script>
+async function renderSummaryChart() {
+  const response = await fetch('sp500_lifecycle_summary.json');
+  const payload = await response.json();
+
+  const x = payload.points.map((p) => p.birth_year);
+  const y = payload.points.map((p) => p.cumulative_return_pct);
+  const text = payload.points.map((p) =>
+    `Birth year: ${p.birth_year}<br>Months investing: ${p.months_investing}<br>Total contributed: $${p.total_contributed.toFixed(2)}<br>Ending value: $${p.ending_value.toFixed(2)}<br>Cumulative return: ${p.cumulative_return_pct.toFixed(2)}%`
+  );
+
+  const trace = {
+    x,
+    y,
+    text,
+    hovertemplate: '%{text}<extra></extra>',
+    mode: 'lines+markers',
+    line: {width: 2},
+    marker: {size: 6},
+    name: 'Cohort return',
+  };
+
+  const layout = {
+    title: 'Cohort outcomes by birth year (monthly $1 lifecycle investing)',
+    xaxis: {title: 'Birth year'},
+    yaxis: {title: 'Cumulative return (%)'},
+    hovermode: 'closest',
+    template: 'plotly_white',
+    showlegend: false,
+    margin: {l: 70, r: 20, t: 60, b: 60},
+  };
+
+  Plotly.newPlot('cohort-summary-chart', [trace], layout, {responsive: true, displayModeBar: true});
+}
+
 async function renderLifecycleChart() {
   const response = await fetch('monthly_lifecycle_curves.json');
   const payload = await response.json();
@@ -58,5 +92,6 @@ async function renderLifecycleChart() {
   Plotly.newPlot('monthly-lifecycle-chart', traces, layout, config);
 }
 
+renderSummaryChart();
 renderLifecycleChart();
 </script>

@@ -194,6 +194,28 @@ def write_curve_json(curves: list[dict[str, object]], output_path: Path) -> None
     output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
 
+def write_summary_json(results: list[CohortResult], output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "meta": {
+            "birth_year_start": START_BIRTH_YEAR,
+            "birth_year_end": END_BIRTH_YEAR,
+            "simulation_end": SIMULATION_END.isoformat(),
+        },
+        "points": [
+            {
+                "birth_year": r.birth_year,
+                "months_investing": r.months_investing,
+                "cumulative_return_pct": round(r.cumulative_return_pct, 4),
+                "ending_value": round(r.ending_value, 4),
+                "total_contributed": round(r.total_contributed, 4),
+            }
+            for r in results
+        ],
+    }
+    output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+
+
 def write_svg(results: list[CohortResult], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     width, height = 1200, 700
@@ -250,7 +272,7 @@ This simulation tracks **200 people**, one born in each year from **1826 to 2025
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
-![Lifecycle S&P 500 cohort returns](sp500_lifecycle_returns.svg)
+<div id="cohort-summary-chart" style="width:100%;height:500px"></div>
 
 Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
@@ -262,6 +284,40 @@ Hover with a cursor (desktop) or press a point (mobile touch) to view each point
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script>
+async function renderSummaryChart() {
+  const response = await fetch('sp500_lifecycle_summary.json');
+  const payload = await response.json();
+
+  const x = payload.points.map((p) => p.birth_year);
+  const y = payload.points.map((p) => p.cumulative_return_pct);
+  const text = payload.points.map((p) =>
+    `Birth year: ${p.birth_year}<br>Months investing: ${p.months_investing}<br>Total contributed: $${p.total_contributed.toFixed(2)}<br>Ending value: $${p.ending_value.toFixed(2)}<br>Cumulative return: ${p.cumulative_return_pct.toFixed(2)}%`
+  );
+
+  const trace = {
+    x,
+    y,
+    text,
+    hovertemplate: '%{text}<extra></extra>',
+    mode: 'lines+markers',
+    line: {width: 2},
+    marker: {size: 6},
+    name: 'Cohort return',
+  };
+
+  const layout = {
+    title: 'Cohort outcomes by birth year (monthly $1 lifecycle investing)',
+    xaxis: {title: 'Birth year'},
+    yaxis: {title: 'Cumulative return (%)'},
+    hovermode: 'closest',
+    template: 'plotly_white',
+    showlegend: false,
+    margin: {l: 70, r: 20, t: 60, b: 60},
+  };
+
+  Plotly.newPlot('cohort-summary-chart', [trace], layout, {responsive: true, displayModeBar: true});
+}
+
 async function renderLifecycleChart() {
   const response = await fetch('monthly_lifecycle_curves.json');
   const payload = await response.json();
@@ -294,6 +350,7 @@ async function renderLifecycleChart() {
   Plotly.newPlot('monthly-lifecycle-chart', traces, layout, config);
 }
 
+renderSummaryChart();
 renderLifecycleChart();
 </script>
 """,
@@ -307,6 +364,7 @@ def main() -> None:
     results, curves = simulate(monthly_prices)
     write_csv(results, out_dir / "sp500_lifecycle_returns.csv")
     write_svg(results, out_dir / "sp500_lifecycle_returns.svg")
+    write_summary_json(results, out_dir / "sp500_lifecycle_summary.json")
     write_curve_json(curves, out_dir / "monthly_lifecycle_curves.json")
     write_post(out_dir / "index.md")
 
