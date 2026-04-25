@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate lifecycle S&P 500 cohort simulation assets (1926-2025 births)."""
+"""Generate lifecycle S&P 500 cohort simulation assets (1826-2025 births)."""
 
 from __future__ import annotations
 
@@ -10,12 +10,13 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
-START_BIRTH_YEAR = 1926
+START_BIRTH_YEAR = 1826
 END_BIRTH_YEAR = 2025
 LABOR_FORCE_AGE = 25
 RETIREMENT_AGE = 65
 SIMULATION_END = dt.date(2025, 12, 31)
 BASE_INDEX_LEVEL = 100.0
+MARKET_DATA_START = dt.date(1926, 1, 1)
 
 # Source used to populate values: https://www.slickcharts.com/sp500/returns
 # (S&P 500 total returns by year, 1926-2025).
@@ -46,6 +47,7 @@ ANNUAL_TOTAL_RETURNS = {
 @dataclass
 class CohortResult:
     birth_year: int
+    labor_force_start_month: dt.date
     start_month: dt.date
     end_month: dt.date
     months_investing: int
@@ -90,7 +92,8 @@ def simulate(monthly_prices: dict[dt.date, float]) -> tuple[list[CohortResult], 
     curves: list[dict[str, object]] = []
 
     for birth_year in range(START_BIRTH_YEAR, END_BIRTH_YEAR + 1):
-        start_month = dt.date(birth_year + LABOR_FORCE_AGE, 1, 1)
+        labor_force_start_month = dt.date(birth_year + LABOR_FORCE_AGE, 1, 1)
+        start_month = max(labor_force_start_month, MARKET_DATA_START)
         scheduled_end = dt.date(birth_year + RETIREMENT_AGE, 12, 1)
         end_month = min(scheduled_end, dt.date(SIMULATION_END.year, SIMULATION_END.month, 1))
 
@@ -99,7 +102,19 @@ def simulate(monthly_prices: dict[dt.date, float]) -> tuple[list[CohortResult], 
         text_vals: list[str] = []
 
         if start_month > end_month:
-            results.append(CohortResult(birth_year, start_month, end_month, 0, 0.0, 0.0, 0.0, 0.0))
+            results.append(
+                CohortResult(
+                    birth_year,
+                    labor_force_start_month,
+                    start_month,
+                    end_month,
+                    0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                )
+            )
             curves.append({"birth_year": birth_year, "x": x_vals, "y": y_vals, "text": text_vals})
             continue
 
@@ -125,6 +140,7 @@ def simulate(monthly_prices: dict[dt.date, float]) -> tuple[list[CohortResult], 
         results.append(
             CohortResult(
                 birth_year=birth_year,
+                labor_force_start_month=labor_force_start_month,
                 start_month=start_month,
                 end_month=end_month,
                 months_investing=months,
@@ -144,12 +160,13 @@ def write_csv(results: list[CohortResult], output_path: Path) -> None:
     with output_path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
         writer.writerow([
-            "birth_year", "start_month", "end_month", "months_investing", "total_contributed",
+            "birth_year", "labor_force_start_month", "start_month", "end_month", "months_investing", "total_contributed",
             "ending_value", "return_multiple", "cumulative_return_pct",
         ])
         for r in results:
             writer.writerow([
                 r.birth_year,
+                r.labor_force_start_month.isoformat(),
                 r.start_month.isoformat(),
                 r.end_month.isoformat(),
                 r.months_investing,
@@ -218,17 +235,18 @@ def write_post(output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         """---
-title: Lifecycle investment simulation across 100 birth cohorts
+title: Lifecycle investment simulation across 200 birth cohorts
 date: 2026-04-25
 draft: false
-summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1926-2025).
+summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1826-2025).
 ---
 
-This simulation tracks **100 people**, one born in each year from **1926 to 2025**.
+This simulation tracks **200 people**, one born in each year from **1826 to 2025**.
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
 - Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
+- For cohorts whose labor-force entry starts before 1926, the simulation begins at **January 1926** (first available market return year in this dataset).
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
@@ -261,7 +279,7 @@ async function renderLifecycleChart() {
   }));
 
   const layout = {
-    title: '100 cohorts: monthly $1 investing',
+    title: '200 cohorts: monthly $1 investing (birth years 1826-2025)',
     xaxis: {title: 'Years since birth (age)'},
     yaxis: {title: 'Portfolio value ($)'},
     hovermode: 'closest',

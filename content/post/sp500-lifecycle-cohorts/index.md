@@ -1,15 +1,16 @@
 ---
-title: Lifecycle investment simulation across 100 birth cohorts
+title: Lifecycle investment simulation across 200 birth cohorts
 date: 2026-04-25
 draft: false
-summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1926-2025).
+summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1826-2025).
 ---
 
-This simulation tracks **100 people**, one born in each year from **1926 to 2025**.
+This simulation tracks **200 people**, one born in each year from **1826 to 2025**.
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
 - Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
+- For cohorts whose labor-force entry starts before 1926, the simulation begins at **January 1926** (first available market return year in this dataset).
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
@@ -42,7 +43,7 @@ async function renderLifecycleChart() {
   }));
 
   const layout = {
-    title: '100 cohorts: monthly $1 investing',
+    title: '200 cohorts: monthly $1 investing (birth years 1826-2025)',
     xaxis: {title: 'Years since birth (age)'},
     yaxis: {title: 'Portfolio value ($)'},
     hovermode: 'closest',
