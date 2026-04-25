@@ -430,6 +430,10 @@ This simulation tracks **200 people**, one born in each year from **1826 to 2025
 
 <div id="cohort-summary-chart" style="width:100%;height:500px"></div>
 
+### Variant: cohort outcomes by ending portfolio value
+
+<div id="cohort-summary-value-chart" style="width:100%;height:500px"></div>
+
 Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
 ## Interactive stacked lifecycle curves — monthly $1 investing
@@ -474,6 +478,40 @@ async function renderSummaryChart() {
   Plotly.newPlot('cohort-summary-chart', [trace], layout, {responsive: true, displayModeBar: true});
 }
 
+async function renderSummaryValueChart() {
+  const response = await fetch('sp500_lifecycle_summary.json');
+  const payload = await response.json();
+
+  const x = payload.points.map((p) => p.birth_year);
+  const y = payload.points.map((p) => p.ending_value);
+  const text = payload.points.map((p) =>
+    `Birth year: ${p.birth_year}<br>Months investing: ${p.months_investing}<br>Total contributed: $${p.total_contributed.toFixed(2)}<br>Ending value: $${p.ending_value.toFixed(2)}`
+  );
+
+  const trace = {
+    x,
+    y,
+    text,
+    hovertemplate: '%{text}<extra></extra>',
+    mode: 'lines+markers',
+    line: {width: 2},
+    marker: {size: 6},
+    name: 'Ending portfolio value',
+  };
+
+  const layout = {
+    title: 'Cohort ending portfolio value by birth year (monthly $1 lifecycle investing)',
+    xaxis: {title: 'Birth year'},
+    yaxis: {title: 'Ending value ($)'},
+    hovermode: 'closest',
+    template: 'plotly_white',
+    showlegend: false,
+    margin: {l: 70, r: 20, t: 60, b: 60},
+  };
+
+  Plotly.newPlot('cohort-summary-value-chart', [trace], layout, {responsive: true, displayModeBar: true});
+}
+
 async function renderLifecycleChart() {
   const response = await fetch('monthly_lifecycle_curves.json');
   const payload = await response.json();
@@ -507,6 +545,7 @@ async function renderLifecycleChart() {
 }
 
 renderSummaryChart();
+renderSummaryValueChart();
 renderLifecycleChart();
 </script>
 """
