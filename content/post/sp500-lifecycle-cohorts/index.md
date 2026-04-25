@@ -1,17 +1,61 @@
 ---
 title: Lifecycle investment simulation across 100 birth cohorts
-date: 2026-04-24
+date: 2026-04-25
 draft: false
-summary: Simulate $1/month S&P 500 investing for cohorts born in each year from 1926 through 2025.
+summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1926-2025).
 ---
 
 This simulation tracks **100 people**, one born in each year from **1926 to 2025**.
 
-- Each person invests **$1 every month** once they enter the labor force at age **25**.
-- They continue until retirement at age **65**.
-- If they are younger than 65 by **December 2025**, they are treated as still holding through December 2025.
-- We use annual S&P 500 total returns (1926-2025) and convert each year into a constant monthly growth rate for a simple monthly approximation.
+- Start investing at age **25**.
+- Stop at age **65** (or hold through **December 2025** if not yet retired).
+- Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
+
+## Cohort outcomes at retirement/end date (monthly $1 investing)
 
 ![Lifecycle S&P 500 cohort returns](sp500_lifecycle_returns.svg)
 
-Download the cohort-level output: [CSV](sp500_lifecycle_returns.csv).
+Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
+
+## Interactive stacked lifecycle curves — monthly $1 investing
+
+Hover with a cursor (desktop) or press a point (mobile touch) to view each point's **birth year**, **age**, and **portfolio value**.
+
+<div id="monthly-lifecycle-chart" style="width:100%;height:680px"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script>
+async function renderLifecycleChart() {
+  const response = await fetch('monthly_lifecycle_curves.json');
+  const payload = await response.json();
+
+  const traces = payload.series.map((s) => ({
+    x: s.x,
+    y: s.y,
+    name: String(s.birth_year),
+    text: s.text,
+    hovertemplate: '%{text}<extra></extra>',
+    mode: 'lines+markers',
+    line: {width: 1.2},
+    marker: {size: 6, opacity: 0.001},
+    opacity: 0.65,
+  }));
+
+  const layout = {
+    title: '100 cohorts: monthly $1 investing',
+    xaxis: {title: 'Years since birth (age)'},
+    yaxis: {title: 'Portfolio value ($)'},
+    hovermode: 'closest',
+    hoverdistance: 30,
+    spikedistance: 30,
+    template: 'plotly_white',
+    showlegend: false,
+    margin: {l: 70, r: 20, t: 60, b: 60},
+  };
+
+  const config = {responsive: true, displayModeBar: true, scrollZoom: true};
+  Plotly.newPlot('monthly-lifecycle-chart', traces, layout, config);
+}
+
+renderLifecycleChart();
+</script>

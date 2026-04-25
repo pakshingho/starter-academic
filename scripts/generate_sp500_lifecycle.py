@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Generate lifecycle S&P 500 cohort return simulation (1926-2025 births).
-
-Uses annual total returns and converts them to constant monthly growth factors
-within each year for a simple monthly DCA approximation.
-"""
+"""Generate lifecycle S&P 500 cohort simulation assets (1926-2025 births)."""
 
 from __future__ import annotations
 
 import csv
 import datetime as dt
+import json
 import math
 from dataclasses import dataclass
 from pathlib import Path
@@ -84,16 +81,26 @@ def build_monthly_index() -> dict[dt.date, float]:
     return monthly_prices
 
 
-def simulate(monthly_prices: dict[dt.date, float]) -> list[CohortResult]:
+def age_in_years(birth_year: int, month: dt.date) -> float:
+    return (month.year - birth_year) + (month.month - 1) / 12.0
+
+
+def simulate(monthly_prices: dict[dt.date, float]) -> tuple[list[CohortResult], list[dict[str, object]]]:
     results: list[CohortResult] = []
+    curves: list[dict[str, object]] = []
 
     for birth_year in range(START_BIRTH_YEAR, END_BIRTH_YEAR + 1):
         start_month = dt.date(birth_year + LABOR_FORCE_AGE, 1, 1)
         scheduled_end = dt.date(birth_year + RETIREMENT_AGE, 12, 1)
         end_month = min(scheduled_end, dt.date(SIMULATION_END.year, SIMULATION_END.month, 1))
 
+        x_vals: list[float] = []
+        y_vals: list[float] = []
+        text_vals: list[str] = []
+
         if start_month > end_month:
             results.append(CohortResult(birth_year, start_month, end_month, 0, 0.0, 0.0, 0.0, 0.0))
+            curves.append({"birth_year": birth_year, "x": x_vals, "y": y_vals, "text": text_vals})
             continue
 
         shares = 0.0
@@ -101,6 +108,14 @@ def simulate(monthly_prices: dict[dt.date, float]) -> list[CohortResult]:
         for month in month_iter(start_month, end_month):
             shares += 1.0 / monthly_prices[month]
             months += 1
+            value = shares * monthly_prices[month]
+            age = age_in_years(birth_year, month)
+
+            x_vals.append(round(age, 4))
+            y_vals.append(round(value, 4))
+            text_vals.append(
+                f"Birth year: {birth_year}<br>Age: {age:.2f}<br>Value: ${value:.2f}"
+            )
 
         ending_value = shares * monthly_prices[end_month]
         contributed = float(months)
@@ -119,8 +134,9 @@ def simulate(monthly_prices: dict[dt.date, float]) -> list[CohortResult]:
                 cumulative_return_pct=cumulative_return_pct,
             )
         )
+        curves.append({"birth_year": birth_year, "x": x_vals, "y": y_vals, "text": text_vals})
 
-    return results
+    return results, curves
 
 
 def write_csv(results: list[CohortResult], output_path: Path) -> None:
@@ -142,6 +158,23 @@ def write_csv(results: list[CohortResult], output_path: Path) -> None:
                 f"{r.return_multiple:.6f}",
                 f"{r.cumulative_return_pct:.2f}",
             ])
+
+
+def write_curve_json(curves: list[dict[str, object]], output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "meta": {
+            "birth_year_start": START_BIRTH_YEAR,
+            "birth_year_end": END_BIRTH_YEAR,
+            "labor_force_age": LABOR_FORCE_AGE,
+            "retirement_age": RETIREMENT_AGE,
+            "simulation_end": SIMULATION_END.isoformat(),
+            "frequency": "monthly",
+            "contribution_per_period": 1.0,
+        },
+        "series": curves,
+    }
+    output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
 
 def write_svg(results: list[CohortResult], output_path: Path) -> None:
@@ -166,36 +199,19 @@ def write_svg(results: list[CohortResult], output_path: Path) -> None:
 
     points = " ".join(f"{x_to_px(r.birth_year):.2f},{y_to_px(r.cumulative_return_pct):.2f}" for r in results)
 
-    x_ticks = [1926, 1940, 1960, 1980, 2000, 2025]
-    y_ticks = 6
-
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<style>text{font-family:Arial,sans-serif;fill:#111827}.title{font-size:24px;font-weight:700}.axis{font-size:13px}.small{font-size:12px;fill:#4b5563}</style>',
         f'<rect width="{width}" height="{height}" fill="white"/>',
         f'<text x="{width/2}" y="30" text-anchor="middle" class="title">Lifecycle S&amp;P 500 returns by birth year (1926-2025)</text>',
+        f'<line x1="{margin["left"]}" y1="{height-margin["bottom"]}" x2="{width-margin["right"]}" y2="{height-margin["bottom"]}" stroke="#111827"/>',
+        f'<line x1="{margin["left"]}" y1="{margin["top"]}" x2="{margin["left"]}" y2="{height-margin["bottom"]}" stroke="#111827"/>',
+        f'<polyline points="{points}" fill="none" stroke="#2563eb" stroke-width="2.5"/>',
+        f'<text x="{width/2}" y="{height-20}" text-anchor="middle" class="axis">Birth year</text>',
+        f'<text transform="translate(25 {height/2}) rotate(-90)" text-anchor="middle" class="axis">Cumulative return (%)</text>',
     ]
 
-    for i in range(y_ticks + 1):
-        y_val = min_y + (max_y - min_y) * i / y_ticks
-        y_px = y_to_px(y_val)
-        out.append(f'<line x1="{margin["left"]}" y1="{y_px:.2f}" x2="{width-margin["right"]}" y2="{y_px:.2f}" stroke="#e5e7eb"/>')
-        out.append(f'<text x="{margin["left"]-10}" y="{y_px+4:.2f}" text-anchor="end" class="axis">{y_val:.0f}%</text>')
-
-    for tick in x_ticks:
-        x_px = x_to_px(tick)
-        out.append(f'<line x1="{x_px:.2f}" y1="{margin["top"]}" x2="{x_px:.2f}" y2="{height-margin["bottom"]}" stroke="#f3f4f6"/>')
-        out.append(f'<text x="{x_px:.2f}" y="{height-margin["bottom"]+25}" text-anchor="middle" class="axis">{tick}</text>')
-
-    out.append(f'<line x1="{margin["left"]}" y1="{height-margin["bottom"]}" x2="{width-margin["right"]}" y2="{height-margin["bottom"]}" stroke="#111827"/>')
-    out.append(f'<line x1="{margin["left"]}" y1="{margin["top"]}" x2="{margin["left"]}" y2="{height-margin["bottom"]}" stroke="#111827"/>')
-    out.append(f'<polyline points="{points}" fill="none" stroke="#2563eb" stroke-width="2.5"/>')
-    out.append(f'<text x="{width/2}" y="{height-20}" text-anchor="middle" class="axis">Birth year</text>')
-    out.append(f'<text transform="translate(25 {height/2}) rotate(-90)" text-anchor="middle" class="axis">Cumulative return (%)</text>')
-    out.append(f'<text x="{margin["left"]}" y="{height-45}" class="small">Assumptions: $1/month from age {LABOR_FORCE_AGE}, retire at {RETIREMENT_AGE} or hold through Dec 2025; annual returns smoothed to monthly.</text>')
-    out.append('</svg>')
-
-    output_path.write_text("\n".join(out), encoding="utf-8")
+    output_path.write_text("\n".join(out + ["</svg>"]), encoding="utf-8")
 
 
 def write_post(output_path: Path) -> None:
@@ -203,31 +219,77 @@ def write_post(output_path: Path) -> None:
     output_path.write_text(
         """---
 title: Lifecycle investment simulation across 100 birth cohorts
-date: 2026-04-24
+date: 2026-04-25
 draft: false
-summary: Simulate $1/month S&P 500 investing for cohorts born in each year from 1926 through 2025.
+summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1926-2025).
 ---
 
 This simulation tracks **100 people**, one born in each year from **1926 to 2025**.
 
-- Each person invests **$1 every month** once they enter the labor force at age **25**.
-- They continue until retirement at age **65**.
-- If they are younger than 65 by **December 2025**, they are treated as still holding through December 2025.
-- We use annual S&P 500 total returns (1926-2025) and convert each year into a constant monthly growth rate for a simple monthly approximation.
+- Start investing at age **25**.
+- Stop at age **65** (or hold through **December 2025** if not yet retired).
+- Uses annual S&P 500 total returns (1926-2025) converted to smooth monthly growth.
+
+## Cohort outcomes at retirement/end date (monthly $1 investing)
 
 ![Lifecycle S&P 500 cohort returns](sp500_lifecycle_returns.svg)
 
-Download the cohort-level output: [CSV](sp500_lifecycle_returns.csv).
+Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
+
+## Interactive stacked lifecycle curves — monthly $1 investing
+
+Hover with a cursor (desktop) or press a point (mobile touch) to view each point's **birth year**, **age**, and **portfolio value**.
+
+<div id="monthly-lifecycle-chart" style="width:100%;height:680px"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script>
+async function renderLifecycleChart() {
+  const response = await fetch('monthly_lifecycle_curves.json');
+  const payload = await response.json();
+
+  const traces = payload.series.map((s) => ({
+    x: s.x,
+    y: s.y,
+    name: String(s.birth_year),
+    text: s.text,
+    hovertemplate: '%{text}<extra></extra>',
+    mode: 'lines+markers',
+    line: {width: 1.2},
+    marker: {size: 6, opacity: 0.001},
+    opacity: 0.65,
+  }));
+
+  const layout = {
+    title: '100 cohorts: monthly $1 investing',
+    xaxis: {title: 'Years since birth (age)'},
+    yaxis: {title: 'Portfolio value ($)'},
+    hovermode: 'closest',
+    hoverdistance: 30,
+    spikedistance: 30,
+    template: 'plotly_white',
+    showlegend: false,
+    margin: {l: 70, r: 20, t: 60, b: 60},
+  };
+
+  const config = {responsive: true, displayModeBar: true, scrollZoom: true};
+  Plotly.newPlot('monthly-lifecycle-chart', traces, layout, config);
+}
+
+renderLifecycleChart();
+</script>
 """,
         encoding="utf-8",
     )
 
 
 def main() -> None:
-    results = simulate(build_monthly_index())
     out_dir = Path("content/post/sp500-lifecycle-cohorts")
+    monthly_prices = build_monthly_index()
+    results, curves = simulate(monthly_prices)
     write_csv(results, out_dir / "sp500_lifecycle_returns.csv")
     write_svg(results, out_dir / "sp500_lifecycle_returns.svg")
+    write_curve_json(curves, out_dir / "monthly_lifecycle_curves.json")
     write_post(out_dir / "index.md")
 
 
