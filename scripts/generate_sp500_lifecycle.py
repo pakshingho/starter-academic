@@ -97,10 +97,14 @@ def fetch_yahoo_annual_total_returns() -> tuple[dict[int, float], str]:
 
 def fetch_officialdata_annual_total_returns() -> tuple[dict[int, float], str]:
     """Fetch annual returns by scraping officialdata.org monthly return rows."""
-    with urllib.request.urlopen(OFFICIALDATA_URL, timeout=30) as response:
+    request = urllib.request.Request(
+        OFFICIALDATA_URL,
+        headers={"User-Agent": "Mozilla/5.0 (compatible; lifecycle-sim/1.0)"},
+    )
+    with urllib.request.urlopen(request, timeout=30) as response:
         body = response.read().decode("utf-8", errors="ignore")
 
-    pattern = r"(?<!\\d)(18\\d{2}|19\\d{2}|20\\d{2})\\s+([1-9]|1[0-2])\\s*([+-]?\\d+(?:\\.\\d+)?)%"
+    pattern = r"(?<!\d)(18\d{2}|19\d{2}|20\d{2})\s+([1-9]|1[0-2])\s*([+-]?\d+(?:\.\d+)?)%"
     matches = re.findall(pattern, body)
     if not matches:
         raise ValueError("No monthly return rows found on officialdata page")
