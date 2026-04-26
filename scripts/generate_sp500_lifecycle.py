@@ -225,11 +225,16 @@ def age_in_years(birth_year: int, month: dt.date) -> float:
     return (month.year - birth_year) + (month.month - 1) / 12.0
 
 
-def simulate(monthly_prices: dict[dt.date, float], data_start: dt.date) -> tuple[list[CohortResult], list[dict[str, object]]]:
+def simulate(
+    monthly_prices: dict[dt.date, float],
+    data_start: dt.date,
+) -> tuple[list[CohortResult], list[dict[str, object]], int, int]:
     results: list[CohortResult] = []
     curves: list[dict[str, object]] = []
+    cohort_birth_start = max(START_BIRTH_YEAR, data_start.year - LABOR_FORCE_AGE)
+    cohort_birth_end = END_BIRTH_YEAR
 
-    for birth_year in range(START_BIRTH_YEAR, END_BIRTH_YEAR + 1):
+    for birth_year in range(cohort_birth_start, cohort_birth_end + 1):
         labor_force_start_month = dt.date(birth_year + LABOR_FORCE_AGE, 1, 1)
         start_month = max(labor_force_start_month, data_start)
         scheduled_end = dt.date(birth_year + RETIREMENT_AGE, 12, 1)
@@ -290,7 +295,7 @@ def simulate(monthly_prices: dict[dt.date, float], data_start: dt.date) -> tuple
         )
         curves.append({"birth_year": birth_year, "x": x_vals, "y": y_vals, "text": text_vals})
 
-    return results, curves
+    return results, curves, cohort_birth_start, cohort_birth_end
 
 
 def write_csv(results: list[CohortResult], output_path: Path) -> None:
@@ -321,12 +326,14 @@ def write_curve_json(
     source_name: str,
     data_start_year: int,
     data_end_year: int,
+    cohort_birth_start: int,
+    cohort_birth_end: int,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
-            "birth_year_start": START_BIRTH_YEAR,
-            "birth_year_end": END_BIRTH_YEAR,
+            "birth_year_start": cohort_birth_start,
+            "birth_year_end": cohort_birth_end,
             "labor_force_age": LABOR_FORCE_AGE,
             "retirement_age": RETIREMENT_AGE,
             "simulation_end": SIMULATION_END.isoformat(),
@@ -347,12 +354,14 @@ def write_summary_json(
     source_name: str,
     data_start_year: int,
     data_end_year: int,
+    cohort_birth_start: int,
+    cohort_birth_end: int,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
-            "birth_year_start": START_BIRTH_YEAR,
-            "birth_year_end": END_BIRTH_YEAR,
+            "birth_year_start": cohort_birth_start,
+            "birth_year_end": cohort_birth_end,
             "simulation_end": SIMULATION_END.isoformat(),
             "market_data_source": source_name,
             "market_data_year_start": data_start_year,
@@ -409,7 +418,14 @@ def write_svg(results: list[CohortResult], output_path: Path) -> None:
     output_path.write_text("\n".join(out + ["</svg>"]), encoding="utf-8")
 
 
-def write_post(output_path: Path, source_name: str, data_start_year: int, data_end_year: int) -> None:
+def write_post(
+    output_path: Path,
+    source_name: str,
+    data_start_year: int,
+    data_end_year: int,
+    cohort_birth_start: int,
+    cohort_birth_end: int,
+) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     post_template = """---
 title: Lifecycle investment simulation across 200 birth cohorts
@@ -418,13 +434,13 @@ draft: false
 summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1826-2025).
 ---
 
-This simulation tracks **200 people**, one born in each year from **1826 to 2025**.
+This simulation tracks **__COHORT_COUNT__ people**, one born in each year from **__COHORT_BIRTH_START__ to __COHORT_BIRTH_END__**.
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
 - Uses annual returns derived from source: **__SOURCE_NAME__**.
 - Market data coverage in this run: **__DATA_START_YEAR__ to __DATA_END_YEAR__**.
-- For cohorts whose labor-force entry starts before the first available market year, simulation starts at that first available year.
+- Cohorts with labor-force entry before the first market-data year are excluded.
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
@@ -529,7 +545,7 @@ async function renderLifecycleChart() {
   }));
 
   const layout = {
-    title: '200 cohorts: monthly $1 investing (birth years 1826-2025)',
+    title: '__COHORT_COUNT__ cohorts: monthly $1 investing (birth years __COHORT_BIRTH_START__-__COHORT_BIRTH_END__)',
     xaxis: {title: 'Years since birth (age)'},
     yaxis: {title: 'Portfolio value ($)'},
     hovermode: 'closest',
@@ -553,7 +569,10 @@ renderLifecycleChart();
         post_template
         .replace("__SOURCE_NAME__", source_name)
         .replace("__DATA_START_YEAR__", str(data_start_year))
-        .replace("__DATA_END_YEAR__", str(data_end_year)),
+        .replace("__DATA_END_YEAR__", str(data_end_year))
+        .replace("__COHORT_BIRTH_START__", str(cohort_birth_start))
+        .replace("__COHORT_BIRTH_END__", str(cohort_birth_end))
+        .replace("__COHORT_COUNT__", str(cohort_birth_end - cohort_birth_start + 1)),
         encoding="utf-8",
     )
 
@@ -564,12 +583,28 @@ def main() -> None:
     data_start_year = min(annual_returns)
     data_end_year = max(annual_returns)
     monthly_prices = build_monthly_index(annual_returns)
-    results, curves = simulate(monthly_prices, dt.date(data_start_year, 1, 1))
+    results, curves, cohort_birth_start, cohort_birth_end = simulate(monthly_prices, dt.date(data_start_year, 1, 1))
     write_csv(results, out_dir / "sp500_lifecycle_returns.csv")
     write_svg(results, out_dir / "sp500_lifecycle_returns.svg")
-    write_summary_json(results, out_dir / "sp500_lifecycle_summary.json", source_name, data_start_year, data_end_year)
-    write_curve_json(curves, out_dir / "monthly_lifecycle_curves.json", source_name, data_start_year, data_end_year)
-    write_post(out_dir / "index.md", source_name, data_start_year, data_end_year)
+    write_summary_json(
+        results,
+        out_dir / "sp500_lifecycle_summary.json",
+        source_name,
+        data_start_year,
+        data_end_year,
+        cohort_birth_start,
+        cohort_birth_end,
+    )
+    write_curve_json(
+        curves,
+        out_dir / "monthly_lifecycle_curves.json",
+        source_name,
+        data_start_year,
+        data_end_year,
+        cohort_birth_start,
+        cohort_birth_end,
+    )
+    write_post(out_dir / "index.md", source_name, data_start_year, data_end_year, cohort_birth_start, cohort_birth_end)
 
 
 if __name__ == "__main__":

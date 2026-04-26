@@ -5,13 +5,13 @@ draft: false
 summary: Interactive lifecycle growth curves for monthly $1 investing by birth cohort (1826-2025).
 ---
 
-This simulation tracks **200 people**, one born in each year from **1826 to 2025**.
+This simulation tracks **125 people**, one born in each year from **1901 to 2025**.
 
 - Start investing at age **25**.
 - Stop at age **65** (or hold through **December 2025** if not yet retired).
 - Uses annual returns derived from source: **fallback_slickcharts_annual_total_return**.
 - Market data coverage in this run: **1926 to 2025**.
-- For cohorts whose labor-force entry starts before the first available market year, simulation starts at that first available year.
+- Cohorts with labor-force entry before the first market-data year are excluded.
 
 ## Cohort outcomes at retirement/end date (monthly $1 investing)
 
@@ -116,7 +116,7 @@ async function renderLifecycleChart() {
   }));
 
   const layout = {
-    title: '200 cohorts: monthly $1 investing (birth years 1826-2025)',
+    title: '125 cohorts: monthly $1 investing (birth years 1901-2025)',
     xaxis: {title: 'Years since birth (age)'},
     yaxis: {title: 'Portfolio value ($)'},
     hovermode: 'closest',
