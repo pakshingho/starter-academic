@@ -25,6 +25,11 @@ Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
 ## Interactive stacked lifecycle curves — monthly $1 investing
 
+<label for="cohort-filter"><strong>Select cohort:</strong></label>
+<select id="cohort-filter" style="margin:0 0 12px 8px;padding:4px 8px">
+  <option value="all">All cohorts</option>
+</select>
+
 <div id="monthly-lifecycle-chart" style="width:100%;height:680px"></div>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
@@ -100,6 +105,7 @@ async function renderSummaryValueChart() {
 async function renderLifecycleChart() {
   const response = await fetch('monthly_lifecycle_curves.json');
   const payload = await response.json();
+  const cohortFilter = document.getElementById('cohort-filter');
 
   const traces = payload.series.map((s) => ({
     x: s.x,
@@ -127,6 +133,25 @@ async function renderLifecycleChart() {
 
   const config = {responsive: true, displayModeBar: true, scrollZoom: true};
   Plotly.newPlot('monthly-lifecycle-chart', traces, layout, config);
+
+  const cohortYears = payload.series.map((s) => String(s.birth_year));
+  for (const year of cohortYears) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    cohortFilter.appendChild(option);
+  }
+
+  cohortFilter.addEventListener('change', (event) => {
+    const selected = event.target.value;
+    if (selected === 'all') {
+      const visibility = cohortYears.map(() => true);
+      Plotly.restyle('monthly-lifecycle-chart', {visible: visibility});
+      return;
+    }
+    const visibility = cohortYears.map((year) => year === selected ? true : 'legendonly');
+    Plotly.restyle('monthly-lifecycle-chart', {visible: visibility});
+  });
 }
 
 renderSummaryChart();
