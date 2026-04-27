@@ -458,8 +458,6 @@ Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
 ## Interactive stacked lifecycle curves — monthly $1 investing
 
-Hover with a cursor (desktop) or press a point (mobile touch) to view each point's **birth year**, **age**, and **portfolio value**.
-
 <div id="monthly-lifecycle-chart" style="width:100%;height:680px"></div>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
