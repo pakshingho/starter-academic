@@ -25,8 +25,8 @@ Download: [Monthly cohort summary CSV](sp500_lifecycle_returns.csv).
 
 ## Interactive stacked lifecycle curves — monthly $1 investing
 
-<label for="cohort-filter"><strong>Select cohort:</strong></label>
-<select id="cohort-filter" style="margin:0 0 12px 8px;padding:4px 8px">
+<label for="cohort-filter"><strong>Select cohort(s):</strong></label>
+<select id="cohort-filter" multiple size="8" style="margin:0 0 12px 8px;padding:4px 8px;min-width:180px">
   <option value="all">All cohorts</option>
 </select>
 
@@ -142,14 +142,15 @@ async function renderLifecycleChart() {
     cohortFilter.appendChild(option);
   }
 
-  cohortFilter.addEventListener('change', (event) => {
-    const selected = event.target.value;
-    if (selected === 'all') {
+  cohortFilter.addEventListener('change', () => {
+    const selectedValues = Array.from(cohortFilter.selectedOptions).map((option) => option.value);
+    if (selectedValues.length === 0 || selectedValues.includes('all')) {
       const visibility = cohortYears.map(() => true);
       Plotly.restyle('monthly-lifecycle-chart', {visible: visibility});
       return;
     }
-    const visibility = cohortYears.map((year) => year === selected ? true : 'legendonly');
+    const selectedSet = new Set(selectedValues);
+    const visibility = cohortYears.map((year) => selectedSet.has(year) ? true : 'legendonly');
     Plotly.restyle('monthly-lifecycle-chart', {visible: visibility});
   });
 }
