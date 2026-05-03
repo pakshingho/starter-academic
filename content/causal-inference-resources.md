@@ -7,6 +7,8 @@ summary: A broad causal inference reference library covering books, courses, sof
 
 A broad reference library for learning, applying, and staying current with causal inference. It is organized by format and use case so you can move from foundations to methods to production practice.
 
+New here? Start with this short explainer: [Statistical Inference vs. Causal Inference: Why Pearl Says They Are Different Languages](/post/statistical-inference-vs-causal-inference/).
+
 Most readers do not need every section. If you are new to the area, start with the short guides below and then jump into the subsection that matches your problem.
 
 ## 1) Start Here

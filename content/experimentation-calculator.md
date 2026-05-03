@@ -8,6 +8,8 @@ draft: false
 
 Estimate sample size and runtime for an A/B or multi-arm conversion experiment using a fixed-horizon normal approximation.
 
+Related reading: [Statistical Inference vs. Causal Inference: Why Pearl Says They Are Different Languages](/post/statistical-inference-vs-causal-inference/) and [Causal Inference Resources](/causal-inference-resources/).
+
 <div class="experiment-tool" id="experiment-tool">
   <div class="experiment-tool__grid">
     <section class="experiment-tool__panel">
