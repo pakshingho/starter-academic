@@ -1,5 +1,5 @@
 ---
-title: Statistical Inference vs. Causal Inference: Why Pearl Says They Are Different Languages
+title: "Statistical Inference vs. Causal Inference: Why Pearl Says They Are Different Languages"
 subtitle: Correlation, intervention, and counterfactuals are not interchangeable modes of reasoning.
 date: 2026-05-03T00:00:00Z
 summary: A practical breakdown of Judea Pearl’s argument that statistical and causal inference are mathematically distinct, and what that means for applied economics and data science.
