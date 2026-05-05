@@ -1,10 +1,11 @@
 ---
 title: "Statistical Inference vs. Causal Inference: Why Pearl Says They Are Different Languages"
-subtitle: "Correlation, intervention, and counterfactuals are not interchangeable modes of reasoning."
+subtitle: Correlation, intervention, and counterfactuals are not interchangeable modes of reasoning.
 date: 2026-05-03T00:00:00Z
-summary: "A practical breakdown of Judea Pearl’s argument that statistical and causal inference are mathematically distinct, and what that means for applied economics and data science."
+summary: A practical breakdown of Judea Pearl’s argument that statistical and causal inference are mathematically distinct, and what that means for applied economics and data science.
 draft: false
 featured: false
+math: true
 tags:
   - Causal Inference
   - Econometrics
@@ -32,15 +33,15 @@ Every statistics textbook reminds us that correlation does not imply causation. 
 
 Traditional statistical inference focuses on the joint distribution:
 
-\[
+$$
 P(X, Y, Z, \ldots)
-\]
+$$
 
 This framework allows us to estimate associations, conditional probabilities, and predictive relationships.
 
 But if we ask:
 
-> “What happens to \(Y\) if we forcibly change \(X\)?”
+> “What happens to $Y$ if we forcibly change $X$?”
 
 Then standard statistical distributions alone cannot answer that question.
 
@@ -62,9 +63,9 @@ Pearl organizes causal reasoning into three hierarchical layers:
 
 ### 1. Association — “Seeing”
 
-\[
+$$
 P(Y\mid X)
-\]
+$$
 
 **Example:**  
 Among smokers, what is the probability of lung cancer?
@@ -79,9 +80,9 @@ This is the domain of:
 
 ### 2. Intervention — “Doing”
 
-\[
+$$
 P(Y\mid do(X))
-\]
+$$
 
 **Example:**  
 If we force someone to smoke, what happens to their lung cancer risk?
@@ -124,15 +125,15 @@ More data does not eliminate this limitation.
 
 Pearl introduced:
 
-\[
+$$
 P(Y\mid do(X=x))
-\]
+$$
 
 This differs critically from:
 
-\[
+$$
 P(Y\mid X=x)
-\]
+$$
 
 The difference is selection bias.
 
@@ -140,7 +141,7 @@ People who naturally select into treatment differ systematically from those rand
 
 In DAG terms, the do-operator works by:
 
-**Cutting all incoming arrows into \(X\)**
+**Cutting all incoming arrows into $X$**
 
 This mathematically simulates intervention.
 
@@ -156,9 +157,9 @@ This answers one of the most important practical questions:
 
 Economics largely relies on the Potential Outcomes Framework (Rubin Causal Model):
 
-\[
+$$
 Y(1) - Y(0)
-\]
+$$
 
 Causal identification depends on assumptions like:
 
@@ -198,11 +199,11 @@ Pearl’s DAG framework sharply highlights collider bias:
 
 If:
 
-\[
+$$
 X \rightarrow Z \leftarrow Y
-\]
+$$
 
-Then conditioning on \(Z\) can create false associations.
+Then conditioning on $Z$ can create false associations.
 
 **Example:**  
 When estimating education’s effect on wages, controlling for employment status may induce bias if employment is influenced by both education and latent ability.
