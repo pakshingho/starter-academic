@@ -930,7 +930,96 @@ Hence the estimator fails to be asymptotically unbiased when $\alpha\ge 1$.
 
 The lesson emphasized in the note is that many econometric estimators are biased or asymptotically biased, or may not even have a convenient expectation, and yet they are still useful because they are consistent and, after normalization, have a limiting distribution centered on the true parameter.
 
-- 2.1.1 Convergence in r-th mean
+### 2.1.1 Convergence in r-th mean
+
+The note next introduces a stronger mode of convergence based on moments. The basic tool is the indicator function
+
+<div>$$I(x \in A)=
+\begin{cases}
+1, & \text{if } x \in A,\\
+0, & \text{if } x \notin A.
+\end{cases}$$</div>
+
+For any event `A`, its expectation is just the probability of that event:
+
+<div>$$E\{I(x \in A)\}=\Pr\{x \in A\}.$$</div>
+
+This observation leads directly to Markov's inequality. For any `r>0`,
+
+<div>$$\Pr\{\lvert x\rvert>\delta\}\le \frac{E\{\lvert x\rvert^r\}}{\delta^r}, \qquad \delta>0,$$</div>
+
+provided `E|x|^r<\infty`.
+
+When `r=2`, this becomes the familiar Chebyshev inequality.
+
+#### Definition
+
+Assume that `E|x_n|^r<\infty` and `E|x|^r<\infty`. We say that `x_n` converges to `x` in `r`-th mean, written
+
+<div>$$x_n \xrightarrow{r\text{-th}} x,$$</div>
+
+if
+
+<div>$$\lim_{n\to\infty} E\{\lvert x_n-x\rvert^r\}=0.$$</div>
+
+When `r=2`, this is called mean-square convergence.
+
+#### Relation to convergence in probability
+
+For any `r>0`,
+
+<div>$$x_n \xrightarrow{r\text{-th}} x \implies x_n \xrightarrow{P} x.$$</div>
+
+Indeed, by Markov's inequality,
+
+<div>$$\Pr\{\lvert x_n-x\rvert>\delta\}\le \delta^{-r}E\{\lvert x_n-x\rvert^r\}.$$</div>
+
+So if the `r`-th moments of the errors go to zero, then the probabilities of large deviations must also go to zero.
+
+#### Higher-order mean convergence implies lower-order mean convergence
+
+Let `s>r>0`. Then
+
+<div>$$x_n \xrightarrow{s\text{-th}} x \implies x_n \xrightarrow{r\text{-th}} x.$$</div>
+
+The note proves this with Jensen's inequality. Using the convex function `g(v)=v^{s/r}`, we obtain
+
+<div>$$(E\{\lvert x_n-x\rvert^r\})^{s/r}\le E\{(\lvert x_n-x\rvert^r)^{s/r}\}=E\{\lvert x_n-x\rvert^s\}.$$</div>
+
+Hence if the right-hand side goes to zero, then `E|x_n-x|^r` must also go to zero.
+
+#### Consistency in r-th mean
+
+An estimator `\hat\theta_n` is `r`-th mean consistent for `\theta` if
+
+<div>$$E_\theta\{\lvert \hat\theta_n-\theta\rvert^r\}\to 0 \qquad \text{for all } \theta.$$</div>
+
+The note records the following useful implication for `r\ge 1`:
+
+<div>$$\text{r-th mean consistency} \implies \text{asymptotic unbiasedness}.$$</div>
+
+The argument is short:
+
+<div>$$\lvert E_\theta(\hat\theta_n)-\theta\rvert \le E_\theta\{\lvert \hat\theta_n-\theta\rvert\}\le \bigl(E_\theta\{\lvert \hat\theta_n-\theta\rvert^r\}\bigr)^{1/r}\to 0.$$</div>
+
+So moment convergence is strong enough to force the bias to vanish asymptotically.
+
+#### Remark
+
+If
+
+<div>$$x_n \xrightarrow{r\text{-th}} c,$$</div>
+
+and `g` is continuous, then
+
+<div>$$g(x_n)\xrightarrow{P}g(c).$$</div>
+
+But this does not imply
+
+<div>$$g(x_n)\xrightarrow{r\text{-th}}g(c).$$</div>
+
+The reason is that `E|g(x_n)|^r` may fail to exist or may fail to stay under control even when `x_n` itself converges in `r`-th mean.
+
 - 2.1.2 Conditions for convergence in r-th mean
 - 2.1.3 Conditions for consistency in regression
 
