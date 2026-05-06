@@ -1475,7 +1475,171 @@ E\left|\frac{1}{n}\sum_{i=1}^n e_{i-j}\right|
 
 Since $\sup_iE|e_i|<\infty$ under uniform integrability, the tail can be made arbitrarily small.
 
-- 2.1.3 Conditions for consistency in regression
+### 2.1.3 Conditions for consistency in regression
+
+Consider the linear regression model
+
+<div>$$y_i=z_i^\prime\beta+u_i,\qquad i=1,\dots,n,$$</div>
+
+where $z_i$ is nonstochastic and
+
+<div>$$E(u_i)=0,\qquad E(u_i^2)=\sigma^2,\qquad E(u_i u_j)=0\quad \text{for }i\neq j.$$</div>
+
+Let
+
+<div>$$Q_n=Z^\prime Z=\sum_{i=1}^n z_i z_i^\prime.$$</div>
+
+Earlier sufficient conditions often impose
+
+<div>$$\frac{Q_n}{n}\to M,$$</div>
+
+where $M$ is finite and nonsingular. This is convenient, but it is stronger than necessary. If the regressors trend, $Q_n/n$ may diverge even though least squares remains consistent.
+
+For example, if $z_i=i$ in a scalar regression, then
+
+<div>$$\frac{Q_n}{n}=\frac{1}{n}\sum_{i=1}^n i^2\to\infty.$$</div>
+
+So we need a condition that allows the information matrix to grow at a different rate.
+
+#### Eigenvalue condition
+
+Let $\lambda_{\min}(Q_n)$ denote the smallest eigenvalue of $Q_n$. Under the assumptions above,
+
+<div>$$\hat\beta_n \xrightarrow{L^2}\beta
+\quad\Longleftrightarrow\quad
+\lambda_{\min}(Q_n)\to\infty.$$</div>
+
+To see this, recall that
+
+<div>$$\hat\beta_n-\beta=(Z^\prime Z)^{-1}Z^\prime U
+=Q_n^{-1}\sum_{i=1}^n z_i u_i.$$</div>
+
+Then
+
+<div>$$\begin{aligned}
+E\{\|\hat\beta_n-\beta\|^2\}
+&=\operatorname{tr}E\{(\hat\beta_n-\beta)(\hat\beta_n-\beta)^\prime\}\\
+&=\operatorname{tr}E\left[
+Q_n^{-1}
+\left(\sum_i z_i u_i\right)
+\left(\sum_i z_i u_i\right)^\prime
+Q_n^{-1}
+\right]\\
+&=\sigma^2\operatorname{tr}(Q_n^{-1}).
+\end{aligned}$$</div>
+
+Since
+
+<div>$$\operatorname{tr}(Q_n^{-1})
+=\sum_{j=1}^k\frac{1}{\lambda_j(Q_n)},$$</div>
+
+this trace goes to zero if and only if every eigenvalue of $Q_n$ diverges, equivalently if $\lambda_{\min}(Q_n)\to\infty$.
+
+The note also records the simple implication
+
+<div>$$\lambda_{\min}(Q_n)\le q_{jj,n},$$</div>
+
+where $q_{jj,n}$ is the $j$-th diagonal element of $Q_n$. Therefore, if $\lambda_{\min}(Q_n)\to\infty$, then every diagonal element $q_{jj,n}$ must also diverge.
+
+#### Variance route to consistency
+
+Another way to see the same idea is through Markov's inequality. If $\eta_n$ has mean $\mu$ and variance $\sigma_n^2$, then
+
+<div>$$\Pr\{|\eta_n-\mu|\ge \kappa\}\le \frac{\sigma_n^2}{\kappa^2}.$$</div>
+
+Thus a sufficient second-moment route to $\eta_n\xrightarrow{P}\mu$ is
+
+<div>$$\sigma_n^2\to 0.$$</div>
+
+For an unbiased estimator $\hat\theta_n$ of $\theta$, this says that
+
+<div>$$E(\hat\theta_n)=\theta,\qquad V(\hat\theta_n)\to 0$$</div>
+
+is enough for consistency. This is only a sufficient route in general, because consistency itself does not require finite moments.
+
+In the least-squares case,
+
+<div>$$E(\hat\beta_n)=\beta,\qquad
+V(\hat\beta_n)=\sigma^2(Z^\prime Z)^{-1}=\sigma^2Q_n^{-1}.$$</div>
+
+So a sufficient condition for consistency is
+
+<div>$$Q_n^{-1}\to 0.$$</div>
+
+The standard condition $Q_n/n\to M>0$ implies this because
+
+<div>$$Q_n^{-1}
+=n^{-1}\left(\frac{Q_n}{n}\right)^{-1}
+\to 0.$$</div>
+
+But the normalization by $n$ is not essential. For example, if
+
+<div>$$\frac{Q_n}{n^{1/2}}\to M>0,$$</div>
+
+then
+
+<div>$$Q_n^{-1}
+=n^{-1/2}\left(\frac{Q_n}{n^{1/2}}\right)^{-1}
+\to 0.$$</div>
+
+Likewise, it is possible that
+
+<div>$$\frac{Q_n}{n^{1+\delta}}\to M>0$$</div>
+
+for some $\delta>0$. The common requirement behind all of these cases is that $Q_n$ grows enough in every direction.
+
+#### Example: intercept and linear trend
+
+Consider
+
+<div>$$y_i=\alpha+\beta i+u_i.$$</div>
+
+Here $z_i=(1,i)^\prime$, so
+
+<div>$$Q_n=
+\begin{pmatrix}
+n & \sum_{i=1}^n i\\
+\sum_{i=1}^n i & \sum_{i=1}^n i^2
+\end{pmatrix}.$$</div>
+
+The least-squares error is
+
+<div>$$
+\begin{pmatrix}
+\hat\alpha-\alpha\\
+\hat\beta-\beta
+\end{pmatrix}
+=
+Q_n^{-1}
+\begin{pmatrix}
+\sum_{i=1}^n u_i\\
+\sum_{i=1}^n i u_i
+\end{pmatrix}.
+$$</div>
+
+Although $Q_n/n$ does not converge to a finite nonsingular matrix, the smallest eigenvalue of $Q_n$ still diverges. Indeed,
+
+<div>$$\det(Q_n)
+=n\sum_{i=1}^n i^2-\left(\sum_{i=1}^n i\right)^2
+\asymp n^4,$$</div>
+
+while
+
+<div>$$\operatorname{tr}(Q_n)=n+\sum_{i=1}^n i^2\asymp n^3.$$</div>
+
+Hence the smaller eigenvalue grows on the order of $n$, so $\lambda_{\min}(Q_n)\to\infty$. By the eigenvalue condition,
+
+<div>$$
+\begin{pmatrix}
+\hat\alpha\\
+\hat\beta
+\end{pmatrix}
+\xrightarrow{L^2}
+\begin{pmatrix}
+\alpha\\
+\beta
+\end{pmatrix}.
+$$</div>
 
 ## 2.2 Stochastic order of magnitude
 
