@@ -1020,7 +1020,461 @@ But this does not imply
 
 The reason is that $E|g(x_n)|^r$ may fail to exist or may fail to stay under control even when $x_n$ itself converges in $r$-th mean.
 
-- 2.1.2 Conditions for convergence in r-th mean
+### 2.1.2 Conditions for convergence in r-th mean
+
+Many statistics used in econometrics can be written as functions of sample averages. The random variables being averaged do not have to be iid. The next result gives a useful condition for checking convergence in second mean.
+
+#### A second-mean condition for averages
+
+Let $\lbrace x_i:i\ge 1\rbrace$ be a sequence of $m\times 1$ random vectors such that
+
+<div>$$E(x_i)=\mu_i,$$</div>
+
+and
+
+<div>$$\operatorname{Cov}(x_i,x_j)
+=E\{(x_i-\mu_i)(x_j-\mu_j)^\prime\}
+=R_{ij}.$$</div>
+
+Define
+
+<div>$$\bar x-\bar\mu
+\equiv
+\frac{1}{n}\sum_{i=1}^n (x_i-\mu_i).$$</div>
+
+Then
+
+<div>$$\bar x-\bar\mu \xrightarrow{L^2}0
+\quad\Longleftrightarrow\quad
+\frac{1}{n^2}\sum_{i,j=1}^n \operatorname{tr}(R_{ij})\to 0.$$</div>
+
+The proof is a direct second-moment calculation:
+
+<div>$$E\{\|\bar x-\bar\mu\|^2\}
+=E\{\operatorname{tr}[(\bar x-\bar\mu)(\bar x-\bar\mu)^\prime]\}.$$</div>
+
+Using the definition of $\bar x-\bar\mu$,
+
+<div>$$E\{\|\bar x-\bar\mu\|^2\}
+=\operatorname{tr}\left[
+\frac{1}{n^2}\sum_{i,j=1}^n
+E\{(x_i-\mu_i)(x_j-\mu_j)^\prime\}
+\right]
+=\frac{1}{n^2}\sum_{i,j=1}^n\operatorname{tr}(R_{ij}).$$</div>
+
+Thus the average converges to zero in second mean exactly when this average covariance trace goes to zero.
+
+#### Example: Chebyshev's weak law
+
+Suppose $x_i$ is scalar, $E x_i=\mu_i=0$, and
+
+<div>$$R_{ij}=\sigma_i^2 I(i=j).$$</div>
+
+Then the second-mean condition becomes
+
+<div>$$\frac{1}{n^2}\sum_{i=1}^n \sigma_i^2\to 0.$$</div>
+
+Hence
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i \xrightarrow{L^2}0
+\quad\Longrightarrow\quad
+\frac{1}{n}\sum_{i=1}^n x_i \xrightarrow{P}0.$$</div>
+
+This holds under homoskedasticity, where $\sigma_i^2=\sigma^2$ for all $i$. It also holds if $\sigma_i^2=\sigma^2 i^\alpha$ with $\alpha<1$. It fails, however, if the variance grows linearly, for example $\sigma_i^2=\sigma^2 i$.
+
+#### Linear processes
+
+Let $\lbrace e_i\rbrace$ be a sequence of $m\times 1$ random vectors satisfying
+
+<div>$$E(e_i)=0,\qquad E(e_i e_j^\prime)=S I(i=j),\qquad S>0.$$</div>
+
+Let $\lbrace A_j\rbrace$ be a sequence of $m\times m$ nonrandom matrices such that
+
+<div>$$\sum_{j=0}^{\infty}\|A_j\|<\infty.$$</div>
+
+If
+
+<div>$$v_i=\sum_{j=0}^{\infty}A_j e_{i-j},$$</div>
+
+then $v_i$ is called a linear process.
+
+Important examples include:
+
+1. Stationary autoregressive processes of order $p$:
+
+   <div>$$v_i=\sum_{j=1}^p C_j v_{i-j}+e_i,$$</div>
+
+   with stationarity condition
+
+   <div>$$\left|I_m-\sum_{j=1}^p C_j z^j\right|\neq 0
+   \qquad \text{for } |z|\le 1.$$</div>
+
+2. Moving-average processes of order $q$:
+
+   <div>$$v_i=\sum_{j=0}^q D_j e_{i-j}.$$</div>
+
+3. Autoregressive moving-average processes:
+
+   <div>$$v_i=\sum_{j=1}^p C_jv_{i-j}+\sum_{j=0}^q D_j e_{i-j},$$</div>
+
+   with the same autoregressive stationarity condition.
+
+#### Autocovariance structure for linear processes
+
+If $v_i$ is a linear process, then for $j\ge i$,
+
+<div>$$E(v_i v_j^\prime)=\sum_{k=0}^{\infty}A_k S A_{k+j-i}^\prime.$$</div>
+
+For $j<i$, the covariance follows by transposition:
+
+<div>$$E(v_i v_j^\prime)=\sum_{k=0}^{\infty}A_{k+i-j} S A_k^\prime.$$</div>
+
+The note also records the useful boundedness condition
+
+<div>$$\lim_{n\to\infty}\sup
+\frac{1}{n}\sum_{i,j=1}^n
+\|E(v_i v_j^\prime)\|<\infty.$$</div>
+
+The proof uses absolute summability of the coefficient matrices. For $j\ge i$,
+
+<div>$$E(v_i v_j^\prime)
+=E\left[
+\left(\sum_{k=0}^{\infty}A_k e_{i-k}\right)
+\left(\sum_{\ell=0}^{\infty}A_\ell e_{j-\ell}\right)^\prime
+\right]
+=\sum_{k=0}^{\infty}A_k S A_{k+j-i}^\prime.$$</div>
+
+Then
+
+<div>$$\frac{1}{n}\sum_{i,j=1}^n\|E(v_i v_j^\prime)\|
+\le
+2\|S\|
+\left(\sum_{k=0}^{\infty}\|A_k\|\right)^2
+<\infty.$$</div>
+
+This bounded average covariance is the key input for applying the second-mean averaging theorem.
+
+#### Example: multiple regression with nonstochastic regressors
+
+Consider
+
+<div>$$y_i=z_i^\prime\beta+u_i,$$</div>
+
+where $y_i$ and $u_i$ are scalars, $z_i$ is nonstochastic, $\max_i\lVert z_i\rVert<\infty$, and $u_i$ is homoskedastic and possibly a linear process.
+
+Set $v_i=z_i u_i$. Then
+
+<div>$$R_{ij}=z_i z_j^\prime E(u_i u_j).$$</div>
+
+Thus
+
+<div>$$\begin{aligned}
+\frac{1}{n^2}\sum_{i,j=1}^n\operatorname{tr}(R_{ij})
+&\le
+\frac{1}{n^2}\sum_{i,j=1}^n
+|\operatorname{tr}(z_i z_j^\prime)|\,|E(u_i u_j)|\\
+&=
+\frac{1}{n^2}\sum_{i,j=1}^n
+|z_j^\prime z_i|\,|E(u_i u_j)|\\
+&\le
+\frac{1}{n}\max_i\|z_i\|^2
+\cdot
+\frac{1}{n}\sum_{i,j=1}^n |E(u_i u_j)|
+\to 0.
+\end{aligned}$$</div>
+
+The final convergence follows from the boundedness of the regressors and the covariance bound for linear processes. Hence
+
+<div>$$\frac{1}{n}\sum_{i=1}^n z_i u_i \xrightarrow{L^2}0.$$</div>
+
+If
+
+<div>$$\widehat M=\frac{1}{n}Z^\prime Z \to M>0,$$</div>
+
+then the least-squares estimator satisfies
+
+<div>$$\hat\beta_n-\beta
+=\widehat M^{-1}\frac{1}{n}\sum_{i=1}^n z_i u_i
+\xrightarrow{L^2}0.$$</div>
+
+#### Example: multiple regression with stochastic regressors
+
+Now suppose
+
+<div>$$y_i=\beta^\prime z_i+u_i,$$</div>
+
+where $z_i$ is stochastic and
+
+<div>$$\widehat M=\frac{1}{n}\sum_{i=1}^n z_i z_i^\prime \xrightarrow{P} M
+=E(z_i z_i^\prime)>0.$$</div>
+
+The disturbances need not be independent of the regressors, but assume the conditional moment restrictions
+
+<div>$$E(u_i\mid z_i)=0,$$</div>
+
+and
+
+<div>$$E(u_i u_j\mid z_i,z_j)=\sigma^2 I(i=j).$$</div>
+
+Again set $v_i=z_i u_i$. Then
+
+<div>$$R_{ij}
+=E(z_i z_j^\prime u_i u_j)
+=E\{z_i z_j^\prime E(u_i u_j\mid z_i,z_j)\}
+=\sigma^2 E(z_i z_j^\prime) I(i=j).$$</div>
+
+Therefore
+
+<div>$$\frac{1}{n^2}\sum_{i,j=1}^n\operatorname{tr}(R_{ij})
+=
+\frac{\sigma^2}{n^2}\sum_{i=1}^n\operatorname{tr}\{E(z_i z_i^\prime)\}
+=
+\frac{\sigma^2}{n}\operatorname{tr}(M)
+\to 0.$$</div>
+
+By the second-mean averaging theorem,
+
+<div>$$\frac{1}{n}\sum_{i=1}^n z_i u_i \xrightarrow{L^2}0,$$</div>
+
+and hence this average also converges to zero in probability. Since $\widehat M^{-1}\xrightarrow{P}M^{-1}$,
+
+<div>$$\hat\beta_n-\beta
+=\widehat M^{-1}\frac{1}{n}\sum_{i=1}^n z_i u_i
+\xrightarrow{P}0.$$</div>
+
+The conditional moment restrictions are automatically satisfied if the sequences $\lbrace u_i\rbrace$ and $\lbrace z_i\rbrace$ are mutually independent. The condition $\widehat M\xrightarrow{P}M$ is also satisfied, for example, if $z_i z_i^\prime$ is uncorrelated with common finite second moments; a sufficient iid condition is $E|z_i|^4<\infty$.
+
+The note emphasizes that these assumptions can be written as conditional moments:
+
+<div>$$E(y_i\mid z_i)=\beta^\prime z_i,$$</div>
+
+and
+
+<div>$$\operatorname{Cov}(y_i,y_j\mid z_i,z_j)=\sigma^2 I(i=j).$$</div>
+
+#### Uniform integrability
+
+The second-mean arguments above are convenient, but sometimes only first moments are available. This is especially important for heavy-tailed random variables. Uniform integrability provides a useful condition for convergence in first mean.
+
+A sequence $\lbrace x_i:i\ge 1\rbrace$ is uniformly integrable if
+
+<div>$$\lim_{\delta\to\infty}\sup_{i\ge 1}
+E\{\lvert x_i\rvert I(\lvert x_i\rvert>\delta)\}=0.$$</div>
+
+The note lists several sufficient conditions for uniform integrability:
+
+1. If
+
+   <div>$$\sup_{i\ge 1}E\{\lvert x_i\rvert^{1+\eta}\}<\infty$$</div>
+
+   for some $\eta>0$, then $\lbrace x_i\rbrace$ is uniformly integrable.
+
+2. If $\lbrace x_i\rbrace$ is identically distributed and $E|x_i|<\infty$, then $\lbrace x_i\rbrace$ is uniformly integrable.
+
+3. If there exists a random variable $x$ with finite first moment such that, for all $k$,
+
+   <div>$$\sup_i\Pr\{|x_i|>k\}\le C\Pr\{|x|>k\},$$</div>
+
+   then $\lbrace x_i\rbrace$ is uniformly integrable.
+
+For condition 1, the proof uses
+
+<div>$$\sup_{i\ge 1}E\{\lvert x_i\rvert I(\lvert x_i\rvert>\delta)\}
+\le
+\delta^{-\eta}\sup_{i\ge 1}E|x_i|^{1+\eta}
+\to 0.$$</div>
+
+For condition 2, identical distribution gives
+
+<div>$$\sup_{i\ge 1}E\{\lvert x_i\rvert I(\lvert x_i\rvert>\delta)\}
+=E\{\lvert x_1\rvert I(\lvert x_1\rvert>\delta)\}\to 0.$$</div>
+
+For condition 3, the tail dominance bound implies
+
+<div>$$\sup_{i\ge 1}E\{\lvert x_i\rvert I(\lvert x_i\rvert>\delta)\}
+\le
+C\left[
+\delta\Pr\{|x|>\delta\}
++\int_{\delta}^{\infty}\Pr\{|x|>z\}\,dz
+\right]\to 0.$$</div>
+
+Uniform integrability also implies a bounded first-moment condition:
+
+<div>$$\{x_i\}\text{ uniformly integrable}
+\quad\Longrightarrow\quad
+\sup_i E|x_i|<\infty.$$</div>
+
+Indeed, for any $\varepsilon>0$, choose $\delta_0$ so that
+
+<div>$$\sup_{i\ge 1}E\{|x_i|I(|x_i|>\delta_0)\}<\varepsilon.$$</div>
+
+Then
+
+<div>$$\sup_{i\ge 1}E|x_i|
+\le
+\sup_{i\ge 1}E\{|x_i|I(|x_i|>\delta_0)\}
++\sup_{i\ge 1}E\{|x_i|I(|x_i|\le \delta_0)\}
+\le \varepsilon+\delta_0<\infty.$$</div>
+
+The converse is false. For example, let
+
+<div>$$x_i=
+\begin{cases}
+i, & \text{with probability } i^{-1},\\
+0, & \text{with probability } 1-i^{-1}.
+\end{cases}$$</div>
+
+Then $E|x_i|=1$ for every $i$, so the first moments are uniformly bounded. But for every fixed $\delta>0$, some sufficiently large $i$ satisfies
+
+<div>$$E\{|x_i|I(|x_i|>\delta)\}=1,$$</div>
+
+so the sequence is not uniformly integrable.
+
+#### Weak law with independent uniformly integrable variables
+
+Let $\lbrace x_i:i\ge 1\rbrace$ be an independent, uniformly integrable sequence with $E x_i=0$ for all $i$. Then
+
+<div>$$\bar x_n=\frac{1}{n}\sum_{i=1}^n x_i \xrightarrow{L^1}0,$$</div>
+
+and therefore
+
+<div>$$\bar x_n\xrightarrow{P}0.$$</div>
+
+The proof splits each random variable into a truncated part and a tail part:
+
+<div>$$x_i^\prime=x_iI(|x_i|\le \delta),\qquad
+x_i^{\prime\prime}=x_iI(|x_i|>\delta),\qquad
+x_i=x_i^\prime+x_i^{\prime\prime}.$$</div>
+
+Uniform integrability lets us choose $\delta$ so that
+
+<div>$$\sup_i E|x_i^{\prime\prime}|<\varepsilon.$$</div>
+
+Since $E x_i=0$, we can write
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i
+=
+\frac{1}{n}\sum_{i=1}^n(x_i^\prime-E x_i^\prime)
++
+\frac{1}{n}\sum_{i=1}^n(x_i^{\prime\prime}-E x_i^{\prime\prime}).$$</div>
+
+The first term has second moment bounded by $2\delta^2/n$, so it converges to zero in second mean and hence in first mean. For the second term,
+
+<div>$$E\left|
+\frac{1}{n}\sum_{i=1}^n(x_i^{\prime\prime}-E x_i^{\prime\prime})
+\right|
+\le
+\frac{2}{n}\sum_{i=1}^nE|x_i^{\prime\prime}|
+\le 2\sup_iE|x_i^{\prime\prime}|
+<2\varepsilon.$$</div>
+
+Since $\varepsilon$ is arbitrary, the sample average converges to zero in first mean.
+
+Independence can be relaxed to a martingale-difference condition,
+
+<div>$$E(x_i\mid x_j,\;j<i)=0.$$</div>
+
+Also, the zero-mean assumption is not essential: replace $x_i$ by $x_i-E x_i$.
+
+#### Khinchine's weak law and related strong laws
+
+If $\lbrace x_i:i\ge 1\rbrace$ is iid, $E|x_i|<\infty$, and $E x_i=0$, then
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i \xrightarrow{P}0.$$</div>
+
+Under the same conditions, Kolmogorov's strong law gives
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i \xrightarrow{a.s.}0.$$</div>
+
+If the identically distributed assumption is dropped, stronger moment conditions are needed for the strong law. One sufficient condition is that the independent sequence $\lbrace X_i\rbrace$ satisfies, for some $\delta>0$,
+
+<div>$$\sum_{i=1}^{\infty}\frac{E|X_i|^{1+\delta}}{i^{1+\delta}}<\infty.$$</div>
+
+Then
+
+<div>$$\frac{1}{n}\sum_{i=1}^n (X_i-\mu_i)\xrightarrow{a.s.}0.$$</div>
+
+A simple sufficient condition is $\sup_i E|X_i|^{1+\delta}\le C<\infty$.
+
+#### Example: multiple regression with first moments
+
+Consider again nonstochastic regressors $z_i$ with $\max_i\lVert z_i\rVert<\infty$ and
+
+<div>$$\widehat M=\frac{1}{n}Z^\prime Z\to M>0.$$</div>
+
+Let $\lbrace u_i:i\ge 1\rbrace$ be an independent uniformly integrable sequence with $E u_i=0$. For the least-squares estimator,
+
+<div>$$E\|\hat\beta-\beta\|
+=E\left\|\widehat M^{-1}\frac{1}{n}Z^\prime U\right\|
+\le
+\|\widehat M^{-1}\|
+E\left\|\frac{1}{n}Z^\prime U\right\|,$$</div>
+
+and $\lVert\widehat M^{-1}\rVert\to\lVert M^{-1}\rVert<\infty$.
+
+Set $x_i=z_i u_i$. Then $\lbrace x_i\rbrace$ is independent, $E x_i=0$, and
+
+<div>$$\|x_i\|\le \|z_i\|\,|u_i|.$$</div>
+
+Because the regressors are uniformly bounded and $\lbrace u_i\rbrace$ is uniformly integrable,
+
+<div>$$E\{\|x_i\|I(\|x_i\|>\delta)\}
+\le
+\max_i\|z_i\|
+\sup_i E\left\{|u_i|I\left(|u_i|>\frac{\delta}{\max_i\|z_i\|}\right)\right\}
+\to 0.$$</div>
+
+Thus $\lbrace x_i\rbrace$ is uniformly integrable, and the weak law for independent uniformly integrable variables gives
+
+<div>$$\frac{1}{n}Z^\prime U\xrightarrow{L^1}0.$$</div>
+
+Therefore
+
+<div>$$\hat\beta\xrightarrow{L^1}\beta.$$</div>
+
+#### Generalized linear processes
+
+Let $\lbrace e_i:-\infty<i<\infty\rbrace$ be an independent uniformly integrable sequence of $m\times 1$ random vectors, with $E e_i=0$. Let $\lbrace A_j\rbrace$ be a sequence of $m\times m$ nonrandom matrices satisfying
+
+<div>$$\sum_{j=0}^{\infty}\|A_j\|<\infty.$$</div>
+
+If
+
+<div>$$v_i=\sum_{j=0}^{\infty}A_j e_{i-j},$$</div>
+
+then $v_i$ is called a generalized linear process.
+
+MA($q$), stationary AR($p$), and stationary ARMA($p,q$) processes are generalized linear processes when the innovations are iid with finite mean.
+
+If $\lbrace x_i:i\ge 1\rbrace$ is a generalized linear process, then
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i\xrightarrow{L^1}0.$$</div>
+
+For the proof, take the scalar case for simplicity. Fix $\varepsilon>0$ and choose $N$ so that
+
+<div>$$\sum_{j=N+1}^{\infty}|A_j|<\varepsilon.$$</div>
+
+Then
+
+<div>$$\frac{1}{n}\sum_{i=1}^n x_i
+=
+\sum_{j=0}^N A_j\left(\frac{1}{n}\sum_{i=1}^n e_{i-j}\right)
++
+\sum_{j=N+1}^{\infty}A_j\left(\frac{1}{n}\sum_{i=1}^n e_{i-j}\right).$$</div>
+
+By the weak law for independent uniformly integrable variables,
+
+<div>$$\frac{1}{n}\sum_{i=1}^n e_{i-j}\xrightarrow{L^1}0$$</div>
+
+for each fixed $j$. The finite part therefore becomes arbitrarily small for large $n$. The infinite tail is controlled by absolute summability:
+
+<div>$$\sum_{j=N+1}^{\infty}|A_j|
+E\left|\frac{1}{n}\sum_{i=1}^n e_{i-j}\right|
+\le
+\sup_i E|e_i|\sum_{j=N+1}^{\infty}|A_j|.$$</div>
+
+Since $\sup_iE|e_i|<\infty$ under uniform integrability, the tail can be made arbitrarily small.
+
 - 2.1.3 Conditions for consistency in regression
 
 ## 2.2 Stochastic order of magnitude
