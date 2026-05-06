@@ -1890,9 +1890,9 @@ Thus
 
 <div>$$F_{Y_n}(y)=
 \begin{cases}
-0, & y<0,\\
+0, & y\lt 0,\\
 \left(y/\theta\right)^n, & 0\le y\le\theta,\\
-1, & y>\theta.
+1, & y\gt\theta.
 \end{cases}$$</div>
 
 The pointwise limit is
@@ -1913,8 +1913,8 @@ Let $X_n$ have distribution function
 
 <div>$$F_n(x)=
 \begin{cases}
-0, & x<0,\\
-1-\frac{1}{n}, & 0\le x<n,\\
+0, & x\lt 0,\\
+1-\frac{1}{n}, & 0\le x\lt n,\\
 1, & x\ge n.
 \end{cases}$$</div>
 
@@ -2036,7 +2036,7 @@ X_n\xrightarrow{P}c.$$</div>
 
 Indeed, for any $\varepsilon>0$,
 
-<div>$$\Pr(|X_n-c|>\varepsilon)
+<div>$$\Pr(|X_n-c|\gt\varepsilon)
 \le
 F_{X_n}(c-\varepsilon)
 +1-F_{X_n}(c+\varepsilon),$$</div>
@@ -2117,7 +2117,7 @@ where $Z$ is random and $\beta$ is $k\times 1$. Define
 
 Suppose
 
-<div>$$\widehat M\xrightarrow{P}M>0,
+<div>$$\widehat M\xrightarrow{P}M\gt 0,
 \qquad
 \sqrt n\,\widehat m\xrightarrow{d}X\sim N_k(0,\sigma^2M).$$</div>
 
@@ -2179,7 +2179,7 @@ Assume
 
 <div>$$\frac{Z^\prime U}{\sqrt n}\xrightarrow{d}X\sim N_k(0,\sigma^2M),
 \qquad
-\widehat M=\frac{Z^\prime Z}{n}\xrightarrow{P}M>0,
+\widehat M=\frac{Z^\prime Z}{n}\xrightarrow{P}M\gt 0,
 \qquad
 s^2=\frac{U^\prime U}{n}\xrightarrow{P}\sigma^2.$$</div>
 
@@ -2269,22 +2269,22 @@ then
 
 To see why, fix $\varepsilon>0$. Choose a continuity point $C>0$ of $F_X$ such that
 
-<div>$$\Pr(|X|>C)<\varepsilon.$$</div>
+<div>$$\Pr(|X|\gt C)\lt\varepsilon.$$</div>
 
 For all sufficiently large $n$,
 
-<div>$$|F_{X_n}(C)-F_X(C)|<\varepsilon,
+<div>$$|F_{X_n}(C)-F_X(C)|\lt\varepsilon,
 \qquad
-|F_{X_n}(-C)-F_X(-C)|<\varepsilon.$$</div>
+|F_{X_n}(-C)-F_X(-C)|\lt\varepsilon.$$</div>
 
 Then
 
-<div>$$\Pr(|X_n|>C)
+<div>$$\Pr(|X_n|\gt C)
 \le
-\Pr(|X|>C)
+\Pr(|X|\gt C)
 +|F_{X_n}(C)-F_X(C)|
 +|F_{X_n}(-C)-F_X(-C)|
-<3\varepsilon.$$</div>
+\lt 3\varepsilon.$$</div>
 
 Thus the sequence cannot escape to infinity in probability.
 
