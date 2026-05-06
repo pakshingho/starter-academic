@@ -2714,6 +2714,284 @@ This is another form of Slutsky's theorem plus the continuous mapping theorem. I
 
 ## 2.5 Consistency of extremum estimators
 
+Many estimators are defined as the minimizer or maximizer of an objective function. Least squares minimizes a sum of squared residuals. Maximum likelihood maximizes a log-likelihood, or equivalently minimizes the negative log-likelihood. GMM minimizes a quadratic form in sample moments.
+
+This section gives a general consistency argument for estimators of the form
+
+<div>$$\hat\theta_n=\arg\min_{\theta\in\Theta}Q_n(\theta),$$</div>
+
+where $\theta$ is a $p\times 1$ parameter vector, $\Theta\subset\mathbb R^p$, and $Q_n(\theta)$ is a sample criterion. The true parameter is denoted by $\theta_0$.
+
+The central idea is geometric: if the population criterion is uniquely minimized at $\theta_0$, and the sample criterion is uniformly close to the population criterion, then the sample minimizer must be close to $\theta_0$ with high probability.
+
+### Example: nonlinear least squares
+
+Suppose
+
+<div>$$y_i=f_i(\theta_0)+u_i,\qquad i=1,\ldots,n,$$</div>
+
+where $f_i(\theta)$ is a known scalar nonlinear function. Nonlinear least squares uses
+
+<div>$$Q_n(\theta)
+=
+\frac{1}{n}\sum_{i=1}^n
+\left(y_i-f_i(\theta)\right)^2.$$</div>
+
+For example,
+
+<div>$$f_i(\theta)=\alpha+\beta\exp(\gamma^\prime z_i),
+\qquad
+\theta=(\alpha,\beta,\gamma^\prime)^\prime.$$</div>
+
+Unlike ordinary least squares, the minimizer often has no closed form. The estimator is therefore defined implicitly by the optimization problem, which is why general extremum-estimator theory is useful.
+
+### A separation condition for consistency
+
+Let $\Theta$ be compact and suppose $\theta_0\in\Theta$. Write
+
+<div>$$Q_n(\theta)-Q_n(\theta_0)=S(\theta)-T_n(\theta),$$</div>
+
+where $S(\theta)$ is nonstochastic and does not depend on $n$, while $T_n(\theta)$ is stochastic.
+
+Assume the following separation and uniform convergence conditions:
+
+1. For every $\varepsilon\gt 0$, there exists $\eta\gt 0$ such that
+
+   <div>$$\inf_{\{\theta\in\Theta:\|\theta-\theta_0\|\ge\varepsilon\}}S(\theta)\gt\eta.$$</div>
+
+2. The stochastic error is uniformly negligible:
+
+   <div>$$\sup_{\theta\in\Theta}|T_n(\theta)|\xrightarrow{P}0.$$</div>
+
+Then
+
+<div>$$\hat\theta_n\xrightarrow{P}\theta_0.$$</div>
+
+This is the note's basic consistency theorem for extremum estimators.
+
+### Proof of the consistency theorem
+
+Fix $\varepsilon\gt 0$ and define the neighborhood
+
+<div>$$N_\varepsilon=\{\theta\in\Theta:\|\theta-\theta_0\|\lt\varepsilon\}.$$</div>
+
+Its complement within $\Theta$ is
+
+<div>$$N_\varepsilon^c=\{\theta\in\Theta:\|\theta-\theta_0\|\ge\varepsilon\}.$$</div>
+
+If $\lVert\hat\theta_n-\theta_0\rVert\ge\varepsilon$, then $\hat\theta_n\in N_\varepsilon^c$. Because $\hat\theta_n$ minimizes $Q_n$ over $\Theta$ and $\theta_0\in\Theta$,
+
+<div>$$\inf_{\theta\in N_\varepsilon^c}Q_n(\theta)
+\le
+Q_n(\hat\theta_n)
+\le
+Q_n(\theta_0).$$</div>
+
+Therefore,
+
+<div>$$
+\Pr(\|\hat\theta_n-\theta_0\|\ge\varepsilon)
+\le
+\Pr\left\{
+\inf_{\theta\in N_\varepsilon^c}
+\left[Q_n(\theta)-Q_n(\theta_0)\right]
+\le 0
+\right\}.
+$$</div>
+
+Using $Q_n(\theta)-Q_n(\theta_0)=S(\theta)-T_n(\theta)$,
+
+<div>$$
+\inf_{\theta\in N_\varepsilon^c}
+\left[S(\theta)-T_n(\theta)\right]
+\ge
+\inf_{\theta\in N_\varepsilon^c}S(\theta)
+-
+\sup_{\theta\in\Theta}|T_n(\theta)|.
+$$</div>
+
+By the separation condition, $\inf_{\theta\in N_\varepsilon^c}S(\theta)\gt\eta$. Hence
+
+<div>$$
+\Pr(\|\hat\theta_n-\theta_0\|\ge\varepsilon)
+\le
+\Pr\left\{
+\sup_{\theta\in\Theta}|T_n(\theta)|\gt\eta
+\right\}
+\to 0.
+$$</div>
+
+This proves consistency.
+
+### How to verify uniform convergence
+
+The main hard part is usually verifying the uniform convergence condition. The note gives a useful uniform law of large numbers.
+
+Let $z_1,\ldots,z_n$ be iid observations and let $g(z,\theta)$ be a scalar function with $\theta\in\Theta$. Suppose:
+
+1. $\Theta$ is compact.
+
+2. $g(z,\theta)$ is continuous in $\theta$ for every $z$.
+
+3. $E[g(z,\theta)]=0$ for every $\theta\in\Theta$.
+
+4. There is an integrable envelope $L(z)$ such that
+
+   <div>$$\sup_{\theta\in\Theta}|g(z,\theta)|\le L(z),
+   \qquad
+   E[L(z)]\lt\infty.$$</div>
+
+Then
+
+<div>$$
+\sup_{\theta\in\Theta}
+\left|
+\frac{1}{n}\sum_{t=1}^n g(z_t,\theta)
+\right|
+\xrightarrow{P}0.
+$$</div>
+
+This is a uniform law of large numbers. It says not only that the sample average converges for each fixed $\theta$, but that the worst-case error over the whole compact parameter space converges to zero.
+
+### Proof idea for the uniform law
+
+The proof has two pieces: finite approximation and ordinary laws of large numbers.
+
+Because $\Theta$ is compact, cover it by finitely many small sets $\Theta_1,\ldots,\Theta_q$. Pick one representative point $\theta_j\in\Theta_j$ from each set. Then for any $\theta\in\Theta_j$,
+
+<div>$$
+\left|
+\frac{1}{n}\sum_{t=1}^n g(z_t,\theta)
+\right|
+\le
+\left|
+\frac{1}{n}\sum_{t=1}^n g(z_t,\theta_j)
+\right|
++
+\sup_{\theta\in\Theta_j}
+\left|
+\frac{1}{n}\sum_{t=1}^n
+\{g(z_t,\theta)-g(z_t,\theta_j)\}
+\right|.
+$$</div>
+
+Taking the supremum over $\Theta$ and using a union bound reduces the problem to showing that two terms vanish:
+
+1. The finite set of representative averages:
+
+   <div>$$
+   \frac{1}{n}\sum_{t=1}^n g(z_t,\theta_j)
+   \xrightarrow{P}0
+   \qquad j=1,\ldots,q.
+   $$</div>
+
+   This follows from the ordinary law of large numbers because $E[g(z_t,\theta_j)]=0$ and the envelope gives finite first moments.
+
+2. The within-cell approximation error:
+
+   <div>$$
+   E\left[
+   \sup_{\theta\in\Theta_j}
+   |g(z,\theta)-g(z,\theta_j)|
+   \right]
+   \to 0
+   $$</div>
+
+   as the partition gets finer. Continuity gives pointwise convergence as the cells shrink, and the envelope gives the domination
+
+   <div>$$
+   \sup_{\theta\in\Theta_j}|g(z,\theta)-g(z,\theta_j)|
+   \le
+   2L(z),
+   $$</div>
+
+   so dominated convergence applies. Markov's inequality then turns the expectation bound into convergence in probability.
+
+Together, these two pieces prove the uniform convergence result.
+
+### Applying the theorem to an objective function
+
+In many applications the sample objective has the form
+
+<div>$$Q_n(\theta)=\frac{1}{n}\sum_{t=1}^n q(z_t,\theta).$$</div>
+
+If
+
+<div>$$Q(\theta)=E[q(z_t,\theta)],$$</div>
+
+then a natural decomposition is
+
+<div>$$Q_n(\theta)-Q_n(\theta_0)
+=
+\{Q(\theta)-Q(\theta_0)\}
+-
+T_n(\theta),$$</div>
+
+where
+
+<div>$$T_n(\theta)
+=
+\{Q(\theta)-Q(\theta_0)\}
+-
+\{Q_n(\theta)-Q_n(\theta_0)\}.$$</div>
+
+In this notation,
+
+<div>$$S(\theta)=Q(\theta)-Q(\theta_0).$$</div>
+
+The separation condition becomes a population identification condition:
+
+<div>$$
+\inf_{\{\theta\in\Theta:\|\theta-\theta_0\|\ge\varepsilon\}}
+\left[Q(\theta)-Q(\theta_0)\right]
+\gt 0
+\qquad\text{for every }\varepsilon\gt 0.
+$$</div>
+
+The uniform convergence condition follows if
+
+<div>$$\sup_{\theta\in\Theta}|Q_n(\theta)-Q(\theta)|\xrightarrow{P}0.$$</div>
+
+Thus the practical recipe is:
+
+1. Show the population criterion $Q(\theta)$ has a unique, well-separated minimum at $\theta_0$.
+
+2. Show the sample criterion $Q_n(\theta)$ converges uniformly in probability to $Q(\theta)$.
+
+3. Conclude that any exact minimizer $\hat\theta_n$ is consistent.
+
+### Evaluating uniformly convergent functions at consistent estimators
+
+The note also records a useful plug-in result. Suppose $g_n(\theta)$ converges uniformly in probability to a nonstochastic function $g(\theta)$ on an open neighborhood of $\theta_0$:
+
+<div>$$
+\sup_{\theta\in N(\theta_0)}
+|g_n(\theta)-g(\theta)|
+\xrightarrow{P}0.
+$$</div>
+
+If
+
+<div>$$\hat\theta_n\xrightarrow{P}\theta_0$$</div>
+
+and $g$ is continuous at $\theta_0$, then
+
+<div>$$g_n(\hat\theta_n)\xrightarrow{P}g(\theta_0).$$</div>
+
+To see this, fix $\delta\gt 0$. With high probability, $\hat\theta_n$ lies in the neighborhood $N(\theta_0)$, so
+
+<div>$$
+|g_n(\hat\theta_n)-g(\theta_0)|
+\le
+|g_n(\hat\theta_n)-g(\hat\theta_n)|
++
+|g(\hat\theta_n)-g(\theta_0)|.
+$$</div>
+
+The first term is small by uniform convergence. The second term is small by continuity of $g$ at $\theta_0$ and $\hat\theta_n\xrightarrow{P}\theta_0$. Hence $g_n(\hat\theta_n)\xrightarrow{P}g(\theta_0)$.
+
+This result is used constantly after proving consistency. Once $\hat\theta_n$ is close to $\theta_0$, uniformly well-behaved sample objects can be evaluated at $\hat\theta_n$ as if they were evaluated at $\theta_0$, asymptotically.
+
 - 2.5.1 Central limit theorem for extremum estimators
 
 ## 2.6 Central limit theorems for time-series data
