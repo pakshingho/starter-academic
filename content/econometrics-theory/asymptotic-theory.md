@@ -3179,3 +3179,286 @@ A(\theta_0)^{-1}.$$</div>
 Thus maximum likelihood attains the familiar Cramer-Rao covariance bound under the regularity conditions that justify the information equality.
 
 ## 2.6 Central limit theorems for time-series data
+
+The central limit theorems in section 2.4 were built mostly for independent observations. Time-series data are different: observations close together in time may be correlated, and the dependence changes the limiting variance.
+
+The key idea is still familiar. We want conditions under which
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+\xrightarrow{d}N(0,\Omega),$$</div>
+
+but now $\Omega$ is a long-run variance, not just the one-period variance. Serial covariance terms matter.
+
+### Bernstein's approximation lemma
+
+The note begins with a useful approximation device. Suppose $x_n$ has mean zero and can be decomposed as
+
+<div>$$x_n=y_n(\varepsilon)+z_n(\varepsilon),$$</div>
+
+where, for each fixed $\varepsilon\gt 0$,
+
+<div>$$y_n(\varepsilon)\xrightarrow{d}N(0,\Omega(\varepsilon)),$$</div>
+
+and
+
+<div>$$\Omega(\varepsilon)\to\Omega
+\qquad\text{as }\varepsilon\downarrow 0.$$</div>
+
+Suppose also that the remainder is small in probability in the following sense: for every $\zeta\gt 0$ and $\eta\gt 0$, we can choose $\varepsilon$ small enough so that
+
+<div>$$\Pr(|z_n(\varepsilon)|\gt\zeta)\lt\eta$$</div>
+
+for all sufficiently large $n$. Then
+
+<div>$$x_n\xrightarrow{d}N(0,\Omega).$$</div>
+
+This lemma is the backbone of the time-series arguments below. We approximate a dependent sum by a simpler object that already has a CLT, then show the approximation error is negligible.
+
+### Finite moving-average processes
+
+Let
+
+<div>$$x_t=\sum_{j=0}^{m}a_j\varepsilon_{t-j},$$</div>
+
+where $\varepsilon_t$ are iid with mean zero and variance one. This is a finite moving-average process, or MA$(m)$.
+
+Define the autocovariances
+
+<div>$$\gamma_h=E(x_t x_{t+h})
+=
+\sum_{j=0}^{m-h}a_j a_{j+h},
+\qquad h=0,\ldots,m,$$</div>
+
+and set $\gamma_{-h}=\gamma_h$. Then the long-run variance is
+
+<div>$$\Omega=\gamma_0+2\sum_{h=1}^{m}\gamma_h.$$</div>
+
+The theorem states that
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+\xrightarrow{d}N(0,\Omega).$$</div>
+
+The result is intuitive. Because $x_t$ depends only on $\varepsilon_t,\varepsilon_{t-1},\ldots,\varepsilon_{t-m}$, observations more than $m$ periods apart are independent. The series is dependent locally, but independent far enough apart.
+
+### Blocking proof idea
+
+The proof uses blocking. Choose a block length $k\gt 2m$ and write $n=kN$ for simplicity. Split each block into a large part and a small boundary part:
+
+<div>$$z_\ell
+=
+\frac{1}{\sqrt k}
+\sum_{j=1}^{k-m}x_{(\ell-1)k+j},
+\qquad \ell=1,\ldots,N,$$</div>
+
+and
+
+<div>$$w_\ell
+=
+\frac{1}{\sqrt k}
+\sum_{j=1}^{m}x_{\ell k-m+j},
+\qquad \ell=1,\ldots,N.$$</div>
+
+Then
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+=
+\frac{1}{\sqrt N}\sum_{\ell=1}^Nz_\ell
++
+\frac{1}{\sqrt N}\sum_{\ell=1}^Nw_\ell.$$</div>
+
+The $z_\ell$ blocks are separated by boundary blocks of length $m$, so they are independent. For fixed $k$, the iid CLT gives
+
+<div>$$\frac{1}{\sqrt N}\sum_{\ell=1}^Nz_\ell
+\xrightarrow{d}
+N(0,\Omega(k)),$$</div>
+
+where $\Omega(k)$ is the variance of the large block component. As $k\to\infty$, $\Omega(k)\to\Omega$.
+
+The boundary term is small because it only uses $m$ observations out of each block:
+
+<div>$$\frac{1}{\sqrt N}\sum_{\ell=1}^Nw_\ell
+=O_p\left(\sqrt{\frac{m}{k}}\right).$$</div>
+
+Since $m$ is fixed in the finite MA case, this vanishes as $k\to\infty$. Bernstein's lemma then combines the normal limit of the large blocks with the negligibility of the small blocks.
+
+### Infinite linear processes
+
+Now let
+
+<div>$$x_t=\sum_{j=0}^{\infty}a_j\varepsilon_{t-j},$$</div>
+
+where $\varepsilon_t$ are iid with mean zero and variance one, and
+
+<div>$$\sum_{j=0}^{\infty}|a_j|\lt\infty.$$</div>
+
+The theorem states that
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+\xrightarrow{d}N(0,\Omega),$$</div>
+
+where
+
+<div>$$\Omega=\gamma_0+2\sum_{h=1}^{\infty}\gamma_h,
+\qquad
+\gamma_h=\sum_{j=0}^{\infty}a_j a_{j+h}.$$</div>
+
+The proof truncates the infinite process. For a fixed cutoff $k$, write
+
+<div>$$x_t=x_t^{(k)}+r_t^{(k)},$$</div>
+
+where
+
+<div>$$x_t^{(k)}=\sum_{j=0}^{k}a_j\varepsilon_{t-j},
+\qquad
+r_t^{(k)}=\sum_{j=k+1}^{\infty}a_j\varepsilon_{t-j}.$$</div>
+
+The truncated component $x_t^{(k)}$ is a finite moving average, so it satisfies a CLT:
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t^{(k)}
+\xrightarrow{d}N(0,\Omega(k)).$$</div>
+
+The tail is negligible because absolute summability implies
+
+<div>$$\sum_{j=k+1}^{\infty}|a_j|\to 0.$$</div>
+
+In particular, its normalized partial sum has variance bounded by a constant times
+
+<div>$$\left(\sum_{j=k+1}^{\infty}|a_j|\right)^2,$$</div>
+
+which goes to zero as $k\to\infty$. Also $\Omega(k)\to\Omega$. Bernstein's lemma gives the CLT for the full infinite linear process.
+
+### Weak dependence by separated blocks
+
+The note next gives a more heuristic theorem for weakly dependent processes. The idea is that observations far apart in time should be nearly independent.
+
+One way to express this is: for blocks separated by a gap, the covariance between bounded summaries of the blocks decays. A stylized condition is
+
+<div>$$
+\left|
+E\{g_1(x_1,\ldots,x_a)g_2(x_{b+1},\ldots,x_{b+a})\}
+-
+E\{g_1(x_1,\ldots,x_a)\}
+E\{g_2(x_{b+1},\ldots,x_{b+a})\}
+\right|
+\le
+C(b-a)^{-\alpha},
+$$</div>
+
+for some $\alpha\gt 0$ and suitable functions $g_1,g_2$. Then, under the additional regularity conditions needed to control variances and tails,
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+\xrightarrow{d}N(0,\Omega),$$</div>
+
+where
+
+<div>$$\Omega=2\pi f(0)
+=
+\gamma_0+2\sum_{h=1}^{\infty}\gamma_h.$$</div>
+
+Here $f(0)$ is the spectral density at frequency zero. The equality $\Omega=2\pi f(0)$ is the time-series version of "variance of the normalized sum": it aggregates the contemporaneous variance and all serial covariances.
+
+### Blocking with weak dependence
+
+The proof idea again uses large blocks and small gaps. Choose a large block length $k$ and a gap length $m$, with
+
+<div>$$\frac{m}{k}\to 0.$$</div>
+
+The normalized sum is decomposed as
+
+<div>$$\frac{1}{\sqrt n}\sum_{t=1}^n x_t
+=
+\frac{1}{\sqrt N}\sum_{\ell=1}^Nz_\ell
++
+\frac{1}{\sqrt N}\sum_{\ell=1}^Nw_\ell,$$</div>
+
+where $z_\ell$ is the main part of block $\ell$ and $w_\ell$ is the small separating gap.
+
+The gap term is negligible because it uses only a small fraction of the observations:
+
+<div>$$\frac{1}{\sqrt N}\sum_{\ell=1}^Nw_\ell=o_p(1).$$</div>
+
+The large blocks are not exactly independent, but the weak-dependence condition says they are close to independent when separated by a gap of length $m$. In characteristic-function terms, the joint characteristic function of the block sum is close to the product of the block characteristic functions:
+
+<div>$$
+\left|
+E\exp\left(
+i t\frac{1}{\sqrt N}\sum_{\ell=1}^Nz_\ell
+\right)
+-
+\prod_{\ell=1}^{N}
+E\exp\left(
+i t\frac{z_\ell}{\sqrt N}
+\right)
+\right|
+\le
+C N m^{-\alpha}.
+$$</div>
+
+If $N m^{-\alpha}\to 0$, then the dependent blocks behave asymptotically like independent blocks. The iid or triangular-array CLT applies to independent copies of those blocks, and Bernstein's lemma transfers the limit back to the original dependent sum.
+
+### Regression with serially correlated errors
+
+The final result extends the least-squares CLT from section 2.4 to time-series errors. Consider again
+
+<div>$$y_i=\beta^\prime z_i+u_i,\qquad i=1,\ldots,n,$$</div>
+
+with nonstochastic regressors $z_i$ and
+
+<div>$$\hat\beta-\beta=(Z^\prime Z)^{-1}Z^\prime U.$$</div>
+
+Let
+
+<div>$$D=\operatorname{diag}(d_1,\ldots,d_k),
+\qquad
+d_j=\left(\sum_{i=1}^{n}z_{ji}^2\right)^{1/2},$$</div>
+
+and suppose the Grenander-style conditions from section 2.4 hold:
+
+<div>$$D^{-1}(Z^\prime Z)D^{-1}\to R\gt 0.$$</div>
+
+Now allow the regression error to be a linear process:
+
+<div>$$u_i=\sum_{j=0}^{\infty}A_j e_{i-j},$$</div>
+
+where $e_i$ are independent with
+
+<div>$$E(e_i)=0,\qquad E(e_i^2)=\sigma^2,$$</div>
+
+the sequence $\lbrace e_i^2:i\ge 1\rbrace$ is uniformly integrable, and
+
+<div>$$\sum_{j=0}^{\infty}|A_j|\lt\infty.$$</div>
+
+For each integer lag $h$, assume the normalized regressor cross-products converge:
+
+<div>$$D^{-1}\left(\sum_{i=1}^{n}z_i z_{i+h}^\prime\right)D^{-1}
+\to R(h),$$</div>
+
+with $R(0)=R$. For negative lags, $R(-h)=R(h)^\prime$ when the corresponding limits exist.
+
+Define the error autocovariances by
+
+<div>$$\gamma_h=E(u_i u_{i+h})
+=
+\sigma^2\sum_{\ell=0}^{\infty}A_\ell A_{\ell+h},
+\qquad h\ge 0,$$</div>
+
+and set $\gamma_{-h}=\gamma_h$. Then
+
+<div>$$D(\hat\beta-\beta)
+\xrightarrow{d}
+N_k\left(
+0,\,
+R^{-1}
+\left[
+\sum_{h=-\infty}^{\infty}\gamma_h R(h)
+\right]
+R^{-1}
+\right).$$</div>
+
+This is the serial-correlation version of the least-squares CLT. The independent-error covariance $\sigma^2R^{-1}$ is replaced by a long-run covariance sandwich. The middle term
+
+<div>$$\sum_{h=-\infty}^{\infty}\gamma_h R(h)$$</div>
+
+collects all covariance contributions across time, weighted by how the regressors line up across lags.
+
+The assumptions can be generalized. The innovation sequence can often be weakened from independent errors to martingale differences, and the linear-process assumption can be replaced by other weak-dependence conditions. The key requirement is always the same: dependence must decay enough for a long-run variance to exist and for the normalized sum to have a normal limit.
