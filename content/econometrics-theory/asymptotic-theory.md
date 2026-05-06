@@ -1643,6 +1643,201 @@ $$</div>
 
 ## 2.2 Stochastic order of magnitude
 
+Stochastic order notation is a compact way to describe large-sample rates. It lets us say more than just
+
+<div>$$x_n\xrightarrow{P}c.$$</div>
+
+For example, instead of saying only that an estimator is consistent, we may want to say that its error is of order $n^{-1/2}$ in probability.
+
+Let $f_n$ be a nonstochastic positive sequence.
+
+### Deterministic order notation
+
+If $x_n$ is nonstochastic, then:
+
+1. $x_n=O(f_n)$ if
+
+   <div>$$\left|\frac{x_n}{f_n}\right|\to c<\infty,$$</div>
+
+   or more generally if $\left|x_n/f_n\right|$ is bounded for all sufficiently large $n$.
+
+2. $x_n=o(f_n)$ if
+
+   <div>$$\left|\frac{x_n}{f_n}\right|\to 0.$$</div>
+
+So $O(f_n)$ means "no larger than the order of $f_n$," while $o(f_n)$ means "smaller than the order of $f_n$."
+
+### Stochastic order notation
+
+If $x_n$ is stochastic, then:
+
+1. $x_n=O_p(f_n)$ if $x_n/f_n$ is bounded in probability. That is, for every $\varepsilon>0$, there exist constants $C>0$ and $n_0$ such that
+
+   <div>$$\Pr\{|x_n|>C f_n\}<\varepsilon
+   \qquad \text{for all }n\ge n_0.$$</div>
+
+2. $x_n=o_p(f_n)$ if
+
+   <div>$$\frac{x_n}{f_n}\xrightarrow{P}0.$$</div>
+
+In particular,
+
+<div>$$x_n=o_p(1)\quad\Longleftrightarrow\quad x_n\xrightarrow{P}0.$$</div>
+
+The difference between $O_p(1)$ and $o_p(1)$ is subtle but important. For any $\varepsilon>0$:
+
+1. $O_p(1)$ means $\Pr(|x_n|>C)<\varepsilon$ for some sufficiently large constant $C$.
+2. $o_p(1)$ means $\Pr(|x_n|>c)<\varepsilon$ for every fixed $c>0$, once $n$ is large enough.
+
+So $O_p(1)$ means the sequence does not escape to infinity in probability. By contrast, $o_p(1)$ means it collapses to zero in probability.
+
+### Convergence in probability implies boundedness in probability
+
+For any finite constant $c$,
+
+<div>$$x_n\xrightarrow{P}c \quad\Longrightarrow\quad x_n=O_p(1).$$</div>
+
+If $c=0$, this becomes
+
+<div>$$x_n\xrightarrow{P}0 \quad\Longleftrightarrow\quad x_n=o_p(1).$$</div>
+
+To prove the first claim, fix $\delta>0$ and choose $C=|c|+\delta$. Then
+
+<div>$$\Pr\{|x_n|>C\}
+\le
+\Pr\{|x_n-c|>\delta\}\to 0.$$</div>
+
+Hence $x_n$ is bounded in probability.
+
+### Basic implications
+
+The note records three useful facts.
+
+First,
+
+<div>$$x_n=o_p(f_n)\quad\Longrightarrow\quad x_n=O_p(f_n).$$</div>
+
+Second, if
+
+<div>$$x_n=O_p(f_n)
+\qquad\text{and}\qquad
+\frac{f_n}{g_n}\to 0,$$</div>
+
+then
+
+<div>$$x_n=o_p(g_n).$$</div>
+
+The idea is that if $x_n$ is no larger than $f_n$ in probability, and $f_n$ itself is negligible relative to $g_n$, then $x_n$ must be negligible relative to $g_n$.
+
+Third, for any $r>0$,
+
+<div>$$x_n=O_p\left((E|x_n|^r)^{1/r}\right).$$</div>
+
+This follows directly from Markov's inequality:
+
+<div>$$\Pr\left\{|x_n|>C(E|x_n|^r)^{1/r}\right\}
+\le
+\frac{E|x_n|^r}{C^r E|x_n|^r}
+=C^{-r}.$$</div>
+
+Choosing $C$ large makes the probability arbitrarily small.
+
+### Algebra of stochastic orders
+
+Let $x_n=O_p(f_n)$ and $y_n=O_p(g_n)$. Then
+
+<div>$$x_ny_n=O_p(f_ng_n),$$</div>
+
+and
+
+<div>$$x_n+y_n=O_p(\max\{f_n,g_n\}).$$</div>
+
+The product result follows from
+
+<div>$$|cd|>ef \quad\Longrightarrow\quad |c|>e\ \text{or}\ |d|>f.$$</div>
+
+If $x_n=O_p(f_n)$ and $y_n=O_p(g_n)$, then for sufficiently large constants $C$ and $D$,
+
+<div>$$\Pr\{|x_ny_n|>CDf_ng_n\}
+\le
+\Pr\{|x_n|>Cf_n\}+\Pr\{|y_n|>Dg_n\}.$$</div>
+
+The sum result uses the triangle inequality:
+
+<div>$$\Pr\{|x_n+y_n|>(C+D)\max(f_n,g_n)\}
+\le
+\Pr\{|x_n|>Cf_n\}+\Pr\{|y_n|>Dg_n\}.$$</div>
+
+The same algebra holds with $o_p$ in place of $O_p$. In addition,
+
+<div>$$x_n=O_p(f_n),\qquad y_n=o_p(g_n)
+\quad\Longrightarrow\quad
+x_ny_n=o_p(f_ng_n).$$</div>
+
+Indeed, for any $\delta>0$, choose $C$ so that $\Pr(|x_n|>Cf_n)$ is small. Then
+
+<div>$$\Pr\{|x_ny_n|>\delta f_ng_n\}
+\le
+\Pr\{|x_n|>Cf_n\}
++
+\Pr\left\{|y_n|>\frac{\delta}{C}g_n\right\},$$</div>
+
+and the second probability goes to zero because $y_n=o_p(g_n)$.
+
+### Example: regression with stochastic regressors
+
+Suppose
+
+<div>$$\widehat M=\frac{1}{n}Z^\prime Z\xrightarrow{P}M>0.$$</div>
+
+Then
+
+<div>$$\widehat M^{-1}\xrightarrow{P}M^{-1},$$</div>
+
+so
+
+<div>$$\widehat M^{-1}=O_p(1).$$</div>
+
+Now take
+
+<div>$$v_i=z_i u_i.$$</div>
+
+Under the conditional homoskedasticity setup used earlier,
+
+<div>$$R_{ij}=E(z_i z_j^\prime)\sigma^2 I(i=j).$$</div>
+
+Therefore
+
+<div>$$\frac{1}{n^2}\sum_{i,j=1}^n\operatorname{tr}(R_{ij})
+=\frac{\sigma^2}{n}\operatorname{tr}(M)
+=O(n^{-1}).$$</div>
+
+This means
+
+<div>$$E\left\|
+\frac{1}{n}\sum_{i=1}^n v_i
+\right\|^2
+=O(n^{-1}).$$</div>
+
+Using the moment bound above,
+
+<div>$$\frac{1}{n}\sum_{i=1}^n v_i
+=\frac{1}{n}Z^\prime U
+=O_p(n^{-1/2}).$$</div>
+
+Since
+
+<div>$$\hat\beta-\beta
+=\widehat M^{-1}\left(\frac{1}{n}Z^\prime U\right),$$</div>
+
+the algebra of stochastic orders gives
+
+<div>$$\hat\beta-\beta
+=O_p(1)\,O_p(n^{-1/2})
+=O_p(n^{-1/2}).$$</div>
+
+This is the usual root-$n$ rate statement for least squares under these regularity conditions.
+
 ## 2.3 Convergence in distribution
 
 ## 2.4 Central limit theorems
