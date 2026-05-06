@@ -2992,6 +2992,190 @@ The first term is small by uniform convergence. The second term is small by cont
 
 This result is used constantly after proving consistency. Once $\hat\theta_n$ is close to $\theta_0$, uniformly well-behaved sample objects can be evaluated at $\hat\theta_n$ as if they were evaluated at $\theta_0$, asymptotically.
 
-- 2.5.1 Central limit theorem for extremum estimators
+### 2.5.1 Central limit theorem for extremum estimators
+
+Consistency tells us that $\hat\theta_n$ gets close to $\theta_0$. For inference, we need more: the limiting distribution of the normalized error
+
+<div>$$\sqrt n(\hat\theta_n-\theta_0).$$</div>
+
+Let
+
+<div>$$\hat\theta_n=\arg\min_{\theta\in\Theta}Q_n(\theta),$$</div>
+
+where $\theta$ is a $p\times 1$ vector. Write the gradient as the $p\times 1$ column vector
+
+<div>$$G_n(\theta)=\frac{\partial}{\partial\theta}Q_n(\theta),$$</div>
+
+and the Hessian as the $p\times p$ matrix
+
+<div>$$H_n(\theta)=\frac{\partial^2}{\partial\theta\,\partial\theta^\prime}Q_n(\theta).$$</div>
+
+The note imposes the following sufficient conditions. They are not the weakest possible conditions, but they give the main asymptotic-normality argument cleanly.
+
+1. $\theta_0$ is an interior point of $\Theta$, and $\Theta$ is a compact subset of $\mathbb R^p$.
+
+2. The sample criterion converges uniformly in probability:
+
+   <div>$$\sup_{\theta\in\Theta}|Q_n(\theta)-Q(\theta)|\xrightarrow{P}0,$$</div>
+
+   where $Q(\theta)$ is nonstochastic and has a unique minimum at $\theta_0$.
+
+3. $Q(\theta)$ is continuous on $\Theta$.
+
+4. $Q_n(\theta)$ is twice continuously differentiable with respect to $\theta$ in a neighborhood of $\theta_0$.
+
+5. For every sequence $\theta_n^\ast$ such that $\theta_n^\ast-\theta_0=o_p(1)$,
+
+   <div>$$H_n(\theta_n^\ast)
+   \xrightarrow{P}
+   A(\theta_0),$$</div>
+
+   where $A(\theta_0)$ is positive definite.
+
+6. The normalized gradient at the truth satisfies a central limit theorem:
+
+   <div>$$\sqrt n\,G_n(\theta_0)
+   \xrightarrow{d}
+   N_p(0,B(\theta_0)).$$</div>
+
+Then
+
+<div>$$\sqrt n(\hat\theta_n-\theta_0)
+\xrightarrow{d}
+N_p\left(0,\,
+A(\theta_0)^{-1}B(\theta_0)\left[A(\theta_0)^{-1}\right]^\prime
+\right).$$</div>
+
+This is the standard sandwich covariance formula. The middle matrix $B(\theta_0)$ comes from the variability of the score or gradient, while $A(\theta_0)$ comes from the local curvature of the objective function.
+
+#### Taylor expansion proof
+
+Conditions 1 through 3 imply consistency by the result in section 2.5:
+
+<div>$$\hat\theta_n-\theta_0=o_p(1).$$</div>
+
+Because $\theta_0$ is an interior point and $\hat\theta_n$ is consistent, $\hat\theta_n$ is also inside the differentiability neighborhood with probability approaching one. Therefore the first-order condition applies:
+
+<div>$$G_n(\hat\theta_n)=0.$$</div>
+
+Taylor expand $G_n(\hat\theta_n)$ around $\theta_0$:
+
+<div>$$0
+=
+G_n(\theta_0)
++
+H_n(\tilde\theta_n)(\hat\theta_n-\theta_0),$$</div>
+
+where $\tilde\theta_n$ lies between $\hat\theta_n$ and $\theta_0$. Since $\hat\theta_n-\theta_0=o_p(1)$, we also have
+
+<div>$$\tilde\theta_n-\theta_0=o_p(1).$$</div>
+
+Rearranging gives
+
+<div>$$\sqrt n(\hat\theta_n-\theta_0)
+=
+-H_n(\tilde\theta_n)^{-1}
+\sqrt n\,G_n(\theta_0).$$</div>
+
+By condition 5,
+
+<div>$$H_n(\tilde\theta_n)^{-1}\xrightarrow{P}A(\theta_0)^{-1},$$</div>
+
+and by condition 6,
+
+<div>$$\sqrt n\,G_n(\theta_0)
+\xrightarrow{d}
+N_p(0,B(\theta_0)).$$</div>
+
+Slutsky's theorem, equivalently the Cramer transformation theorem from section 2.4, gives
+
+<div>$$\sqrt n(\hat\theta_n-\theta_0)
+\xrightarrow{d}
+-A(\theta_0)^{-1}Z,$$</div>
+
+where $Z\sim N_p(0,B(\theta_0))$. Since $Z$ is centered normal, $-A(\theta_0)^{-1}Z$ has covariance
+
+<div>$$A(\theta_0)^{-1}B(\theta_0)\left[A(\theta_0)^{-1}\right]^\prime,$$</div>
+
+which proves the theorem.
+
+#### Average criterion functions
+
+In applications, the objective often has the average form
+
+<div>$$Q_n(\theta)=\frac{1}{n}\sum_{t=1}^n q_t(\theta),
+\qquad
+q_t(\theta)=q(\theta;x_t).$$</div>
+
+Then
+
+<div>$$G_n(\theta_0)
+=
+\frac{1}{n}\sum_{t=1}^n
+\frac{\partial}{\partial\theta}q_t(\theta_0),$$</div>
+
+so the gradient CLT condition becomes a CLT for the average score-like vector:
+
+<div>$$
+\frac{1}{\sqrt n}\sum_{t=1}^n
+\frac{\partial}{\partial\theta}q_t(\theta_0)
+\xrightarrow{d}
+N_p(0,B(\theta_0)).
+$$</div>
+
+Likewise,
+
+<div>$$H_n(\theta)
+=
+\frac{1}{n}\sum_{t=1}^n
+\frac{\partial^2}{\partial\theta\,\partial\theta^\prime}q_t(\theta).$$</div>
+
+The Hessian condition is usually proved by a law of large numbers, often uniformly over a small neighborhood of $\theta_0$:
+
+<div>$$H_n(\theta_n^\ast)\xrightarrow{P}A(\theta_0)
+\qquad
+\text{whenever }\theta_n^\ast-\theta_0=o_p(1).$$</div>
+
+So the extremum-estimator CLT is a combination of three ingredients:
+
+1. Consistency: $\hat\theta_n-\theta_0=o_p(1)$.
+
+2. Curvature stability: $H_n(\tilde\theta_n)\xrightarrow{P}A(\theta_0)$.
+
+3. Gradient asymptotic normality: $\sqrt n G_n(\theta_0)\xrightarrow{d}N_p(0,B(\theta_0))$.
+
+#### Maximum likelihood as a special case
+
+For maximum likelihood, it is common to minimize the negative average log-likelihood. In that case $q_t(\theta)$ is minus the log-likelihood contribution. Under the usual information equality,
+
+<div>$$
+B(\theta_0)
+=
+E\left[
+\frac{\partial q_t(\theta_0)}{\partial\theta}
+\frac{\partial q_t(\theta_0)}{\partial\theta^\prime}
+\right]
+=
+A(\theta_0),
+$$</div>
+
+where
+
+<div>$$
+A(\theta_0)
+=
+E\left[
+\frac{\partial^2 q_t(\theta_0)}
+{\partial\theta\,\partial\theta^\prime}
+\right].
+$$</div>
+
+The sandwich covariance then collapses:
+
+<div>$$A(\theta_0)^{-1}B(\theta_0)\left[A(\theta_0)^{-1}\right]^\prime
+=
+A(\theta_0)^{-1}.$$</div>
+
+Thus maximum likelihood attains the familiar Cramer-Rao covariance bound under the regularity conditions that justify the information equality.
 
 ## 2.6 Central limit theorems for time-series data
