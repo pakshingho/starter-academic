@@ -2316,6 +2316,402 @@ Therefore
 
 ## 2.4 Central limit theorems
 
+The previous sections used asymptotic normality as an input. Central limit theorems explain when sums of random variables have normal limiting distributions. In econometrics, this is the bridge from consistency to inference: after the right normalization, many estimators behave approximately normal.
+
+The section starts with a general triangular-array CLT, then specializes to iid data and finally applies the result to least squares with nonstochastic regressors.
+
+### Triangular arrays
+
+To cover many large-sample problems at once, write the random variables as a triangular array:
+
+<div>$$
+\begin{array}{ccccc}
+x_{11} \\
+x_{12} & x_{22} \\
+x_{13} & x_{23} & x_{33} \\
+\vdots & \vdots & \vdots & \ddots \\
+x_{1n} & x_{2n} & x_{3n} & \cdots & x_{nn}.
+\end{array}
+$$</div>
+
+The row index $n$ is the sample size, and $i=1,\ldots,n$ indexes the variables in row $n$. The distribution of $x_{in}$ is allowed to change with $n$.
+
+The baseline assumptions are:
+
+1. Mean zero:
+
+   <div>$$E(x_{in})=0\qquad \text{for all }i,n.$$</div>
+
+2. Row variance normalized to one:
+
+   <div>$$\sum_{i=1}^n\operatorname{Var}(x_{in})=1\qquad \text{for every }n.$$</div>
+
+3. Within-row independence:
+
+   <div>$$x_{in}\text{ and }x_{jn}\text{ are independent whenever }i\ne j.$$</div>
+
+There is no requirement that variables from different rows be independent, because each row is used to form a separate sample-size-$n$ sum.
+
+### Lindeberg-Feller CLT
+
+Under the three assumptions above, the Lindeberg-Feller theorem says that
+
+<div>$$\sum_{i=1}^n x_{in}\xrightarrow{d}N(0,1)$$</div>
+
+if and only if, for every $\varepsilon\gt 0$,
+
+<div>$$\sum_{i=1}^n
+E\left\{x_{in}^2 I(|x_{in}|\gt\varepsilon)\right\}
+\to 0.$$</div>
+
+The last display is the Lindeberg condition. Its meaning is simple: after normalizing the total variance to one, no small set of unusually large summands is allowed to dominate the sum. The limiting normal distribution comes from many individually negligible pieces, not from one large observation.
+
+### Basic iid array
+
+The usual iid central limit theorem is a special triangular-array case. Suppose $x_i$ are iid with
+
+<div>$$E(x_i)=\mu,\qquad \operatorname{Var}(x_i)=\sigma^2.$$</div>
+
+Define
+
+<div>$$x_{in}=\frac{x_i-\mu}{\sigma\sqrt n}.$$</div>
+
+Then $E(x_{in})=0$ and
+
+<div>$$\sum_{i=1}^n\operatorname{Var}(x_{in})
+=n\frac{\sigma^2}{\sigma^2 n}
+=1.$$</div>
+
+The row sum is
+
+<div>$$\sum_{i=1}^n x_{in}
+=
+\frac{1}{\sigma\sqrt n}\sum_{i=1}^n(x_i-\mu),$$</div>
+
+so Lindeberg-Feller gives
+
+<div>$$\frac{1}{\sqrt n}\sum_{i=1}^n\frac{x_i-\mu}{\sigma}
+\xrightarrow{d}N(0,1).$$</div>
+
+### Lyapunov condition
+
+The Lindeberg condition can be hard to verify directly. A common sufficient condition is Lyapunov's condition: for some $\delta\gt 0$,
+
+<div>$$\sum_{i=1}^n E|x_{in}|^{2+\delta}\to 0.$$</div>
+
+Then the Lindeberg condition follows. Indeed, on the event $|x_{in}|\gt\varepsilon$,
+
+<div>$$x_{in}^2
+\le
+\varepsilon^{-\delta}|x_{in}|^{2+\delta}.$$</div>
+
+Therefore
+
+<div>$$\sum_{i=1}^n
+E\{x_{in}^2 I(|x_{in}|\gt\varepsilon)\}
+\le
+\varepsilon^{-\delta}\sum_{i=1}^n E|x_{in}|^{2+\delta}
+\to 0.$$</div>
+
+Lyapunov's condition is stronger than Lindeberg's condition, but it is often easier to check because it only asks for a moment bound.
+
+### Uniform integrability route
+
+There is another useful route. Suppose $x_i$ are independent, mean zero, have common variance $\sigma^2$, and the sequence $\lbrace x_i^2:i\ge 1\rbrace$ is uniformly integrable. Again set
+
+<div>$$x_{in}=\frac{x_i}{\sigma\sqrt n}.$$</div>
+
+Then, for every $\varepsilon\gt 0$,
+
+<div>$$\sum_{i=1}^n
+E\{x_{in}^2I(|x_{in}|\gt\varepsilon)\}
+=
+\frac{1}{\sigma^2 n}
+\sum_{i=1}^n
+E\left\{x_i^2I(|x_i|\gt \varepsilon\sigma\sqrt n)\right\}.$$</div>
+
+This is bounded above by
+
+<div>$$\frac{1}{\sigma^2}
+\sup_{i\ge 1}
+E\left\{x_i^2I(|x_i|\gt \varepsilon\sigma\sqrt n)\right\},$$</div>
+
+which goes to zero by uniform integrability of $\lbrace x_i^2\rbrace$. Thus the Lindeberg condition holds.
+
+One simple way to guarantee this uniform integrability is a higher moment bound:
+
+<div>$$\sup_{i\ge 1}E|x_i|^{2+\delta}\lt\infty
+\qquad\text{for some }\delta\gt 0.$$</div>
+
+### Row-identically distributed triangular arrays
+
+The note also records a useful triangular-array version of the Lindeberg-Levy setup. Suppose that within each row, $x_{1n},\ldots,x_{nn}$ are identically distributed, although the common row distribution may change with $n$.
+
+Then the Lindeberg condition becomes
+
+<div>$$\sum_{i=1}^nE\{x_{in}^2I(|x_{in}|\gt\varepsilon)\}
+=
+nE\{x_{1n}^2I(|x_{1n}|\gt\varepsilon)\}.$$</div>
+
+Equivalently,
+
+<div>$$nE\{x_{1n}^2I(|x_{1n}|\gt\varepsilon)\}
+=
+E\{n x_{1n}^2 I(\sqrt n |x_{1n}|\gt \sqrt n\varepsilon)\}.$$</div>
+
+So a convenient sufficient condition is uniform integrability of the sequence $\lbrace n x_{1n}^2:n\ge 1\rbrace$. In the basic iid case
+
+<div>$$x_{in}=\frac{x_i-\mu}{\sigma\sqrt n},$$</div>
+
+this condition follows from $E(x_i-\mu)^2\lt\infty$.
+
+### Characteristic-function proof for iid data
+
+For iid mean-zero variables with variance $\sigma^2$, the normal limit can also be seen directly from characteristic functions.
+
+Let
+
+<div>$$S_n=\frac{1}{\sigma\sqrt n}\sum_{i=1}^n x_i.$$</div>
+
+Independence gives
+
+<div>$$\phi_{S_n}(t)
+=E\{\exp(itS_n)\}
+=
+\left[
+\phi_x\left(\frac{t}{\sigma\sqrt n}\right)
+\right]^n,$$</div>
+
+where $\phi_x(u)=E[\exp(iux_1)]$. Since $E(x_1)=0$ and $E(x_1^2)=\sigma^2$, the characteristic function has the expansion
+
+<div>$$\phi_x(u)
+=1-\frac{1}{2}\sigma^2u^2+o(u^2)
+\qquad\text{as }u\to 0.$$</div>
+
+Substitute $u=t/(\sigma\sqrt n)$:
+
+<div>$$\phi_{S_n}(t)
+=
+\left[
+1-\frac{t^2}{2n}+o\left(\frac{1}{n}\right)
+\right]^n
+\to
+\exp\left(-\frac{t^2}{2}\right).$$</div>
+
+The limit is the characteristic function of $N(0,1)$, so
+
+<div>$$S_n\xrightarrow{d}N(0,1).$$</div>
+
+This proof is less general than Lindeberg-Feller, but it shows the central mechanism: after scaling by $\sqrt n$, the second-order term in the characteristic function survives and higher-order terms vanish.
+
+### Least squares with nonstochastic regressors
+
+Now consider the multiple regression model
+
+<div>$$y_i=\beta^\prime z_i+u_i,\qquad i=1,\ldots,n,$$</div>
+
+where $z_i$ is a nonstochastic $k\times 1$ vector, $\beta$ is $k\times 1$, and $u_i$ is scalar. Stack the observations as
+
+<div>$$Y=Z\beta+U.$$</div>
+
+The least-squares estimator satisfies
+
+<div>$$\hat\beta-\beta=(Z^\prime Z)^{-1}Z^\prime U.$$</div>
+
+The question is: what normalization makes $\hat\beta-\beta$ have a nondegenerate limiting distribution?
+
+Let
+
+<div>$$D=\operatorname{diag}(d_1,\ldots,d_k),
+\qquad
+d_j=\left(\sum_{i=1}^n z_{ji}^2\right)^{1/2},$$</div>
+
+and define
+
+<div>$$\widehat R=D^{-1}(Z^\prime Z)D^{-1}.$$</div>
+
+Assume
+
+<div>$$\widehat R\to R\gt 0.$$</div>
+
+Then the natural normalization is $D$, because
+
+<div>$$D(\hat\beta-\beta)
+=
+\left[D^{-1}(Z^\prime Z)D^{-1}\right]^{-1}
+D^{-1}Z^\prime U
+=
+\widehat R^{-1}D^{-1}Z^\prime U.$$</div>
+
+The term $D^{-1}Z^\prime U$ is a sum of normalized regressor-error products:
+
+<div>$$D^{-1}Z^\prime U
+=
+\sum_{i=1}^nD^{-1}z_i u_i.$$</div>
+
+Thus $D(\hat\beta-\beta)$ is a transformed sum, and a triangular-array CLT can be applied to scalar projections.
+
+### Scalar projection for the regression CLT
+
+Take any fixed $k\times 1$ vector $\lambda$ with $\lambda^\prime\lambda=1$. Consider
+
+<div>$$\lambda^\prime\frac{\widehat R^{1/2}}{\sigma}D(\hat\beta-\beta)
+=
+\sum_{i=1}^n x_{in},$$</div>
+
+where
+
+<div>$$x_{in}
+=
+\frac{1}{\sigma}
+\lambda^\prime\widehat R^{-1/2}D^{-1}z_i u_i.$$</div>
+
+If $E(u_i)=0$, then $E(x_{in})=0$. If $u_i$ are independent with $E(u_i^2)=\sigma^2$, then the row variables $x_{in}$ are independent and
+
+<div>$$\sum_{i=1}^nE(x_{in}^2)
+=
+\lambda^\prime
+\widehat R^{-1/2}
+D^{-1}
+\left(\sum_{i=1}^nz_i z_i^\prime\right)
+D^{-1}
+\widehat R^{-1/2}
+\lambda
+=1.$$</div>
+
+So the first three Lindeberg-Feller assumptions are satisfied.
+
+The remaining issue is Lindeberg's condition. Define the deterministic weight
+
+<div>$$w_{in}
+=
+\frac{1}{\sigma}
+\lambda^\prime\widehat R^{-1/2}D^{-1}z_i,$$</div>
+
+so that $x_{in}=w_{in}u_i$. A sufficient route is:
+
+1. $\lbrace u_i^2:i\ge 1\rbrace$ is uniformly integrable.
+
+2. The largest weight vanishes:
+
+   <div>$$\max_{1\le i\le n}|w_{in}|\to 0.$$</div>
+
+Indeed,
+
+<div>$$\sum_{i=1}^n
+E\{x_{in}^2I(|x_{in}|\gt\varepsilon)\}
+=
+\sum_{i=1}^n
+w_{in}^2
+E\{u_i^2I(|w_{in}u_i|\gt\varepsilon)\},$$</div>
+
+and the largest-weight condition makes the threshold $\varepsilon/|w_{in}|$ diverge uniformly. More explicitly,
+
+<div>$$I(|w_{in}u_i|\gt\varepsilon)
+\le
+I\left(|u_i|\gt \frac{\varepsilon}{\max_{1\le j\le n}|w_{jn}|}\right),$$</div>
+
+so uniform integrability of $\lbrace u_i^2\rbrace$ rules out large-tail contributions.
+
+### Grenander-style regressor conditions
+
+It remains to give a clean sufficient condition for
+
+<div>$$\max_{1\le i\le n}|w_{in}|\to 0.$$</div>
+
+Since
+
+<div>$$D^{-1}z_i
+=
+\left(\frac{z_{1i}}{d_1},\ldots,\frac{z_{ki}}{d_k}\right)^\prime,$$</div>
+
+and $\widehat R^{-1}=O(1)$ under $\widehat R\to R\gt 0$, it is enough to assume
+
+<div>$$\max_{1\le j\le k}
+\max_{1\le i\le n}
+\frac{|z_{ji}|}{d_j}
+\to 0.$$</div>
+
+Together with $\widehat R\to R\gt 0$, this is often called a Grenander-style condition. It says no single observation should dominate the length of any regressor column.
+
+Summarizing, assume:
+
+1. $u_i$ are independent, $E(u_i)=0$, $E(u_i^2)=\sigma^2$, and $\lbrace u_i^2:i\ge 1\rbrace$ is uniformly integrable.
+
+2. $z_i$ is nonstochastic, $d_j\to\infty$ for every regressor column, and
+
+   <div>$$\max_{1\le j\le k}
+   \max_{1\le i\le n}
+   \frac{|z_{ji}|}{d_j}
+   \to 0.$$</div>
+
+3. $\widehat R=D^{-1}(Z^\prime Z)D^{-1}\to R\gt 0$.
+
+Then, for every unit vector $\lambda$,
+
+<div>$$\lambda^\prime\frac{\widehat R^{1/2}}{\sigma}D(\hat\beta-\beta)
+\xrightarrow{d}N(0,1).$$</div>
+
+By Cramer-Wold,
+
+<div>$$\frac{\widehat R^{1/2}}{\sigma}D(\hat\beta-\beta)
+\xrightarrow{d}N_k(0,I_k).$$</div>
+
+Because $\widehat R\to R$, Slutsky's theorem gives
+
+<div>$$D(\hat\beta-\beta)
+\xrightarrow{d}
+N_k(0,\sigma^2R^{-1}).$$</div>
+
+This is the regression CLT in the note.
+
+### What the normalization means
+
+If each regressor column behaves like a usual bounded column, then $d_j$ is typically of order $\sqrt n$. In that case $D$ is essentially a column-specific version of the familiar $\sqrt n$ normalization.
+
+The condition
+
+<div>$$\max_{1\le i\le n}\frac{|z_{ji}|}{d_j}\to 0$$</div>
+
+is the key "no dominant observation" condition. For example, if
+
+<div>$$z_{ji}=i^p,\qquad p\gt -\frac{1}{2},$$</div>
+
+then
+
+<div>$$d_j^2=\sum_{i=1}^n i^{2p}
+\asymp n^{2p+1},$$</div>
+
+so
+
+<div>$$\max_{1\le i\le n}\frac{|z_{ji}|}{d_j}
+\asymp
+\frac{n^p}{n^{p+1/2}}
+=n^{-1/2}\to 0.$$</div>
+
+By contrast, if $z_{ji}=e^i$, then the final observation dominates the column:
+
+<div>$$d_j^2=\sum_{i=1}^n e^{2i}\asymp e^{2n},
+\qquad
+\max_{1\le i\le n}\frac{e^i}{d_j}
+\asymp 1.$$</div>
+
+The Grenander condition fails, so this CLT route does not apply.
+
+### Cramer theorem
+
+The section ends with a useful transformation result. Let $Z_n$ be a $k\times 1$ random vector and let $A_n$ be a sequence of random matrices. Suppose
+
+<div>$$A_n\xrightarrow{P}A,
+\qquad
+Z_n\xrightarrow{d}N_k(\mu,\Sigma).$$</div>
+
+Then
+
+<div>$$A_nZ_n\xrightarrow{d}N(A\mu,A\Sigma A^\prime).$$</div>
+
+This is another form of Slutsky's theorem plus the continuous mapping theorem. It is useful because many estimators can be written as a random matrix converging in probability times an asymptotically normal vector.
+
 ## 2.5 Consistency of extremum estimators
 
 - 2.5.1 Central limit theorem for extremum estimators
