@@ -1840,6 +1840,480 @@ This is the usual root-$n$ rate statement for least squares under these regulari
 
 ## 2.3 Convergence in distribution
 
+Convergence in distribution is the mode of convergence used to describe limiting distributions. It is weaker than convergence in probability, but it is exactly the right language for central limit theorems, test statistics, and confidence intervals.
+
+For a scalar random variable $X$, write its distribution function as
+
+<div>$$F_X(x)=\Pr(X\le x).$$</div>
+
+For a $k\times 1$ random vector $X$, write its characteristic function as
+
+<div>$$\phi_X(t)=E\{\exp(i t^\prime X)\},\qquad t\in\mathbb R^k.$$</div>
+
+Here $t$ is also a $k\times 1$ vector, so $t^\prime X$ is scalar.
+
+### Definition
+
+We say that $X_n$ converges in distribution to $X$, written
+
+<div>$$X_n\xrightarrow{d}X,$$</div>
+
+if
+
+<div>$$F_{X_n}(x)\to F_X(x)$$</div>
+
+at every continuity point $x$ of $F_X$.
+
+The continuity-point qualification matters. A distribution function can have jumps, as in discrete or mixed distributions, and convergence is not required at those jump points. Distribution functions have at most countably many jumps, so this still pins down the limiting distribution.
+
+### First examples
+
+If $x_1,\ldots,x_n$ are iid with mean $\mu$ and variance $\sigma^2$, then the classical central limit theorem says
+
+<div>$$\frac{1}{\sqrt n}\sum_{i=1}^n\frac{x_i-\mu}{\sigma}
+\xrightarrow{d}N(0,1).$$</div>
+
+This is not saying that the standardized sum converges to a fixed number. It is saying that its entire distribution approaches the standard normal distribution.
+
+As a second example, let $X_1,\ldots,X_n$ be iid $U[0,\theta]$, and let
+
+<div>$$Y_n=X_{(n)}=\max_{1\le i\le n}X_i.$$</div>
+
+For $0\le y\le\theta$,
+
+<div>$$F_{Y_n}(y)
+=\Pr(Y_n\le y)
+=\Pr(X_1\le y,\ldots,X_n\le y)
+=\left(\frac{y}{\theta}\right)^n.$$</div>
+
+Thus
+
+<div>$$F_{Y_n}(y)=
+\begin{cases}
+0, & y<0,\\
+\left(y/\theta\right)^n, & 0\le y\le\theta,\\
+1, & y>\theta.
+\end{cases}$$</div>
+
+The pointwise limit is
+
+<div>$$F_Y(y)=I(y\ge\theta),$$</div>
+
+the distribution function of the degenerate random variable $Y=\theta$. The limit is checked only at continuity points of $F_Y$, meaning $y\ne\theta$.
+
+### Convergence in distribution does not control moments
+
+It is tempting to think that
+
+<div>$$X_n\xrightarrow{d}X$$</div>
+
+should imply convergence of moments. That is false without additional conditions.
+
+Let $X_n$ have distribution function
+
+<div>$$F_n(x)=
+\begin{cases}
+0, & x<0,\\
+1-\frac{1}{n}, & 0\le x<n,\\
+1, & x\ge n.
+\end{cases}$$</div>
+
+Equivalently,
+
+<div>$$X_n=
+\begin{cases}
+0, & \text{with probability }1-\frac{1}{n},\\
+n, & \text{with probability }\frac{1}{n}.
+\end{cases}$$</div>
+
+Then $X_n\xrightarrow{d}0$, because the probability of the large value $n$ goes to zero. But for any integer $k\ge 1$,
+
+<div>$$E(X_n^k)=n^k\frac{1}{n}=n^{k-1}.$$</div>
+
+So the first moment stays equal to one, and higher moments diverge. The limiting random variable is zero, so $E(X^k)=0$. The lesson is that convergence in distribution controls the shape of the distribution at fixed continuity points, not the behavior of far tails.
+
+If $\lbrace |X_n|^k:n\ge 1\rbrace$ is uniformly integrable and $X_n\xrightarrow{d}X$, then the missing tail control is restored and
+
+<div>$$E|X_n|^k\to E|X|^k.$$</div>
+
+Uniform integrability is the condition that prevents a vanishing amount of probability mass from escaping to infinity.
+
+### Equivalent characterizations
+
+For random vectors, convergence in distribution can be characterized through characteristic functions:
+
+<div>$$X_n\xrightarrow{d}X
+\quad\Longleftrightarrow\quad
+\phi_{X_n}(t)\to\phi_X(t)\quad\text{for every }t\in\mathbb R^k.$$</div>
+
+It can also be characterized through bounded continuous functions:
+
+<div>$$X_n\xrightarrow{d}X
+\quad\Longleftrightarrow\quad
+E\{g(X_n)\}\to E\{g(X)\}$$</div>
+
+for every bounded continuous function $g$.
+
+This second characterization is often the most intuitive one: if all bounded continuous summaries of the random vectors have convergent expectations, then the distributions themselves converge.
+
+### Cramer-Wold device
+
+Let $X_n$ and $X$ be $k\times 1$ random vectors. Then
+
+<div>$$X_n\xrightarrow{d}X
+\quad\Longleftrightarrow\quad
+\lambda^\prime X_n\xrightarrow{d}\lambda^\prime X
+\quad\text{for every }\lambda\in\mathbb R^k.$$</div>
+
+The scalar projection $\lambda^\prime X_n$ takes the vector $X_n$ and looks at it from one direction. The theorem says that a vector distribution is pinned down by all one-dimensional projections.
+
+The characteristic-function proof is short. If all projections converge, then take $\lambda=t$. For any $t\in\mathbb R^k$,
+
+<div>$$E\{\exp(i t^\prime X_n)\}
+\to
+E\{\exp(i t^\prime X)\}.$$</div>
+
+Thus $\phi_{X_n}(t)\to\phi_X(t)$ for every $t$, so $X_n\xrightarrow{d}X$. Conversely, if $X_n\xrightarrow{d}X$, then
+
+<div>$$E\{\exp(i v\lambda^\prime X_n)\}
+=\phi_{X_n}(v\lambda)
+\to
+\phi_X(v\lambda)
+=E\{\exp(i v\lambda^\prime X)\}$$</div>
+
+for every scalar $v$, so $\lambda^\prime X_n\xrightarrow{d}\lambda^\prime X$.
+
+### Multivariate normality through projections
+
+Write
+
+<div>$$X\sim N_k(\mu,\Sigma),$$</div>
+
+where $X$ and $\mu$ are $k\times 1$ vectors and $\Sigma$ is a positive definite $k\times k$ covariance matrix. Then
+
+<div>$$X\sim N_k(\mu,\Sigma)
+\quad\Longleftrightarrow\quad
+\lambda^\prime X\sim N(\lambda^\prime\mu,\lambda^\prime\Sigma\lambda)
+\quad\text{for every }\lambda\ne 0.$$</div>
+
+This is especially useful for asymptotic normality. To prove
+
+<div>$$X_n\xrightarrow{d}N_k(\mu,\Sigma),$$</div>
+
+it is enough to prove that for every fixed $\lambda$ with $\lambda^\prime\lambda=1$,
+
+<div>$$\lambda^\prime X_n
+\xrightarrow{d}
+N(\lambda^\prime\mu,\lambda^\prime\Sigma\lambda).$$</div>
+
+This is the usual Cramer-Wold route: reduce the vector result to scalar central limit theorems for arbitrary linear combinations.
+
+### Relation to convergence in probability
+
+For scalar random variables,
+
+<div>$$X_n\xrightarrow{P}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{d}X.$$</div>
+
+The proof uses the distribution functions. If $x-\varepsilon$, $x$, and $x+\varepsilon$ are continuity points of $F_X$, then
+
+<div>$$F_X(x-\varepsilon)
+\le
+\liminf_{n\to\infty}F_{X_n}(x)
+\le
+\limsup_{n\to\infty}F_{X_n}(x)
+\le
+F_X(x+\varepsilon).$$</div>
+
+Letting $\varepsilon\downarrow 0$ at a continuity point $x$ gives $F_{X_n}(x)\to F_X(x)$.
+
+If the limit is a constant $c$, the converse is also true:
+
+<div>$$X_n\xrightarrow{d}c
+\quad\Longleftrightarrow\quad
+X_n\xrightarrow{P}c.$$</div>
+
+Indeed, for any $\varepsilon>0$,
+
+<div>$$\Pr(|X_n-c|>\varepsilon)
+\le
+F_{X_n}(c-\varepsilon)
++1-F_{X_n}(c+\varepsilon),$$</div>
+
+and the right-hand side converges to $0$ under convergence in distribution to the degenerate random variable $c$.
+
+The same implications hold for vectors:
+
+<div>$$X_n\xrightarrow{P}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{d}X,$$</div>
+
+and if $c$ is a fixed $k\times 1$ vector,
+
+<div>$$X_n\xrightarrow{d}c
+\quad\Longleftrightarrow\quad
+X_n\xrightarrow{P}c.$$</div>
+
+One way to prove the vector case is to apply the scalar result to every projection $\lambda^\prime X_n$ and then use the Cramer-Wold device. For convergence to a constant vector, convergence of each coordinate is enough.
+
+### Continuous mapping theorem
+
+Let $g$ be continuous on the support of $X$. If
+
+<div>$$X_n\xrightarrow{d}X,$$</div>
+
+then
+
+<div>$$g(X_n)\xrightarrow{d}g(X).$$</div>
+
+This is the continuous mapping theorem. It lets us pass limiting distributions through continuous transformations.
+
+For example, if
+
+<div>$$X_n\xrightarrow{d}X\sim N_k(0,I_k),$$</div>
+
+then the map $g(x)=x^\prime x$ gives
+
+<div>$$X_n^\prime X_n\xrightarrow{d}X^\prime X\sim\chi_k^2.$$</div>
+
+### Slutsky-type results
+
+Suppose
+
+<div>$$Y_n\xrightarrow{d}Y,\qquad Z_n\xrightarrow{P}c,$$</div>
+
+where $c$ is a fixed vector or scalar of the appropriate dimension. If $g$ is continuous at points of the form $(y,c)$, then
+
+<div>$$g(Y_n,Z_n)\xrightarrow{d}g(Y,c).$$</div>
+
+Useful special cases are:
+
+1. If $X_n\xrightarrow{d}X$ and $y_n\xrightarrow{P}c$, then
+
+   <div>$$X_n+y_n\xrightarrow{d}X+c.$$</div>
+
+2. If $X_n\xrightarrow{d}X$ and $y_n\xrightarrow{P}c$, then
+
+   <div>$$y_nX_n\xrightarrow{d}cX.$$</div>
+
+3. If $X_n\xrightarrow{d}X$ and $y_n\xrightarrow{P}c\ne 0$, then
+
+   <div>$$y_n^{-1}X_n\xrightarrow{d}c^{-1}X.$$</div>
+
+These are the workhorse tools behind asymptotic distributions of estimators. A random object with a nondegenerate limiting distribution can be combined with another object that converges in probability to a constant.
+
+### Example: least squares with stochastic regressors
+
+Consider
+
+<div>$$Y=Z\beta+U,$$</div>
+
+where $Z$ is random and $\beta$ is $k\times 1$. Define
+
+<div>$$\widehat M=\frac{1}{n}Z^\prime Z,
+\qquad
+\sqrt n\,\widehat m=\frac{1}{\sqrt n}Z^\prime U.$$</div>
+
+Suppose
+
+<div>$$\widehat M\xrightarrow{P}M>0,
+\qquad
+\sqrt n\,\widehat m\xrightarrow{d}X\sim N_k(0,\sigma^2M).$$</div>
+
+The least-squares estimator satisfies
+
+<div>$$\sqrt n(\hat\beta-\beta)
+=
+\left(\frac{Z^\prime Z}{n}\right)^{-1}
+\frac{Z^\prime U}{\sqrt n}
+=\widehat M^{-1}\sqrt n\,\widehat m.$$</div>
+
+By continuous mapping,
+
+<div>$$\widehat M^{-1}\xrightarrow{P}M^{-1}.$$</div>
+
+Then Slutsky's theorem gives
+
+<div>$$\sqrt n(\hat\beta-\beta)
+\xrightarrow{d}
+M^{-1}X.$$</div>
+
+Since $X\sim N_k(0,\sigma^2M)$,
+
+<div>$$M^{-1}X\sim N_k(0,\sigma^2M^{-1}).$$</div>
+
+Therefore
+
+<div>$$\sqrt n(\hat\beta-\beta)
+\xrightarrow{d}
+N_k(0,\sigma^2M^{-1}).$$</div>
+
+This is the asymptotic normality result that turns the stochastic-order rate from section 2.2 into a full limiting distribution.
+
+### Example: large-sample F statistic
+
+Continue with $Y=Z\beta+U$ and test
+
+<div>$$H_0:W\beta=w,$$</div>
+
+where $W$ is a known $q\times k$ matrix with rank $q\le k$, and $w$ is $q\times 1$. Consider
+
+<div>$$F_n
+=
+\frac{
+n(w-W\hat\beta)^\prime
+\left(W\widehat M^{-1}W^\prime\right)^{-1}
+(w-W\hat\beta)
+}{
+q\hat\sigma^2
+},$$</div>
+
+where
+
+<div>$$\hat\sigma^2=\frac{\hat U^\prime\hat U}{n-k},
+\qquad
+\hat U=Y-Z\hat\beta.$$</div>
+
+Assume
+
+<div>$$\frac{Z^\prime U}{\sqrt n}\xrightarrow{d}X\sim N_k(0,\sigma^2M),
+\qquad
+\widehat M=\frac{Z^\prime Z}{n}\xrightarrow{P}M>0,
+\qquad
+s^2=\frac{U^\prime U}{n}\xrightarrow{P}\sigma^2.$$</div>
+
+Under $H_0$, $w-W\beta=0$, so
+
+<div>$$\sqrt n(w-W\hat\beta)
+=
+-W\sqrt n(\hat\beta-\beta)
+=
+-W\widehat M^{-1}\frac{Z^\prime U}{\sqrt n}.$$</div>
+
+The sign does not affect the quadratic form. Also,
+
+<div>$$\hat U^\prime\hat U
+=U^\prime U
+-\left(\frac{Z^\prime U}{\sqrt n}\right)^\prime
+\widehat M^{-1}
+\left(\frac{Z^\prime U}{\sqrt n}\right).$$</div>
+
+The second term is $O_p(1)$, so after division by $n-k$ it is $o_p(1)$. Hence
+
+<div>$$\hat\sigma^2\xrightarrow{P}\sigma^2.$$</div>
+
+Applying the continuous mapping theorem and Slutsky's theorem,
+
+<div>$$F_n\xrightarrow{d}
+\frac{
+X^\prime M^{-1}W^\prime
+\left(WM^{-1}W^\prime\right)^{-1}
+WM^{-1}X
+}{
+q\sigma^2
+}.$$</div>
+
+Because
+
+<div>$$\frac{1}{\sigma}WM^{-1}X
+\sim
+N_q(0,WM^{-1}W^\prime),$$</div>
+
+we have
+
+<div>$$\left(WM^{-1}W^\prime\right)^{-1/2}
+\frac{WM^{-1}X}{\sigma}
+\sim
+N_q(0,I_q).$$</div>
+
+Therefore,
+
+<div>$$F_n\xrightarrow{d}\frac{\chi_q^2}{q}.$$</div>
+
+This is an asymptotic result. It is not proved by saying that a finite-sample $F_{q,n-k}$ distribution tends to $\chi_q^2/q$; instead it follows from the limiting behavior of the estimator and variance estimator under weaker large-sample conditions.
+
+### Relationship among modes of convergence
+
+The main implication chain is
+
+<div>$$X_n\xrightarrow{a.s.}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{P}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{d}X.$$</div>
+
+Also, for $r>0$,
+
+<div>$$X_n\xrightarrow{L^r}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{P}X.$$</div>
+
+If the limiting random variable is a constant, then convergence in distribution is equivalent to convergence in probability:
+
+<div>$$X_n\xrightarrow{d}c
+\quad\Longleftrightarrow\quad
+X_n\xrightarrow{P}c.$$</div>
+
+But in general, convergence in distribution is strictly weaker than convergence in probability. It describes the limiting law, not necessarily whether $X_n$ and $X$ become close on the same probability space.
+
+### Convergence in distribution and stochastic boundedness
+
+If
+
+<div>$$X_n\xrightarrow{d}X,$$</div>
+
+then
+
+<div>$$X_n=O_p(1).$$</div>
+
+To see why, fix $\varepsilon>0$. Choose a continuity point $C>0$ of $F_X$ such that
+
+<div>$$\Pr(|X|>C)<\varepsilon.$$</div>
+
+For all sufficiently large $n$,
+
+<div>$$|F_{X_n}(C)-F_X(C)|<\varepsilon,
+\qquad
+|F_{X_n}(-C)-F_X(-C)|<\varepsilon.$$</div>
+
+Then
+
+<div>$$\Pr(|X_n|>C)
+\le
+\Pr(|X|>C)
++|F_{X_n}(C)-F_X(C)|
++|F_{X_n}(-C)-F_X(-C)|
+<3\varepsilon.$$</div>
+
+Thus the sequence cannot escape to infinity in probability.
+
+As a useful consequence, if
+
+<div>$$X_n\xrightarrow{d}X,
+\qquad
+y_n\xrightarrow{P}0,$$</div>
+
+then
+
+<div>$$X_ny_n\xrightarrow{P}0.$$</div>
+
+The reason is exactly the stochastic-order algebra from section 2.2:
+
+<div>$$X_n\xrightarrow{d}X
+\quad\Longrightarrow\quad
+X_n=O_p(1),$$</div>
+
+while
+
+<div>$$y_n\xrightarrow{P}0
+\quad\Longleftrightarrow\quad
+y_n=o_p(1).$$</div>
+
+Therefore
+
+<div>$$X_ny_n=O_p(1)o_p(1)=o_p(1).$$</div>
+
 ## 2.4 Central limit theorems
 
 ## 2.5 Consistency of extremum estimators
