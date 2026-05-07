@@ -44,6 +44,8 @@ Built direct node-level forecasting approaches for package volume, stop visits, 
 
 Developed live-order and live-manifest forecasting systems for routing and pickup decisions across multiple geographies. The models incorporated high-frequency demand signals, shipper-specific cutoff behavior, time-zone complexity, carryover effects, holiday patterns, forecast combinations, and percentile forecasts for operational risk management.
 
+This work was later written up as the internal conference paper **Ensemble Causal Nowcasting for First-Mile Shipment Pickup Counts**, presented at Amazon Machine Learning Conference (AMLC) in March 2023 and Economist Summit in October 2025.
+
 **Why it matters:** Day-of operations need forecasts that can update as new information arrives. Reactive forecasting turns live signals into routing and capacity decisions when waiting for a slower planning cycle would be too late.
 
 ### Demand Definition, Forecastability, and Decision Framing
