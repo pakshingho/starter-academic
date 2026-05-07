@@ -28,6 +28,22 @@ The common thread is decision quality: clarifying the question, making assumptio
 
 These summaries translate internal project work into public-facing descriptions focused on problem, method, and decision impact.
 
+### Financial-Market Event Study Framework
+
+Developed a reusable econometric framework for evaluating how external events changed company, peer, and sector performance. The framework combined event-window design, asset and sector portfolio construction, abnormal-return estimation, CAPM and Fama-French benchmarks, user-specified multifactor models, statistical testing, and visualization into a repeatable workflow.
+
+The work was applied to major public events and strategic announcements to separate market-wide movement from event-specific changes in expected performance.
+
+**Why it matters:** Event studies are valuable when teams need a fast external read on an ambiguous shock. A reusable framework turns financial-market reactions into a structured decision input for planning, benchmarking, and investment trade-offs.
+
+### Forward-Looking Market Signals for Forecasting and Risk Attribution
+
+Built analyses that tested whether stock returns, volatility indices, sector portfolios, and peer movements could improve demand forecast interpretation and risk monitoring. The work connected forward-looking market data with forecast-error analysis, confidence-interval reasoning, time-varying beta estimation, sensitivity attribution, and peer/sector decomposition.
+
+This created a way to compare internal forecasts with an outside market signal, identify where market expectations were moving before operating metrics fully changed, and explain whether performance changes were company-specific, sector-driven, or market-wide.
+
+**Why it matters:** During shocks, operational history can lag reality. Forward-looking market signals provide an independent lens for forecast calibration, risk review, and scenario planning.
+
 ### Forecasting Ecosystem and Scalable Forecasting Architecture
 
 Designed a modular forecasting vision for a rapidly expanding logistics network with many markets, planning horizons, demand channels, and operational grains. The architecture connected global and grouped modeling, hierarchical reconciliation, probabilistic forecasts, anomaly detection, forecastability diagnostics, and error-interpretation modules into a coherent forecasting ecosystem.
