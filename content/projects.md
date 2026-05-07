@@ -59,6 +59,14 @@ The model is deliberately simple enough to teach from, but complete enough to ex
 
 ## Technical Handbooks
 
+### Economics of Digital Platforms
+
+[Open notes](/economics-of-digital-platforms/)
+
+A chapter-based set of notes on network effects, platform design, trust, monetization, customer value, marketing ROI, regulation, and strategy. The material links platform economics with product and measurement questions that come up in online marketplaces, ads, growth, subscriptions, and multi-sided products.
+
+**Why it matters:** Platform metrics are shaped by incentives, trust, pricing, market thickness, and regulation. These notes connect those forces to measurement and product decisions.
+
 ### Understanding Recommender Systems
 
 [Open handbook](/recommender-systems/)
@@ -98,14 +106,6 @@ A focused course on decision trees, bagging, random forests, ExtraTrees, feature
 It also stresses the limits of feature importance, the bias-variance trade-off, tuning risk, and the practical question of when deep learning is not the right default for tabular data.
 
 **Why it matters:** Tree ensembles are practical, powerful, and easy to misuse. This guide keeps the mechanics close to applied concerns such as tuning, feature importance, stability, and when deep learning is not the best default.
-
-### Economics of Digital Platforms
-
-[Open notes](/economics-of-digital-platforms/)
-
-A chapter-based set of notes on network effects, platform design, trust, monetization, customer value, marketing ROI, regulation, and strategy. The material links platform economics with product and measurement questions that come up in online marketplaces, ads, growth, subscriptions, and multi-sided products.
-
-**Why it matters:** Platform metrics are shaped by incentives, trust, pricing, market thickness, and regulation. These notes connect those forces to measurement and product decisions.
 
 ## Code and Research Archive
 
