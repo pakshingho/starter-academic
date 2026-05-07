@@ -33,6 +33,13 @@ hero_media = "hero-academic.png"
   # Text color (true=light or false=dark).
   text_color_light = true
 
+# Call to action link.
+[cta]
+  url = "/projects/"
+  label = "View Projects"
+  icon_pack = "fas"
+  icon = "chart-line"
+
 +++
 
 **From experiment design to decision systems: turning data into reliable business actions.**
