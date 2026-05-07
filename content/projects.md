@@ -4,16 +4,16 @@ date: 2026-02-24
 type: page
 ---
 
-This page collects public projects, tools, and technical writing that show how I approach Staff Data Scientist and technical leadership work: frame ambiguous decisions, choose credible methods, build reusable decision systems, and explain trade-offs clearly to product, business, and engineering partners.
+Projects, tools, and technical notes from my work across causal inference, experimentation, forecasting, marketplace economics, recommender systems, and applied machine learning.
 
-My strongest fit is in roles where causal inference, experimentation, forecasting, marketplace economics, recommender systems, and applied machine learning need to move from analysis into repeatable decision-making.
+The common thread is decision quality: clarifying the question, making assumptions visible, choosing methods that fit the design, and turning analysis into reusable tools or teaching materials.
 
-## What These Projects Show
+## Project Themes
 
-- **Technical depth:** causal inference, experimentation, forecasting, recommender systems, marketplace economics, and applied machine learning.
-- **Product judgment:** emphasis on decision quality, metric design, trade-offs, and how model outputs change actions.
-- **Leadership leverage:** reusable tools, handbooks, and frameworks that help teams reason more consistently.
-- **Communication range:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
+- **Methods:** causal inference, experimentation, forecasting, recommender systems, marketplace economics, and applied machine learning.
+- **Decision focus:** metric design, trade-offs, uncertainty, and how model outputs change actions.
+- **Reusable systems:** tools, handbooks, and frameworks that help teams reason more consistently.
+- **Communication:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
 
 ## Flagship Decision Tools
 
@@ -25,7 +25,7 @@ An interactive decision-support tool for choosing causal inference methods from 
 
 It covers randomized experiments, switchbacks, CUPED, noncompliance, heterogeneous treatment effects, mediation, matching, propensity weighting, doubly robust estimation, difference-in-differences, event studies, interrupted time series, synthetic control, regression discontinuity, instrumental variables, and double machine learning.
 
-**What it signals:** Staff-level causal inference work is often less about naming an estimator and more about helping teams avoid false certainty. This project shows how I turn a messy methodological choice into a shared operating system for product and business decisions.
+**What it signals:** Applied causal inference is often less about naming an estimator and more about helping teams avoid false certainty. This project shows how I turn a messy methodological choice into a shared operating system for product and business decisions.
 
 ### A/B Test Sample Size Calculator
 
@@ -67,7 +67,7 @@ A chapter-based guide to recommender systems for data scientists, spanning probl
 
 The handbook treats recommender systems as product systems, not just model families. It connects recommendation surfaces, feedback loops, negative sampling, retrieval/ranking architecture, and evaluation design.
 
-**What it signals:** Staff-level recommender work requires judgment across modeling, infrastructure, user experience, metrics, and long-term marketplace health. This project demonstrates my ability to organize that system-level reasoning for other practitioners.
+**What it signals:** Recommender work requires judgment across modeling, infrastructure, user experience, metrics, and long-term marketplace health. This project demonstrates my ability to organize that system-level reasoning for other practitioners.
 
 ### Data Science Foundations for New Grads
 
@@ -187,4 +187,4 @@ The common thread across these projects is not a single technique. It is a way o
 - build tools that make repeated decisions easier;
 - communicate assumptions, uncertainty, and trade-offs plainly.
 
-That is the kind of data science leadership I aim to bring to Staff Data Scientist, Applied Scientist, and technical lead roles.
+That is the kind of data science work I most enjoy: rigorous enough to be trusted, practical enough to be used, and clear enough to help other people make better decisions.
