@@ -8,6 +8,14 @@ Projects, tools, and technical notes from my work across causal inference, exper
 
 The common thread is decision quality: clarifying the question, making assumptions visible, choosing methods that fit the design, and turning analysis into reusable tools or teaching materials.
 
+<nav class="projects-toc" aria-label="Projects table of contents">
+  <div class="projects-toc__title">On this page</div>
+  <a href="#project-themes">Project Themes</a>
+  <a href="#flagship-decision-tools">Flagship Decision Tools</a>
+  <a href="#technical-handbooks">Technical Handbooks</a>
+  <a href="#code-and-research-archive">Code and Research Archive</a>
+</nav>
+
 ## Project Themes
 
 - **Methods:** causal inference, experimentation, forecasting, recommender systems, marketplace economics, and applied machine learning.

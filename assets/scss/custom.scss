@@ -126,6 +126,48 @@ html {
   padding-bottom: 0.25rem;
 }
 
+.projects-toc {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+  border-left: 3px solid rgba(0, 136, 204, 0.45);
+  background: rgba(0, 136, 204, 0.06);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.projects-toc__title {
+  margin-bottom: 0.55rem;
+  color: inherit;
+  font-weight: 700;
+}
+
+.projects-toc a {
+  display: block;
+  margin-top: 0.4rem;
+  color: inherit;
+  opacity: 0.82;
+}
+
+.projects-toc a:hover,
+.projects-toc a:focus {
+  opacity: 1;
+  text-decoration: none;
+}
+
+@media (min-width: 1400px) {
+  .article-style .projects-toc {
+    position: sticky;
+    top: 5.25rem;
+    float: left;
+    width: 13.5rem;
+    margin-top: 0.35rem;
+    margin-left: -16.25rem;
+    margin-right: 2.75rem;
+    max-height: calc(100vh - 6.5rem);
+    overflow-y: auto;
+  }
+}
+
 /* In docs sidebars, show section links only for the active chapter. */
 .docs-links .docs-toc-item > .docs-sidenav {
   display: none;
