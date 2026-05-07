@@ -25,7 +25,7 @@ An interactive decision-support tool for choosing causal inference methods from 
 
 It covers randomized experiments, switchbacks, CUPED, noncompliance, heterogeneous treatment effects, mediation, matching, propensity weighting, doubly robust estimation, difference-in-differences, event studies, interrupted time series, synthetic control, regression discontinuity, instrumental variables, and double machine learning.
 
-**What it signals:** Applied causal inference is often less about naming an estimator and more about helping teams avoid false certainty. This project shows how I turn a messy methodological choice into a shared operating system for product and business decisions.
+**Why it matters:** In applied causal inference, the estimator is only useful after the design and assumptions are clear. The selector keeps method choice tied to identification, diagnostics, and robustness checks.
 
 ### A/B Test Sample Size Calculator
 
@@ -35,7 +35,7 @@ A planning tool for fixed-horizon A/B and multi-arm conversion experiments. It t
 
 The calculator is intentionally practical: it helps teams ask whether an experiment is feasible before launch, whether the target effect is decision-relevant, and how traffic allocation changes the cost of learning.
 
-**What it signals:** Good experimentation leadership starts upstream of the p-value. This project demonstrates the kind of planning discipline needed to protect teams from underpowered tests, overlong experiments, and noisy decision cycles.
+**Why it matters:** Experiment planning sets the cost and credibility of learning before launch. This tool makes the trade-offs behind power, MDE, traffic, and runtime explicit.
 
 ### Marketplace Pricing Simulator
 
@@ -45,7 +45,7 @@ A richer marketplace simulator connecting demand curves, price elasticity, promo
 
 The tool supports both static equilibrium reasoning and a dynamic control view where shocks, surge, supply response, fill rate, and incentive policy interact over time.
 
-**What it signals:** Marketplace decisions require more than a metric readout. This project shows how I connect economics, causal intuition, operational constraints, and product levers into a model that can support pricing, incentives, growth, and marketplace-quality discussions.
+**Why it matters:** Pricing and incentive decisions in marketplaces depend on both sides of the market. The simulator makes those interactions concrete enough to reason about promotions, supply response, matching quality, and platform revenue together.
 
 ### Marketplace Simulator
 
@@ -55,9 +55,9 @@ A compact two-sided marketplace model with linear demand, linear supply, and a p
 
 The model is deliberately simple enough to teach from, but complete enough to expose the central trade-offs behind marketplace monetization and welfare.
 
-**What it signals:** Technical leaders need to create shared intuition, not just sophisticated models. This simulator is a communication artifact for aligning product, finance, policy, and data science partners around the same economic mechanism.
+**Why it matters:** A simple equilibrium model is useful for teaching take-rate trade-offs. It keeps the core mechanism visible while still showing revenue, surplus, quantity, and welfare effects.
 
-## Technical Handbooks and Enablement
+## Technical Handbooks
 
 ### Understanding Recommender Systems
 
@@ -67,7 +67,7 @@ A chapter-based guide to recommender systems for data scientists, spanning probl
 
 The handbook treats recommender systems as product systems, not just model families. It connects recommendation surfaces, feedback loops, negative sampling, retrieval/ranking architecture, and evaluation design.
 
-**What it signals:** Recommender work requires judgment across modeling, infrastructure, user experience, metrics, and long-term marketplace health. This project demonstrates my ability to organize that system-level reasoning for other practitioners.
+**Why it matters:** Recommender systems are product systems, not only model families. The guide keeps modeling choices connected to surfaces, feedback loops, ranking architecture, and evaluation design.
 
 ### Data Science Foundations for New Grads
 
@@ -77,7 +77,7 @@ A compact handbook on the minimum practical knowledge needed to contribute credi
 
 It is built around reliability: knowing what question is being asked, what each row means, how uncertainty enters the decision, and how to communicate recommendations with assumptions intact.
 
-**What it signals:** Technical leadership includes raising the floor for a team. This project shows mentorship instincts, standards-setting, and the ability to translate senior judgment into teachable operating principles.
+**Why it matters:** Reliable data science starts with habits that are easy to overlook: knowing the grain of the data, reasoning about uncertainty, checking metrics, and communicating assumptions clearly.
 
 ### Applied Machine Learning for Tabular Data
 
@@ -87,7 +87,7 @@ A practical short course on how tabular ML projects are scoped, built, evaluated
 
 The emphasis is on judgment: when to start with simple baselines, how to evaluate honestly, and how to avoid modeling choices that look impressive but fail under real operating conditions.
 
-**What it signals:** Many high-value business problems still live in structured data. This project demonstrates practical ML leadership for production-adjacent settings where trust, evaluation quality, and maintainability matter.
+**Why it matters:** Many high-value business problems still live in structured data. The course focuses on the places tabular ML often fails first: framing, leakage, evaluation, feature handling, and baseline discipline.
 
 ### Decision Trees and Ensemble Methods in Machine Learning
 
@@ -97,7 +97,7 @@ A focused course on decision trees, bagging, random forests, ExtraTrees, feature
 
 It also stresses the limits of feature importance, the bias-variance trade-off, tuning risk, and the practical question of when deep learning is not the right default for tabular data.
 
-**What it signals:** I can go deep on model mechanics while keeping the applied decision in view. That combination is important for technical leadership because model choice affects credibility, maintainability, and stakeholder trust.
+**Why it matters:** Tree ensembles are practical, powerful, and easy to misuse. This guide keeps the mechanics close to applied concerns such as tuning, feature importance, stability, and when deep learning is not the best default.
 
 ### Economics of Digital Platforms
 
@@ -105,7 +105,7 @@ It also stresses the limits of feature importance, the bias-variance trade-off, 
 
 A chapter-based set of notes on network effects, platform design, trust, monetization, customer value, marketing ROI, regulation, and strategy. The material links platform economics with product and measurement questions that come up in online marketplaces, ads, growth, subscriptions, and multi-sided products.
 
-**What it signals:** Senior data science work in technology often sits inside platform incentives. These notes show the economic lens I bring to product metrics, pricing, growth, trust, and policy-sensitive decisions.
+**Why it matters:** Platform metrics are shaped by incentives, trust, pricing, market thickness, and regulation. These notes connect those forces to measurement and product decisions.
 
 ## Forecasting, NLP, and Model Understanding
 
@@ -115,7 +115,7 @@ A chapter-based set of notes on network effects, platform design, trust, monetiz
 
 A research-oriented technical note on machine learning for macroeconomic forecasting, including penalized regression, supervised factor models, nowcasting, and applications in central-bank and IMF-style forecasting settings.
 
-**What it signals:** Forecasting leadership requires both statistical rigor and decision context. This project shows how I connect modern ML methods with econometric forecasting problems where uncertainty, horizon, and interpretability matter.
+**Why it matters:** Forecasting methods are only useful when they match the horizon, uncertainty, and decision context. This note connects modern ML approaches with econometric forecasting problems.
 
 ### Transformer Models for Time Series Forecasting
 
@@ -123,7 +123,7 @@ A research-oriented technical note on machine learning for macroeconomic forecas
 
 A technical walkthrough of transformer-based methods for time series forecasting, including sequence modeling, multi-horizon prediction, attention-based architectures, and Temporal Fusion Transformer-style ideas.
 
-**What it signals:** I can evaluate newer modeling families without losing sight of forecasting fundamentals, interpretability, and operational use.
+**Why it matters:** Newer sequence models are most useful when compared against forecasting fundamentals. This note treats transformer architectures as one part of a broader forecasting toolkit.
 
 ### NLP in Economics and Finance
 
@@ -131,7 +131,7 @@ A technical walkthrough of transformer-based methods for time series forecasting
 
 A curated technical note on how NLP can extract signal from economic and financial text, including corporate disclosures, news, narrative data, and text-based forecasting.
 
-**What it signals:** This connects my economics background with modern unstructured-data methods, especially for domains where text is a meaningful source of market, firm, or macro signal.
+**Why it matters:** Economic text can be a meaningful source of firm, market, and macro signal when it is handled with the same care as structured data.
 
 ### Machine Learning and Deep Learning Interpretability
 
@@ -139,7 +139,7 @@ A curated technical note on how NLP can extract signal from economic and financi
 
 Notes on interpretability and explainability, including Shapley-value-based reasoning and practical resources for understanding model behavior.
 
-**What it signals:** Senior data scientists need to make model outputs legible enough for decisions, review, and governance. This project reflects my bias toward models that can be inspected, challenged, and communicated.
+**Why it matters:** Interpretability helps turn model outputs into reviewable decisions. It makes predictions easier to inspect, challenge, communicate, and govern.
 
 ### Transformer Explained and Visualized
 
@@ -147,7 +147,7 @@ Notes on interpretability and explainability, including Shapley-value-based reas
 
 A visual and conceptual explainer for transformer architecture, self-attention, and related deep learning ideas.
 
-**What it signals:** Technical leaders often need to teach complex methods quickly. This project shows my ability to translate advanced ML concepts into accessible explanations.
+**Why it matters:** Visual explanations make complex architectures easier to reason about, compare, and teach.
 
 ## Code and Research Archive
 
@@ -176,15 +176,3 @@ Research and analysis around ESG, CSR, sustainability, and finance-oriented data
 [View repository](https://github.com/pakshingho/Practical-Reinforcement-Learning-HSE)
 
 Practical reinforcement learning notebooks and exercises focused on policy learning and sequential decision-making.
-
-## How I Think About Project Impact
-
-The common thread across these projects is not a single technique. It is a way of working:
-
-- start from the decision, not the dataset;
-- identify what would make the estimate credible;
-- choose methods that fit the design and operating constraints;
-- build tools that make repeated decisions easier;
-- communicate assumptions, uncertainty, and trade-offs plainly.
-
-That is the kind of data science work I most enjoy: rigorous enough to be trusted, practical enough to be used, and clear enough to help other people make better decisions.
