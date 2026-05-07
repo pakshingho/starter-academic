@@ -107,57 +107,9 @@ A chapter-based set of notes on network effects, platform design, trust, monetiz
 
 **Why it matters:** Platform metrics are shaped by incentives, trust, pricing, market thickness, and regulation. These notes connect those forces to measurement and product decisions.
 
-## Forecasting, NLP, and Model Understanding
-
-### Macro Forecasting with Machine Learning
-
-[Read project note](/post/macro-forecasting-with-machine-learning/)
-
-A research-oriented technical note on machine learning for macroeconomic forecasting, including penalized regression, supervised factor models, nowcasting, and applications in central-bank and IMF-style forecasting settings.
-
-**Why it matters:** Forecasting methods are only useful when they match the horizon, uncertainty, and decision context. This note connects modern ML approaches with econometric forecasting problems.
-
-### Transformer Models for Time Series Forecasting
-
-[Read project note](/post/transformer-models-for-time-series-forecasting/)
-
-A technical walkthrough of transformer-based methods for time series forecasting, including sequence modeling, multi-horizon prediction, attention-based architectures, and Temporal Fusion Transformer-style ideas.
-
-**Why it matters:** Newer sequence models are most useful when compared against forecasting fundamentals. This note treats transformer architectures as one part of a broader forecasting toolkit.
-
-### NLP in Economics and Finance
-
-[Read project note](/post/nlp-in-finance/)
-
-A curated technical note on how NLP can extract signal from economic and financial text, including corporate disclosures, news, narrative data, and text-based forecasting.
-
-**Why it matters:** Economic text can be a meaningful source of firm, market, and macro signal when it is handled with the same care as structured data.
-
-### Machine Learning and Deep Learning Interpretability
-
-[Read project note](/post/machine-learning-interpretability/)
-
-Notes on interpretability and explainability, including Shapley-value-based reasoning and practical resources for understanding model behavior.
-
-**Why it matters:** Interpretability helps turn model outputs into reviewable decisions. It makes predictions easier to inspect, challenge, communicate, and govern.
-
-### Transformer Explained and Visualized
-
-[Read project note](/post/transformer-explained-visualized/)
-
-A visual and conceptual explainer for transformer architecture, self-attention, and related deep learning ideas.
-
-**Why it matters:** Visual explanations make complex architectures easier to reason about, compare, and teach.
-
 ## Code and Research Archive
 
 These older public repositories and notes are useful context for the broader arc of my work. I would treat them as supporting evidence rather than the headline portfolio.
-
-### A/B Testing
-
-[View repository](https://github.com/pakshingho/AB-Testing)
-
-Experimentation workflows and analysis notebooks focused on treatment-effect evaluation, statistical reasoning, and practical A/B testing analysis.
 
 ### Occupation Classification
 
