@@ -34,6 +34,14 @@ Designed a modular forecasting vision for a rapidly expanding logistics network 
 
 **Why it matters:** Forecasting systems become hard to maintain when each use case grows as a separate model. A modular ecosystem makes forecasting more scalable, interpretable, and easier for planning, operations, and technology teams to extend.
 
+### ForecastLLM for Forecasting Pipeline Orchestration
+
+Designed an LLM-driven approach for automating the construction, orchestration, and maintenance of forecasting pipeline modules. The work treated forecasting as a modular system that could be assembled and steered through agentic workflows across target definition, feature generation, model selection, backtesting, diagnostics, monitoring, and reporting.
+
+This work was written up as the internal conference paper **One Scientist to Rule Them All: ForecastLLM's Novel Approach to Time Series Forecasting**, presented at Amazon Machine Learning Conference (AMLC) in March 2023.
+
+**Why it matters:** Forecasting teams often bottleneck on repeated pipeline construction and maintenance. LLM orchestration can help scale forecasting coverage without every new use case requiring the same level of scientist bandwidth.
+
 ### Node-Level Capacity Forecasting for Logistics Planning
 
 Built direct node-level forecasting approaches for package volume, stop visits, and cube-related demand across delivery and sortation operations. The work moved beyond noisy bottom-up aggregation by using ensemble models, hierarchical signals, robust outlier handling, and operationally meaningful grains for capacity procurement and routing.
