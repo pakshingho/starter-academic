@@ -35,16 +35,6 @@ It covers randomized experiments, switchbacks, CUPED, noncompliance, heterogeneo
 
 **Why it matters:** In applied causal inference, the estimator is only useful after the design and assumptions are clear. The selector keeps method choice tied to identification, diagnostics, and robustness checks.
 
-### A/B Test Sample Size Calculator
-
-[Open project](/experimentation-calculator/)
-
-A planning tool for fixed-horizon A/B and multi-arm conversion experiments. It translates baseline rate, minimum detectable effect, significance level, power, traffic allocation, number of variants, and daily eligible users into required sample size and expected runtime.
-
-The calculator is intentionally practical: it helps teams ask whether an experiment is feasible before launch, whether the target effect is decision-relevant, and how traffic allocation changes the cost of learning.
-
-**Why it matters:** Experiment planning sets the cost and credibility of learning before launch. This tool makes the trade-offs behind power, MDE, traffic, and runtime explicit.
-
 ### Marketplace Pricing Simulator
 
 [Open project](/marketplace-pricing-simulator/)
@@ -64,6 +54,16 @@ A compact two-sided marketplace model with linear demand, linear supply, and a p
 The model is deliberately simple enough to teach from, but complete enough to expose the central trade-offs behind marketplace monetization and welfare.
 
 **Why it matters:** A simple equilibrium model is useful for teaching take-rate trade-offs. It keeps the core mechanism visible while still showing revenue, surplus, quantity, and welfare effects.
+
+### A/B Test Sample Size Calculator
+
+[Open project](/experimentation-calculator/)
+
+A planning tool for fixed-horizon A/B and multi-arm conversion experiments. It translates baseline rate, minimum detectable effect, significance level, power, traffic allocation, number of variants, and daily eligible users into required sample size and expected runtime.
+
+The calculator is intentionally practical: it helps teams ask whether an experiment is feasible before launch, whether the target effect is decision-relevant, and how traffic allocation changes the cost of learning.
+
+**Why it matters:** Experiment planning sets the cost and credibility of learning before launch. This tool makes the trade-offs behind power, MDE, traffic, and runtime explicit.
 
 ## Technical Handbooks
 
