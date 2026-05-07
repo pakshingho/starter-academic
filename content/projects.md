@@ -11,6 +11,7 @@ The common thread is decision quality: clarifying the question, making assumptio
 <nav class="projects-toc" aria-label="Projects table of contents">
   <div class="projects-toc__title">On this page</div>
   <a href="#project-themes">Project Themes</a>
+  <a href="#selected-amazon-project-portfolio">Selected Amazon Project Portfolio</a>
   <a href="#flagship-decision-tools">Flagship Decision Tools</a>
   <a href="#technical-handbooks">Technical Handbooks</a>
   <a href="#code-and-research-archive">Code and Research Archive</a>
@@ -22,6 +23,52 @@ The common thread is decision quality: clarifying the question, making assumptio
 - **Decision focus:** metric design, trade-offs, uncertainty, and how model outputs change actions.
 - **Reusable systems:** tools, handbooks, and frameworks that help teams reason more consistently.
 - **Communication:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
+
+## Selected Amazon Project Portfolio
+
+These summaries translate internal project work into public-facing descriptions focused on problem, method, and decision impact.
+
+### Forecasting Ecosystem and Scalable Forecasting Architecture
+
+Designed a modular forecasting vision for a rapidly expanding logistics network with many markets, planning horizons, demand channels, and operational grains. The architecture connected global and grouped modeling, hierarchical reconciliation, probabilistic forecasts, anomaly detection, forecastability diagnostics, and error-interpretation modules into a coherent forecasting ecosystem.
+
+**Why it matters:** Forecasting systems become hard to maintain when each use case grows as a separate model. A modular ecosystem makes forecasting more scalable, interpretable, and easier for planning, operations, and technology teams to extend.
+
+### Node-Level Capacity Forecasting for Logistics Planning
+
+Built direct node-level forecasting approaches for package volume, stop visits, and cube-related demand across delivery and sortation operations. The work moved beyond noisy bottom-up aggregation by using ensemble models, hierarchical signals, robust outlier handling, and operationally meaningful grains for capacity procurement and routing.
+
+**Why it matters:** Capacity planning decisions depend on the shape of demand, not only total volume. Forecasts at the right operational grain help teams allocate vehicles, labor, and space with less waste and fewer last-minute adjustments.
+
+### Reactive Forecasting for Routing and Day-of Operations
+
+Developed live-order and live-manifest forecasting systems for routing and pickup decisions across multiple geographies. The models incorporated high-frequency demand signals, shipper-specific cutoff behavior, time-zone complexity, carryover effects, holiday patterns, forecast combinations, and percentile forecasts for operational risk management.
+
+**Why it matters:** Day-of operations need forecasts that can update as new information arrives. Reactive forecasting turns live signals into routing and capacity decisions when waiting for a slower planning cycle would be too late.
+
+### Demand Definition, Forecastability, and Decision Framing
+
+Redesigned demand definitions for pickup go/no-go decisions and built forecastability diagnostics to explain when demand is smooth, intermittent, erratic, or lumpy. This included translating statistical properties into visual and operational language that planners could use when interpreting forecast errors and model limits.
+
+**Why it matters:** Some demand patterns are intrinsically difficult to forecast. Defining the target correctly and explaining forecastability prevents teams from over-trusting noisy estimates or optimizing the wrong metric.
+
+### Forecast Reliability, Data Quality, and Operational Monitoring
+
+Improved forecasting operations through pipeline deep dives, quality checks, unit-test design, alerting recommendations, and shipment-history correction logic. The work focused on catching data and model issues earlier, reducing manual investigation burden, and making production forecasts more reliable for downstream users.
+
+**Why it matters:** A forecast is only useful if the system around it is dependable. Reliability work protects planning decisions from silent data errors, stale pipelines, and avoidable model-output failures.
+
+### Forecast-to-Cost Simulation and Planning Trade-Offs
+
+Connected planning forecasts with cost simulation to evaluate how under-forecasting, over-forecasting, and percentile buffers affect operational cost. The analysis showed why a simple accuracy metric is not always enough: cost impact can be asymmetric, and the best forecast for a decision may depend on risk tolerance and operational constraints.
+
+**Why it matters:** Forecasting should be evaluated against the decision it supports. Cost-aware simulation helps teams choose forecast percentiles, buffers, and planning rules that reflect business trade-offs rather than metric optimization alone.
+
+### Employee Services Operations Forecasting
+
+Built granular ensemble forecasting workflows for high-volume operations outside logistics, including transaction and ticket-volume planning. The work combined time-series models, external drivers, automation, database delivery, and feasibility analysis when the requested forecasting target was not aligned with operational staffing decisions.
+
+**Why it matters:** Useful forecasting sometimes means recommending a different target or data collection process. This work combined modeling with product judgment about what signal should drive planning.
 
 ## Flagship Decision Tools
 
