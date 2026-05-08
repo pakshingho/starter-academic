@@ -8,13 +8,13 @@ This page adapts the public academic CV from my earlier Google Site for the curr
 
 ## Education
 
-- Ph.D., Economics, Boston University, 2021
+- Ph.D., Economics, Boston University
   Dissertation: Essays on Firm Dynamics
   Advisor: Stephen J. Terry
-- Master in Economics and Finance, Universitat Pompeu Fabra, 2015
-- M.Sc., Economics, London School of Economics and Political Science, 2013
-- B.Com., Economics, University of Melbourne, 2012
-  Bachelor of Commerce Medal 2011
+- Master in Economics and Finance, Universitat Pompeu Fabra
+- M.Sc., Economics, London School of Economics and Political Science
+- B.Com., Economics, University of Melbourne
+  Bachelor of Commerce Medal
 
 ## Fields of Interest
 
