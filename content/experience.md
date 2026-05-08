@@ -33,8 +33,10 @@ My work sits at the intersection of economics, machine learning, and decision-ma
 
 ### Research Associate, Boston University
 
-- Contributed to research in economics and finance using large-scale text and structured datasets
-- Worked on empirical analysis related to firm behavior, markets, and macro-financial questions
+- Supported Boston University research connected to NBER-affiliated joint work on political risk, country risk, capital flows, automation, and market power
+- Built research pipelines for large-scale financial text and structured data, including earnings call transcripts, SEC 10-K filings, financial statements, and Compustat/Capital IQ-style fundamentals
+- Applied computational linguistics, feature engineering, and statistical modeling in Python, R, and Stata to construct and validate text-based risk measures
+- Automated figures, tables, text snippets, and model outputs so collaborators could inspect empirical results, refine specifications, and move research drafts forward
 
 ### Teaching Fellow, Boston University, Universitat Pompeu Fabra, and Barcelona Graduate School of Economics
 
