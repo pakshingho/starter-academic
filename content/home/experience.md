@@ -26,11 +26,11 @@ date_format = "Jan 2006"
   date_start = "2025-01-01"
   date_end = ""
   description = """
-  Responsibilities include:
+  Current focus includes:
 
-  * Building end-to-end machine learning and causal inference systems
-  * Combining experimental and observational data for long-term decision optimization
-  * Developing scalable forecasting workflows for product, growth, and finance outcomes
+  * Designing AI-driven causal reasoning systems that translate natural-language business questions into credible causal workflows
+  * Building long-term experiment impact prediction with surrogate-index methods, Double Machine Learning, and backtesting against matured experiments
+  * Combining experimental, observational, and product-behavior data to improve launch decisions under delayed feedback
   """
 
 [[experience]]
@@ -41,11 +41,11 @@ date_format = "Jan 2006"
   date_start = "2020-05-01"
   date_end = "2025-01-01"
   description = """
-  Responsibilities include:
+  Selected work included:
 
-  * Leading forecasting and causal inference systems for the global seller ecosystem
-  * Designing interpretable forecasting engines for revenue, growth, traffic, and LTV planning
-  * Building causal ML frameworks for feature uplift and campaign effectiveness
+  * Leading forecasting and causal inference systems for seller growth, shipping, and logistics decisions
+  * Designing modular forecasting architecture, reactive nowcasting, and LLM-assisted forecasting pipeline orchestration
+  * Building decision systems for forecast-to-cost trade-offs, market-signal analysis, and operational planning
   """
 
 [[experience]]
