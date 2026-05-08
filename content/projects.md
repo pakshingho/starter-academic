@@ -11,6 +11,7 @@ The common thread is decision quality: clarifying the question, making assumptio
 <nav class="projects-toc" aria-label="Projects table of contents">
   <div class="projects-toc__title">On this page</div>
   <a href="#project-themes">Project Themes</a>
+  <a href="#selected-linkedin-project-portfolio">Selected LinkedIn Project Portfolio</a>
   <a href="#selected-amazon-project-portfolio">Selected Amazon Project Portfolio</a>
   <a href="#flagship-decision-tools">Flagship Decision Tools</a>
   <a href="#technical-handbooks">Technical Handbooks</a>
@@ -23,6 +24,20 @@ The common thread is decision quality: clarifying the question, making assumptio
 - **Decision focus:** metric design, trade-offs, uncertainty, and how model outputs change actions.
 - **Reusable systems:** tools, handbooks, and frameworks that help teams reason more consistently.
 - **Communication:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
+
+## Selected LinkedIn Project Portfolio
+
+These summaries translate current product and science work into public-facing descriptions focused on platform design, method credibility, and decision leverage.
+
+### Causal Reasoning for an AI-Driven Causal Inference Platform
+
+Designed a reasoning layer for a chat-based causal inference platform that helps business users move from a plain-language question to a credible analysis plan. The layer guides an AI agent through method selection and tool routing so that it does not default to familiar estimators when they do not fit, or over-apply complex methods when a simpler design would be easier to interpret and defend.
+
+The workflow combines intent classification, purpose classification, retrieval of relevant prior experiments and observational studies, adaptive elicitation of missing design signals, organizational-context priors, stake-level assessment, and routing to the appropriate execution path, including double machine learning, difference-in-differences, synthetic control, or data science escalation for high-stakes cases.
+
+The MVP scope focuses on the reasoning and routing layer: separating causal and forecasting questions, distinguishing exploratory reads from decision-support analyses, surfacing prior evidence before running new analysis, asking only the necessary follow-up questions, and escalating cases where automated analysis should not be the final answer.
+
+**Why it matters:** Causal analysis often fails before estimation, when the question, design, stakes, and method are mismatched. A structured reasoning layer makes causal inference more accessible to PMs, operations, sales, and leadership while keeping the most sensitive cases reviewable by data science teams.
 
 ## Selected Amazon Project Portfolio
 
