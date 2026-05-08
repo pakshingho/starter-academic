@@ -22,7 +22,7 @@ My work sits at the intersection of economics, machine learning, and decision-ma
 - Built decision frameworks for forecast-to-cost trade-offs, forecastability diagnostics, market-signal analysis, and external event studies
 - Translated technical methods into reusable tools, internal technical papers, and planning workflows used by business, finance, product, and operations partners
 
-## Earlier Research and Applied Roles
+## Earlier Roles
 
 ### Quantitative Researcher, Geode Capital Management
 
