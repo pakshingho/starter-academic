@@ -29,15 +29,15 @@ The common thread is decision quality: clarifying the question, making assumptio
 
 These summaries translate current product and science work into public-facing descriptions focused on platform design, method credibility, and decision leverage.
 
-### Causal Reasoning for an AI-Driven Causal Inference Platform
+### AI-Driven Causal Reasoning Layer for Scalable Decision-Making
 
-Designed a reasoning layer for a chat-based causal inference platform that helps business users move from a plain-language question to a credible analysis plan. The layer guides an AI agent through method selection and tool routing so that it does not default to familiar estimators when they do not fit, or over-apply complex methods when a simpler design would be easier to interpret and defend.
+Designed a causal reasoning layer for a chat-based AI platform that helps product and business users translate natural-language questions into credible causal inference workflows. The system addresses a common limitation of AI-assisted analytics: without structured guidance, an agent can default to familiar methods, overuse complex estimators, or recommend analyses that are hard to interpret and defend.
 
-The workflow combines intent classification, purpose classification, retrieval of relevant prior experiments and observational studies, adaptive elicitation of missing design signals, organizational-context priors, stake-level assessment, and routing to the appropriate execution path, including double machine learning, difference-in-differences, synthetic control, or data science escalation for high-stakes cases.
+The reasoning layer introduces a method-aware pipeline: classify whether a question is causal, forecasting-oriented, or descriptive; distinguish exploratory analysis from decision-support use cases; search relevant prior experiments or observational studies; elicit missing information from the user; and route the request to the appropriate causal method or expert review path.
 
-The MVP scope focuses on the reasoning and routing layer: separating causal and forecasting questions, distinguishing exploratory reads from decision-support analyses, surfacing prior evidence before running new analysis, asking only the necessary follow-up questions, and escalating cases where automated analysis should not be the final answer.
+Depending on the question, data structure, organizational context, and decision stakes, the system can guide users toward Double Machine Learning, difference-in-differences, synthetic control, or data science escalation. The goal is not full automation of causal inference, but trustworthy automation: making causal workflows more scalable while preserving rigor, interpretability, and defensibility.
 
-**Why it matters:** Causal analysis often fails before estimation, when the question, design, stakes, and method are mismatched. A structured reasoning layer makes causal inference more accessible to PMs, operations, sales, and leadership while keeping the most sensitive cases reviewable by data science teams.
+**Why it matters:** Causal analysis often fails before estimation, when the question, design, stakes, and method are mismatched. A structured reasoning layer makes causal inference more accessible to non-specialist teams while keeping sensitive decisions reviewable by data science experts.
 
 ### Long-Term Experiment Impact Prediction with Surrogate Index and Double Machine Learning
 
