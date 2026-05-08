@@ -10,15 +10,17 @@ My work sits at the intersection of economics, machine learning, and decision-ma
 
 ### Applied Scientist, LinkedIn
 
-- Build and scale forecasting and causal inference systems for product and growth decisions
-- Partner with cross-functional teams to evaluate downstream effects of features and strategy changes
-- Translate model outputs into clear decision recommendations for leadership
+- Design AI-driven causal reasoning systems that help product and business users translate natural-language questions into credible causal inference workflows
+- Build long-term experiment impact prediction frameworks using surrogate-index methods, Double Machine Learning, and backtesting against matured experiments
+- Combine experimental, observational, and product-behavior data to improve launch decisions when long-term outcomes are delayed
+- Partner with product, engineering, and business teams to turn causal methods into interpretable decision systems
 
 ### Data Scientist / Applied Scientist, Amazon
 
-- Developed experimentation and forecasting workflows in fast-paced operational environments
-- Supported decisions related to growth, marketing effectiveness, and financial outcomes
-- Operationalized modeling outputs into production decision processes
+- Led forecasting and causal inference systems for seller growth, shipping, logistics, and operational planning decisions
+- Designed modular forecasting architecture, reactive nowcasting systems, and LLM-assisted forecasting pipeline orchestration
+- Built decision frameworks for forecast-to-cost trade-offs, forecastability diagnostics, market-signal analysis, and external event studies
+- Translated technical methods into reusable tools, internal technical papers, and planning workflows used by business, finance, product, and operations partners
 
 ## Earlier Research and Applied Roles
 
@@ -44,6 +46,8 @@ My work sits at the intersection of economics, machine learning, and decision-ma
 
 ## Core Strengths
 
+- AI agents and reasoning layers for causal decision support
 - Causal inference with experimental + observational data
-- Forecasting infrastructure design and model integration
+- Long-term experiment evaluation under delayed feedback
+- Forecasting infrastructure design, orchestration, and model integration
 - Decision-focused communication with technical and business stakeholders
