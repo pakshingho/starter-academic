@@ -97,10 +97,11 @@ date_format = "Jan 2006"
   date_start = "2018-05-01"
   date_end = "2019-01-01"
   description = """
-  Responsibilities include:
+  Selected work included:
 
-  * Text and numeric data research for financial-market projects
-  * Data mining, feature engineering, and statistical modeling
+  * Supporting Boston University research connected to NBER-affiliated joint work on political risk, country risk, capital flows, automation, and market power
+  * Processing large-scale financial text corpora, including earnings call transcripts and SEC 10-K filings
+  * Constructing text-based risk measures, research features, validation datasets, and automated empirical outputs
   """
 
 [[experience]]
@@ -126,10 +127,11 @@ date_format = "Jan 2006"
   date_start = "2018-05-01"
   date_end = "2019-01-01"
   description = """
-  Responsibilities include:
+  Selected work included:
 
-  * Building text-based risk measures from large-scale firm disclosures and transcripts
-  * Supporting empirical research on political risk, global risk, and capital flows
+  * Applying computational linguistics to firm disclosures and management-analyst conversations
+  * Linking text-derived measures to financial fundamentals, market outcomes, lobbying, and firm actions
+  * Building reproducible Python, R, and Stata analyses for collaborative empirical research
   """
 
 [[experience]]

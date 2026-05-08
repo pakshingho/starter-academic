@@ -4,7 +4,7 @@ date: 2026-02-24
 type: page
 ---
 
-Projects, tools, and technical notes from my work across causal inference, experimentation, forecasting, marketplace economics, recommender systems, and applied machine learning.
+Projects, tools, and technical notes from my work across causal inference, experimentation, forecasting, marketplace economics, recommender systems, economic text analysis, empirical finance, and applied machine learning.
 
 The common thread is decision quality: clarifying the question, making assumptions visible, choosing methods that fit the design, and turning analysis into reusable tools or teaching materials.
 
@@ -14,6 +14,7 @@ The common thread is decision quality: clarifying the question, making assumptio
   <a href="#selected-linkedin-project-portfolio">Selected LinkedIn Project Portfolio</a>
   <a href="#selected-amazon-project-portfolio">Selected Amazon Project Portfolio</a>
   <a href="#selected-geode-project-portfolio">Selected Geode Project Portfolio</a>
+  <a href="#selected-boston-university-and-nber-affiliated-research-portfolio">Selected Boston University and NBER-Affiliated Research Portfolio</a>
   <a href="#flagship-decision-tools">Flagship Decision Tools</a>
   <a href="#technical-handbooks">Technical Handbooks</a>
   <a href="#code-and-research-archive">Code and Research Archive</a>
@@ -21,7 +22,7 @@ The common thread is decision quality: clarifying the question, making assumptio
 
 ## Project Themes
 
-- **Methods:** causal inference, experimentation, forecasting, recommender systems, marketplace economics, and applied machine learning.
+- **Methods:** causal inference, experimentation, forecasting, recommender systems, marketplace economics, text-as-data, empirical finance, and applied machine learning.
 - **Decision focus:** metric design, trade-offs, uncertainty, and how model outputs change actions.
 - **Reusable systems:** tools, handbooks, and frameworks that help teams reason more consistently.
 - **Communication:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
@@ -135,6 +136,46 @@ Built and backtested proprietary ESG signal variants by combining multiple vendo
 Evaluated signal behavior through portfolio-style tests, cross-sectional analysis, robustness checks, and sensitivity to industry exposure. The goal was not only to find a high-performing factor, but to understand when an ESG signal was credible enough to support investment research and when the data was too sparse, stale, or noisy to trust.
 
 **Why it matters:** Alternative data can look predictive until it is exposed to realistic timing, coverage, and portfolio constraints. This work strengthened the link between feature engineering, empirical finance, backtesting discipline, and decision-oriented model evaluation.
+
+## Selected Boston University and NBER-Affiliated Research Portfolio
+
+These research projects came from Boston University work connected to NBER-affiliated joint research. The technical center was large-scale economic text analysis: transform financial-market text and firm fundamentals into measurable signals, validate whether those signals explain real decisions or market outcomes, and make the analysis reproducible for a broader research team.
+
+### Firm-Level Political Risk from Earnings Call Transcripts
+
+Supported research that used computational linguistics to construct firm-level measures of political risk from earnings conference call transcripts. The core measure captured the share of management-analyst conversation devoted to political risk, then decomposed that risk by topic and linked it to firm actions, financial fundamentals, market volatility, lobbying, and political donations.
+
+The work involved mining and cleaning large financial-text corpora, engineering text-based features, connecting transcript-derived measures to structured datasets such as Compustat and financial statements, and running statistical tests in Python, R, and Stata. It required careful handling of noisy language data, firm identifiers, time alignment, topic definitions, and empirical validation.
+
+**Why it matters:** This project turns unstructured executive discussion into a measurable firm-level risk signal. It shows how text analysis can move beyond summarization into decision-relevant measurement of uncertainty, investment behavior, labor decisions, market reactions, and non-market strategy.
+
+### Country Risk and Capital Flows from Corporate Narratives
+
+Contributed to early-stage research that used earnings call text to measure country-specific risk as discussed by firms. The project extended the text-as-data approach from domestic political risk to global risk exposure, decomposing country-level mentions and risk language so researchers could study how firm narratives connect to international capital flows and macro-financial uncertainty.
+
+The work combined transcript processing, country and topic tagging, structured-data joins, feature construction, and empirical testing. A central challenge was separating meaningful country-risk signal from generic discussion, sparse mentions, and firm-specific exposure differences.
+
+**Why it matters:** Global risk is often observed indirectly through markets after the fact. Text-based country-risk measures can provide an earlier and more granular lens into how firms perceive exposure across countries, sectors, and time.
+
+### Research Data Infrastructure for Firm Text and Financial Fundamentals
+
+Built and maintained research pipelines for large-scale firm-level text and numeric data, including earnings conference call transcripts, SEC 10-K filings, financial statements, Compustat/Capital IQ-style fundamentals, Federal Trade Commission data, Wikipedia-derived data, and news/archive sources such as Factiva.
+
+The work covered data mining, scraping, cleaning, entity matching, transformation, feature engineering, statistical modeling, and automated output generation. This included computational analysis of very large text corpora and scripts that generated figures, tables, and text snippets for model review and research drafts.
+
+**Why it matters:** Research quality depends on the machinery underneath the model: clean identifiers, reproducible transformations, defensible features, and outputs that make empirical claims easy to inspect. This work built the data foundation for multi-project research rather than a one-off analysis.
+
+### Automation, Risk, and Market Power Research Support
+
+Supported exploratory research on automation, risk, and monopoly or market-power questions using a mix of textual, firm-level, and external data sources. The work focused on turning broad economic hypotheses into measurable datasets and empirical specifications that could be tested, refined, or ruled out.
+
+**Why it matters:** Early-stage research often begins with ambiguous concepts rather than clean labels. The technical contribution is to make those concepts measurable enough for serious empirical work while preserving the limits and assumptions behind each proxy.
+
+### Political Risk in the Age of Brexit and Trump
+
+Supported research examining event-specific political risk during a period of major policy and geopolitical uncertainty. The work connected political-risk language in firm communications with observable firm behavior and market reactions, helping distinguish broad political attention from topic-specific exposure.
+
+**Why it matters:** Event-driven uncertainty affects firms unevenly. Text-based risk decomposition helps explain which firms are exposed, which topics matter, and how firms respond through investment, hiring, lobbying, or market positioning.
 
 ## Flagship Decision Tools
 
