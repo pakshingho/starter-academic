@@ -13,6 +13,7 @@ The common thread is decision quality: clarifying the question, making assumptio
   <a href="#project-themes">Project Themes</a>
   <a href="#selected-linkedin-project-portfolio">Selected LinkedIn Project Portfolio</a>
   <a href="#selected-amazon-project-portfolio">Selected Amazon Project Portfolio</a>
+  <a href="#selected-geode-project-portfolio">Selected Geode Project Portfolio</a>
   <a href="#flagship-decision-tools">Flagship Decision Tools</a>
   <a href="#technical-handbooks">Technical Handbooks</a>
   <a href="#code-and-research-archive">Code and Research Archive</a>
@@ -120,6 +121,20 @@ Built analyses that tested whether stock returns, volatility indices, sector por
 This created a way to compare internal forecasts with an outside market signal, identify where market expectations were moving before operating metrics fully changed, and explain whether performance changes were company-specific, sector-driven, or market-wide.
 
 **Why it matters:** During shocks, operational history can lag reality. Forward-looking market signals provide an independent lens for forecast calibration, risk review, and scenario planning.
+
+## Selected Geode Project Portfolio
+
+This earlier quantitative research work shows the same operating pattern in a financial-market setting: turn noisy data into testable signals, evaluate whether the signal survives realistic backtests, and separate promising hypotheses from unstable measurement artifacts.
+
+### ESG Alpha Signal Research and Portfolio Backtesting
+
+Conducted equity alpha research on ESG and sustainability factors in a quantitative investing context. The project translated granular ESG, CSR, and sustainability datasets into research-ready features, then tested whether those signals contained incremental information for cross-sectional equity returns.
+
+Built and backtested proprietary ESG signal variants by combining multiple vendor and alternative data sources, comparing transformations, timing assumptions, sector adjustments, and portfolio construction choices. The work focused on whether apparent ESG effects were economically meaningful, robust across specifications, and distinguishable from sector, style, or data-quality artifacts.
+
+Evaluated signal behavior through portfolio-style tests, cross-sectional analysis, robustness checks, and sensitivity to industry exposure. The goal was not only to find a high-performing factor, but to understand when an ESG signal was credible enough to support investment research and when the data was too sparse, stale, or noisy to trust.
+
+**Why it matters:** Alternative data can look predictive until it is exposed to realistic timing, coverage, and portfolio constraints. This work strengthened the link between feature engineering, empirical finance, backtesting discipline, and decision-oriented model evaluation.
 
 ## Flagship Decision Tools
 
