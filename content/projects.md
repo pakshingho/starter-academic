@@ -39,7 +39,7 @@ The MVP scope focuses on the reasoning and routing layer: separating causal and 
 
 **Why it matters:** Causal analysis often fails before estimation, when the question, design, stakes, and method are mismatched. A structured reasoning layer makes causal inference more accessible to PMs, operations, sales, and leadership while keeping the most sensitive cases reviewable by data science teams.
 
-### Long-Term Experiment Impact Forecasting with Surrogate Index and Double Machine Learning
+### Long-Term Experiment Impact Prediction with Surrogate Index and Double Machine Learning
 
 Built a causal machine learning framework to estimate durable experiment impact before long-term outcomes fully mature. The work addresses a common launch-decision problem in large-scale experimentation: short-term lift can be inflated by novelty, burn-in, or temporary behavior change, then decay, disappear, or reverse after users adapt.
 
