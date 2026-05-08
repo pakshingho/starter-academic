@@ -14,7 +14,7 @@ This page adapts the public academic CV from my earlier Google Site for the curr
 - Master in Economics and Finance, Universitat Pompeu Fabra
 - M.Sc., Economics, London School of Economics and Political Science
 - B.Com., Economics, University of Melbourne
-  Bachelor of Commerce Medal
+  Bachelor of Commerce Medalist
 
 ## Fields of Interest
 
@@ -69,7 +69,7 @@ Teaching Fellow, 2012
 - Dean's Fellowship, Boston University, 2015-2020
 - Teaching Fellowship, Boston University, 2016-2020
 - Teaching Fellowship, Universitat Pompeu Fabra, 2014-2015
-- Bachelor of Commerce Medal 2011 (GPA ranked #1), University of Melbourne, 2012
+- Bachelor of Commerce Medalist 2011 (GPA ranked #1), University of Melbourne, 2012
 - Dean's Honours List 2011, University of Melbourne, 2012
 - Francis J. Wright Exhibition Quantitative Methods Award, University of Melbourne, 2010
 
