@@ -11,6 +11,7 @@ The common thread is decision quality: clarifying the question, making assumptio
 <nav class="projects-toc" aria-label="Projects table of contents">
   <div class="projects-toc__title">On this page</div>
   <a href="#project-themes">Project Themes</a>
+  <a href="#selected-linkedin-project-portfolio">Selected LinkedIn Project Portfolio</a>
   <a href="#selected-amazon-project-portfolio">Selected Amazon Project Portfolio</a>
   <a href="#flagship-decision-tools">Flagship Decision Tools</a>
   <a href="#technical-handbooks">Technical Handbooks</a>
@@ -23,6 +24,30 @@ The common thread is decision quality: clarifying the question, making assumptio
 - **Decision focus:** metric design, trade-offs, uncertainty, and how model outputs change actions.
 - **Reusable systems:** tools, handbooks, and frameworks that help teams reason more consistently.
 - **Communication:** materials designed for data scientists, product leaders, economists, engineers, and senior decision-makers.
+
+## Selected LinkedIn Project Portfolio
+
+These summaries translate current product and science work into public-facing descriptions focused on platform design, method credibility, and decision leverage.
+
+### AI-Driven Causal Reasoning Layer for Scalable Decision-Making
+
+Designed a causal reasoning layer for a chat-based AI platform that helps product and business users translate natural-language questions into credible causal inference workflows. The system addresses a common limitation of AI-assisted analytics: without structured guidance, an agent can default to familiar methods, overuse complex estimators, or recommend analyses that are hard to interpret and defend.
+
+The reasoning layer introduces a method-aware pipeline: classify whether a question is causal, forecasting-oriented, or descriptive; distinguish exploratory analysis from decision-support use cases; search relevant prior experiments or observational studies; elicit missing information from the user; and route the request to the appropriate causal method or expert review path.
+
+Depending on the question, data structure, organizational context, and decision stakes, the system can guide users toward Double Machine Learning, difference-in-differences, synthetic control, or data science escalation. The goal is not full automation of causal inference, but trustworthy automation: making causal workflows more scalable while preserving rigor, interpretability, and defensibility.
+
+**Why it matters:** Causal analysis often fails before estimation, when the question, design, stakes, and method are mismatched. A structured reasoning layer makes causal inference more accessible to non-specialist teams while keeping sensitive decisions reviewable by data science experts.
+
+### Long-Term Experiment Impact Prediction with Surrogate Index and Double Machine Learning
+
+Built a causal machine learning framework to estimate durable experiment impact before long-term outcomes fully mature. The work addresses a common launch-decision problem in large-scale experimentation: short-term lift can be inflated by novelty, burn-in, or temporary behavior change, then decay, disappear, or reverse after users adapt.
+
+The framework combines surrogate-index methodology with Double Machine Learning to translate short-term experimental signals into forecasts of longer-term outcomes such as retention, engagement, and active usage. It uses historical experiment evidence, short-term sensitive metrics, high-dimensional covariates, and counterfactual prediction to improve long-term treatment-effect estimation under delayed feedback.
+
+Designed a backtesting layer using matured experiments to compare predicted long-term effects against realized outcomes, identify short-term false positives, and clarify when early reads are reliable enough for launch decisions versus when teams should wait for more data.
+
+**Why it matters:** Product teams often need to decide before long-term metrics mature. This system helps teams move faster while preserving decision quality by separating temporary lift from durable product value.
 
 ## Selected Amazon Project Portfolio
 
