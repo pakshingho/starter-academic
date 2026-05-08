@@ -22,12 +22,14 @@ My work sits at the intersection of economics, machine learning, and decision-ma
 - Built decision frameworks for forecast-to-cost trade-offs, forecastability diagnostics, market-signal analysis, and external event studies
 - Translated technical methods into reusable tools, internal technical papers, and planning workflows used by business, finance, product, and operations partners
 
-## Earlier Research and Applied Roles
+## Earlier Roles
 
 ### Quantitative Researcher, Geode Capital Management
 
-- Worked on empirical asset-pricing and ESG-focused research in a quantitative investing setting
-- Built and evaluated research signals using financial and alternative data
+- Conducted equity alpha research on ESG and sustainability factors, linking granular vendor datasets to testable investment hypotheses
+- Built and backtested proprietary ESG signal variants using multiple structured and alternative data sources
+- Evaluated signal quality through cross-sectional tests, portfolio backtests, robustness checks, and sensitivity to sector or industry exposure
+- Translated noisy ESG inputs into research-ready features and documented where signals appeared economically meaningful versus unstable
 
 ### Research Associate, Boston University
 
