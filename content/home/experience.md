@@ -111,10 +111,11 @@ date_format = "Jan 2006"
   date_start = "2019-06-01"
   date_end = "2019-08-01"
   description = """
-  Responsibilities include:
+  Selected work included:
 
-  * Equity alpha research focused on ESG and sustainability factors
-  * Constructing and back-testing proprietary ESG trading signals
+  * Researching equity alpha signals tied to ESG and sustainability factors in a quantitative investing setting
+  * Constructing and backtesting proprietary ESG signal variants from granular vendor and alternative data sources
+  * Evaluating signal behavior through portfolio-style tests, robustness checks, and factor interpretation
   """
 
 [[experience]]
