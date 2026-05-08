@@ -30,16 +30,12 @@ education:
   courses:
     - course: Ph.D., Economics
       institution: Boston University
-      year: 2021
     - course: M.Res., Economics and Finance
       institution: Universitat Pompeu Fabra (Barcelona GSE)
-      year: 2015
     - course: M.Sc., Economics
       institution: London School of Economics and Political Science
-      year: 2013
     - course: B.Com., Economics
       institution: The University of Melbourne
-      year: 2012
 email: ""
 superuser: true
 user_groups: []
