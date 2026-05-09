@@ -13,7 +13,7 @@ type: page
 
 - [Causal Inference Resources](/causal-inference-resources/)
 
-### Handbook Courses
+### Notes
 
 - [Data Science Foundations for New Grads](/data-science-foundations/)
 - [Applied Machine Learning for Tabular Data](/tabular-machine-learning/)
