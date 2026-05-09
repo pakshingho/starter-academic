@@ -1,7 +1,7 @@
 ---
 title: Resources
 date: 2026-02-24
-lastmod: 2026-04-17
+lastmod: 2026-05-08
 type: page
 ---
 
@@ -16,6 +16,8 @@ type: page
 ### Handbook Courses
 
 - [Data Science Foundations for New Grads](/data-science-foundations/)
+- [Applied Machine Learning for Tabular Data](/tabular-machine-learning/)
+- [Decision Trees and Ensemble Methods in Machine Learning](/tree-based-machine-learning/)
 
 ### Technical Guides
 
