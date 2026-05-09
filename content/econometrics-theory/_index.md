@@ -29,7 +29,7 @@ Econometrics Theory is currently an outline-first course structure. The aim is t
 
 1. [Mathematical Preliminaries for Econometrics](mathematical-preliminaries-for-econometrics/)
 2. [Asymptotic Theory](asymptotic-theory/)
-3. [Simultaneous-Equation Setup and Notation](simultaneous-equation-setup-and-notation/)
+3. [Preliminaries, Notation, and Definitions](simultaneous-equation-setup-and-notation/)
 4. [Identification in Simultaneous Equation Models](identification-in-simultaneous-equation-models/)
 5. [Estimation of Linear Simultaneous Equation Models](estimation-of-linear-simultaneous-equation-models/)
 6. [Consistency of Estimators](consistency-of-estimators/)
