@@ -497,3 +497,319 @@ If the identity block $A_2$ is known, the transformed model is essentially anoth
 The models above are linear in variables. In practice, as with nonlinear regression, the parameters may enter the model nonlinearly. That motivates the next section.
 
 ## 3.1 Nonlinear simultaneous equations
+
+The linear structural form is not the only possibility. We can again collect the variables as
+
+<div>$$
+x_i=
+\begin{pmatrix}
+y_i\\
+z_i
+\end{pmatrix},
+$$</div>
+
+where $y_i$ is the vector of endogenous variables and $z_i$ is the vector of predetermined variables. In a nonlinear simultaneous-equation model, the structural relationship is written as
+
+<div>$$
+u(x_i,\theta)=u_i,
+$$</div>
+
+where $u_i$ is the disturbance vector, $\theta\in\mathbb{R}^p$ is the parameter vector, and $u(\cdot,\cdot)$ is a known function that may be nonlinear in the variables, in the parameters, or in both.
+
+As before, the structural disturbance satisfies
+
+<div>$$
+E(u_i)=0,
+$$</div>
+
+and we typically impose one of the same exogeneity conditions from the previous section:
+
+<div>$$
+\operatorname{Cov}(z_i,u_i)=0,
+\qquad
+E(u_i\mid z_i)=0,
+\qquad
+\text{or}
+\qquad
+u_i\perp z_i.
+$$</div>
+
+The terminology also carries over:
+
+- $u(x_i,\theta)=u_i$ is the structural-form equation.
+- $\theta$ is the structural-form parameter vector.
+- $u_i$ is the structural-form disturbance.
+- $\Sigma=E(u_i u_i')$ is the structural-form covariance matrix.
+
+### Linear models as a special case
+
+The linear simultaneous-equation model is nested in the nonlinear notation. If
+
+<div>$$
+u(x_i,\theta)=A(\theta)x_i,
+$$</div>
+
+then the general structural equation becomes
+
+<div>$$
+A(\theta)x_i=u_i.
+$$</div>
+
+This is just the linear structural form, possibly with $A$ itself parameterized by a lower-dimensional vector $\theta$.
+
+Another simple case is a model that is linear in the endogenous variables but nonlinear in the predetermined variables:
+
+<div>$$
+B y_i+H(z_i,\theta)=u_i.
+$$</div>
+
+This is usually less conceptually difficult than full nonlinearity in the endogenous variables, because once $z_i$ is given, the system remains linear in $y_i$.
+
+The more interesting case is when nonlinearity enters through the endogenous variables themselves. Then solving the system and studying its large-sample behavior become much harder.
+
+### Box-Cox example
+
+For a scalar endogenous variable, take $M=G=1$. The Box-Cox structural equation can be written as
+
+<div>$$
+u(x_i,\theta)=
+\begin{cases}
+\dfrac{y_i^\lambda-1}{\lambda}-\beta'z_i,
+& \lambda\ne 0,\\[1.2em]
+\log y_i-\beta'z_i,
+& \lambda=0.
+\end{cases}
+$$</div>
+
+Two special values are especially important:
+
+- $\lambda=0$ gives the log-linear model.
+- $\lambda=1$ gives the linear model after the harmless constant shift.
+
+If $\lambda$ is unknown, we can test whether the data favor a log-linear model, a linear model, or an intermediate transformation. But the transformation also creates a warning. Since the Box-Cox transformation requires $y_i>0$, the disturbance cannot generally be Gaussian on the whole real line. This mismatch can make nonlinear least squares inconsistent in some specifications.
+
+### Arcsinh example
+
+A related transformation avoids the positivity restriction:
+
+<div>$$
+u(x_i,\theta)
+=
+\frac{\operatorname{arcsinh}(\lambda y_i)}{\lambda}
+-\beta'z_i,
+\qquad
+\theta=(\lambda,\beta')'.
+$$</div>
+
+Here $\operatorname{arcsinh}$ is the inverse hyperbolic sine function, where
+
+<div>$$
+\sinh(t)=\frac{e^t-e^{-t}}{2}.
+$$</div>
+
+As $\lambda\to 0$,
+
+<div>$$
+\frac{\operatorname{arcsinh}(\lambda y_i)}{\lambda}
+\to y_i,
+$$</div>
+
+so the model approaches the linear specification
+
+<div>$$
+y_i-\beta'z_i=u_i.
+$$</div>
+
+The practical attraction of this transformation is that it behaves like a log transformation for large positive values but remains defined for zero and negative outcomes.
+
+### Two-equation nonlinear systems
+
+Now let $M=G=2$. One possible nonlinear simultaneous-equation system is
+
+<div>$$
+\begin{aligned}
+\log y_{1i}+\beta'z_i &= u_{1i},\\
+y_{2i}+\lambda y_{1i} &= u_{2i},
+\end{aligned}
+$$</div>
+
+where
+
+<div>$$
+\theta=(\lambda,\beta')',
+\qquad
+y_i=(y_{1i},y_{2i})'.
+$$</div>
+
+Another example is
+
+<div>$$
+\begin{aligned}
+-\log y_{1i}-\lambda_1 y_{2i}-\beta_1'z_i &= u_{1i},\\
+y_{2i}-\lambda_2 y_{1i}-\beta_2'z_i &= u_{2i}.
+\end{aligned}
+$$</div>
+
+These systems show why nonlinear simultaneous equations are harder than nonlinear single-equation models. The endogenous variables appear inside nonlinear transformations and across equations, so the reduced form may not be available in a closed expression.
+
+### Complete, incomplete, and extra-equation systems
+
+The linear terminology still helps organize nonlinear systems:
+
+<div>$$
+M=G
+\quad\Longrightarrow\quad
+\text{complete system},
+$$</div>
+
+<div>$$
+M<G
+\quad\Longrightarrow\quad
+\text{incomplete system}.
+$$</div>
+
+For example, if a two-equation model has two endogenous variables but we drop the second equation, then $M<G$ and the system is incomplete.
+
+Sometimes we may instead have more equations than endogenous variables. Suppose $y_i$ is scalar and
+
+<div>$$
+u_1(x_i,\theta_1)=u_{1i}.
+$$</div>
+
+Now define a second equation based on the centered squared disturbance:
+
+<div>$$
+u_1(x_i,\theta_1)^2-\sigma^2=u_{2i}.
+$$</div>
+
+Then
+
+<div>$$
+E(u_{2i})=0,
+$$</div>
+
+and the full moment system can be written as
+
+<div>$$
+u(x_i,\theta)=
+\begin{pmatrix}
+u_1(x_i,\theta_1)\\
+u_1(x_i,\theta_1)^2-\sigma^2
+\end{pmatrix},
+\qquad
+\theta=(\theta_1',\sigma^2)'.
+$$</div>
+
+Here $G=1$ but $M=2$. The point is not that the second equation determines a new endogenous variable. Instead, it provides an additional moment restriction. In principle, using the extra restriction can improve the efficiency of estimators of $\theta$.
+
+### Reduced form in nonlinear systems
+
+For linear models, the reduced form followed directly from matrix inversion:
+
+<div>$$
+y_i=\Pi z_i+v_i.
+$$</div>
+
+For nonlinear models, the reduced form is more subtle. Write the structural equation as
+
+<div>$$
+u(y,z,\theta)-u=0.
+$$</div>
+
+If, in a neighborhood of the true parameter vector $\theta_0$, this equation has a unique solution in $y$, then we can write
+
+<div>$$
+y=R(u,z,\theta).
+$$</div>
+
+For the sample,
+
+<div>$$
+y_i=R(u_i,z_i,\theta),
+\qquad
+i=1,\ldots,n.
+$$</div>
+
+This is the nonlinear reduced form. Unlike the linear case, $R(\cdot)$ may be hard to express explicitly, and sometimes it must be evaluated numerically.
+
+For the Box-Cox model, the reduced form is
+
+<div>$$
+y_i=
+\left\{
+1+\lambda(\beta'z_i+u_i)
+\right\}^{1/\lambda}.
+$$</div>
+
+For the arcsinh model,
+
+<div>$$
+y_i=
+\frac{1}{\lambda}
+\sinh\{\lambda(\beta'z_i+u_i)\}.
+$$</div>
+
+For a triangular nonlinear system with
+
+<div>$$
+\begin{aligned}
+-\log y_{1i}+\beta'z_i &= u_{1i},\\
+y_{2i}-\lambda y_{1i} &= u_{2i},
+\end{aligned}
+$$</div>
+
+the reduced form is explicit:
+
+<div>$$
+y_{1i}=\exp(\beta'z_i-u_{1i}),
+\qquad
+y_{2i}=\lambda\exp(\beta'z_i-u_{1i})+u_{2i}.
+$$</div>
+
+In more complicated nonlinear systems, no closed-form $R(\cdot)$ may exist. For fixed $z$, $u$, and $\theta$, we can still approximate the reduced form numerically by solving the system
+
+<div>$$
+u(y,z,\theta)-u=0
+$$</div>
+
+for $y$.
+
+### Nonlinear dynamic systems
+
+As in the linear case, the predetermined vector $z_i$ may contain lagged endogenous variables and lagged exogenous variables. For example, write
+
+<div>$$
+z_i=
+\begin{pmatrix}
+y_{i-1}' & {z_i^\ast}' & {z_{i-1}^\ast}'
+\end{pmatrix}'.
+$$</div>
+
+Then the nonlinear structural equation becomes
+
+<div>$$
+u(y_i,z_i,\theta)=u_i,
+$$</div>
+
+or, making the lags explicit,
+
+<div>$$
+u\left(
+y_i,
+\begin{pmatrix}
+y_{i-1}' & {z_i^\ast}' & {z_{i-1}^\ast}'
+\end{pmatrix}',
+\theta
+\right)
+=u_i.
+$$</div>
+
+This is a nonlinear dynamic system.
+
+The note emphasizes that stationarity, stability, and large-sample theory are substantially more difficult in this setting than in the linear dynamic models from the previous section. The difficulty comes from combining three ingredients at once:
+
+- endogenous variables are solved jointly;
+- nonlinear transformations may prevent closed-form reduced forms;
+- lagged variables make the system recursive over time.
+
+For the numerical tour later, this section gives us the template for simulation: choose a structural function $u(y,z,\theta)$, generate disturbances $u_i$, solve the nonlinear equation for $y_i$, and then study how different estimators behave under the simulated data-generating process.
