@@ -34,7 +34,7 @@ Econometrics Theory is currently an outline-first course structure. The aim is t
 5. [Estimation of Linear Simultaneous Equation Models](estimation-of-linear-simultaneous-equation-models/)
 6. [Consistency of Estimators](consistency-of-estimators/)
 7. [Asymptotic Normality and Constrained Estimation](asymptotic-normality-and-constrained-estimation/)
-8. [Nonlinear Simultaneous Equations and GMM](nonlinear-simultaneous-equations-and-gmm/)
+8. [Estimation of Nonlinear Simultaneous Equations and Transformation Models](nonlinear-simultaneous-equations-and-gmm/)
 9. [Hypothesis Testing](hypothesis-testing/)
 10. [Boundary Asymptotics and Nonlinear Models](boundary-asymptotics-and-nonlinear-models/)
 11. [Reading List](reading-list/)
