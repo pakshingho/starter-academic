@@ -561,3 +561,192 @@ then $\tau(\theta_0)$ is locally identifiable. The condition says that adding th
 With the appropriate regularity condition, the converse also holds: if $\tau(\theta_0)$ is locally identifiable, then the derivative of $\tau$ must lie in the row span of the derivative of the identifying restrictions.
 
 ## 4.2 Identifiability and asymptotic theory
+
+If a parameter is not identified, we cannot hope to estimate it consistently. The rank and order conditions from the previous section therefore reappear in asymptotic theory: the same conditions that make a parameter learnable also support consistency and asymptotic normality.
+
+For linear regression and linear simultaneous-equation models, identification conditions often have both finite-sample and asymptotic interpretations because parameters and variables enter the model in a separable way. In nonlinear regression and nonlinear simultaneous-equation models, this connection is less direct. It is often more convenient to study identification through the limiting behavior of the objective function.
+
+Let the sample objective be
+
+<div>$$
+Q_n(X,\theta),
+$$</div>
+
+and suppose that, uniformly in $\theta\in\Theta$,
+
+<div>$$
+Q_n(X,\theta)\xrightarrow{P} Q(\theta).
+\tag{4.17}
+$$</div>
+
+The population objective $Q(\theta)$ is the large-sample target of the sample criterion. Let the true value $\theta_0$ satisfy
+
+<div>$$
+\theta_0
+=
+\arg\min_{\theta\in\Theta} Q(\theta).
+\tag{4.18}
+$$</div>
+
+This motivates estimating $\theta_0$ by minimizing the sample objective:
+
+<div>$$
+\hat\theta_n
+=
+\arg\min_{\theta\in\Theta} Q_n(X,\theta).
+$$</div>
+
+Define the population objective gap
+
+<div>$$
+R(\theta)=Q(\theta)-Q(\theta_0).
+$$</div>
+
+Since $\theta_0$ minimizes $Q$,
+
+<div>$$
+R(\theta)\ge 0,
+\qquad
+R(\theta_0)=0.
+$$</div>
+
+The key question is whether any other parameter value also achieves the same population objective value.
+
+### Global and local objective separation
+
+Consider two separation conditions.
+
+Global separation:
+
+<div>$$
+R(\theta)>0
+\qquad
+\text{for every } \theta\in\Theta,\ \theta\ne\theta_0.
+\tag{4.19}
+$$</div>
+
+Local separation:
+
+<div>$$
+R(\theta)>0
+\qquad
+\text{for every } \theta\in N(\theta_0),\ \theta\ne\theta_0,
+\tag{4.20}
+$$</div>
+
+where $N(\theta_0)$ is some neighborhood of $\theta_0$.
+
+If global separation holds, then $\theta_0$ is globally identifiable. If local separation holds, then $\theta_0$ is locally identifiable.
+
+The argument is short. If $\theta_1$ is observationally equivalent to $\theta_0$, then the sample objectives agree for every possible data realization:
+
+<div>$$
+Q_n(x,\theta_1)=Q_n(x,\theta_0).
+$$</div>
+
+Passing to the population limit gives
+
+<div>$$
+Q(\theta_1)=Q(\theta_0),
+$$</div>
+
+so
+
+<div>$$
+R(\theta_1)=0.
+$$</div>
+
+Under global separation, this can happen only if $\theta_1=\theta_0$. Under local separation, it can happen only if there is no distinct observationally equivalent value in the chosen neighborhood.
+
+These separation conditions are sufficient, not necessary. A parameter may be identifiable even if the particular objective function used to study it is flat or poorly behaved in some directions.
+
+### Asymptotic identifiability
+
+If global separation holds, we say $\theta_0$ is asymptotically identifiable. If local separation holds, we say $\theta_0$ is locally asymptotically identifiable.
+
+These conditions are exactly what consistency arguments usually need. Uniform convergence of $Q_n$ to $Q$, combined with a unique separated minimizer of $Q$, implies that minimizers of $Q_n$ must concentrate near $\theta_0$.
+
+The distinction is important:
+
+- Global asymptotic identification rules out all other population minimizers in $\Theta$.
+- Local asymptotic identification rules out only nearby population minimizers.
+- Consistency over the whole parameter space usually needs global separation or compactness plus additional arguments.
+- Local asymptotic normality typically needs only local separation plus smoothness and a nonsingular curvature matrix.
+
+### Linear regression example
+
+Consider the linear regression model
+
+<div>$$
+y_i=\beta'z_i+v_i.
+$$</div>
+
+Let
+
+<div>$$
+\widehat M_n=\frac{Z'Z}{n}
+$$</div>
+
+and suppose
+
+<div>$$
+\widehat M_n\xrightarrow{P}M.
+$$</div>
+
+In a fixed sample, if $\widehat M_n$ is positive definite, then $\beta$ is identified from the least-squares objective. If $M$ is positive definite, then $\beta$ is asymptotically identifiable.
+
+To see this, write the population objective gap around $\beta_0$ as
+
+<div>$$
+R(\beta)
+=
+(\beta-\beta_0)'M(\beta-\beta_0).
+$$</div>
+
+If $M>0$, then
+
+<div>$$
+R(\beta)>0
+\qquad
+\text{for every } \beta\ne\beta_0.
+$$</div>
+
+Thus the population criterion has a unique minimizer at $\beta_0$.
+
+### Hessian rank condition
+
+Suppose $Q(\theta)$ is twice continuously differentiable in a neighborhood of $\theta_0$. Define the Hessian
+
+<div>$$
+S(\theta)
+=
+\frac{\partial^2 Q(\theta)}
+{\partial\theta\,\partial\theta'}.
+$$</div>
+
+If
+
+<div>$$
+\operatorname{rank}(S(\theta_0))=p,
+\tag{4.21}
+$$</div>
+
+then $\theta_0$ is locally asymptotically identifiable.
+
+Because $\theta_0$ is a local minimizer, the Hessian is positive semidefinite under standard smoothness conditions. Full rank therefore means the Hessian is positive definite: the population objective has strictly positive quadratic curvature in every parameter direction near $\theta_0$.
+
+Conversely, if $\theta_0$ is a regular point of $S(\theta)$ and $\theta_0$ is locally asymptotically identifiable, then
+
+<div>$$
+\operatorname{rank}(S(\theta_0))=p.
+$$</div>
+
+This is the objective-function analogue of the local rank condition from the previous section.
+
+The inverse Hessian,
+
+<div>$$
+S(\theta_0)^{-1},
+$$</div>
+
+is also the matrix that appears in the central limit theorem for estimators that minimize $Q_n(X,\theta)$. This is why local asymptotic identification is closely tied to asymptotic normality: without nonsingular local curvature, the estimator does not have a standard full-rank quadratic approximation around $\theta_0$.
