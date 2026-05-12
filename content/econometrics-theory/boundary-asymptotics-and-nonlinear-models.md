@@ -564,14 +564,149 @@ $$</div>
 
 Thus the nonlinear boundary limit is the same shape as the linear boundary limit, but with $x_i$ replaced by the derivative $f_i'(\beta_0)$.
 
-### Numerical tour template
+### Numerical simulation tour
 
-To see the boundary effect in simulation:
+We now perform the boundary simulation directly on the page. The default experiment uses the scalar linear model
 
-1. choose $\Theta=[0,M]$ and set $\beta_0=0$;
-2. generate data from either $y_i=\beta_0x_i+u_i$ or $y_i=f(x_i,\beta_0)+u_i$;
-3. estimate both the unconstrained model and the constrained model;
-4. plot $\sqrt n(\widehat\beta-\beta_0)$ over many replications;
-5. compare the histogram with a normal curve and with the projected limit $\max\lbrace Z,0\rbrace$ after scaling.
+<div>$$
+y_i=\beta_0x_i+u_i,
+\qquad
+x_i\sim N(0,1),
+\qquad
+u_i\sim N(0,1),
+$$</div>
 
-The visual signature is immediate: the constrained estimator piles up at zero, while the interior asymptotic normal approximation assigns probability to infeasible negative local movements.
+with parameter space
+
+<div>$$
+\Theta=[0,1.5].
+$$</div>
+
+For each Monte Carlo replication, compute the unconstrained least-squares estimator
+
+<div>$$
+\widetilde\beta
+=
+\frac{\sum_{i=1}^n x_i y_i}
+{\sum_{i=1}^n x_i^2},
+$$</div>
+
+and then impose the parameter-space restriction by projection:
+
+<div>$$
+\widehat\beta
+=
+\min\{1.5,\max\{0,\widetilde\beta\}\}.
+$$</div>
+
+When $\beta_0=0$, the lower boundary is active and the theory predicts
+
+<div>$$
+\sqrt n(\widehat\beta-\beta_0)
+\xrightarrow{d}
+\max\{Z,0\},
+\qquad
+Z\sim N(0,1).
+$$</div>
+
+So about half the limiting probability mass sits exactly at zero. When $\beta_0=0.5$, the true value is interior and the usual normal approximation returns.
+
+<div class="probability-tool" id="boundary-asymptotics-tool">
+  <div class="probability-tool__grid">
+    <section class="probability-tool__panel">
+      <p class="probability-tool__eyebrow">Interactive Monte Carlo</p>
+      <h3>Boundary estimator simulator</h3>
+      <p id="boundary-asymptotics-tool-copy">Choose whether the true parameter is on the lower boundary or safely inside the parameter space. The charts compare the constrained estimator with the local limiting approximation.</p>
+      <div class="probability-tool__field">
+        <label for="boundary-asymptotics-tool-scenario">True parameter location</label>
+        <select id="boundary-asymptotics-tool-scenario">
+          <option value="boundary" selected>Boundary: beta0 = 0</option>
+          <option value="interior">Interior: beta0 = 0.5</option>
+        </select>
+        <p>The boundary case should pile up at zero. The interior case should look approximately normal.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="boundary-asymptotics-tool-reps">Monte Carlo repetitions</label>
+        <input id="boundary-asymptotics-tool-reps" type="number" min="500" max="10000" step="500" value="4000">
+        <p>More repetitions make the histogram smoother but take slightly longer.</p>
+      </div>
+      <div class="probability-tool__field">
+        <label for="boundary-asymptotics-tool-snapshot">Histogram sample size</label>
+        <select id="boundary-asymptotics-tool-snapshot"></select>
+        <p>The histogram uses this sample size for the distribution of <code>sqrt(n)(betahat - beta0)</code>.</p>
+      </div>
+      <div class="probability-tool__actions">
+        <button type="button" class="probability-tool__button" id="boundary-asymptotics-tool-run">Run simulation</button>
+        <button type="button" class="probability-tool__button probability-tool__button--ghost" id="boundary-asymptotics-tool-reset">Reset preset</button>
+      </div>
+    </section>
+    <section class="probability-tool__panel probability-tool__panel--results">
+      <p class="probability-tool__eyebrow">Current Run</p>
+      <h3>What the simulation is showing</h3>
+      <div class="probability-tool__metrics">
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Scenario</span>
+          <strong id="boundary-asymptotics-tool-metric-scenario">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Boundary mass at histogram n</span>
+          <strong id="boundary-asymptotics-tool-metric-boundary">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Unconstrained estimate below 0</span>
+          <strong id="boundary-asymptotics-tool-metric-infeasible">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Mean of sqrt(n)(betahat - beta0)</span>
+          <strong id="boundary-asymptotics-tool-metric-mean">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">SD of sqrt(n)(betahat - beta0)</span>
+          <strong id="boundary-asymptotics-tool-metric-sd">-</strong>
+        </div>
+        <div class="probability-tool__metric">
+          <span class="probability-tool__metric-label">Limit benchmark</span>
+          <strong id="boundary-asymptotics-tool-metric-limit">-</strong>
+        </div>
+      </div>
+      <div class="probability-tool__notes" id="boundary-asymptotics-tool-notes"></div>
+      <div class="probability-tool__error" id="boundary-asymptotics-tool-error" hidden></div>
+    </section>
+  </div>
+  <section class="probability-tool__panel probability-tool__panel--charts">
+    <div class="probability-tool__charts">
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Probability of hitting the boundary</h3>
+          <p>The teal line is simulated. The dashed line is the limiting prediction: 0.5 at the lower boundary and 0 in the interior.</p>
+        </div>
+        <div id="boundary-asymptotics-tool-mass-chart"></div>
+      </article>
+      <article class="probability-tool__chart-card">
+        <div class="probability-tool__chart-head">
+          <h3>Distribution of the scaled estimator</h3>
+          <p>The bars show <code>sqrt(n)(betahat - beta0)</code>. The dashed curve is the unconstrained normal benchmark.</p>
+        </div>
+        <div id="boundary-asymptotics-tool-histogram"></div>
+      </article>
+    </div>
+    <div class="probability-tool__table-wrap">
+      <table class="probability-tool__table">
+        <thead>
+          <tr>
+            <th>Sample size n</th>
+            <th>Simulated Pr(betahat = 0)</th>
+            <th>Limit Pr(point mass at 0)</th>
+            <th>Mean scaled estimate</th>
+            <th>SD scaled estimate</th>
+          </tr>
+        </thead>
+        <tbody id="boundary-asymptotics-tool-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+Read the two charts together. At the boundary, many unconstrained estimates want to be negative, but negative values are infeasible. The constrained estimator therefore sticks exactly at zero in those replications. In the histogram, that shows up as a large spike at zero rather than a smooth bell curve.
+
+The interior case is a useful control experiment. Once $\beta_0$ is away from the boundary, the projection almost never matters for large $n$, and the scaled constrained estimator behaves like the usual unconstrained normal approximation.
