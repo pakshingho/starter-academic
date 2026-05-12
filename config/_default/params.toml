@@ -174,7 +174,7 @@ abstract_length = 135
 
 # Load JS plugins
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_js  = ["back-to-top", "docs-sidebar-toggle", "experimentation-calculator", "causal-method-selector", "marketplace-simulator", "marketplace-pricing-simulator"]
+plugins_js  = ["back-to-top", "docs-sidebar-toggle", "experimentation-calculator", "causal-method-selector", "marketplace-simulator", "marketplace-pricing-simulator", "convergence-probability-simulator", "almost-sure-convergence-simulator", "uniform-complete-convergence-simulators", "boundary-asymptotics-simulator"]
 
 # Avatars.
 # An avatar is an image that appears next to a user's name.

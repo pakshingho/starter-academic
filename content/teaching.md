@@ -1,7 +1,7 @@
 ---
 title: Teaching
 date: 2026-03-15
-lastmod: 2026-03-15
+lastmod: 2026-04-17
 type: page
 ---
 
@@ -15,6 +15,8 @@ This page combines current handbook-style course material with earlier universit
   A self-paced handbook short course on problem framing, evaluation, feature engineering, trees, optimization, and model selection for tabular ML.
 - [Decision Trees and Ensemble Methods in Machine Learning](/tree-based-machine-learning/)
   A self-paced handbook short course on decision trees, random forests, feature importance, and boosting methods for structured data.
+- [Econometrics Theory](/econometrics-theory/)
+  An outline-first handbook designed to grow into a numerical course on asymptotics, simultaneous equations, identification, estimation, and testing.
 
 ## University Teaching Experience
 

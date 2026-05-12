@@ -320,6 +320,256 @@ html {
   margin-top: 1.5rem;
 }
 
+.probability-tool {
+  margin-top: 1.75rem;
+}
+
+.probability-tool__grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.probability-tool__panel {
+  min-width: 0;
+  padding: 1.45rem;
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(15, 118, 110, 0.05), rgba(37, 99, 235, 0.04));
+}
+
+.probability-tool__panel h3 {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+}
+
+.probability-tool__eyebrow {
+  margin: 0 0 0.45rem;
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.probability-tool__field + .probability-tool__field {
+  margin-top: 1rem;
+}
+
+.probability-tool__field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.probability-tool__field input,
+.probability-tool__field select {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: inherit;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+}
+
+.probability-tool__field p {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.probability-tool__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+
+.probability-tool__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.98), rgba(37, 99, 235, 0.92));
+  color: #fff;
+  padding: 0.68rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.probability-tool__button--ghost {
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.4);
+  color: inherit;
+}
+
+.probability-tool__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.probability-tool__metric {
+  min-height: 8.2rem;
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(15, 118, 110, 0.14);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.probability-tool__metric-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.probability-tool__metric strong {
+  display: block;
+  font-size: 1.18rem;
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+.probability-tool__notes {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.probability-tool__notes p:last-child {
+  margin-bottom: 0;
+}
+
+.probability-tool__error {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 0.95rem;
+  background: rgba(209, 62, 62, 0.12);
+  color: #c73b3b;
+  font-weight: 700;
+}
+
+.probability-tool__panel--charts {
+  margin-top: 1.5rem;
+}
+
+.probability-tool__charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.probability-tool__chart-card {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.probability-tool__chart-head h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+}
+
+.probability-tool__chart-head p {
+  margin: 0 0 0.8rem;
+  font-size: 0.92rem;
+  opacity: 0.82;
+}
+
+.probability-tool__chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.probability-tool__chart-axis {
+  stroke: rgba(15, 23, 42, 0.32);
+  stroke-width: 1.1;
+}
+
+.probability-tool__chart-grid {
+  stroke: rgba(15, 23, 42, 0.12);
+  stroke-dasharray: 3 5;
+}
+
+.probability-tool__chart-band {
+  fill: rgba(15, 118, 110, 0.12);
+}
+
+.probability-tool__chart-target {
+  stroke: rgba(15, 23, 42, 0.38);
+  stroke-width: 1.1;
+  stroke-dasharray: 5 5;
+}
+
+.probability-tool__axis-label,
+.probability-tool__marker-label {
+  fill: currentColor;
+  font-size: 11px;
+  opacity: 0.78;
+}
+
+.probability-tool__axis-label--x,
+.probability-tool__marker-label {
+  text-anchor: middle;
+}
+
+.probability-tool__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.probability-tool__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.probability-tool__legend-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+}
+
+.probability-tool__table-wrap {
+  margin-top: 1.35rem;
+  overflow-x: auto;
+}
+
+.probability-tool__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.probability-tool__table thead th {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  font-size: 0.92rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.probability-tool__table tbody td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.probability-tool__table-row--highlight td {
+  background: rgba(15, 118, 110, 0.08);
+}
+
 .marketplace-tool {
   margin-top: 1.5rem;
 }
@@ -1381,6 +1631,11 @@ html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .probability-tool__grid,
+  .probability-tool__charts {
+    grid-template-columns: 1fr;
+  }
+
   .marketplace-tool__grid {
     grid-template-columns: 1fr;
   }
@@ -1455,6 +1710,14 @@ html {
   }
 
   .experiment-tool__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .probability-tool__panel {
+    padding: 1.1rem;
+  }
+
+  .probability-tool__metrics {
     grid-template-columns: 1fr;
   }
 
